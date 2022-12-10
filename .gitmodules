@@ -1,0 +1,3 @@
+[submodule "libes"]
+	path = libes
+	url = git@github.com:FoxInTango/libes.git
