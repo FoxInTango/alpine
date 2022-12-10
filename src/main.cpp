@@ -11,7 +11,7 @@
 #define EVENT_NUM 12 
 
 #include "libfsevent.h"
-//#include "es/es_document.h"
+#include "libes/src/es_document.h"
 char* event_str[EVENT_NUM] =
 {
     "IN_ACCESS",
@@ -95,8 +95,8 @@ int main(int argc, char* argv[])
     // output the same number again
     // std::wcout << 1000.01 << '\n';
 
-    //es_document doc;
-    //return doc.load("./index.es");
+    es_document doc;
+    return doc.load("./index.es");
     struct stat _stat_;
     std::cout << "file stat : " << stat("./index", &_stat_) << std::endl;
     std::cout << "file stat : " << stat("./index/boot", &_stat_) << std::endl;
