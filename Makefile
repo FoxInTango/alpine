@@ -2,7 +2,6 @@ CC=g++
 AS=as
 AR=ar
 LD=ld
-CP=llvm-objcopy
 
 PLATFORM_ARCH         = $(shell uname -s)
 PLATFORM_ARCH_LINUX   = Linux
@@ -73,7 +72,7 @@ TARGET_LIB_PIC  =
 TARGET_LIB_FLAG = 
 
 ASFLAGS =
-CCFLAGS = -c -Wall -fvisibility=hidden #-I${TARGET_HEADER_DIRS}
+CCFLAGS = -c -Wall -fvisibility=hidden
 PPFLAGS = -c -Wall -fvisibility=hidden
 # 平台检测 -- DARWIN
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
