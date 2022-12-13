@@ -32,6 +32,13 @@ TARGET_LIB_DIR := ./lib
 PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
+PROJECT_DIR_BESIDES += -o -path ./libcpp
+PROJECT_DIR_BESIDES += -o -path ./libmodel
+PROJECT_DIR_BESIDES += -o -path ./libmodule
+PROJECT_DIR_BESIDES += -o -path ./libevent
+PROJECT_DIR_BESIDES += -o -path ./libfsevent
+PROJECT_DIR_BESIDES += -o -path ./libioevent
+PROJECT_DIR_BESIDES += -o -path ./libes
 PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib
@@ -53,14 +60,10 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 
 # 链接库配置
 TARGET_LIB_INCLUDE =
-TARGET_LIB_BINARY  =
-TARGET_LD_FLAGS    =
-
-TARGET_LIB_INCLUDE =
-TARGET_LIB_BINARY  =
-TARGET_LD_FLAGS    =
+TARGET_LIB_BINARY  = 
+TARGET_LD_FLAGS    = 
 # 需要链接的库
-TARGET_LIBS = -lstdc++
+TARGET_LIBS = -lstdc++ -lmodel -les -static
 # 链接标志
 TARGET_LIB_PIC_SHARED  = -fPIC
 TARGET_LIB_PIC_STATIC  = 
@@ -96,6 +99,14 @@ endif
 
 TARGETS = 
 
+export SUB_PROJECT_INSTALL_PREFIX = ./
+
+# 依赖库
+#TARGETS += LIB_CPP
+#TARGETS += LIB_MODEL
+#TARGETS += LIB_MODULE
+#TARGETS += LIB_ES
+
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
 endif
@@ -115,7 +126,7 @@ ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_DYNAMIC}: $(TARGET_OBJECTS_PP)
 	$(CC) ${TARGET_LD_FLAGS} ${TARGET_LIB_PIC} ${TARGET_LIB_FLAG}  $(TARGET_LIB_PIC_SHARED) $(TARGET_LIB_FLAG_SHARED) $(TARGET_LIBS) -o $@ $^
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) ${TARGET_LD_FLAGS} ${TARGET_LIB_PIC} ${TARGET_LIB_FLAG} $(TARGET_LIBS) -o $@ $^
+	$(CC) ${TARGET_LD_FLAGS} ${TARGET_LIB_PIC} ${TARGET_LIB_FLAG} -o $@ $^ $(TARGET_LIBS)
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
@@ -124,6 +135,15 @@ $(TARGET_OBJECTS_CC):%.o:%.c
 $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $(TARGET_LIB_PIC_SHARED) $< -o $@
 
+LIB_CPP:
+	cd ./libcpp && $(MAKE) #&& $(MAKE) install
+LIB_MODEL:
+	cd ./libmodel && $(MAKE) #&& $(MAKE) install
+LIB_MODULE:
+	cd ./libmodule && $(MAKE) #&& $(MAKE) install
+LIB_ES:
+	cd ./libes && $(MAKE) #&& $(MAKE) install
+
 clean   :
 	rm -f $(TARGET_OBJECTS_AS)
 	rm -f $(TARGET_OBJECTS_CC)
@@ -131,14 +151,12 @@ clean   :
 	rm -f ${TARGET_LIB_DIR}/*
 	rm -f ${TARGET_BIN_DIR}/*
 install :
-	rm -rf $(INSTALL_PATH_PREFIX)/include/$(TARGET_NAME)
-	rm -rf $(INSTALL_PATH_PREFIX)/lib/$(TARGET_NAME).*
-	mkdir  $(INSTALL_PATH_PREFIX)/include/$(TARGET_NAME)
-	cp     $(TARGET_HEADERS) $(INSTALL_PATH_PREFIX)/include/$(TARGET_NAME)
-	cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).$(TARGET_LIB_EXT_STATIC) $(INSTALL_PATH_PREFIX)/lib/
-	cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).$(TARGET_LIB_EXT_DYNAMIC) $(INSTALL_PATH_PREFIX)/lib/
+	cp -f $(TARGET_BIN_DIR)/$(TARGET_NAME) $(INSTALL_PATH_PREFIX)/bin/
 	$(shell ./pc.sh $(TARGET_NAME) 1.0.0 /usr/local)
 uninstall : 
 	rm -rf $(INSTALL_PATH_PREFIX)/include/$(TARGET_NAME)
 	rm -rf $(INSTALL_PATH_PREFIX)/lib/$(TARGET_NAME).*
 	rm -rf $(INSTALL_PATH_PREFIX)/lib/pkgconfig/$(TARGET_NAME).pc
+
+# https://www.ruanyifeng.com/blog/2015/02/make.html
+# https://blog.csdn.net/freestep96/article/details/126352344

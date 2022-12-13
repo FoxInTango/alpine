@@ -36,30 +36,14 @@
 #include <cstring>
 #include <cassert>
 #include <locale>
-
-#include "libfsevent.h"
-#include "libes/src/es_document.h"
+#include "alpine.h"
 
 int main(int argc, char* argv[])
 {
-    //std::ios::sync_with_stdio(true);
-    //std::locale::global(std::locale("zh_CN"));
-    //std::wcout.imbue(std::locale("zh_CN") );
-    setlocale(LC_ALL,"chs");
-    std::cout << "这里是中文." << std::endl;
-    std::wstring wline = std::wstring_convert<std::codecvt_utf8<wchar_t>>{}.from_bytes("nice to meet you");
-    std::wcout << "wline : " << wline << std::endl;
-    std::wcout << "sizeof wline[2] : " << sizeof(wline[2]) << std::endl;
-    if(wline[1] == L'常')
-        std::wcout << "m" << std::endl;
-    std::wcout << "sizeof wchar_t : " << sizeof(wchar_t) << std::endl;
-    std::wcout << "sizeof L'l'" << sizeof(L'l') << std::endl;
-    std::wcout << "sizeof L\"l\"" << sizeof(L"") << std::endl;
-    std::wcout << L"main" << "  FILE : " << __FILE__ <<  "  LINE : " << __LINE__ << "  FUNCTION : " << __FUNCTION__ <<std::endl;
-    for(int i = 0;i < argc;i ++) {
-        std::wcout << L"argument " << i << L" " << argv[i] << std::endl;
-    }
+    foxintango::Model model;
+    alpine_init(&model);
+    libes_init();
     char* path = argv[1];
-    es_document doc;
+    foxintango::es_document doc;
     return doc.load(path);
 }

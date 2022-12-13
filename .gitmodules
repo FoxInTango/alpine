@@ -1,3 +1,24 @@
 [submodule "libes"]
 	path = libes
 	url = git@github.com:FoxInTango/libes.git
+[submodule "libcpp"]
+	path = libcpp
+	url = git@github.com:FoxInTango/libcpp.git
+[submodule "libmodel"]
+	path = libmodel
+	url = git@github.com:FoxInTango/libmodel.git
+[submodule "libmodule"]
+	path = libmodule
+	url = git@github.com:FoxInTango/libmodule.git
+[submodule "libfsevent"]
+	path = libfsevent
+	url = git@github.com:FoxInTango/libfsevent.git
+[submodule "libevent"]
+	path = libevent
+	url = git@github.com:FoxInTango/libevent.git
+[submodule "libioevent"]
+	path = libioevent
+	url = git@github.com:FoxInTango/libioevent.git
+[submodule "libast"]
+	path = libast
+	url = git@github.com:FoxInTango/libast.git
