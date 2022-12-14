@@ -45,9 +45,16 @@ class fs_event;
  * /dev/shm/alpine
  * 
  */
-int alpine_init(const foxintango::Model* model);
+int alpine_init(const char* path);
 int alpine_load(const char* path);
 int alpine_watch(char *path, const fs_event *event, fs_event_callback handler,const int &depth = 0);
 void alpine_fs_event_handler(const fs_event& event);
+
+#endif
+
+#ifndef  _alpine_config_h_
+#define  _alpine_config_h_
+
+#define ALPINE_model_path_default "/etc/alpine.mo|json|xml"
 
 #endif

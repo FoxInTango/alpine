@@ -22,3 +22,9 @@
 [submodule "libast"]
 	path = libast
 	url = git@github.com:FoxInTango/libast.git
+[submodule "libarguments"]
+	path = libarguments
+	url = git@github.com:FoxInTango/libarguments.git
+[submodule "libecho"]
+	path = libecho
+	url = git@github.com:FoxInTango/libecho.git

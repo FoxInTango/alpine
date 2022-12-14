@@ -21,14 +21,9 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-#include <stdio.h>  
-#include <string.h>  
-#include <stdlib.h>  
-#include <sys/inotify.h>  
-#include <unistd.h>  
-#include <iostream>
-#include <sys/stat.h>
-#include <dirent.h>
+#include <vector>
+#include <map>
+#include <set>
 #include <fstream>
 #include <codecvt>
 #include <iostream>
@@ -36,14 +31,26 @@
 #include <cstring>
 #include <cassert>
 #include <locale>
+#include <libarguments/libarguments.h>
+using namespace foxintango;
+
 #include "alpine.h"
 
-int main(int argc, char* argv[])
-{
-    foxintango::Model model;
-    alpine_init(&model);
-    libes_init();
-    char* path = argv[1];
-    foxintango::es_document doc;
-    return doc.load(path);
+int main(int argc, char* argv[]) {
+    arguments args(argc,argv);
+    args.echo();
+
+    std::wstring unsure;
+    unsure += L"暗卫";
+
+    std::cout << "unsure length: " << unsure.length() << std::endl;
+
+    return 0;
+
+    if(argc > 1) {
+        char* path = argv[1];
+        return alpine_init(path);
+    }
+
+    return 1;
 }

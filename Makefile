@@ -32,7 +32,9 @@ TARGET_LIB_DIR := ./lib
 PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
+PROJECT_DIR_BESIDES += -o -path ./libarguments
 PROJECT_DIR_BESIDES += -o -path ./libcpp
+PROJECT_DIR_BESIDES += -o -path ./libecho
 PROJECT_DIR_BESIDES += -o -path ./libmodel
 PROJECT_DIR_BESIDES += -o -path ./libmodule
 PROJECT_DIR_BESIDES += -o -path ./libevent
@@ -63,7 +65,7 @@ TARGET_LIB_INCLUDE =
 TARGET_LIB_BINARY  = 
 TARGET_LD_FLAGS    = 
 # 需要链接的库
-TARGET_LIBS = -lstdc++ -lmodel -les -static
+TARGET_LIBS = -lstdc++ -larguments -lmodel -les -static
 # 链接标志
 TARGET_LIB_PIC_SHARED  = -fPIC
 TARGET_LIB_PIC_STATIC  = 
@@ -102,10 +104,10 @@ TARGETS =
 export SUB_PROJECT_INSTALL_PREFIX = ./
 
 # 依赖库
-#TARGETS += LIB_CPP
-#TARGETS += LIB_MODEL
-#TARGETS += LIB_MODULE
-#TARGETS += LIB_ES
+SUBMODULES += LIB_CPP
+SUBMODULES += LIB_MODEL
+SUBMODULES += LIB_MODULE
+SUBMODULES += LIB_ES
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
@@ -135,6 +137,30 @@ $(TARGET_OBJECTS_CC):%.o:%.c
 $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $(TARGET_LIB_PIC_SHARED) $< -o $@
 
+submodule:${LIB_CPP} ${LIB_MODEL} ${LIB_MODULE} ${LIB_ES}
+	cd ./libcpp    && $(MAKE)
+	cd ./libmodel  && $(MAKE)
+	cd ./libmodule && $(MAKE)
+	cd ./libes     && $(MAKE)
+
+subinstall:
+	cd ./libcpp    &&  $(MAKE) install
+	cd ./libmodel  &&  $(MAKE) install
+	cd ./libmodule &&  $(MAKE) install
+	cd ./libes     &&  $(MAKE) install
+
+subupdate:
+	cd ./libcpp    &&  git pull
+	cd ./libmodel  &&  git pull
+	cd ./libmodule &&  git pull
+	cd ./libes     &&  git pull
+
+subpublish:
+	-cd ./libcpp    &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmodel  &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmodule &&  git add . && git commit -m "alpine" && git push
+	-cd ./libes     &&  git add . && git commit -m "alpine" && git push
+
 LIB_CPP:
 	cd ./libcpp && $(MAKE) #&& $(MAKE) install
 LIB_MODEL:
@@ -152,11 +178,8 @@ clean   :
 	rm -f ${TARGET_BIN_DIR}/*
 install :
 	cp -f $(TARGET_BIN_DIR)/$(TARGET_NAME) $(INSTALL_PATH_PREFIX)/bin/
-	$(shell ./pc.sh $(TARGET_NAME) 1.0.0 /usr/local)
 uninstall : 
-	rm -rf $(INSTALL_PATH_PREFIX)/include/$(TARGET_NAME)
-	rm -rf $(INSTALL_PATH_PREFIX)/lib/$(TARGET_NAME).*
-	rm -rf $(INSTALL_PATH_PREFIX)/lib/pkgconfig/$(TARGET_NAME).pc
+	rm -rf $(TARGET_BIN_DIR)/$(TARGET_NAME) $(INSTALL_PATH_PREFIX)/bin/$(TARGET_NAME)
 
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344

@@ -22,9 +22,8 @@
  * IN THE SOFTWARE.
  */
 #include "alpine.h"
-int alpine_init(const foxintango::Model* model){
-    if(model) { 
-        foxintango::ME* e = model->subelementAt("");
-    }
-    return 0;
+int alpine_init(const char* path){
+    libes_init();
+    foxintango::es_document doc;
+    return doc.load(path);
 }
