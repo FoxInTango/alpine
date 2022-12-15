@@ -33,8 +33,8 @@ TARGET_LIB_DIR := ./lib
 PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
-PROJECT_DIR_BESIDES += -o -path ./libarguments
 PROJECT_DIR_BESIDES += -o -path ./libcpp
+PROJECT_DIR_BESIDES += -o -path ./libast
 PROJECT_DIR_BESIDES += -o -path ./libecho
 PROJECT_DIR_BESIDES += -o -path ./libmodel
 PROJECT_DIR_BESIDES += -o -path ./libmodule
@@ -42,6 +42,7 @@ PROJECT_DIR_BESIDES += -o -path ./libevent
 PROJECT_DIR_BESIDES += -o -path ./libfsevent
 PROJECT_DIR_BESIDES += -o -path ./libioevent
 PROJECT_DIR_BESIDES += -o -path ./libes
+PROJECT_DIR_BESIDES += -o -path ./libarguments
 PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib
@@ -62,11 +63,9 @@ TARGET_OBJECTS_PP  += $(patsubst %.cpp,%.o,$(TARGET_SOURCES_PP))
 TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                         # $(wildcard $(TARGET_HEADERS_DIR)/*.h)
 
 # 链接库配置
-TARGET_LIB_INCLUDE =
-TARGET_LIB_BINARY  = 
 TARGET_LD_FLAGS    = -L ./lib
 # 需要链接的库
-TARGET_LIBS = -lstdc++ -larguments -lmodel -les -static
+TARGET_LIBS = -static -lstdc++ -lcpp -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -les -larguments
 # 链接标志
 TARGET_LIB_PIC_SHARED  = -fPIC
 TARGET_LIB_PIC_STATIC  = 
@@ -105,12 +104,6 @@ TARGETS =
 export SUPER_LIBRARY_PATH = ../lib
 export SUPER_INCLUDE_PATH = ../inc
 
-# 依赖库
-SUBMODULES += LIB_CPP
-SUBMODULES += LIB_MODEL
-SUBMODULES += LIB_MODULE
-SUBMODULES += LIB_ES
-
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
 endif
@@ -139,35 +132,43 @@ $(TARGET_OBJECTS_CC):%.o:%.c
 $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $(TARGET_LIB_PIC_SHARED) $< -o $@
 
-submodule:${LIB_CPP} ${LIB_MODEL} ${LIB_MODULE} ${LIB_ES}
+submodule:
 	rm -rf ./inc/*
 	rm -rf ./lib/*
-	-cd ./libcpp       && $(MAKE) && cd ../ && cp ./libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libcpp/include/*.h       ./inc/libcpp
-	-cd ./libmodel     && $(MAKE) && cd ../ && cp ./libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp ./libmodel/include/*.h     ./inc/libmodel
-	-cd ./libmodule    && $(MAKE) && cd ../ && cp ./libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp ./libmodule/include/*.h    ./inc/libmodule
-	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h            ./inc/libes
-	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/include/*.h ./inc/libarguments
+	-cd ./libcpp       && $(MAKE) && cd ../ && cp ./libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libcpp/src/*.h        ./inc/libcpp
+	-cd ./libast       && $(MAKE) && cd ../ && cp ./libast/lib/*        ./lib && mkdir inc/libast       && cp ./libast/src/*.h        ./inc/libast
+	-cd ./libecho      && $(MAKE) && cd ../ && cp ./libecho/lib/*       ./lib && mkdir inc/libecho      && cp ./libecho/src/*.h       ./inc/libecho
+	-cd ./libmodel     && $(MAKE) && cd ../ && cp ./libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp ./libmodel/src/*.h      ./inc/libmodel
+	-cd ./libmodule    && $(MAKE) && cd ../ && cp ./libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp ./libmodule/src/*.h     ./inc/libmodule
+	-cd ./libevent     && $(MAKE) && cd ../ && cp ./libevent/lib/*      ./lib && mkdir inc/libevent     && cp ./libevent/src/*.h      ./inc/libevent
+	-cd ./libioevent   && $(MAKE) && cd ../ && cp ./libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp ./libioevent/src/*.h    ./inc/libioevent
+	-cd ./libfsevent   && $(MAKE) && cd ../ && cp ./libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp ./libfsevent/src/*.h    ./inc/libfsevent
+	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h         ./inc/libes
+	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/src/*.h  ./inc/libarguments
 
 subupdate:
-	cd ./libcpp    &&  git pull
-	cd ./libmodel  &&  git pull
-	cd ./libmodule &&  git pull
-	cd ./libes     &&  git pull
+	cd ./libcpp        &&  git pull && cd ../
+	cd ./libast        &&  git pull && cd ../
+	cd ./libecho       &&  git pull && cd ../
+	cd ./libmodel      &&  git pull && cd ../
+	cd ./libmodule     &&  git pull && cd ../
+	cd ./libevent      &&  git pull && cd ../
+	cd ./libioevent    &&  git pull && cd ../
+	cd ./libfsevent    &&  git pull && cd ../
+	cd ./libes         &&  git pull && cd ../
+	cd ./libarguments  &&  git pull && cd ../
 
 subpublish:
-	-cd ./libcpp    &&  git add . && git commit -m "alpine" && git push
-	-cd ./libmodel  &&  git add . && git commit -m "alpine" && git push
-	-cd ./libmodule &&  git add . && git commit -m "alpine" && git push
-	-cd ./libes     &&  git add . && git commit -m "alpine" && git push
-
-LIB_CPP:
-	cd ./libcpp && $(MAKE) #&& $(MAKE) install
-LIB_MODEL:
-	cd ./libmodel && $(MAKE) #&& $(MAKE) install
-LIB_MODULE:
-	cd ./libmodule && $(MAKE) #&& $(MAKE) install
-LIB_ES:
-	cd ./libes && $(MAKE) #&& $(MAKE) install
+	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libast        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libecho       &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmodel      &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmodule     &&  git add . && git commit -m "alpine" && git push
+	-cd ./libevent      &&  git add . && git commit -m "alpine" && git push
+	-cd ./libioevent    &&  git add . && git commit -m "alpine" && git push
+	-cd ./libfsevent    &&  git add . && git commit -m "alpine" && git push
+	-cd ./libes         &&  git add . && git commit -m "alpine" && git push
+	-cd ./libarguments  &&  git add . && git commit -m "alpine" && git push
 
 clean   :
 	rm -f $(TARGET_OBJECTS_AS)

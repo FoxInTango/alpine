@@ -28,23 +28,6 @@ void deal_signal(int signal){
 
 }
 
-class Alpine {
-public:
-    Alpine();
-    ~Alpine();
-public:
-    int init(const foxintango::arguments& args);
-    int watch(const int& fd, const char* option = 0);
-    int watch(const char* path, const char* option = 0);
-    /**
-     * url:fs|fss://./index.sock
-     *     ip|ips://192.168.0.1:80
-     *     http|https://
-     *     ws|wss://
-     */
-    int connect(const char* url);
-};
-
 Alpine alpine;
 
 Alpine::Alpine(){}

@@ -31,6 +31,7 @@
 #include <cstring>
 #include <cassert>
 #include <locale>
+#include <libast/libast.h>
 #include <libarguments/libarguments.h>
 using namespace foxintango;
 
@@ -39,7 +40,7 @@ using namespace foxintango;
 int main(int argc, char* argv[]) {
     arguments args(argc,argv);
     args.echo();
-
+    ASTMatch<wchar_t> wmatch;
     if(argc < 1) return 0;
 
     char* path = argv[1];
