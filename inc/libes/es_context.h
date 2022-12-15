@@ -1,5 +1,5 @@
 /*
- * alpine
+ * libes
  *
  * Copyright (C) 2022 FoxInTango <foxintango@yeah.net>
  *
@@ -21,32 +21,27 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-#include <vector>
-#include <map>
-#include <set>
-#include <fstream>
-#include <codecvt>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <cassert>
-#include <locale>
-#include <libarguments/libarguments.h>
-using namespace foxintango;
+#ifndef _es_context_h_
+#define _es_context_h_
+#include "es_document.h"
+#include "es_element.h"
+#include <libcpp/libcpp.h>
 
-#include "alpine.h"
+namespaceBegin(foxintango)
 
-int main(int argc, char* argv[]) {
-    arguments args(argc,argv);
-    args.echo();
+class foxintangoAPI es_context{
+public:
+    es_context();
+   ~es_context();
+public:
+    es_document* document_at(char* url);
+public:
+    int append_global_element(es_element* e,const char* name=nullptr);
+    int remove_global_element(es_element* e);
+    int remove_global_element(const char* name=nullptr);
+public:
+    int load_document();
+};
 
-    if(argc < 1) return 0;
-
-    char* path = argv[1];
-    std::wstring unsure;
-    unsure += L"暗卫";
-
-    std::cout << "unsure length: " << unsure.length() << "Alpine: " << alpine.init(args) << std::endl;
-
-    return 0;
-}
+namespaceEnd
+#endif

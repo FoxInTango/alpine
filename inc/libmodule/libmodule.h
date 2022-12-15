@@ -1,7 +1,7 @@
 /*
- * alpine
+ * libmodule
  *
- * Copyright (C) 2022 FoxInTango <foxintango@yeah.net>
+ * Copyright (C) 2021 FoxInTango <foxintango@yeah.net>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
@@ -21,32 +21,15 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-#include <vector>
-#include <map>
-#include <set>
-#include <fstream>
-#include <codecvt>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <cassert>
-#include <locale>
-#include <libarguments/libarguments.h>
-using namespace foxintango;
+#ifndef _LIB_MODULE_H_
+#define _LIB_MODULE_H_
 
-#include "alpine.h"
+#include "Module.h"
+#include "ModuleInterface.h"
 
-int main(int argc, char* argv[]) {
-    arguments args(argc,argv);
-    args.echo();
+#include <libcpp/libcpp.h>
 
-    if(argc < 1) return 0;
-
-    char* path = argv[1];
-    std::wstring unsure;
-    unsure += L"暗卫";
-
-    std::cout << "unsure length: " << unsure.length() << "Alpine: " << alpine.init(args) << std::endl;
-
-    return 0;
+namespace foxintango {
+typedef Module* (*EXPORT_MODULE_INSTANCE)(const char* module_path);
 }
+#endif

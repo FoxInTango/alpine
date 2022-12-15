@@ -22,8 +22,60 @@
  * IN THE SOFTWARE.
  */
 #include "alpine.h"
-int alpine_init(const char* path){
+#include <signal.h>
+
+void deal_signal(int signal){
+
+}
+
+class Alpine {
+public:
+    Alpine();
+    ~Alpine();
+public:
+    int init(const foxintango::arguments& args);
+    int watch(const int& fd, const char* option = 0);
+    int watch(const char* path, const char* option = 0);
+    /**
+     * url:fs|fss://./index.sock
+     *     ip|ips://192.168.0.1:80
+     *     http|https://
+     *     ws|wss://
+     */
+    int connect(const char* url);
+};
+
+Alpine alpine;
+
+Alpine::Alpine(){}
+Alpine::~Alpine(){}
+
+int Alpine::init(const foxintango::arguments& args){
+    signal(0, deal_signal);
+
     libes_init();
     foxintango::es_document doc;
-    return doc.load(path);
+    //return doc.load(path);
+    return 0;
 }
+
+int Alpine::watch(const int& fd, const char* option){
+    return 0;
+}
+
+int Alpine::watch(const char* path, const char* option){
+    return 0;
+}
+
+int Alpine::connect(const char* url){
+    return 0;
+}
+/**
+ * /dev/shm/alpine
+ *
+ */
+
+ /*
+ int alpine_watch(char *path, const fs_event *event, fs_event_callback handler,const int &depth = 0);
+ void alpine_fs_event_handler(const fs_event& event);
+ */

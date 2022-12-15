@@ -25,6 +25,7 @@ TARGET_LIB_EXT_STATIC  =
 TARGET_LIB_EXT_DYNAMIC = 
 #    安装位置
 INSTALL_PATH_PREFIX = /Applications/alpine/versions/1.0.0
+INSTALL_PATH_PREFIX = /usr/local
 
 TARGET_BIN_DIR := ./bin
 TARGET_LIB_DIR := ./lib
@@ -63,7 +64,7 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 # 链接库配置
 TARGET_LIB_INCLUDE =
 TARGET_LIB_BINARY  = 
-TARGET_LD_FLAGS    = 
+TARGET_LD_FLAGS    = -L ./lib
 # 需要链接的库
 TARGET_LIBS = -lstdc++ -larguments -lmodel -les -static
 # 链接标志
@@ -77,8 +78,8 @@ TARGET_LIB_PIC  =
 TARGET_LIB_FLAG = 
 
 ASFLAGS =
-CCFLAGS = -c -Wall -fvisibility=hidden
-PPFLAGS = -c -Wall -fvisibility=hidden
+CCFLAGS = -c -Wall -fvisibility=hidden -I ./inc
+PPFLAGS = -c -Wall -fvisibility=hidden -I ./inc
 # 平台检测 -- DARWIN
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_BIN_EXT         :=
@@ -101,7 +102,8 @@ endif
 
 TARGETS = 
 
-export SUB_PROJECT_INSTALL_PREFIX = ./
+export SUPER_LIBRARY_PATH = ../lib
+export SUPER_INCLUDE_PATH = ../inc
 
 # 依赖库
 SUBMODULES += LIB_CPP
@@ -138,16 +140,13 @@ $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $(TARGET_LIB_PIC_SHARED) $< -o $@
 
 submodule:${LIB_CPP} ${LIB_MODEL} ${LIB_MODULE} ${LIB_ES}
-	cd ./libcpp    && $(MAKE)
-	cd ./libmodel  && $(MAKE)
-	cd ./libmodule && $(MAKE)
-	cd ./libes     && $(MAKE)
-
-subinstall:
-	cd ./libcpp    &&  $(MAKE) install
-	cd ./libmodel  &&  $(MAKE) install
-	cd ./libmodule &&  $(MAKE) install
-	cd ./libes     &&  $(MAKE) install
+	rm -rf ./inc/*
+	rm -rf ./lib/*
+	-cd ./libcpp       && $(MAKE) && cd ../ && cp ./libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libcpp/include/*.h       ./inc/libcpp
+	-cd ./libmodel     && $(MAKE) && cd ../ && cp ./libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp ./libmodel/include/*.h     ./inc/libmodel
+	-cd ./libmodule    && $(MAKE) && cd ../ && cp ./libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp ./libmodule/include/*.h    ./inc/libmodule
+	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h            ./inc/libes
+	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/include/*.h ./inc/libarguments
 
 subupdate:
 	cd ./libcpp    &&  git pull
@@ -174,12 +173,12 @@ clean   :
 	rm -f $(TARGET_OBJECTS_AS)
 	rm -f $(TARGET_OBJECTS_CC)
 	rm -f $(TARGET_OBJECTS_PP)
-	rm -f ${TARGET_LIB_DIR}/*
 	rm -f ${TARGET_BIN_DIR}/*
 install :
 	cp -f $(TARGET_BIN_DIR)/$(TARGET_NAME) $(INSTALL_PATH_PREFIX)/bin/
+	cp -f $(TARGET_LIB_DIR)/* $(INSTALL_PATH_PREFIX)/lib/
 uninstall : 
-	rm -rf $(TARGET_BIN_DIR)/$(TARGET_NAME) $(INSTALL_PATH_PREFIX)/bin/$(TARGET_NAME)
+	rm -rf $(INSTALL_PATH_PREFIX)/bin/$(TARGET_NAME)
 
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344

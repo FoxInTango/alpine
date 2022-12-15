@@ -1,5 +1,5 @@
 /*
- * alpine
+ * libes
  *
  * Copyright (C) 2022 FoxInTango <foxintango@yeah.net>
  *
@@ -21,35 +21,10 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
-#ifndef _alpine_h_
-#define _alpine_h_
 
-#include <libes/libes.h>
-#include <libmodel/libmodel.h>
-#include <libarguments/libarguments.h>
-//#include <libfsevent/libfsevent.h>
-//#include <libioevent/libioevent.h>
-/**
- * alpine:
- * a:"",
- * b:20200,
- * b:[],
- * c:{}
- */
-
-struct alpine_config {
-  char *nginxPath;
-};
-
-class Alpine;
-
-extern "C" Alpine alpine;
-
-#endif
-
-#ifndef  _alpine_config_h_
-#define  _alpine_config_h_
-
-#define ALPINE_model_path_default "/etc/alpine" // mo | so | json | xml
-
-#endif
+ #include "es_context.h"
+ #include "es_document.h"
+ #include "es_element.h"
+ #include "es_token.h"
+ #include <libcpp/libcpp.h>
+ void foxintangoAPI libes_init();

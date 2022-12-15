@@ -1,2 +1,2 @@
 # alpine
-Audo and Remote System Managing for Linux.
+Auto and Remote System Managing for Linux.
