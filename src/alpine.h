@@ -24,11 +24,13 @@
 #ifndef _alpine_h_
 #define _alpine_h_
 
+#define be_simple_and_keep_simple
+
 #include <libes/libes.h>
 #include <libmodel/libmodel.h>
 #include <libarguments/libarguments.h>
-//#include <libfsevent/libfsevent.h>
-//#include <libioevent/libioevent.h>
+#include <libfsevent/libfsevent.h>
+#include <libioevent/libioevent.h>
 /**
  * alpine:
  * a:"",
@@ -41,14 +43,20 @@ struct alpine_config {
   char *nginxPath;
 };
 
+#define USE_VIRTUAL_METHOD
+
+class Alpine;
+typedef int (*event_callback)(const Alpine& alpine,int event);
 class Alpine {
 public:
     Alpine();
     ~Alpine();
 public:
     int init(const foxintango::arguments& args);
-    int watch(const int& fd, const char* option = 0);
-    int watch(const char* path, const char* option = 0);
+    int clone();
+
+    int watch(const int& fd, const foxintango::Model& option);
+    int watch(const char* path, const foxintango::Model& option);
     /**
      * url:fs|fss://./index.sock
      *     ip|ips://192.168.0.1:80
@@ -56,6 +64,11 @@ public:
      *     ws|wss://
      */
     int connect(const char* url);
+#ifdef USE_VIRTUAL_METHOD
+    virtual int onevent(int event);
+#else
+    event_callback onevent = 0;
+#endif
 };
 
 extern "C" Alpine alpine;

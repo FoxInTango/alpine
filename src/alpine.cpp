@@ -23,6 +23,7 @@
  */
 #include "alpine.h"
 #include <signal.h>
+#include <sched.h>
 
 void deal_signal(int signal){
 
@@ -42,11 +43,15 @@ int Alpine::init(const foxintango::arguments& args){
     return 0;
 }
 
-int Alpine::watch(const int& fd, const char* option){
+int Alpine::clone(){
     return 0;
 }
 
-int Alpine::watch(const char* path, const char* option){
+int Alpine::watch(const int& fd, const foxintango::Model& option){
+    return 0;
+}
+
+int Alpine::watch(const char* path, const foxintango::Model& option){
     return 0;
 }
 

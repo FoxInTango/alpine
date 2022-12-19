@@ -34,6 +34,7 @@ PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
 PROJECT_DIR_BESIDES += -o -path ./libcpp
+PROJECT_DIR_BESIDES += -o -path ./libstream
 PROJECT_DIR_BESIDES += -o -path ./libast
 PROJECT_DIR_BESIDES += -o -path ./libecho
 PROJECT_DIR_BESIDES += -o -path ./libmodel
@@ -65,7 +66,7 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 # 链接库配置
 TARGET_LD_FLAGS    = -L ./lib
 # 需要链接的库
-TARGET_LIBS = -static -lstdc++ -lcpp -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -les -larguments
+TARGET_LIBS = -static -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -les -larguments
 # 链接标志
 TARGET_LIB_PIC_SHARED  = -fPIC
 TARGET_LIB_PIC_STATIC  = 
@@ -136,6 +137,7 @@ submodule:
 	rm -rf ./inc/*
 	rm -rf ./lib/*
 	-cd ./libcpp       && $(MAKE) && cd ../ && cp ./libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libcpp/src/*.h        ./inc/libcpp
+	-cd ./libstream    && $(MAKE) && cd ../ && cp ./libstream/lib/*     ./lib && mkdir inc/libstream    && cp ./libstream/src/*.h     ./inc/libstream
 	-cd ./libast       && $(MAKE) && cd ../ && cp ./libast/lib/*        ./lib && mkdir inc/libast       && cp ./libast/src/*.h        ./inc/libast
 	-cd ./libecho      && $(MAKE) && cd ../ && cp ./libecho/lib/*       ./lib && mkdir inc/libecho      && cp ./libecho/src/*.h       ./inc/libecho
 	-cd ./libmodel     && $(MAKE) && cd ../ && cp ./libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp ./libmodel/src/*.h      ./inc/libmodel
@@ -148,6 +150,7 @@ submodule:
 
 subupdate:
 	cd ./libcpp        &&  git pull && cd ../
+	cd ./libstream     &&  git pull && cd ../
 	cd ./libast        &&  git pull && cd ../
 	cd ./libecho       &&  git pull && cd ../
 	cd ./libmodel      &&  git pull && cd ../
@@ -160,6 +163,7 @@ subupdate:
 
 subpublish:
 	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libstream     &&  git add . && git commit -m "alpine" && git push
 	-cd ./libast        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libecho       &&  git add . && git commit -m "alpine" && git push
 	-cd ./libmodel      &&  git add . && git commit -m "alpine" && git push

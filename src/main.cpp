@@ -37,17 +37,33 @@ using namespace foxintango;
 
 #include "alpine.h"
 
+
+class Object{
+public:
+     Object(){}
+    ~Object(){}
+};
+
+void* create_object(Model m) {
+    return new Object();
+}
+
+#ifdef USE_VIRTUAL_METHOD
+int Alpine::onevent(int event){ return event; }
+#else
+int onevent(const Alpine& alpine, int e) { return e; }
+#endif
+
 int main(int argc, char* argv[]) {
-    arguments args(argc,argv);
-    args.echo();
-    ASTMatch<wchar_t> wmatch;
-    if(argc < 1) return 0;
-
-    char* path = argv[1];
-    std::wstring unsure;
-    unsure += L"暗卫";
-
-    std::cout << "unsure length: " << unsure.length() << "Alpine: " << alpine.init(args) << std::endl;
-
+    std::cout << "Alpine Init: " << alpine.init(arguments(argc, argv)) << std::endl;
+#ifdef USE_VIRTUAL_METHOD
+    std::cout << "alpine.onevent :" << alpine.onevent(10) << std::endl;
+#else
+    alpine.onevent = onevent;
+    std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
+#endif
+    alpine.watch("","");
+    Model m;
+    create_object(m);
     return 0;
 }
