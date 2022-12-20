@@ -36,8 +36,6 @@
 using namespace foxintango;
 
 #include "alpine.h"
-
-
 class Object{
 public:
      Object(){}
@@ -64,6 +62,6 @@ int main(int argc, char* argv[]) {
 #endif
     alpine.watch("","");
     Model m;
-    create_object(m);
+    delete create_object(m);
     return 0;
 }

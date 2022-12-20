@@ -42,6 +42,7 @@ PROJECT_DIR_BESIDES += -o -path ./libmodule
 PROJECT_DIR_BESIDES += -o -path ./libevent
 PROJECT_DIR_BESIDES += -o -path ./libfsevent
 PROJECT_DIR_BESIDES += -o -path ./libioevent
+PROJECT_DIR_BESIDES += -o -path ./libvm
 PROJECT_DIR_BESIDES += -o -path ./libes
 PROJECT_DIR_BESIDES += -o -path ./libarguments
 PROJECT_DIR_BESIDES += -o -path ./obj
@@ -66,20 +67,11 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 # 链接库配置
 TARGET_LD_FLAGS    = -L ./lib
 # 需要链接的库
-TARGET_LIBS = -static -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -les -larguments
-# 链接标志
-TARGET_LIB_PIC_SHARED  = -fPIC
-TARGET_LIB_PIC_STATIC  = 
-TARGET_LIB_PIC_BINARY  = -fPIE
-TARGET_LIB_FLAG_SHARED = -shared
-TARGET_LIB_FLAG_STATIC =
-# 自动判别
-TARGET_LIB_PIC  = 
-TARGET_LIB_FLAG = 
+TARGET_LIBS = -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments
 
 ASFLAGS =
-CCFLAGS = -c -Wall -fvisibility=hidden -I ./inc
-PPFLAGS = -c -Wall -fvisibility=hidden -I ./inc
+CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
+PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 # 平台检测 -- DARWIN
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_BIN_EXT         :=
@@ -90,7 +82,7 @@ endif
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
     TARGET_BIN_EXT         :=
     TARGET_LIB_EXT_STATIC  := a
-    TARGET_LIB_EXT_DYNAMIC := so
+    CTARGET_LIB_EXT_DYNAMIC := so
 endif
 
 # 平台检测 -- FreeBSD
@@ -117,21 +109,15 @@ endif
 
 ALL : $(TARGETS)
 
-${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(AR) ${TARGET_LD_FLAGS} ${TARGET_LIB_PIC} ${TARGET_LIB_FLAG} $(TARGET_LIB_PIC_STATIC) $(TARGET_LIB_FLAG_STATIC) $(TARGET_LIBS) -r $@ $^
-
-${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_DYNAMIC}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) ${TARGET_LD_FLAGS} ${TARGET_LIB_PIC} ${TARGET_LIB_FLAG}  $(TARGET_LIB_PIC_SHARED) $(TARGET_LIB_FLAG_SHARED) $(TARGET_LIBS) -o $@ $^
-
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) ${TARGET_LD_FLAGS} ${TARGET_LIB_PIC} ${TARGET_LIB_FLAG} -o $@ $^ $(TARGET_LIBS)
+	$(CC) -fPIE -static -o $@ $^  $(TARGET_LIBS) ${TARGET_LD_FLAGS}
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
 $(TARGET_OBJECTS_CC):%.o:%.c
-	$(CC) ${CCFLAGS} $(TARGET_LIB_PIC_SHARED) $< -o $@
+	$(CC) ${CCFLAGS} $< -o $@
 $(TARGET_OBJECTS_PP):%.o:%.cpp
-	$(CC) ${PPFLAGS} $(TARGET_LIB_PIC_SHARED) $< -o $@
+	$(CC) ${PPFLAGS} $< -o $@
 
 submodule:
 	rm -rf ./inc/*
@@ -145,6 +131,7 @@ submodule:
 	-cd ./libevent     && $(MAKE) && cd ../ && cp ./libevent/lib/*      ./lib && mkdir inc/libevent     && cp ./libevent/src/*.h      ./inc/libevent
 	-cd ./libioevent   && $(MAKE) && cd ../ && cp ./libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp ./libioevent/src/*.h    ./inc/libioevent
 	-cd ./libfsevent   && $(MAKE) && cd ../ && cp ./libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp ./libfsevent/src/*.h    ./inc/libfsevent
+	-cd ./libvm        && $(MAKE) && cd ../ && cp ./libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libvm/src/*.h         ./inc/libvm
 	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h         ./inc/libes
 	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/src/*.h  ./inc/libarguments
 
@@ -158,6 +145,7 @@ subupdate:
 	cd ./libevent      &&  git pull && cd ../
 	cd ./libioevent    &&  git pull && cd ../
 	cd ./libfsevent    &&  git pull && cd ../
+	cd ./libvm         &&  git pull && cd ../
 	cd ./libes         &&  git pull && cd ../
 	cd ./libarguments  &&  git pull && cd ../
 
@@ -171,6 +159,7 @@ subpublish:
 	-cd ./libevent      &&  git add . && git commit -m "alpine" && git push
 	-cd ./libioevent    &&  git add . && git commit -m "alpine" && git push
 	-cd ./libfsevent    &&  git add . && git commit -m "alpine" && git push
+	-cd ./libvm         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libes         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libarguments  &&  git add . && git commit -m "alpine" && git push
 

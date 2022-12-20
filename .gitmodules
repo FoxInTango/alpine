@@ -31,3 +31,6 @@
 [submodule "libstream"]
 	path = libstream
 	url = https://github.com/FoxInTango/libstream.git
+[submodule "libvm"]
+	path = libvm
+	url = git@github.com:FoxInTango/libvm.git
