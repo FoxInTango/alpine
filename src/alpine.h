@@ -46,8 +46,11 @@ struct alpine_config {
 #define USE_VIRTUAL_METHOD
 
 class Alpine;
+class ModuleContext;
 typedef int (*event_callback)(const Alpine& alpine,int event);
 class Alpine {
+private:
+    ModuleContext* moduleContext;
 public:
     Alpine();
     ~Alpine();
@@ -78,6 +81,6 @@ extern "C" Alpine alpine;
 #ifndef  _alpine_config_h_
 #define  _alpine_config_h_
 
-#define ALPINE_model_path_default "/etc/alpine" // mo | so | json | xml
+#define ALPINE_model_path_default "./etc/alpine" // mo | so | json | xml
 
 #endif

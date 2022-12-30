@@ -30,7 +30,7 @@
 	url = git@github.com:FoxInTango/libecho.git
 [submodule "libstream"]
 	path = libstream
-	url = https://github.com/FoxInTango/libstream.git
+	url = git@github.com:FoxInTango/libstream.git
 [submodule "libvm"]
 	path = libvm
 	url = git@github.com:FoxInTango/libvm.git

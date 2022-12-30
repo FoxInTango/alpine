@@ -66,12 +66,25 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 
 # 链接库配置
 TARGET_LD_FLAGS    = -L ./lib
+
 # 需要链接的库
-TARGET_LIBS = -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments
+TARGET_LIBS = -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments 
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
+
+OPENSSL=
+ifdef OPENSSL
+OPENSSL_INCLUDE_PATH = ${OPENSSL}/include
+OPENSSL_LIBRARY_PATH = ${OPENSSL}/lib
+TARGET_LD_FLAGS += -L ${OPENSSL_LIBRARY_PATH}
+TARGET_LIBS += -ltls
+CCFLAGS += -I ${OPENSSL_INCLUDE_PATH}
+PPFLAGS += -I ${OPENSSL_INCLUDE_PATH}
+CCFLAGS += -DOPENSSL
+PPFLAGS += -DOPENSSL
+endif
 # 平台检测 -- DARWIN
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_BIN_EXT         :=
@@ -110,7 +123,7 @@ endif
 ALL : $(TARGETS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -fPIE -static -o $@ $^  $(TARGET_LIBS) ${TARGET_LD_FLAGS}
+	$(CC) -fPIE -o $@ $^  -static $(TARGET_LIBS) ${TARGET_LD_FLAGS}
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
@@ -162,6 +175,20 @@ subpublish:
 	-cd ./libvm         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libes         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libarguments  &&  git add . && git commit -m "alpine" && git push
+
+subclean:
+	-cd ./libcpp       &&  $(MAKE) clean
+	-cd ./libstream    &&  $(MAKE) clean
+	-cd ./libast       &&  $(MAKE) clean
+	-cd ./libecho      &&  $(MAKE) clean
+	-cd ./libmodel     &&  $(MAKE) clean
+	-cd ./libmodule    &&  $(MAKE) clean
+	-cd ./libevent     &&  $(MAKE) clean
+	-cd ./libioevent   &&  $(MAKE) clean
+	-cd ./libfsevent   &&  $(MAKE) clean
+	-cd ./libvm        &&  $(MAKE) clean
+	-cd ./libes        &&  $(MAKE) clean
+	-cd ./libarguments &&  $(MAKE) clean
 
 clean   :
 	rm -f $(TARGET_OBJECTS_AS)

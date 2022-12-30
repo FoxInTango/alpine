@@ -36,11 +36,10 @@ Alpine::~Alpine(){}
 
 int Alpine::init(const foxintango::arguments& args){
     signal(0, deal_signal);
-
+    return 0;
     libes_init();
     foxintango::es_document doc;
-    //return doc.load(path);
-    return 0;
+    return doc.load(ALPINE_model_path_default);
 }
 
 int Alpine::clone(){
