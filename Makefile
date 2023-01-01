@@ -68,7 +68,7 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 TARGET_LD_FLAGS    = -L ./lib
 
 # 需要链接的库
-TARGET_LIBS = -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments 
+TARGET_LIBS = -lc -lstdc++ -lcpp -lstring -lurl -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments 
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
@@ -132,10 +132,14 @@ $(TARGET_OBJECTS_CC):%.o:%.c
 $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $< -o $@
 
+subinstall:
+	
 submodule:
 	rm -rf ./inc/*
 	rm -rf ./lib/*
 	-cd ./libcpp       && $(MAKE) && cd ../ && cp ./libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libcpp/src/*.h        ./inc/libcpp
+	-cd ./libstring    && $(MAKE) && cd ../ && cp ./libstring/lib/*     ./lib && mkdir inc/libstring    && cp ./libstring/src/*.h     ./inc/libstring
+	-cd ./liburl       && $(MAKE) && cd ../ && cp ./liburl/lib/*        ./lib && mkdir inc/liburl       && cp ./liburl/src/*.h        ./inc/liburl
 	-cd ./libstream    && $(MAKE) && cd ../ && cp ./libstream/lib/*     ./lib && mkdir inc/libstream    && cp ./libstream/src/*.h     ./inc/libstream
 	-cd ./libast       && $(MAKE) && cd ../ && cp ./libast/lib/*        ./lib && mkdir inc/libast       && cp ./libast/src/*.h        ./inc/libast
 	-cd ./libecho      && $(MAKE) && cd ../ && cp ./libecho/lib/*       ./lib && mkdir inc/libecho      && cp ./libecho/src/*.h       ./inc/libecho
@@ -150,6 +154,8 @@ submodule:
 
 subupdate:
 	cd ./libcpp        &&  git pull && cd ../
+	cd ./libstring     &&  git pull && cd ../
+	cd ./liburl        &&  git pull && cd ../
 	cd ./libstream     &&  git pull && cd ../
 	cd ./libast        &&  git pull && cd ../
 	cd ./libecho       &&  git pull && cd ../
@@ -164,6 +170,8 @@ subupdate:
 
 subpublish:
 	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libstring     &&  git add . && git commit -m "alpine" && git push
+	-cd ./liburl        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libstream     &&  git add . && git commit -m "alpine" && git push
 	-cd ./libast        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libecho       &&  git add . && git commit -m "alpine" && git push
@@ -178,6 +186,8 @@ subpublish:
 
 subclean:
 	-cd ./libcpp       &&  $(MAKE) clean
+	-cd ./libstring    &&  $(MAKE) clean
+	-cd ./liburl       &&  $(MAKE) clean
 	-cd ./libstream    &&  $(MAKE) clean
 	-cd ./libast       &&  $(MAKE) clean
 	-cd ./libecho      &&  $(MAKE) clean

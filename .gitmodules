@@ -34,3 +34,9 @@
 [submodule "libvm"]
 	path = libvm
 	url = git@github.com:FoxInTango/libvm.git
+[submodule "libstring"]
+	path = libstring
+	url = git@github.com:FoxInTango/libstring.git
+[submodule "liburl"]
+	path = liburl
+	url = git@github.com:FoxInTango/liburl.git

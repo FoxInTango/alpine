@@ -90,6 +90,9 @@ int main(int argc, char* argv[]) {
 #include <arpa/inet.h>
 #include <thread>
 #include <chrono>
+#include <atomic>
+#include <fcntl.h>
+#include <sys/sendfile.h>
 
 int listen_sock = 0;
 void on_signal(int sig){
@@ -104,98 +107,148 @@ typedef struct _remote_session{
     int socket;
     int port;
     std::string ip;
+    time_t birthtime;
+    time_t lastdance;
 }remote_session;
 
 typedef std::vector<remote_session> ALPINE_session_array;
 ALPINE_session_array ALPINE_sessions;
+std::atomic<bool> ALPINE_sessions_locked(false);
 
 char* response = "HTTP/1.1 200 OK\r\nServer: Alpine/1.0.0 (Linux)\r\nContent-Type:text/html\r\nConnection:keep-alive\r\n";
 char* length = "Content-Length:";
 char* br =  "\r\n\r\n";
 char* content = "<html><body>Alpine</body><html>";
 void deal_http_event(int index){
-    if(index > -1 && index < ALPINE_sessions.size()){
-        remote_session& session = ALPINE_sessions.at(index);
-        std::string sni;
-        tls* client = 0;
-        char buffer[2048];// https://serializethoughts.com/2014/07/27/dissecting-tls-client-hello-message
-        memset(buffer, 0, 2048);
-        while(true) {
+    std::string sni;
+    tls* client = 0;
+    char buffer[2048];
+    memset(buffer, 0, 2048);
+    /** SNI 
+     *  https://www.openssl.org/docs/ 
+     *  https://www.feistyduck.com/library/openssl-cookbook/online/ 
+     *  https://serializethoughts.com/2014/07/27/dissecting-tls-client-hello-message
+     *  https://blog.csdn.net/NGU_Jq/article/details/122952729
+     *  openssl 解析完SNI 
+     *  client_hello_cb
+     *  get_session_cb
+     *  servername_cb 
+     *  cert_cb
+     *  https://jingsam.github.io/2018/10/12/lets-encrypt.html
+     * 
+     *  TIME_WAIT : tcp_tw_reuse https://blog.csdn.net/mystyle_/article/details/119176327
+     *  https://blog.csdn.net/sinc00/article/details/46989777 setsockopt https://www.cnblogs.com/cthon/p/9270778.html
+     */
+    
+    while (true) {
+        if(ALPINE_sessions_locked.load()) continue;
+        ALPINE_sessions_locked.store(true);
+        for (unsigned int i = 0; i < ALPINE_sessions.size(); i++) {
+            //std::cout << "session count : " << ALPINE_sessions.size() << std::endl;
+            remote_session& session = ALPINE_sessions.at(i);
             int readlen = read(session.socket, &buffer, 2048);
+            if(readlen > 0){
+                session.lastdance = time(NULL);
 
-            if(readlen <= 0) { 
-                 continue;
+                char filepath[32];
+                memset(filepath,0,32);
+                sprintf(filepath, "%d",time(NULL));
+                /*
+                for(int i = 0;i < readlen;i ++){
+                    std::cout << "buffer " << i << " : " << buffer[i] << std::endl;
+                }
+                */
+                std::cout << "session count : " << ALPINE_sessions.size() << std::endl;
+                std::cout << "content readed from ip: " << session.ip << " with port : " << session.port << "  " << buffer << std::endl;
+
+                write(session.socket, response, strlen(response));
+                write(session.socket, length, strlen(length));
+                int l = strlen(content);
+                char ls[8];
+                sprintf(ls, "%d", l);
+                write(session.socket, ls, strlen(ls));
+                write(session.socket, br, strlen(br));
+                write(session.socket, content, strlen(content));
+                
+            } else if(readlen == 0 ){
+                //std::cout << "readlen == 0 read error : " << strerror(errno)<< std::endl;
+                if (time(NULL) - session.lastdance > 5) {
+                    close(session.socket);
+                    ALPINE_sessions.erase(ALPINE_sessions.begin() + i);
+                }
+            } else if(readlen < 0) {
+                //std::cout << "readlen <  0 read error : " << strerror(errno) << std::endl;
+                // 
+                if(time(NULL) - session.lastdance > 5) {
+                    close(session.socket);
+                    ALPINE_sessions.erase(ALPINE_sessions.begin() + i);
+                }
             }
-            /*
-            for(int i = 0;i < readlen;i ++){
-                std::cout << "buffer " << i << " : " << buffer[i] << std::endl;
-            }
-            */
-            std::cout << "content readed from ip: " << session.ip << " with port : " << session.port << "  " << buffer << std::endl;
-
-            write(session.socket, response, strlen(response));
-            write(session.socket, length, strlen(length));
-            int l = strlen(content);
-            char ls[8];
-            sprintf(ls, "%d",l);
-            write(session.socket, ls, strlen(ls));
-            write(session.socket, br, strlen(br));
-            write(session.socket, content, strlen(content));
-            memset(buffer,0,2048);
-            /*
-            sni += &buffer[129];
-            std::cout << "SNI : " << sni << std::endl;
-
-            char handshake_type = buffer[0];
-            char ssl_version_major = buffer[1];
-            char ssl_version_minor = buffer[2];
-            int length = 0;
-            char* l = (char*)&length;
-            l[0] = buffer[4];
-            l[1] = buffer[3];
-            std::cout << "length readed : " << readlen << " ssl_version_major : " << (int)ssl_version_major << " ssl_version_minor : " << (int)ssl_version_minor << " message length : " << length << std::endl;
-            client = tls_server_init(session.socket);
-            tls_handshake(client);
-            std::cout << "tls_handshake error : " << tls_error(client) << std::endl;
-
-            int readtls = tls_read(client, &buffer, 2048);
-            std::cout << "client request: " << (char*)&buffer << std::endl;
-
-            tls_write(client, r_status, strlen(r_status));
-            */
+            memset(buffer, 0, 2048);
         }
-        tls_close(client);
-        close(session.socket);
+        ALPINE_sessions_locked.store(false);
+
+        /*
+        sni += &buffer[129];
+        std::cout << "SNI : " << sni << std::endl;
+
+        char handshake_type = buffer[0];
+        char ssl_version_major = buffer[1];
+        char ssl_version_minor = buffer[2];
+        int length = 0;
+        char* l = (char*)&length;
+        l[0] = buffer[4];
+        l[1] = buffer[3];
+        std::cout << "length readed : " << readlen << " ssl_version_major : " << (int)ssl_version_major << " ssl_version_minor : " << (int)ssl_version_minor << " message length : " << length << std::endl;
+        client = tls_server_init(session.socket);
+        tls_handshake(client);
+        std::cout << "tls_handshake error : " << tls_error(client) << std::endl;
+
+        int readtls = tls_read(client, &buffer, 2048);
+        std::cout << "client request: " << (char*)&buffer << std::endl;
+
+        tls_write(client, r_status, strlen(r_status));
+        */
     }
+    //tls_close(client);
+    //close(session.socket);
 }
 
 int http_server_init(){
-    listen_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    std::thread t(deal_http_event, 0);
+    t.detach();
+
+    listen_sock = socket(AF_INET, SOCK_STREAM, 0);
 
     struct sockaddr_in listen_addr;
+    memset(&listen_addr,0,sizeof(sockaddr_in));
     listen_addr.sin_family = AF_INET;
     listen_addr.sin_port   = htons(80);
-    listen_addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    listen_addr.sin_addr.s_addr = inet_addr("0.0.0.0");
 
     bind(listen_sock,(struct sockaddr*)&listen_addr,sizeof(listen_addr));
 
-    listen(listen_sock,2);
+    listen(listen_sock,0);
 
-    sockaddr client_addr;
-    socklen_t client_len;
-    
-    while(true){  
-       if(int client_fd = accept(listen_sock, &client_addr, &client_len)) {
-           sockaddr_in* sin = (sockaddr_in*)&client_addr;
-           std::cout << "client ip  : " << inet_ntoa(sin->sin_addr) << " client port: " << sin->sin_port << std::endl;
-           remote_session session;
-           session.socket = client_fd;
-           session.ip = inet_ntoa(sin->sin_addr);
-           session.port = sin->sin_port;
-           ALPINE_sessions.push_back(session);
-           std::thread t(deal_http_event, ALPINE_sessions.size() - 1);
-           t.detach();
-       }
+    while(true){
+        if(ALPINE_sessions_locked.load()) continue;
+        sockaddr  remote_address;
+        socklen_t remote_count = 1024;
+        
+        if(int remote_fd = accept(listen_sock, &remote_address, &remote_count)) {
+            ALPINE_sessions_locked.store(true);
+            sockaddr_in* sin = (sockaddr_in*)&remote_address;
+            remote_session session;
+            session.socket = remote_fd;
+            fcntl(session.socket, F_SETFL, fcntl(session.socket, F_GETFL) | O_NONBLOCK);
+            session.ip = inet_ntoa(sin->sin_addr);
+            session.port = sin->sin_port;
+            std::cout << "new client connected : " << session.ip << " with port : " << session.port << std::endl;
+            session.birthtime = time(NULL);
+            session.lastdance = session.birthtime;
+            ALPINE_sessions.push_back(session);
+            ALPINE_sessions_locked.store(false);
+        }
     }
     close(listen_sock);
 }
