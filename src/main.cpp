@@ -129,6 +129,7 @@ void deal_http_event(int index){
      *  https://www.feistyduck.com/library/openssl-cookbook/online/ 
      *  https://serializethoughts.com/2014/07/27/dissecting-tls-client-hello-message
      *  https://blog.csdn.net/NGU_Jq/article/details/122952729
+     *  https://blog.csdn.net/qq_42370809/article/details/126352996
      *  openssl 解析完SNI 
      *  client_hello_cb
      *  get_session_cb
