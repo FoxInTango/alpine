@@ -20,6 +20,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
+ * 
+ * 一切有为法，如梦幻泡影
+ * 如露亦如电，应作如是观
+ * 
+ * 读经只为毁三观，毁掉三观使劲参
+ * 若是今生参不透，来世还来颠倒颠
  */
 #include <vector>
 #include <map>
@@ -124,22 +130,6 @@ void deal_http_event(int index){
     tls* client = 0;
     char buffer[2048];
     memset(buffer, 0, 2048);
-    /** SNI 
-     *  https://www.openssl.org/docs/ 
-     *  https://www.feistyduck.com/library/openssl-cookbook/online/ 
-     *  https://serializethoughts.com/2014/07/27/dissecting-tls-client-hello-message
-     *  https://blog.csdn.net/NGU_Jq/article/details/122952729
-     *  https://blog.csdn.net/qq_42370809/article/details/126352996
-     *  openssl 解析完SNI 
-     *  client_hello_cb
-     *  get_session_cb
-     *  servername_cb 
-     *  cert_cb
-     *  https://jingsam.github.io/2018/10/12/lets-encrypt.html
-     * 
-     *  TIME_WAIT : tcp_tw_reuse https://blog.csdn.net/mystyle_/article/details/119176327
-     *  https://blog.csdn.net/sinc00/article/details/46989777 setsockopt https://www.cnblogs.com/cthon/p/9270778.html
-     */
     
     while (true) {
         if(ALPINE_sessions_locked.load()) continue;
@@ -322,10 +312,3 @@ tls* tls_server_init(int socket){
     // tls write
 }
 #endif
-
-
-/**
- *    MusicXML
- *    HTTPS   rfc
- *    SSL/TLS rfc
- */

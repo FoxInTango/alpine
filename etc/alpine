@@ -17,11 +17,13 @@ Alpine.onevent = function response(event){
 let alpine = {
     modules:["",""],
     watches:["",""],
-    pathes:[{ALPINE_FS_EVENT_LOG:""},{ALPINE_FS_EVENT_LOG:""},{ALPINE_FS_EVENT_LOG:""}],
+    pathes:[{ALPINE_FS_EVENT_ERROR:""},{ALPINE_FS_EVENT_LOG:""},{ALPINE_FS_EVENT_LOG:""}],
     user:"",
     group:"",
-    processes:8,
     onevent:(event)=>{
     
-    }
+    },
+    processes:[
+        {id="",name:"",modules:[]}
+    ]
 }

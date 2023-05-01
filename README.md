@@ -9,6 +9,8 @@ Auto and Remote System Managing for Linux.
 ###  make subupdate
 ###  make submodule
 
-###  make
+###  make OPENSSL=../thirds/openssl
 
 ###  make install
+
+# libproc libthread libipc

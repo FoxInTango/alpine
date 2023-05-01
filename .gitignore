@@ -34,4 +34,4 @@
 /inc/*
 /lib/*
 /bin/*
-/etc/*
+/etc/tls/*

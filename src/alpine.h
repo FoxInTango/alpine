@@ -39,8 +39,13 @@
  * c:{}
  */
 
+typedef struct _alpine_process{
+    char* id;
+    char* name;
+}alpine_process;
 struct alpine_config {
-  char *nginxPath;
+  char* id;
+  char* name;
 };
 
 #define USE_VIRTUAL_METHOD
@@ -61,8 +66,12 @@ public:
     int watch(const int& fd, const foxintango::Model& option);
     int watch(const char* path, const foxintango::Model& option);
     /**
-     * url:fs|fss://./index.sock
-     *     ip|ips://192.168.0.1:80
+     * url:ip 版本检测
+     *     us|uss://                  UNIX   Socket
+     *     fs|fss://./                File   System
+     *     ip|ips://192.168.0.1:80    RAW    Socket
+     *     ss|sss://192.168.0.1:80    Stream Socket
+     *     ds|dss://192.168.0.1:80    Dgram  Socket
      *     http|https://
      *     ws|wss://
      */

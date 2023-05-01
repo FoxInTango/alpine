@@ -3,6 +3,15 @@ AS=as
 AR=ar
 LD=ld
 
+define add_module
+endef
+
+define del_module
+endef
+
+define config
+endef
+
 PLATFORM_ARCH         = $(shell uname -s)
 PLATFORM_ARCH_LINUX   = Linux
 PLATFORM_ARCH_DARWIN  = Darwin
@@ -25,7 +34,7 @@ TARGET_LIB_EXT_STATIC  =
 TARGET_LIB_EXT_DYNAMIC = 
 #    安装位置
 INSTALL_PATH_PREFIX = /Applications/alpine/versions/1.0.0
-INSTALL_PATH_PREFIX = /usr/local
+#INSTALL_PATH_PREFIX = /usr/local
 
 TARGET_BIN_DIR := ./bin
 TARGET_LIB_DIR := ./lib
@@ -69,8 +78,8 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 # 链接库配置
 TARGET_LD_FLAGS    = -L ./lib
 
-# 需要链接的库
-TARGET_LIBS = -lc -lstdc++ -lcpp -lstring -lurl -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments 
+# 需要链接的库  -lstring -lurl
+TARGET_LIBS = -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments 
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
