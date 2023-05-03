@@ -133,3 +133,5 @@
 
 # 内存管理
 #     mm syscall https://blog.csdn.net/u011011827/article/details/111666285
+
+# 代理协议 proxy_protocol https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt FROM https://www.jianshu.com/p/cc8d592582c9
