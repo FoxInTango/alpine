@@ -37,20 +37,20 @@
 /etc/tls/*
 
 # Libraries
-/libcpp
-/libstring
-/liburl
-/libstream
-/libast
-/libecho
-/libmodel
-/libmodule
-/libevent
-/libioevent
-/libfsevent
-/libvm
-/libes
-/libarguments
-/modules
+#/libcpp
+#/libstring
+#/liburl
+#/libstream
+#/libast
+#/libecho
+#/libmodel
+#/libmodule
+#/libevent
+#/libioevent
+#/libfsevent
+#/libvm
+#/libes
+#/libarguments
+#/modules
 
 # Modules

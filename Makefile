@@ -231,6 +231,15 @@ devinstall:
 	mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
 
 devpublish:
+	-git add Makefile
+	-git add README.md
+	-git add REF.md
+	-git add LICENSE
+	-git add .gitignore
+	-git add .gitmodules
+	-git add src/*
+	-git add readme/*
+	-git commit -m "alpine" && git push
 	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libstring     &&  git add . && git commit -m "alpine" && git push
 	-cd ./liburl        &&  git add . && git commit -m "alpine" && git push
