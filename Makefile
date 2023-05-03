@@ -142,8 +142,6 @@ $(TARGET_OBJECTS_CC):%.o:%.c
 	$(CC) ${CCFLAGS} $< -o $@
 $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $< -o $@
-
-subinstall:
 	
 submodule:
 	rm -rf ./inc/*
@@ -162,6 +160,24 @@ submodule:
 	-cd ./libvm        && $(MAKE) && cd ../ && cp ./libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libvm/src/*.h         ./inc/libvm
 	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h         ./inc/libes
 	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/src/*.h  ./inc/libarguments
+	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
+
+subinstall:
+    git clone https://github.com/FoxInTango/libcpp.git
+	git clone https://github.com/FoxInTango/libstring.git
+	git clone https://github.com/FoxInTango/liburl.git
+	git clone https://github.com/FoxInTango/libstream.git
+	git clone https://github.com/FoxInTango/libast.git
+	git clone https://github.com/FoxInTango/libecho.git
+	git clone https://github.com/FoxInTango/libmodel.git
+	git clone https://github.com/FoxInTango/libmodule.git
+	git clone https://github.com/FoxInTango/libevent.git
+	git clone https://github.com/FoxInTango/libioevent.git
+	git clone https://github.com/FoxInTango/libfsevent.git
+	git clone https://github.com/FoxInTango/libvm.git
+	git clone https://github.com/FoxInTango/libes.git
+	git clone https://github.com/FoxInTango/libarguments.git
+	mkdir modules && cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 
 subupdate:
 	cd ./libcpp        &&  git pull && cd ../
@@ -178,22 +194,7 @@ subupdate:
 	cd ./libvm         &&  git pull && cd ../
 	cd ./libes         &&  git pull && cd ../
 	cd ./libarguments  &&  git pull && cd ../
-
-subpublish:
-	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libstring     &&  git add . && git commit -m "alpine" && git push
-	-cd ./liburl        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libstream     &&  git add . && git commit -m "alpine" && git push
-	-cd ./libast        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libecho       &&  git add . && git commit -m "alpine" && git push
-	-cd ./libmodel      &&  git add . && git commit -m "alpine" && git push
-	-cd ./libmodule     &&  git add . && git commit -m "alpine" && git push
-	-cd ./libevent      &&  git add . && git commit -m "alpine" && git push
-	-cd ./libioevent    &&  git add . && git commit -m "alpine" && git push
-	-cd ./libfsevent    &&  git add . && git commit -m "alpine" && git push
-	-cd ./libvm         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libes         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libarguments  &&  git add . && git commit -m "alpine" && git push
+	cd ./modules/io_event_tls_engine && git pull && cd ../../
 
 subclean:
 	-cd ./libcpp       &&  $(MAKE) clean
@@ -210,6 +211,40 @@ subclean:
 	-cd ./libvm        &&  $(MAKE) clean
 	-cd ./libes        &&  $(MAKE) clean
 	-cd ./libarguments &&  $(MAKE) clean
+	-cd ./modules/io_event_tls_engine && $(MAKE) clean
+
+devinstall:
+    git clone git@github.com:FoxInTango/libcpp.git
+	git clone git@github.com:FoxInTango/libstring.git
+	git clone git@github.com:FoxInTango/liburl.git
+	git clone git@github.com:FoxInTango/libstream.git
+	git clone git@github.com:FoxInTango/libast.git
+	git clone git@github.com:FoxInTango/libecho.git
+	git clone git@github.com:FoxInTango/libmodel.git
+	git clone git@github.com:FoxInTango/libmodule.git
+	git clone git@github.com:FoxInTango/libevent.git
+	git clone git@github.com:FoxInTango/libioevent.git
+	git clone git@github.com:FoxInTango/libfsevent.git
+	git clone git@github.com:FoxInTango/libvm.git
+	git clone git@github.com:FoxInTango/libes.git
+	git clone git@github.com:FoxInTango/libarguments.git
+	mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
+devpublish:
+	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libstring     &&  git add . && git commit -m "alpine" && git push
+	-cd ./liburl        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libstream     &&  git add . && git commit -m "alpine" && git push
+	-cd ./libast        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libecho       &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmodel      &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmodule     &&  git add . && git commit -m "alpine" && git push
+	-cd ./libevent      &&  git add . && git commit -m "alpine" && git push
+	-cd ./libioevent    &&  git add . && git commit -m "alpine" && git push
+	-cd ./libfsevent    &&  git add . && git commit -m "alpine" && git push
+	-cd ./libvm         &&  git add . && git commit -m "alpine" && git push
+	-cd ./libes         &&  git add . && git commit -m "alpine" && git push
+	-cd ./libarguments  &&  git add . && git commit -m "alpine" && git push
+	-cd ./modules/io_event_tls_engine && git add .&& git commit -m "alpine" && git push
 
 clean   :
 	rm -f $(TARGET_OBJECTS_AS)
