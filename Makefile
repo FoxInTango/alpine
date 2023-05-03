@@ -213,7 +213,24 @@ subclean:
 	-cd ./libarguments &&  $(MAKE) clean
 	-cd ./modules/io_event_tls_engine && $(MAKE) clean
 
-subpublish:
+devinstall:
+	git clone git@github.com:FoxInTango/libcpp.git
+	git clone git@github.com:FoxInTango/libstring.git
+	git clone git@github.com:FoxInTango/liburl.git
+	git clone git@github.com:FoxInTango/libstream.git
+	git clone git@github.com:FoxInTango/libast.git
+	git clone git@github.com:FoxInTango/libecho.git
+	git clone git@github.com:FoxInTango/libmodel.git
+	git clone git@github.com:FoxInTango/libmodule.git
+	git clone git@github.com:FoxInTango/libevent.git
+	git clone git@github.com:FoxInTango/libioevent.git
+	git clone git@github.com:FoxInTango/libfsevent.git
+	git clone git@github.com:FoxInTango/libvm.git
+	git clone git@github.com:FoxInTango/libes.git
+	git clone git@github.com:FoxInTango/libarguments.git
+	mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
+
+devpublish:
 	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libstring     &&  git add . && git commit -m "alpine" && git push
 	-cd ./liburl        &&  git add . && git commit -m "alpine" && git push
