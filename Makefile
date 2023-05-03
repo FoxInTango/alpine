@@ -162,23 +162,6 @@ submodule:
 	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/src/*.h  ./inc/libarguments
 	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
 
-subinstall:
-    git clone https://github.com/FoxInTango/libcpp.git
-	git clone https://github.com/FoxInTango/libstring.git
-	git clone https://github.com/FoxInTango/liburl.git
-	git clone https://github.com/FoxInTango/libstream.git
-	git clone https://github.com/FoxInTango/libast.git
-	git clone https://github.com/FoxInTango/libecho.git
-	git clone https://github.com/FoxInTango/libmodel.git
-	git clone https://github.com/FoxInTango/libmodule.git
-	git clone https://github.com/FoxInTango/libevent.git
-	git clone https://github.com/FoxInTango/libioevent.git
-	git clone https://github.com/FoxInTango/libfsevent.git
-	git clone https://github.com/FoxInTango/libvm.git
-	git clone https://github.com/FoxInTango/libes.git
-	git clone https://github.com/FoxInTango/libarguments.git
-	mkdir modules && cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
-
 subupdate:
 	cd ./libcpp        &&  git pull && cd ../
 	cd ./libstring     &&  git pull && cd ../
@@ -213,23 +196,7 @@ subclean:
 	-cd ./libarguments &&  $(MAKE) clean
 	-cd ./modules/io_event_tls_engine && $(MAKE) clean
 
-devinstall:
-    git clone git@github.com:FoxInTango/libcpp.git
-	git clone git@github.com:FoxInTango/libstring.git
-	git clone git@github.com:FoxInTango/liburl.git
-	git clone git@github.com:FoxInTango/libstream.git
-	git clone git@github.com:FoxInTango/libast.git
-	git clone git@github.com:FoxInTango/libecho.git
-	git clone git@github.com:FoxInTango/libmodel.git
-	git clone git@github.com:FoxInTango/libmodule.git
-	git clone git@github.com:FoxInTango/libevent.git
-	git clone git@github.com:FoxInTango/libioevent.git
-	git clone git@github.com:FoxInTango/libfsevent.git
-	git clone git@github.com:FoxInTango/libvm.git
-	git clone git@github.com:FoxInTango/libes.git
-	git clone git@github.com:FoxInTango/libarguments.git
-	mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
-devpublish:
+subpublish:
 	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libstring     &&  git add . && git commit -m "alpine" && git push
 	-cd ./liburl        &&  git add . && git commit -m "alpine" && git push
