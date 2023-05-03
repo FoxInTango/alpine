@@ -3,13 +3,15 @@ Auto and Remote System Managing for Linux.
 
 # usage:
 ###  git clone https://github.com/FoxInTango/alpine.git
-###  git submodule init
-###  git submodule update --remote --recursive
+###  make subinstall
+###  make subupdate
 ###  make submodule OPENSSL=../thirds/openssl
+###  make
 
 # For Developing
+###  make devinstall 
 ###  make subupdate
-###  make subpublish
+###  make devpublish
 
 ###  make && make install
 
