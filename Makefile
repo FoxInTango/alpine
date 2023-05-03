@@ -163,21 +163,21 @@ submodule:
 	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
 
 subinstall:
-	git clone https://github.com/FoxInTango/libcpp.git
-	git clone https://github.com/FoxInTango/libstring.git
-	git clone https://github.com/FoxInTango/liburl.git
-	git clone https://github.com/FoxInTango/libstream.git
-	git clone https://github.com/FoxInTango/libast.git
-	git clone https://github.com/FoxInTango/libecho.git
-	git clone https://github.com/FoxInTango/libmodel.git
-	git clone https://github.com/FoxInTango/libmodule.git
-	git clone https://github.com/FoxInTango/libevent.git
-	git clone https://github.com/FoxInTango/libioevent.git
-	git clone https://github.com/FoxInTango/libfsevent.git
-	git clone https://github.com/FoxInTango/libvm.git
-	git clone https://github.com/FoxInTango/libes.git
-	git clone https://github.com/FoxInTango/libarguments.git
-	mkdir modules && cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
+	-git clone https://github.com/FoxInTango/libcpp.git
+	-git clone https://github.com/FoxInTango/libstring.git
+	-git clone https://github.com/FoxInTango/liburl.git
+	-git clone https://github.com/FoxInTango/libstream.git
+	-git clone https://github.com/FoxInTango/libast.git
+	-git clone https://github.com/FoxInTango/libecho.git
+	-git clone https://github.com/FoxInTango/libmodel.git
+	-git clone https://github.com/FoxInTango/libmodule.git
+	-git clone https://github.com/FoxInTango/libevent.git
+	-git clone https://github.com/FoxInTango/libioevent.git
+	-git clone https://github.com/FoxInTango/libfsevent.git
+	-git clone https://github.com/FoxInTango/libvm.git
+	-git clone https://github.com/FoxInTango/libes.git
+	-git clone https://github.com/FoxInTango/libarguments.git
+	-mkdir modules && cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 
 subupdate:
 	cd ./libcpp        &&  git pull && cd ../
