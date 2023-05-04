@@ -177,7 +177,8 @@ subinstall:
 	-git clone https://github.com/FoxInTango/libvm.git
 	-git clone https://github.com/FoxInTango/libes.git
 	-git clone https://github.com/FoxInTango/libarguments.git
-	-mkdir modules && cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
+	-mkdir modules
+	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 
 subupdate:
 	cd ./libcpp        &&  git pull && cd ../
