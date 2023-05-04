@@ -6,7 +6,8 @@ Auto and Remote System Managing for Linux.
 ###  make subinstall
 ###  make subupdate
 ###  make submodule OPENSSL=../thirds/openssl
-###  make
+###  make 
+###  make install
 
 # For Developing
 ###  make devinstall 
