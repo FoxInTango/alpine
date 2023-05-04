@@ -13,8 +13,8 @@ Auto and Remote System Managing for Linux.
 
 # For Developing
 ###  make devinstall 
-###  make subupdate
-###  make devpublish
+###  make update
+###  make publish
 
 ###  make && make install
 
