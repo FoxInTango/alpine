@@ -56,6 +56,7 @@ PROJECT_DIR_BESIDES += -o -path ./libioevent
 PROJECT_DIR_BESIDES += -o -path ./libvm
 PROJECT_DIR_BESIDES += -o -path ./libes
 PROJECT_DIR_BESIDES += -o -path ./libarguments
+PROJECT_DIR_BESIDES += -o -path ./modules
 PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib

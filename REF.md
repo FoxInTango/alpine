@@ -23,6 +23,7 @@
 #     OpenSSL : https://www.openssl.org/docs/
 #               OpenSSL configure https://blog.csdn.net/shb8845369/article/details/100833825
 #                       config & configure https://zhuanlan.zhihu.com/p/359472418
+# CA证书签发流程：https://www.cnblogs.com/xdyixia/p/11610102.html
 # OpenSSL 专家:
 # https://www.junmajinlong.com/linux/index/#blogopenssl from https://www.cnblogs.com/f-ck-need-u/p/7113610.html
 # https://jamielinux.com/
