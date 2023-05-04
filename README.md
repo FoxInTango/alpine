@@ -1,13 +1,15 @@
 # alpine
 Auto and Remote System Managing for Linux.
 
-# usage:
+# USAGE:
 ###  git clone https://github.com/FoxInTango/alpine.git
 ###  make subinstall
-###  make subupdate
 ###  make submodule OPENSSL=../thirds/openssl
 ###  make 
 ###  make install
+
+# UPDATE:
+###  make update
 
 # For Developing
 ###  make devinstall 
