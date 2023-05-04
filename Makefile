@@ -160,6 +160,8 @@ submodule:
 	-cd ./libvm        && $(MAKE) && cd ../ && cp ./libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libvm/src/*.h         ./inc/libvm
 	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h         ./inc/libes
 	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/src/*.h  ./inc/libarguments
+	-mkdir ./inc/modules
+	-mkdir ./lib/modules
 	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
 
 subinstall:
