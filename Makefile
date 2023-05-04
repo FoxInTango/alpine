@@ -182,22 +182,23 @@ subinstall:
 	-mkdir modules
 	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 
-subupdate:
-	cd ./libcpp        &&  git pull && cd ../
-	cd ./libstring     &&  git pull && cd ../
-	cd ./liburl        &&  git pull && cd ../
-	cd ./libstream     &&  git pull && cd ../
-	cd ./libast        &&  git pull && cd ../
-	cd ./libecho       &&  git pull && cd ../
-	cd ./libmodel      &&  git pull && cd ../
-	cd ./libmodule     &&  git pull && cd ../
-	cd ./libevent      &&  git pull && cd ../
-	cd ./libioevent    &&  git pull && cd ../
-	cd ./libfsevent    &&  git pull && cd ../
-	cd ./libvm         &&  git pull && cd ../
-	cd ./libes         &&  git pull && cd ../
-	cd ./libarguments  &&  git pull && cd ../
-	cd ./modules/io_event_tls_engine && git pull && cd ../../
+update:
+	-git pull
+	-cd ./libcpp        &&  git pull && cd ../
+	-cd ./libstring     &&  git pull && cd ../
+	-cd ./liburl        &&  git pull && cd ../
+	-cd ./libstream     &&  git pull && cd ../
+	-cd ./libast        &&  git pull && cd ../
+	-cd ./libecho       &&  git pull && cd ../
+	-cd ./libmodel      &&  git pull && cd ../
+	-cd ./libmodule     &&  git pull && cd ../
+	-cd ./libevent      &&  git pull && cd ../
+	-cd ./libioevent    &&  git pull && cd ../
+	-cd ./libfsevent    &&  git pull && cd ../
+	-cd ./libvm         &&  git pull && cd ../
+	-cd ./libes         &&  git pull && cd ../
+	-cd ./libarguments  &&  git pull && cd ../
+	-cd ./modules/io_event_tls_engine && git pull && cd ../../
 
 subclean:
 	-cd ./libcpp       &&  $(MAKE) clean
@@ -233,7 +234,7 @@ devinstall:
 	git clone git@github.com:FoxInTango/libarguments.git
 	mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
 
-devpublish:
+publish:
 	-git add Makefile
 	-git add README.md
 	-git add REF.md
