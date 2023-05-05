@@ -119,8 +119,10 @@ endif
 
 TARGETS = 
 
-export SUPER_LIBRARY_PATH = ../lib
-export SUPER_INCLUDE_PATH = ../inc
+MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
+export SUPER_LIBRARY_PATH = $(MAKE_FILE_DIR)/lib
+export SUPER_INCLUDE_PATH = $(MAKE_FILE_DIR)/inc
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
@@ -274,3 +276,4 @@ uninstall :
 
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344
+# Makefile Path :https://blog.csdn.net/evolay/article/details/121625712

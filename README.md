@@ -4,7 +4,7 @@ Auto and Remote System Managing for Linux.
 # USAGE:
 ###  git clone https://github.com/FoxInTango/alpine.git
 ###  make subinstall
-###  make submodule OPENSSL=../thirds/openssl
+###  make submodule OPENSSL= ABS/PATH/TO/OPENSSL/ROOT
 ###  make 
 ###  make install
 
