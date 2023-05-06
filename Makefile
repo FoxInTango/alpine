@@ -244,7 +244,9 @@ publish:
 	-git add LICENSE
 	-git add .gitignore
 	-git add .gitmodules
-	-git add src/*
+	-git add src/*.h
+	-git add src/*.c
+	-git add src/*.cpp
 	-git add readme/*
 	-git commit -m "alpine" && git push
 	-cd ./libcpp        &&  git add . && git commit -m "alpine" && git push
