@@ -245,7 +245,6 @@ publish:
 	-git add .gitignore
 	-git add .gitmodules
 	-git add src/*.h
-	-git add src/*.c
 	-git add src/*.cpp
 	-git add readme/*
 	-git commit -m "alpine" && git push
