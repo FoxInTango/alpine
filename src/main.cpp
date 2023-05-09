@@ -43,6 +43,11 @@
 #include <libarguments/libarguments.h>
 using namespace foxintango;
 
+/** TESTS
+ *  io client : alpine io connect -ip 192.168.1.6 -port 80
+ *  io server : alpine io listen  -ip "0.0.0.0"   -port 80
+ */
+
 #include "alpine.h"
 
 #ifdef OPENSSL
@@ -60,7 +65,7 @@ void* create_object(Model m) {
 }
 
 int http_server_init();
-tls* tls_server_init(int socket);
+//tls* tls_server_init(int socket);
 
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
@@ -70,6 +75,10 @@ int onevent(const Alpine& alpine, int e) { return e; }
 
 void on_signal(int sig);
 int main(int argc, char* argv[]) {
+    arguments startup_arguments(argc,argv);
+    startup_arguments.echo();
+
+    return 0;
     signal(SIGINT,on_signal);
     std::cout << "Alpine Init: " << alpine.init(arguments(argc, argv)) << std::endl;
 #ifdef USE_VIRTUAL_METHOD
@@ -78,7 +87,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
-    alpine.watch("","");
+    alpine.init(startup_arguments);
     Model m;
     delete (Object*)create_object(m);
     http_server_init();
@@ -127,7 +136,7 @@ char* br =  "\r\n\r\n";
 char* content = "<html><body>Alpine</body><html>";
 void deal_http_event(int index){
     std::string sni;
-    tls* client = 0;
+    //tls* client = 0;
     char buffer[2048];
     memset(buffer, 0, 2048);
     
@@ -263,52 +272,3 @@ static struct test_versions tls_test_versions[] = {
     {"tlsv1.0", "tlsv1.0"},
 };
 
-/** $servertest_bin $srcdir/server.pem $srcdir/server.pem $srcdir/ca.pem
- cafile = argv[1];
- certfile = argv[2];
- keyfile = argv[3];
- */
-
-char* cafile   = "./etc/tls/server.crt";
-char* certfile = "./etc/tls/foxintango.me.crt";
-char* keyfile  = "./etc/tls/foxintango.me.key";
-char* ciphers  = "default";//tls_config.c tls_config_set_ciphers
-#ifdef OPENSSL
-tls* tls_server_init(int socket){
-
-    struct tls_config* client_cfg, * server_cfg;
-    struct tls *client, *server;
-    int failure = 0;
-    uint32_t protocols;
-    if ((server = tls_server()) == NULL)
-        std::cout << "server create filed." << std::endl;
-   
-    if ((server_cfg = tls_config_new()) == NULL)
-        std::cout << "failed to create tls server config" << std::endl;
-    if (tls_config_parse_protocols(&protocols, tls_test_versions[4].server) == -1)
-        std::cout << "failed to parse protocols: %s" << tls_config_error(server_cfg) << std::endl;
-    if (tls_config_set_protocols(server_cfg, protocols) == -1)
-        std::cout << "failed to set protocols: %s" << tls_config_error(server_cfg) << std::endl;
-    if (tls_config_set_ciphers(server_cfg, ciphers) == -1)
-        std::cout << "failed to set ciphers: %s" << tls_config_error(server_cfg) << std::endl;
-    if (tls_config_set_keypair_file(server_cfg, certfile, keyfile) == -1)
-        std::cout << "failed to set keypair: %s" << tls_config_error(server_cfg) << std::endl;
-    /*
-    if (tls_config_set_ca_file(server_cfg, cafile) == -1)
-        std::cout << "failed to set ca: %s" << tls_config_error(client_cfg) << std::endl;
-    */
-    if (tls_configure(server, server_cfg) == -1)
-        std::cout << "failed to configure server: %s" << tls_error(server) << std::endl;
-    tls_config_free(server_cfg);
-    tls_accept_socket(server,&client,socket);
-    return client;
-
-    // socket create
-    // tls create 
-    // tls configure
-    // tls accept
-    // tls handshake
-    // tls read
-    // tls write
-}
-#endif

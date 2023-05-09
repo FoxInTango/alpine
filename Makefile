@@ -80,13 +80,13 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 TARGET_LD_FLAGS    = -L ./lib
 
 # 需要链接的库  -lstring -lurl
-TARGET_LIBS = -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent -lioevent -lfsevent -lvm -les -larguments 
+TARGET_LIBS = -static-libgcc -lioevent -lfsevent -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent  -lvm -les -larguments 
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 
-OPENSSL=
+#OPENSSL=
 ifdef OPENSSL
 OPENSSL_INCLUDE_PATH = ${OPENSSL}/include
 OPENSSL_LIBRARY_PATH = ${OPENSSL}/lib
@@ -278,3 +278,4 @@ uninstall :
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344
 # Makefile Path :https://blog.csdn.net/evolay/article/details/121625712
+# 静态库顺序
