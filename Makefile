@@ -80,7 +80,7 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 TARGET_LD_FLAGS    = -L ./lib
 
 # 需要链接的库  -lstring -lurl
-TARGET_LIBS = -static-libgcc -lioevent -lfsevent -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent  -lvm -les -larguments 
+TARGET_LIBS = -lioevent -lfsevent -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent  -lvm -les -larguments 
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
