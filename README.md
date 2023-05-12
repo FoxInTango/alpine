@@ -17,5 +17,3 @@ Auto and Remote System Managing for Linux.
 ###  make publish
 
 ###  make && make install
-
-# libproc libthread libipc

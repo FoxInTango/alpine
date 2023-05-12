@@ -136,3 +136,9 @@
 #     mm syscall https://blog.csdn.net/u011011827/article/details/111666285
 
 # 代理协议 proxy_protocol https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt FROM https://www.jianshu.com/p/cc8d592582c9
+
+# CGrgoups 好文章 ： https://www.cnblogs.com/haoee/p/16209800.html
+                     https://www.cnblogs.com/bincoding/p/16465804.html
+
+# Linux 内核：
+    进程调度 https://deepinout.com/linux-kernel-api/linux-kernel-api-process-scheduling/linux-kernel-api-wake_up_process.html

@@ -56,6 +56,7 @@ PROJECT_DIR_BESIDES += -o -path ./libioevent
 PROJECT_DIR_BESIDES += -o -path ./libvm
 PROJECT_DIR_BESIDES += -o -path ./libes
 PROJECT_DIR_BESIDES += -o -path ./libarguments
+PROJECT_DIR_BESIDES += -o -path ./libmit
 PROJECT_DIR_BESIDES += -o -path ./modules
 PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
@@ -80,7 +81,7 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 TARGET_LD_FLAGS    = -L ./lib
 
 # 需要链接的库  -lstring -lurl
-TARGET_LIBS = -lioevent -lfsevent -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent  -lvm -les -larguments 
+TARGET_LIBS = -lioevent -lfsevent -lmit -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent  -lvm -les -larguments 
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
@@ -163,6 +164,7 @@ submodule:
 	-cd ./libvm        && $(MAKE) && cd ../ && cp ./libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libvm/src/*.h         ./inc/libvm
 	-cd ./libes        && $(MAKE) && cd ../ && cp ./libes/lib/*         ./lib && mkdir inc/libes        && cp ./libes/src/*.h         ./inc/libes
 	-cd ./libarguments && $(MAKE) && cd ../ && cp ./libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libarguments/src/*.h  ./inc/libarguments
+	-cd ./libmit       && $(MAKE) && cd ../ && cp ./libmit/lib/*        ./lib && mkdir inc/libmit       && cp ./libmit/src/*.h        ./inc/libmit
 	-mkdir ./inc/modules
 	-mkdir ./lib/modules
 	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
@@ -182,6 +184,7 @@ subinstall:
 	-git clone https://github.com/FoxInTango/libvm.git
 	-git clone https://github.com/FoxInTango/libes.git
 	-git clone https://github.com/FoxInTango/libarguments.git
+	-git clone https://github.com/FoxInTango/libmit.git
 	-mkdir modules
 	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 
@@ -201,6 +204,7 @@ update:
 	-cd ./libvm         &&  git pull && cd ../
 	-cd ./libes         &&  git pull && cd ../
 	-cd ./libarguments  &&  git pull && cd ../
+	-cd ./libmit        &&  git pull && cd ../
 	-cd ./modules/io_event_tls_engine && git pull && cd ../../
 
 subclean:
@@ -218,24 +222,26 @@ subclean:
 	-cd ./libvm        &&  $(MAKE) clean
 	-cd ./libes        &&  $(MAKE) clean
 	-cd ./libarguments &&  $(MAKE) clean
+	-cd ./libmit       &&  $(MAKE) clean
 	-cd ./modules/io_event_tls_engine && $(MAKE) clean
 
 devinstall:
-	git clone git@github.com:FoxInTango/libcpp.git
-	git clone git@github.com:FoxInTango/libstring.git
-	git clone git@github.com:FoxInTango/liburl.git
-	git clone git@github.com:FoxInTango/libstream.git
-	git clone git@github.com:FoxInTango/libast.git
-	git clone git@github.com:FoxInTango/libecho.git
-	git clone git@github.com:FoxInTango/libmodel.git
-	git clone git@github.com:FoxInTango/libmodule.git
-	git clone git@github.com:FoxInTango/libevent.git
-	git clone git@github.com:FoxInTango/libioevent.git
-	git clone git@github.com:FoxInTango/libfsevent.git
-	git clone git@github.com:FoxInTango/libvm.git
-	git clone git@github.com:FoxInTango/libes.git
-	git clone git@github.com:FoxInTango/libarguments.git
-	mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
+	-git clone git@github.com:FoxInTango/libcpp.git
+	-git clone git@github.com:FoxInTango/libstring.git
+	-git clone git@github.com:FoxInTango/liburl.git
+	-git clone git@github.com:FoxInTango/libstream.git
+	-git clone git@github.com:FoxInTango/libast.git
+	-git clone git@github.com:FoxInTango/libecho.git
+	-git clone git@github.com:FoxInTango/libmodel.git
+	-git clone git@github.com:FoxInTango/libmodule.git
+	-git clone git@github.com:FoxInTango/libevent.git
+	-git clone git@github.com:FoxInTango/libioevent.git
+	-git clone git@github.com:FoxInTango/libfsevent.git
+	-git clone git@github.com:FoxInTango/libvm.git
+	-git clone git@github.com:FoxInTango/libes.git
+	-git clone git@github.com:FoxInTango/libarguments.git
+	-git clone git@github.com:FoxInTango/libmit.git
+	-mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
 
 publish:
 	-git add Makefile
@@ -262,6 +268,7 @@ publish:
 	-cd ./libvm         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libes         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libarguments  &&  git add . && git commit -m "alpine" && git push
+	-cd ./libmit        &&  git add . && git commit -m "alpine" && git push
 	-cd ./modules/io_event_tls_engine && git add .&& git commit -m "alpine" && git push
 
 clean   :
