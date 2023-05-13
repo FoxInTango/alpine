@@ -15,6 +15,15 @@ Alpine.onevent = function response(event){
 }
 
 let alpine = {
+    es:{},
+    ev:{
+        engines:[],
+    },
+    io:{
+        engines:[],
+        endpoints:[{name:"",address:"",port:"",type:"tcp|udp : listen|connect"},{name:"",location:"unix",type:""},{name:"",type:""}],
+    },
+    fs:{},
     modules:["",""],
     watches:["",""],
     pathes:[{ALPINE_FS_EVENT_ERROR:""},{ALPINE_FS_EVENT_LOG:""},{ALPINE_FS_EVENT_LOG:""}],
