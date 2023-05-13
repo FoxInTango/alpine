@@ -79,10 +79,10 @@ TARGET_OBJECTS_PP  += $(patsubst %.cpp,%.o,$(TARGET_SOURCES_PP))
 TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                         # $(wildcard $(TARGET_HEADERS_DIR)/*.h)
 
 # 链接库配置
-TARGET_LD_FLAGS    = -L ./lib
+TARGET_LD_FLAGS    = -L ./lib -Wl,-rpath=${INSTALL_PATH_PREFIX}/lib
 
 # 需要链接的库  -lstring -lurl
-TARGET_LIBS = -lioevent -lfsevent -lmit -lc -lstdc++ -lcpp -lstream -last -lecho -lmodel -lmodule -levent  -lvm -les -larguments 
+TARGET_LIBS = -lioevent -lfsevent -levent -les -lvm -lmit -last -lecho -lmodule -larguments -lmodel -lstream -lcpp -lstdc++ -lc         
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
@@ -123,8 +123,8 @@ TARGETS =
 
 MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
-export SUPER_LIBRARY_PATH = $(MAKE_FILE_DIR)/lib
-export SUPER_INCLUDE_PATH = $(MAKE_FILE_DIR)/inc
+export SUPER_LIBRARY_PATH = $(MAKE_FILE_DIR)lib
+export SUPER_INCLUDE_PATH = $(MAKE_FILE_DIR)inc
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
@@ -139,7 +139,7 @@ endif
 ALL : $(TARGETS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -fPIE -o $@ $^  -static $(TARGET_LIBS) ${TARGET_LD_FLAGS}
+	$(CC) -fPIE -o $@ $^ -static $(TARGET_LIBS) ${TARGET_LD_FLAGS}
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@

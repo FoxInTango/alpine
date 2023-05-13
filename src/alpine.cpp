@@ -37,16 +37,18 @@ Alpine::~Alpine(){}
 int Alpine::init(const foxintango::arguments& args){
     signal(0, deal_signal);
     foxintango::es_document doc;
-    doc.load(ALPINE_model_path_default);
+    //doc.load(ALPINE_model_path_default);
 
+    
     Model alpine_startup_model;
     ME* libes_startup_model = alpine_startup_model.subelementAt("es");
     ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
     ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
+    /*
     libes_init();
     libioevent_startup(libioevent_startup_model);
     libfsevent_startup(libfsevent_startup_model);
-    
+    */
     return 0;
 }
 
