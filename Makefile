@@ -152,6 +152,7 @@ submodule:
 	rm -rf ./inc/*
 	rm -rf ./lib/*
 	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libraries/libcpp/src/*.h        ./inc/libcpp
+	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp ./libraries/libmm/src/*.h         ./inc/libmm
 	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp ./libraries/libstring/src/*.h     ./inc/libstring
 	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp ./libraries/liburl/src/*.h        ./inc/liburl
 	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp ./libraries/libstream/src/*.h     ./inc/libstream
@@ -173,6 +174,7 @@ submodule:
 subinstall:
 	-mkdir libraries
 	-cd libraries && git clone https://github.com/FoxInTango/libcpp.git
+	-cd libraries && git clone https://github.com/FoxInTango/libmm.git
 	-cd libraries && git clone https://github.com/FoxInTango/libstring.git
 	-cd libraries && git clone https://github.com/FoxInTango/liburl.git
 	-cd libraries && git clone https://github.com/FoxInTango/libstream.git
@@ -193,6 +195,7 @@ subinstall:
 update:
 	-git pull
 	-cd ./libraries/libcpp        &&  git pull && cd ../
+	-cd ./libraries/libmm         &&  git pull && cd ../
 	-cd ./libraries/libstring     &&  git pull && cd ../
 	-cd ./libraries/liburl        &&  git pull && cd ../
 	-cd ./libraries/libstream     &&  git pull && cd ../
@@ -211,6 +214,7 @@ update:
 
 subclean:
 	-cd ./libraries/libcpp       &&  $(MAKE) clean
+	-cd ./libraries/libmm        &&  $(MAKE) clean
 	-cd ./libraries/libstring    &&  $(MAKE) clean
 	-cd ./libraries/liburl       &&  $(MAKE) clean
 	-cd ./libraries/libstream    &&  $(MAKE) clean
@@ -229,6 +233,7 @@ subclean:
 
 devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libcpp.git
+	-cd libraries && git clone git@github.com:FoxInTango/libmm.git
 	-cd libraries && git clone git@github.com:FoxInTango/libstring.git
 	-cd libraries && git clone git@github.com:FoxInTango/liburl.git
 	-cd libraries && git clone git@github.com:FoxInTango/libstream.git
@@ -257,6 +262,7 @@ publish:
 	-git add readme/*
 	-git commit -m "alpine" && git push
 	-cd ./libraries/libcpp        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libmm         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libstring     &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/liburl        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libstream     &&  git add . && git commit -m "alpine" && git push
