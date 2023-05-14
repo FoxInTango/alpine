@@ -98,11 +98,6 @@
 #    https://www.cnblogs.com/feng9exe/p/7000162.html
 #LINUX网络设备:https://www.jianshu.com/p/2ca7d8d5bf1e
 
-# syscall
-#     https://man7.org/linux/man-pages/man2/init_module.2.html
-# ptrace
-#     https://www.cnblogs.com/mysky007/p/11047943.html
-
 # Zero Copy:
 # TLS sendfile
 #    kTSL (Kernel TLS) https://www.kernel.org/doc/html/latest/networking/tls.html
@@ -142,3 +137,12 @@
 
 # Linux 内核：
     进程调度 https://deepinout.com/linux-kernel-api/linux-kernel-api-process-scheduling/linux-kernel-api-wake_up_process.html
+# syscall
+#     https://man7.org/linux/man-pages/man2/init_module.2.html
+# syscall table : 
+#     https://blog.csdn.net/weixin_42915431/article/details/106507066 kallsyms_lookup_name | system.map | PAGE_OFFSET -> NR_close
+#     https://www.cnblogs.com/bittorrent/p/3804141.html 读取/proc/kallsyms 
+#           https://www.cnblogs.com/viiv/p/16648241.html#Systemmap_prockallsyms_181
+#           https://zhuanlan.zhihu.com/p/480934356 设置 sys_call_table 数组为可写状态
+# ptrace
+#     https://www.cnblogs.com/mysky007/p/11047943.html

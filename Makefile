@@ -33,9 +33,11 @@ TARGET_BIN_EXT =
 TARGET_LIB_EXT_STATIC  =
 TARGET_LIB_EXT_DYNAMIC = 
 #    安装位置
-INSTALL_PATH_PREFIX = /Applications/alpine/versions/1.0.0
+INSTALL_PATH_PREFIX = /Applications/alpine
+TARGET_VERSION = 1.0.0
 #INSTALL_PATH_PREFIX = /usr/local
 
+TARGET_INC_DIR := ./inc
 TARGET_BIN_DIR := ./bin
 TARGET_LIB_DIR := ./lib
 
@@ -125,6 +127,7 @@ MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
 export SUPER_LIBRARY_PATH = $(MAKE_FILE_DIR)lib
 export SUPER_INCLUDE_PATH = $(MAKE_FILE_DIR)inc
+export SUPER_RUNTIME_PATH = $(INSTALL_PATH_PREFIX)
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
@@ -172,6 +175,7 @@ submodule:
 	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp ./libraries/libes/src/*.h         ./inc/libes
 	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libraries/libarguments/src/*.h  ./inc/libarguments
 	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp ./libraries/libmit/src/*.h        ./inc/libmit
+	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp ./libraries/libkernel/src/*.h     ./inc/libkernel
 	-mkdir ./inc/modules
 	-mkdir ./lib/modules
 	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
@@ -199,6 +203,7 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libes.git
 	-cd libraries && git clone https://github.com/FoxInTango/libarguments.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmit.git
+	-cd libraries && git clone https://github.com/FoxInTango/libkernel.git
 	-mkdir modules
 	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 
@@ -225,6 +230,7 @@ update:
 	-cd ./libraries/libes         &&  git pull && cd ../
 	-cd ./libraries/libarguments  &&  git pull && cd ../
 	-cd ./libraries/libmit        &&  git pull && cd ../
+	-cd ./libraries/libkernel     &&  git pull && cd ../
 	-cd ./modules/io_event_tls_engine && git pull && cd ../../
 
 subclean:
@@ -249,6 +255,7 @@ subclean:
 	-cd ./libraries/libes        &&  $(MAKE) clean
 	-cd ./libraries/libarguments &&  $(MAKE) clean
 	-cd ./libraries/libmit       &&  $(MAKE) clean
+	-cd ./libraries/libkernel    &&  $(MAKE) clean
 	-cd ./modules/io_event_tls_engine && $(MAKE) clean
 
 devinstall:
@@ -273,6 +280,7 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libes.git
 	-cd libraries && git clone git@github.com:FoxInTango/libarguments.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmit.git
+	-cd libraries && git clone git@github.com:FoxInTango/libkernel.git
 	-mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
 
 publish:
@@ -308,6 +316,7 @@ publish:
 	-cd ./libraries/libes         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libarguments  &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libmit        &&  git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libkernel     &&  git add . && git commit -m "alpine" && git push
 	-cd ./modules/io_event_tls_engine && git add .&& git commit -m "alpine" && git push
 
 clean   :
@@ -315,13 +324,24 @@ clean   :
 	rm -f $(TARGET_OBJECTS_CC)
 	rm -f $(TARGET_OBJECTS_PP)
 	rm -f ${TARGET_BIN_DIR}/*
+INSTALL_PATH=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}
 install :
-	cp -f $(TARGET_BIN_DIR)/$(TARGET_NAME) $(INSTALL_PATH_PREFIX)/bin/
-	cp -f $(TARGET_LIB_DIR)/* $(INSTALL_PATH_PREFIX)/lib/
+	-mkdir -p $(INSTALL_PATH)
+	-mkdir ${INSTALL_PATH}/inc
+	-mkdir $(INSTALL_PATH)/bin
+	-mkdir $(INSTALL_PATH)/lib
+	cp -rf $(TARGET_INC_DIR)/* $(INSTALL_PATH)/inc/
+	cp -rf $(TARGET_BIN_DIR)/* $(INSTALL_PATH)/bin/
+	cp -rf $(TARGET_LIB_DIR)/* $(INSTALL_PATH)/lib/
+	ln -s  $(INSTALL_PATH)/bin/${TARGET_NAME} /usr/local/bin/${TARGET_NAME} 
+current:
+	@echo current version ${TARGET_VERSION}
 uninstall : 
-	rm -rf $(INSTALL_PATH_PREFIX)/bin/$(TARGET_NAME)
+	rm -rf $(INSTALL_PATH)
+	rm -rf /usr/local/bin/${TARGET_NAME}
 
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344
 # Makefile Path :https://blog.csdn.net/evolay/article/details/121625712
 # 静态库顺序
+# rpath : readelf -d  
