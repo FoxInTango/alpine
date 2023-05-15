@@ -6,10 +6,6 @@
 
 # namespace https://zhuanlan.zhihu.com/p/441238885
 
-# oakley : https://baike.baidu.com/item/OAKLEY/20831015?fromModule=lemma_inlink
-# DH :https://baike.baidu.com/item/DH/4895102?fr=aladdin
-# IETF RFC3526 文档 : https://blog.csdn.net/u013837825/article/details/123749636
-
 # eBPF : https://ebpf.io/what-is-ebpf
 # IETF : https://www.ietf.org/
 #  RFC : https://www.rfc-editor.org/
@@ -17,6 +13,11 @@
 # HTTP/HTTPS/HSTS/HTTP2/QUIC
 #    https://blog.csdn.net/m0_37621078/article/details/105662287 图解HTTP + HTTPS + HSTS
 #    https://zhuanlan.zhihu.com/p/405387352 QUIC 协议详解
+
+# 通信安全相关
+# oakley : https://baike.baidu.com/item/OAKLEY/20831015?fromModule=lemma_inlink
+# DH :https://baike.baidu.com/item/DH/4895102?fr=aladdin
+# IETF RFC3526 文档 : https://blog.csdn.net/u013837825/article/details/123749636
 
 # SSL/TLS/HTTPS:
 # 索引:

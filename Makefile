@@ -171,6 +171,7 @@ submodule:
 	-cd ./libraries/libfsevent   && $(MAKE) && cd ../.. && cp ./libraries/libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp ./libraries/libfsevent/src/*.h    ./inc/libfsevent
 	-cd ./libraries/libipc       && $(MAKE) && cd ../.. && cp ./libraries/libipc/lib/*        ./lib && mkdir inc/libipc       && cp ./libraries/libipc/src/*.h        ./inc/libipc
 	-cd ./libraries/libvm        && $(MAKE) && cd ../.. && cp ./libraries/libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libraries/libvm/src/*.h         ./inc/libvm
+	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp ./libraries/libvn/src/*.h         ./inc/libvn
 	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp ./libraries/libvh/src/*.h         ./inc/libvh
 	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp ./libraries/libes/src/*.h         ./inc/libes
 	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libraries/libarguments/src/*.h  ./inc/libarguments
@@ -199,6 +200,7 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libfsevent.git
 	-cd libraries && git clone https://github.com/FoxInTango/libipc.git
 	-cd libraries && git clone https://github.com/FoxInTango/libvm.git
+	-cd libraries && git clone https://github.com/FoxInTango/libvn.git
 	-cd libraries && git clone https://github.com/FoxInTango/libvh.git
 	-cd libraries && git clone https://github.com/FoxInTango/libes.git
 	-cd libraries && git clone https://github.com/FoxInTango/libarguments.git
@@ -226,6 +228,7 @@ update:
 	-cd ./libraries/libfsevent    &&  git pull && cd ../
 	-cd ./libraries/libipc        &&  git pull && cd ../
 	-cd ./libraries/libvm         &&  git pull && cd ../
+	-cd ./libraries/libvn         &&  git pull && cd ../
 	-cd ./libraries/libvh         &&  git pull && cd ../
 	-cd ./libraries/libes         &&  git pull && cd ../
 	-cd ./libraries/libarguments  &&  git pull && cd ../
@@ -251,6 +254,7 @@ subclean:
 	-cd ./libraries/libfsevent   &&  $(MAKE) clean
 	-cd ./libraries/libipc       &&  $(MAKE) clean
 	-cd ./libraries/libvm        &&  $(MAKE) clean
+	-cd ./libraries/libvn        &&  $(MAKE) clean
 	-cd ./libraries/libvh        &&  $(MAKE) clean
 	-cd ./libraries/libes        &&  $(MAKE) clean
 	-cd ./libraries/libarguments &&  $(MAKE) clean
@@ -276,6 +280,7 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libfsevent.git
 	-cd libraries && git clone git@github.com:FoxInTango/libipc.git
 	-cd libraries && git clone git@github.com:FoxInTango/libvm.git
+	-cd libraries && git clone git@github.com:FoxInTango/libvn.git
 	-cd libraries && git clone git@github.com:FoxInTango/libvh.git
 	-cd libraries && git clone git@github.com:FoxInTango/libes.git
 	-cd libraries && git clone git@github.com:FoxInTango/libarguments.git
@@ -312,6 +317,7 @@ publish:
 	-cd ./libraries/libfsevent    &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libipc        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libvm         &&  git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libvn         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libvh         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libes         &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libarguments  &&  git add . && git commit -m "alpine" && git push
