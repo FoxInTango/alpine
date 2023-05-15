@@ -144,5 +144,15 @@
 #     https://www.cnblogs.com/bittorrent/p/3804141.html 读取/proc/kallsyms 
 #           https://www.cnblogs.com/viiv/p/16648241.html#Systemmap_prockallsyms_181
 #           https://zhuanlan.zhihu.com/p/480934356 设置 sys_call_table 数组为可写状态
+# syscall 传参:
+#     https://blog.csdn.net/weixin_42308335/article/details/116859327 内核与用户空间 内存访问
+#     https://zhuanlan.zhihu.com/p/446785414 asmlinkage 与 寄存器传参 在内核态直接写入用户态内存 copy_to_user 
+#     https://blog.csdn.net/Haomione/article/details/122217131 copy_to_user copy_from_user
+#     https://zhuanlan.zhihu.com/p/102957159 copy_to_user & copy_from_user 的说明
+#     https://www.cnblogs.com/xinghuo123/p/13796932.html linux系统调用-SYSCALL_DEFINEx详解
 # ptrace
 #     https://www.cnblogs.com/mysky007/p/11047943.html
+# 进程调度相关：
+#     https://www.apispace.com/news/post/27165.html  int nice(int inc);nice value getpriority/setpriority函数 sched_getaffinity和sched_setaffinity
+#     getrlimit()  setrlimit()
+#     资源限制 http://e.betheme.net/article/show-1355487.aspx?action=onClick 在Linux系统中，进程资源限制分为软限制（soft limit）和硬限制（hard limit）两种。
