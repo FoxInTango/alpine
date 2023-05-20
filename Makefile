@@ -154,31 +154,31 @@ $(TARGET_OBJECTS_PP):%.o:%.cpp
 submodule:
 	rm -rf ./inc/*
 	rm -rf ./lib/*
-	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libraries/libcpp/src/*.h        ./inc/libcpp
-	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp ./libraries/libsystem/src/*.h     ./inc/libsystem
-	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp ./libraries/libmm/src/*.h         ./inc/libmm
-	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp ./libraries/libstring/src/*.h     ./inc/libstring
-	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp ./libraries/liburl/src/*.h        ./inc/liburl
-	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp ./libraries/libmatch/src/*.h      ./inc/libmatch
-	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp ./libraries/libhttp/src/*.h       ./inc/libhttp
-	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp ./libraries/libstream/src/*.h     ./inc/libstream
-	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp ./libraries/libast/src/*.h        ./inc/libast
-	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp ./libraries/libecho/src/*.h       ./inc/libecho
-	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp ./libraries/libmodel/src/*.h      ./inc/libmodel
-	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp ./libraries/libmodule/src/*.h     ./inc/libmodule
-	-cd ./libraries/libevent     && $(MAKE) && cd ../.. && cp ./libraries/libevent/lib/*      ./lib && mkdir inc/libevent     && cp ./libraries/libevent/src/*.h      ./inc/libevent
-	-cd ./libraries/libioevent   && $(MAKE) && cd ../.. && cp ./libraries/libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp ./libraries/libioevent/src/*.h    ./inc/libioevent
-	-cd ./libraries/libfsevent   && $(MAKE) && cd ../.. && cp ./libraries/libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp ./libraries/libfsevent/src/*.h    ./inc/libfsevent
-	-cd ./libraries/libipc       && $(MAKE) && cd ../.. && cp ./libraries/libipc/lib/*        ./lib && mkdir inc/libipc       && cp ./libraries/libipc/src/*.h        ./inc/libipc
-	-cd ./libraries/libvm        && $(MAKE) && cd ../.. && cp ./libraries/libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libraries/libvm/src/*.h         ./inc/libvm
-	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp ./libraries/libvn/src/*.h         ./inc/libvn
-	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp ./libraries/libvh/src/*.h         ./inc/libvh
-	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp ./libraries/libes/src/*.h         ./inc/libes
-	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libraries/libarguments/src/*.h  ./inc/libarguments
-	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp ./libraries/libmit/src/*.h        ./inc/libmit
-	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp ./libraries/libkernel/src/*.h     ./inc/libkernel
 	-mkdir ./inc/modules
 	-mkdir ./lib/modules
+	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -r ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp ./libraries/libcpp/src/*.h        ./inc/libcpp
+	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp -r ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp ./libraries/libsystem/src/*.h     ./inc/libsystem
+	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -r ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp ./libraries/libmm/src/*.h         ./inc/libmm
+	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -r ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp ./libraries/libstring/src/*.h     ./inc/libstring
+	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -r ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp ./libraries/liburl/src/*.h        ./inc/liburl
+	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp -r ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp ./libraries/libmatch/src/*.h      ./inc/libmatch
+	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -r ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp ./libraries/libhttp/src/*.h       ./inc/libhttp
+	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp -r ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp ./libraries/libstream/src/*.h     ./inc/libstream
+	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -r ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp ./libraries/libast/src/*.h        ./inc/libast
+	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp -r ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp ./libraries/libecho/src/*.h       ./inc/libecho
+	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp -r ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp ./libraries/libmodel/src/*.h      ./inc/libmodel
+	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -r ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp ./libraries/libmodule/src/*.h     ./inc/libmodule
+	-cd ./libraries/libevent     && $(MAKE) && cd ../.. && cp -r ./libraries/libevent/lib/*      ./lib && mkdir inc/libevent     && cp ./libraries/libevent/src/*.h      ./inc/libevent
+	-cd ./libraries/libioevent   && $(MAKE) && cd ../.. && cp -r ./libraries/libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp ./libraries/libioevent/src/*.h    ./inc/libioevent
+	-cd ./libraries/libfsevent   && $(MAKE) && cd ../.. && cp -r ./libraries/libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp ./libraries/libfsevent/src/*.h    ./inc/libfsevent
+	-cd ./libraries/libipc       && $(MAKE) && cd ../.. && cp -r ./libraries/libipc/lib/*        ./lib && mkdir inc/libipc       && cp ./libraries/libipc/src/*.h        ./inc/libipc
+	-cd ./libraries/libvm        && $(MAKE) && cd ../.. && cp -r ./libraries/libvm/lib/*         ./lib && mkdir inc/libvm        && cp ./libraries/libvm/src/*.h         ./inc/libvm
+	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp -r ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp ./libraries/libvn/src/*.h         ./inc/libvn
+	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp -r ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp ./libraries/libvh/src/*.h         ./inc/libvh
+	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp -r ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp ./libraries/libes/src/*.h         ./inc/libes
+	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp -r ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp ./libraries/libarguments/src/*.h  ./inc/libarguments
+	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp -r ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp ./libraries/libmit/src/*.h        ./inc/libmit
+	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp -r ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp ./libraries/libkernel/src/*.h     ./inc/libkernel
 	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
 
 subinstall:
@@ -344,7 +344,7 @@ current:
 	@echo current version ${TARGET_VERSION}
 uninstall : 
 	rm -rf $(INSTALL_PATH)
-	rm -rf /usr/local/bin/${TARGET_NAME}
+	rm -f /usr/local/bin/${TARGET_NAME}
 
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344

@@ -19,7 +19,7 @@
 # DH :https://baike.baidu.com/item/DH/4895102?fr=aladdin
 # IETF RFC3526 文档 : https://blog.csdn.net/u013837825/article/details/123749636
 
-# SSL/TLS/HTTPS:
+# SSL/TLS/HTTPS:struct tls_conninfo *conninfo; -- tls_internal.h struct tls
 # 索引:
 #     OpenSSL : https://www.openssl.org/docs/ https://wiki.openssl.org/index.php/Main_Page
 #               OpenSSL configure https://blog.csdn.net/shb8845369/article/details/100833825
@@ -138,6 +138,9 @@
 
 # Linux 内核：
     进程调度 https://deepinout.com/linux-kernel-api/linux-kernel-api-process-scheduling/linux-kernel-api-wake_up_process.html
+    kthread_create kthread_stop wake_up_process
+    用户空间:
+    schedule();
 # syscall
 #     https://man7.org/linux/man-pages/man2/init_module.2.html
 # syscall table : 
@@ -157,3 +160,17 @@
 #     https://www.apispace.com/news/post/27165.html  int nice(int inc);nice value getpriority/setpriority函数 sched_getaffinity和sched_setaffinity
 #     getrlimit()  setrlimit()
 #     资源限制 http://e.betheme.net/article/show-1355487.aspx?action=onClick 在Linux系统中，进程资源限制分为软限制（soft limit）和硬限制（hard limit）两种。
+
+
+# kernel & userspace 通信:
+# 1,syscall
+# 2,netlink
+# 3,VFS
+
+# kernel crypto  https://www.kernel.org/doc/html/latest/crypto/index.html
+
+# 关于内存管理 new/delete 运算符重载得反面意见:
+#    https://blog.csdn.net/Solstice/article/details/6198937
+#    意见值得重视，但问题并非不能解决 -- 无论如何，对外部使用者来说，为了使用某个功能而造成默认操作被不知情或被强迫地修改，是一个大问题。
+
+# C++ in kernel : https://olegkutkov.me/2019/11/10/cpp-in-linux-kernel/ saosaole.com.cn:~/kernel
