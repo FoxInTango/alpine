@@ -167,6 +167,8 @@
 # 2,netlink
 # 3,VFS
 
+# 内核模块间通信:
+
 # kernel crypto  https://www.kernel.org/doc/html/latest/crypto/index.html
 
 # 关于内存管理 new/delete 运算符重载得反面意见:
