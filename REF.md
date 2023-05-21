@@ -188,3 +188,6 @@
 # sudo insmod kernel_syscall_hooks
 # sudo rmmod kernel_syscall_hooks
 # dmesg | tail -n20
+
+# 虚拟文件系统:
+#     深入Linux内核架构 -- P542
