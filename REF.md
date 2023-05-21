@@ -8,7 +8,6 @@
 
 # eBPF : https://ebpf.io/what-is-ebpf
 # IETF : https://www.ietf.org/
-#  RFC : https://www.rfc-editor.org/
 
 # HTTP/HTTPS/HSTS/HTTP2/QUIC
 #    https://blog.csdn.net/m0_37621078/article/details/105662287 图解HTTP + HTTPS + HSTS
@@ -177,6 +176,8 @@
 # 3,VFS
 
 # 内核模块间通信:
+#    深入Linux内核架构 -- P393 依赖关系与导出符号 
+#        https://blog.csdn.net/qq_37858386/article/details/78444168 export 与 extern
 
 # kernel crypto  https://www.kernel.org/doc/html/latest/crypto/index.html
 
@@ -184,10 +185,12 @@
 #    https://blog.csdn.net/Solstice/article/details/6198937
 #    意见值得重视，但问题并非不能解决 -- 无论如何，对外部使用者来说，为了使用某个功能而造成默认操作被不知情或被强迫地修改，是一个大问题。
 
-# C++ in kernel : https://olegkutkov.me/2019/11/10/cpp-in-linux-kernel/ saosaole.com.cn:~/kernel
+# C++ in kernel : https://olegkutkov.me/2019/11/10/cpp-in-linux-kernel/
 # sudo insmod kernel_syscall_hooks
 # sudo rmmod kernel_syscall_hooks
 # dmesg | tail -n20
 
 # 虚拟文件系统:
 #     深入Linux内核架构 -- P542
+
+#  RFC : https://www.rfc-editor.org/
