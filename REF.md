@@ -141,8 +141,10 @@
     kthread_create kthread_stop wake_up_process
     用户空间:
     schedule();
+# 内核导出表:https://heapdump.cn/article/524745
 # syscall
 #     https://man7.org/linux/man-pages/man2/init_module.2.html
+#     https://zhuanlan.zhihu.com/p/344311940 系统调用分类表
 # syscall table : 
 #     https://blog.csdn.net/weixin_42915431/article/details/106507066 kallsyms_lookup_name | system.map | PAGE_OFFSET -> NR_close
 #     https://www.cnblogs.com/bittorrent/p/3804141.html 读取/proc/kallsyms 
@@ -160,7 +162,14 @@
 #     https://www.apispace.com/news/post/27165.html  int nice(int inc);nice value getpriority/setpriority函数 sched_getaffinity和sched_setaffinity
 #     getrlimit()  setrlimit()
 #     资源限制 http://e.betheme.net/article/show-1355487.aspx?action=onClick 在Linux系统中，进程资源限制分为软限制（soft limit）和硬限制（hard limit）两种。
-
+# 动态添加系统调用:
+# https://blog.csdn.net/CrazyHeroZK/article/details/87359529  使用系统废弃的系统调用号
+# https://blog.csdn.net/qq_34258344/article/details/103228607 同上 
+# __NR_syscall
+# 关于用户向内核传递数据的问题:固定一个发送地址空间，固定一个接收地址空间，在系统调用时检查该空间 copy_to_user & copy_from_user
+# https://blog.csdn.net/weixin_45930312/article/details/126255496 采用既有系统调用(文件系统 read/write)向内核传递可读写用户空间地址
+# 内存映像 mmap
+# https://blog.csdn.net/cwdben/article/details/119919094 linux内核模块与用户程序共享内存
 
 # kernel & userspace 通信:
 # 1,syscall
@@ -176,3 +185,6 @@
 #    意见值得重视，但问题并非不能解决 -- 无论如何，对外部使用者来说，为了使用某个功能而造成默认操作被不知情或被强迫地修改，是一个大问题。
 
 # C++ in kernel : https://olegkutkov.me/2019/11/10/cpp-in-linux-kernel/ saosaole.com.cn:~/kernel
+# sudo insmod kernel_syscall_hooks
+# sudo rmmod kernel_syscall_hooks
+# dmesg | tail -n20
