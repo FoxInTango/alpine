@@ -347,7 +347,16 @@ current:
 uninstall : 
 	rm -rf $(INSTALL_PATH)
 	rm -f /usr/local/bin/${TARGET_NAME}
-
+hook_install:
+	sudo insmod lib/modules/kernel_syscall_hooks.ko
+	sudo insmod lib/modules/kernel_network_hooks.ko
+	sudo insmod lib/modules/kernel_filesystem_sm.ko
+hook_uninstall:
+	sudo rmmod kernel_syscall_hooks
+	sudo rmmod kernel_network_hooks
+	sudo rmmod kernel_filesystem_sm
+hook_echo:
+	dmesg
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344
 # Makefile Path :https://blog.csdn.net/evolay/article/details/121625712

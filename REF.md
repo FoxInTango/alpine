@@ -122,6 +122,9 @@
 #                        https://mairacanal.github.io/kernel-symbol-table-compilation-more/
 #                        https://www.oreilly.com/library/view/linux-device-drivers/0596000081/ch02s03.html
 #    Linux下Hook方式汇总 https://zhuanlan.zhihu.com/p/198960996
+#                        https://blog.csdn.net/lionzl/article/details/100539060
+#                        https://blog.csdn.net/faxiang1230/article/details/103370497 splicing http://www.ksplice.com/doc/ksplice.pdf
+#                                                                                              https://poppopret.org/2013/01/07/suterusu-rootkit-inline-kernel-function-hooking-on-x86-and-arm/#arm
 
 # linux kernel api https://deepinout.com/linux-kernel-api/linux-kernel-api-filesystem/linux-kernel-api-vfs_fstat.html
 # linux vfs 示例 https://www.cnblogs.com/wangzahngjun/p/5365310.html
@@ -131,6 +134,7 @@
 #     mm syscall https://blog.csdn.net/u011011827/article/details/111666285
 
 # 代理协议 proxy_protocol https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt FROM https://www.jianshu.com/p/cc8d592582c9
+#                                                                                          
 
 # CGrgoups 好文章 ： https://www.cnblogs.com/haoee/p/16209800.html
                      https://www.cnblogs.com/bincoding/p/16465804.html
@@ -155,7 +159,7 @@
 #     https://blog.csdn.net/Haomione/article/details/122217131 copy_to_user copy_from_user
 #     https://zhuanlan.zhihu.com/p/102957159 copy_to_user & copy_from_user 的说明
 #     https://www.cnblogs.com/xinghuo123/p/13796932.html linux系统调用-SYSCALL_DEFINEx详解
-# ptrace
+# ptrace & ptrace
 #     https://www.cnblogs.com/mysky007/p/11047943.html
 # 进程调度相关：
 #     https://www.apispace.com/news/post/27165.html  int nice(int inc);nice value getpriority/setpriority函数 sched_getaffinity和sched_setaffinity
