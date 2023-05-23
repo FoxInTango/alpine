@@ -332,6 +332,8 @@ clean   :
 	rm -f $(TARGET_OBJECTS_CC)
 	rm -f $(TARGET_OBJECTS_PP)
 	rm -f ${TARGET_BIN_DIR}/*
+	rm -f $(TARGET_LIB_DIR)/*.a ; rm -f $(TARGET_LIB_DIR)/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.a 
+
 INSTALL_PATH=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}
 install :
 	-mkdir -p $(INSTALL_PATH)
