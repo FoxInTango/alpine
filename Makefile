@@ -332,7 +332,7 @@ clean   :
 	rm -f $(TARGET_OBJECTS_CC)
 	rm -f $(TARGET_OBJECTS_PP)
 	rm -f ${TARGET_BIN_DIR}/*
-	rm -f $(TARGET_LIB_DIR)/*.a ; rm -f $(TARGET_LIB_DIR)/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.a 
+	rm -f $(TARGET_LIB_DIR)/*.a ; rm -f $(TARGET_LIB_DIR)/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.ko 
 
 INSTALL_PATH=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}
 install :
@@ -350,13 +350,15 @@ uninstall :
 	rm -rf $(INSTALL_PATH)
 	rm -f /usr/local/bin/${TARGET_NAME}
 hook_install:
-	sudo insmod lib/modules/kernel_syscall_hooks.ko
-	sudo insmod lib/modules/kernel_network_hooks.ko
-	sudo insmod lib/modules/kernel_filesystem_sm.ko
+	sudo insmod lib/modules/alpine_syscall_hooks.ko
+	sudo insmod lib/modules/alpine_network_hooks.ko
+	sudo insmod lib/modules/alpine_vfs.ko
+	sudo insmod lib/modules/alpine_vnw.ko
 hook_uninstall:
-	sudo rmmod kernel_syscall_hooks
-	sudo rmmod kernel_network_hooks
-	sudo rmmod kernel_filesystem_sm
+	sudo rmmod alpine_syscall_hooks
+	sudo rmmod alpine_network_hooks
+	sudo rmmod alpine_vfs
+	sudo rmmod alpine_vnw
 hook_echo:
 	@echo -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 	@dmesg | tail -n20
