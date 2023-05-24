@@ -188,6 +188,8 @@
 # 关于内存管理 new/delete 运算符重载得反面意见:
 #    https://blog.csdn.net/Solstice/article/details/6198937
 #    意见值得重视，但问题并非不能解决 -- 无论如何，对外部使用者来说，为了使用某个功能而造成默认操作被不知情或被强迫地修改，是一个大问题。
+#    内核内存分配 需求与方式的类型 
+#        https://zhuanlan.zhihu.com/p/51660182
 
 # C++ in kernel : https://olegkutkov.me/2019/11/10/cpp-in-linux-kernel/
 # sudo insmod kernel_syscall_hooks
@@ -196,5 +198,11 @@
 
 # 虚拟文件系统:
 #     深入Linux内核架构 -- P542
+#     kernfs 
+#         https://blog.csdn.net/sinat_32960911/article/details/128582089 关于kernfs的说明:sysfs功能代码的抽离
+#     https://www.kernel.org/doc/html/latest/filesystems/index.html  Filesystems in the Linux kernel
+#     https://www.kernel.org/doc/html/latest/filesystems/mount_api.html#overview
+#     sysfs
+#     configfs https://www.kernel.org/doc/html/latest/filesystems/configfs.html
 
 #  RFC : https://www.rfc-editor.org/
