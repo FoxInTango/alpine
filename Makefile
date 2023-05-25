@@ -263,6 +263,7 @@ subclean:
 	-cd ./libraries/libmit       &&  $(MAKE) clean
 	-cd ./libraries/libkernel    &&  $(MAKE) clean
 	-cd ./modules/io_event_tls_engine && $(MAKE) clean
+	rm lib/*.a;rm lib/*.so;rm lib/modules/*.so;rm lib/modules/*.ko
 
 devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libcpp.git
