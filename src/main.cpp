@@ -56,6 +56,40 @@ int Alpine::onevent(int event){ return event; }
 int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 
+int read_file(){
+    FILE* fp = NULL;
+    char buff[255];
+
+    fp = fopen("/tmp/test.txt", "r");
+    fscanf(fp, "%s", buff);
+    printf("1: %s\n", buff);
+
+    fgets(buff, 255, (FILE*)fp);
+    printf("2: %s\n", buff);
+
+    fgets(buff, 255, (FILE*)fp);
+    printf("3: %s\n", buff);
+    fclose(fp);
+    return 0;
+}
+int write_file(){
+    FILE* fp = NULL;
+    char buff[255];
+
+    fp = fopen("/tmp/test.txt", "r");
+    fscanf(fp, "%s", buff);
+    printf("1: %s\n", buff);
+
+    fgets(buff, 255, (FILE*)fp);
+    printf("2: %s\n", buff);
+
+    fgets(buff, 255, (FILE*)fp);
+    printf("3: %s\n", buff);
+    fclose(fp);
+
+    return 0;
+}
+
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
@@ -66,5 +100,8 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
+
+    read_file();
+    write_file();
     return 0;
 }
