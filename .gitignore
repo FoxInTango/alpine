@@ -31,11 +31,6 @@
 *.out
 *.app
 
-/inc/*
-/lib/*
-/bin/*
-/etc/tls/*
-
 # Libraries
 #/libcpp
 #/libstring
