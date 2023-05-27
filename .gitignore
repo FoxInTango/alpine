@@ -31,8 +31,8 @@
 *.out
 *.app
 
-/libraries
-/modules
+#/libraries
+#/modules
 /inc/*
 /lib/*
 /bin/*

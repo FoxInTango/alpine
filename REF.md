@@ -153,6 +153,7 @@
 #     https://www.cnblogs.com/bittorrent/p/3804141.html 读取/proc/kallsyms 
 #           https://www.cnblogs.com/viiv/p/16648241.html#Systemmap_prockallsyms_181
 #           https://zhuanlan.zhihu.com/p/480934356 设置 sys_call_table 数组为可写状态
+#     https://blog.csdn.net/q759451733/article/details/124105195 不同版本 方式 kprobe
 # syscall 传参:
 #     https://blog.csdn.net/weixin_42308335/article/details/116859327 内核与用户空间 内存访问
 #     https://zhuanlan.zhihu.com/p/446785414 asmlinkage 与 寄存器传参 在内核态直接写入用户态内存 copy_to_user 
