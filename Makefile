@@ -302,6 +302,9 @@ publish:
 	-git add src/*.cpp
 	-git add etc/alpine
 	-git add readme/*
+	-git add inc/.keepalive
+	-git add lib/.keepalive
+	-git add bin/.keepalive
 	-git commit -m "alpine" && git push
 	-cd ./libraries/libcpp        &&  git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libsystem     &&  git add . && git commit -m "alpine" && git push
