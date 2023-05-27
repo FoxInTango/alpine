@@ -179,6 +179,9 @@
 # 2,netlink
 # 3,VFS
 
+# 获取内核版本 https://gitlab.tnichols.org/tyler/syscall_table_hooks/blob/master/src/hooks.c
+# VFS 在内核的应用 https://www.cnblogs.com/cbryge/p/6066978.html
+
 # 内核模块间通信:
 #    深入Linux内核架构 -- P393 依赖关系与导出符号 
 #        https://blog.csdn.net/qq_37858386/article/details/78444168 export 与 extern
