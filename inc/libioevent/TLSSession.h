@@ -1,5 +1,0 @@
-/**
- * accept 
- * read
- * write
- */
