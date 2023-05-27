@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
 
-    read_file();
-    write_file();
+    //read_file();
+    //write_file();
     return 0;
 }
