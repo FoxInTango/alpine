@@ -31,6 +31,9 @@
 *.out
 *.app
 
+/libraries
+/modules
+
 # Libraries
 #/libcpp
 #/libstring
