@@ -175,11 +175,13 @@
 # 内存映像 mmap
 # https://blog.csdn.net/cwdben/article/details/119919094 linux内核模块与用户程序共享内存
 
+# 内核热补丁 https://cloud.tencent.com/developer/article/1646414 klp_enable_patch 在内核代码中，就有热补丁的例子在samples/livepatch目录下
 # kernel & userspace 通信:
 # 1,syscall
 # 2,netlink
 # 3,VFS
 
+# 方案: 1，修改编译内核 2，sys_call_table 3，ftrace 4，lsm 5，ptrace
 # 获取内核版本 https://gitlab.tnichols.org/tyler/syscall_table_hooks/blob/master/src/hooks.c
 # VFS 在内核的应用 https://www.cnblogs.com/cbryge/p/6066978.html
 
