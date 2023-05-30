@@ -3,6 +3,8 @@ AS=as
 AR=ar
 LD=ld
 
+# Learn something from /lib/modules/6.1.29-0-lts/build/Makefile
+
 define add_module
 endef
 
