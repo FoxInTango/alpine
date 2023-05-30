@@ -33,9 +33,9 @@
 
 #/libraries
 #/modules
-/inc/*
-/lib/*
-/bin/*
+#/inc/*
+#/lib/*
+#/bin/*
 # Libraries
 #/libcpp
 #/libstring
