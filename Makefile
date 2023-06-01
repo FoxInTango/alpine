@@ -356,15 +356,15 @@ uninstall :
 	rm -rf $(INSTALL_PATH)
 	rm -f /usr/local/bin/${TARGET_NAME}
 hook_install:
-	sudo insmod lib/modules/alpine_syscall_hooks.ko
-	sudo insmod lib/modules/alpine_network_hooks.ko
-	sudo insmod lib/modules/alpine_vfs.ko
-	sudo insmod lib/modules/alpine_vnw.ko
+	insmod lib/modules/alpine_syscall_hooks.ko
+	insmod lib/modules/alpine_network_hooks.ko
+	insmod lib/modules/alpine_vfs.ko
+	insmod lib/modules/alpine_vnw.ko
 hook_uninstall:
-	sudo rmmod alpine_syscall_hooks
-	sudo rmmod alpine_network_hooks
-	sudo rmmod alpine_vfs
-	sudo rmmod alpine_vnw
+	rmmod alpine_syscall_hooks
+	rmmod alpine_network_hooks
+	rmmod alpine_vfs
+	rmmod alpine_vnw
 hook_echo:
 	@echo -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 	@dmesg | tail -n20

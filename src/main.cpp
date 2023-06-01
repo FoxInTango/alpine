@@ -66,5 +66,9 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
+
+    Array<int> int_array;
+    int_array.insert(0,0);
+    
     return 0;
 }
