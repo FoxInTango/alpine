@@ -87,6 +87,6 @@ int main(int argc, char* argv[]) {
     unsigned char prefix = (utf8[0] & 0b11110000) < 0b11110000 ?
                           ((utf8[0] & 0b11100000) < 0b11100000 ?
                           ((utf8[0] & 0b11000000) < 0b11000000 ? 0b00000000 : 0b11000000) : 0b11100000) : 0b11110000;
-    std::cout <<"prefix" << std::bitset<8>(prefix) << std::endl;
+    std::cout <<"prefix : " << std::bitset<8>(prefix) << std::endl;
     return 0;
 }
