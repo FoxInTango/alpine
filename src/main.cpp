@@ -99,12 +99,14 @@ int main(int argc, char* argv[]) {
     int endian = endianType();
     if(ENDIAN_B == endian) std::cout << "endian type : ENDIAN_B" << std::endl;
     else std::cout << "endian type : ENDIAN_L" << std::endl;
-    char32_t wc;
+    char32_t wc = L'古';
+    /*
     unsigned char* utf8 = (unsigned char*)&wc;
     utf8[0] = 0b00000000;
     utf8[1] = 0b11100000;
     utf8[2] = 0b11000000;
     utf8[3] = 0b10000000;
+    */
     unsigned char prefix = (utf8[0] & 0b11110000) < 0b11110000 ?
                           ((utf8[0] & 0b11100000) < 0b11100000 ?
                           ((utf8[0] & 0b11000000) < 0b11000000 ? 0b00000000 : 0b11000000) : 0b11100000) : 0b11110000;
