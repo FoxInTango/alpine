@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    String s("int_array.insert(0,0);这是一个悲伤的故事。");
+    String s("这是一个悲伤的故事int_array.insert(0,0);这是一个悲伤的故事。");
     std::cout << "string length " << s.length() << std::endl;
     std::wcout << (wchar_t*)s.unicode() << std::endl;
     return 0;
