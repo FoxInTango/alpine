@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
     //int_array.insert(0,0); 
     String s("这是一个悲伤的故事");
     std::cout << "string length " << s.length() << std::endl;
-    std::wcout.imbue(std::locale("chs"));
+    std::wcout.imbue(std::locale("zh_CN"));
     std::wcout << L"这是一个悲伤的故事" << (wchar_t)(s.unicode()[0]) << std::endl;
     char* n = 0;
     s.as(&n);
