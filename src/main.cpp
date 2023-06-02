@@ -67,9 +67,9 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
 
-    //Array<int> int_array;
-    //int_array.insert(0,0); 
-    String s("这是一段文字");
+    Array<int> int_array;
+    int_array.insert(0,0); 
+    //String s("这是一段文字");
     //std::wcout << s.unicode() << std::endl;
     return 0;
 }
