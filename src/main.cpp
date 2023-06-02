@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    char* content = "int_array.insert(0,0);这是一个悲伤的故事。";
+    char* content = "这是一个悲伤的故事";
     Size length = utf8_length_to_unicode(content);
     std::cout << "content length : " << length << std::endl;
     String s("int_array.insert(0,0);这是一个悲伤的故事。");
