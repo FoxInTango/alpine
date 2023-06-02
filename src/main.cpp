@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
 
     std::wcout << L"这是一个悲伤的故事" << (wchar_t)(s.unicode()[0]) << std::endl;
     unsigned char* n = 0;
-    Size l = s.as(&n);
+    Size l = s.as(&((char*)n);
     std::cout << "utf8 : " << n << std::endl;
     std::cout << "utf8 转换失败 : L == " << l << std::endl;
     printf("utf8 printf : %s\n",n);
