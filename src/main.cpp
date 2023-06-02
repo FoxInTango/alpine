@@ -76,7 +76,7 @@ int main(int argc, char* argv[]) {
     std::wcout.imbue(std::locale("chinese"));
 
     std::wcout << L"这是一个悲伤的故事" << (wchar_t)(s.unicode()[0]) << std::endl;
-    char* n = 0;
+    unsigned char* n = 0;
     Size l = s.as(&n);
     std::cout << "utf8 : " << n << std::endl;
     std::cout << "utf8 转换失败 : L == " << l << std::endl;
