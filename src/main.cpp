@@ -79,9 +79,7 @@ int main(int argc, char* argv[]) {
     char* n = 0;
     Size l = s.as(&n);
     std::cout << "utf8 : " << n << std::endl;
-    if(n == 0) {
-        std::cout << "utf8 转换失败 : L == " << l  << std::endl;
-    }
+    std::cout << "utf8 转换失败 : L == " << l << std::endl;
 
     int endian = endianType();
     if(ENDIAN_B == endian) std::cout << "endian type : ENDIAN_B" << std::endl;
