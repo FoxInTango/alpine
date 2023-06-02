@@ -30,6 +30,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <bitset>
 #include <fstream>
 #include <codecvt>
 #include <iostream>
@@ -73,5 +74,19 @@ int main(int argc, char* argv[]) {
     String s("这是一个悲伤的故事int_array.insert(0,0);这是一个悲伤的故事。");
     std::cout << "string length " << s.length() << std::endl;
     std::wcout << (wchar_t*)s.unicode() << std::endl;
+
+    int endian = endianType();
+    if(ENDIAN_B == endian) std::cout << "endian type : ENDIAN_B" << std::endl;
+    else std::cout << "endian type : ENDIAN_L" << std::endl;
+    char32_t wc;
+    unsigned char* utf8 = (unsigned char*)&wc;
+    utf8[0] = 0b11110000;
+    utf8[1] = 0b11100000;
+    utf8[2] = 0b11000000;
+    utf8[3] = 0b10000000;
+    unsigned char prefix = (utf8[index8] & 0b11110000) < 0b11110000 ?
+        ((utf8[index8] & 0b11100000) < 0b11100000 ?
+            ((utf8[index8] & 0b11000000) < 0b11000000 ? 0b00000000 : 0b11000000) : 0b11100000) : 0b11110000;
+    std::cout <<"prefix" << std::bitset<8>(prefix) << std::endl;
     return 0;
 }
