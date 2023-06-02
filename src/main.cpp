@@ -56,24 +56,6 @@ int Alpine::onevent(int event){ return event; }
 #else
 int onevent(const Alpine& alpine, int e) { return e; }
 #endif
-inline Size utf8_length_to_unicode(const char* content) {
-    Index index = 0;
-    while (content[index] != 0) {
-        unsigned char  prefix = (content[index] & 0b11110000) < 0b11110000 ?
-                               ((content[index] & 0b11100000) < 0b11100000 ?
-                               ((content[index] & 0b11000000) < 0b11000000 ? 0b00000000 : 0b11000000) : 0b11100000) : 0b11110000;
-
-        switch (prefix) {
-        case 0b00000000: { index += 1; }break;
-        case 0b11000000: { index += 2; }break;
-        case 0b11100000: { index += 3; }break;
-        case 0b11110000: { index += 4; }break;
-        default:break;
-        }
-    }
-
-    return index;
-}
 
 int main(int argc, char* argv[]) {
     /*
@@ -89,9 +71,6 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    char* content = "这是一个悲伤的故事";
-    Size length = utf8_length_to_unicode(content);
-    std::cout << "content length : " << length << std::endl;
     String s("这是一个悲伤的故事");
     std::cout << "string length " << s.length() << std::endl;
     std::wcout << (wchar_t*)s.unicode() << std::endl;
