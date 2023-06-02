@@ -73,7 +73,7 @@ int main(int argc, char* argv[]) {
     //int_array.insert(0,0); 
     String s("这是一个悲伤的故事");
     std::cout << "string length " << s.length() << std::endl;
-    std::wcout << (wchar_t)s.unicode()[0] << std::endl;
+    std::wcout << (wchar_t)(s.unicode()[0]) << std::endl;
 
     int endian = endianType();
     if(ENDIAN_B == endian) std::cout << "endian type : ENDIAN_B" << std::endl;
