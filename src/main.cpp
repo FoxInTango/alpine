@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    String s("alpine.onevent(alpine, 10)");
+    String s("全都是泡沫，只一刹那花火。。。无法区分 alpine.onevent = onevent;");
     std::cout << "string length " << s.length() << std::endl;
     std::wcout << (wchar_t*)s.unicode() << std::endl;
     return 0;
