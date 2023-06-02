@@ -57,6 +57,7 @@ int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 
 int main(int argc, char* argv[]) {
+    /*
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
@@ -66,7 +67,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
-
+    */
     //Array<int> int_array;
     //int_array.insert(0,0); 
     //String s("这是一段文字");
