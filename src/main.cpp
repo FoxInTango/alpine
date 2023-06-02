@@ -77,10 +77,10 @@ int main(int argc, char* argv[]) {
 
     std::wcout << L"这是一个悲伤的故事" << (wchar_t)(s.unicode()[0]) << std::endl;
     char* n = 0;
-    s.as(&n);
+    Size l = s.as(&n);
     std::cout << "utf8 : " << n << std::endl;
     if(n == 0) {
-        std::cout << "utf8 转换失败" << std::endl;
+        std::cout << "utf8 转换失败 : L == " << l  << std::endl;
     }
 
     int endian = endianType();
