@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    String s("这是一段文字");
+    String s("alpine.onevent(alpine, 10)");
     //std::wcout << s.unicode() << std::endl;
     return 0;
 }
