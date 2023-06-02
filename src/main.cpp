@@ -71,7 +71,7 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    String s("这是一个悲伤的故事");
+    String s("string length");
     std::cout << "string length " << s.length() << std::endl;
     std::wcout.imbue(std::locale("chinese"));
 
