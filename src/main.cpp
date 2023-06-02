@@ -70,7 +70,7 @@ int main(int argc, char* argv[]) {
     */
     //Array<int> int_array;
     //int_array.insert(0,0); 
-    String s("全都是泡沫");
+    String s("是泡沫");
     std::cout << "string length " << s.length() << std::endl;
     std::wcout << (wchar_t*)s.unicode() << std::endl;
     return 0;
