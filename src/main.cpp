@@ -79,7 +79,7 @@ int main(int argc, char* argv[]) {
     if(ENDIAN_B == endian) std::cout << "endian type : ENDIAN_B" << std::endl;
     else std::cout << "endian type : ENDIAN_L" << std::endl;
     char32_t wc = L'古';
-    std::cout<<"wc: "<<wc<<std::endl;
+    std::wcout<<"wc: "<<wc<<std::endl;
     
     unsigned char* utf8 = (unsigned char*)&wc;
     /*
