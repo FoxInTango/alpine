@@ -68,7 +68,10 @@ int main(int argc, char* argv[]) {
 #endif
 
     Array<int> int_array;
-    int_array.insert(0,0);
+    int_array.insert(0,0); 
+    String s("这是一段文字");
+    std::wcout << s.unicode() << std::endl;
+    
     
     return 0;
 }
