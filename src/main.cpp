@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
     else std::cout << "endian type : ENDIAN_L" << std::endl;
     char32_t wc;
     unsigned char* utf8 = (unsigned char*)&wc;
-    utf8[0] = 0b11000000;
+    utf8[0] = 0b10000000;
     utf8[1] = 0b11100000;
     utf8[2] = 0b11000000;
     utf8[3] = 0b10000000;
