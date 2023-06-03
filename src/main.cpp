@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
     char* utf = "这是一个悲伤的故事";
     unsigned char p = 255;
     prefix((unsigned char*)utf,p);
-    std::bitset<8>(
+    
     std::cout << utf << "prefix : " << std::bitset<32>((long unsigned int)prefix) << std::endl;
     String s(utf);
     char* ns = 0;
