@@ -101,10 +101,7 @@ int main(int argc, char* argv[]) {
     */
     unsigned char p = 255;
     char* utf = "It's a sad story.";
-    
-    prefix((unsigned char*)utf,p);
-    
-    std::cout << utf << "prefix : " << std::bitset<8>(p) << std::endl;
+   
     String s(utf);
     char* ns = 0;
     s.as(&ns);
