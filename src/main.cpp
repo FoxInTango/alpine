@@ -105,7 +105,12 @@ int main(int argc, char* argv[]) {
     std::cout << "古2 : " << std::bitset<8>(up[2]) << std::endl;
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     */
-
+    /**
+        endian byte 1 : 10000000
+        endian byte 2 : 11000000
+        endian byte 3 : 11100000
+        endian byte 4 : 11110000
+     */
     unsigned int endian = 0b11110000111000001100000010000000;
     unsigned char* ep = (unsigned char*)&endian;
     std::cout << " endian byte 1 : " << std::bitset<8>(ep[0]) << std::endl;
