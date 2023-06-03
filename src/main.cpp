@@ -68,6 +68,27 @@ inline void prefix(const unsigned char* content, unsigned char& prefix) {
     }
  }
  */
+
+Size utf8_length(const unsigned char* content) {
+    Index index = 0;
+    Size  length = 0;
+    while (content[index])
+    {
+        Index segment = content[index] < 0x0000007F ? 1 : (content[index] < 0x000007FF ? 2 : (content[index] < 0x0000FFFF ? 3 : 4));
+
+        switch (segment) {
+        case 1: { index += 1; std::cout << "1 byte." << std::endl;  }break;// 0000 0000 - 0000 007F    0xxxxxxx
+        case 2: { index += 2; std::cout << "2 byte." << std::endl;  }break;// 0000 0080 - 0000 07FF    110xxxxx 10xxxxxx
+        case 3: { index += 3; std::cout << "3 byte." << std::endl;  }break;// 0000 0800 - 0000 FFFF    1110xxxx 10xxxxxx 10xxxxxx
+        case 4: { index += 4; std::cout << "4 byte." << std::endl;  }break;// 0001 0000 - 0010 FFFF    11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+        default:break;
+        }
+
+        length++;
+    }
+    std::cout << "utf8 length : " << length << std::endl;
+    return length;
+}
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
@@ -119,7 +140,7 @@ int main(int argc, char* argv[]) {
     std::cout << " endian byte 4 : " << std::bitset<8>(ep[3]) << std::endl;
     unsigned char p = 255;
     char utf[] = "这是一个悲伤的故事";
-
+    utf8_length(utf);
     for(int i = 0;i < sizeof(utf);i ++){
         std::cout << " code " << i << " : " << std::bitset<8>(utf[i]) << std::endl;
     }
