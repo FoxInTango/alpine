@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
 #endif
     */
     wchar_t uc = L'古';
-    std::cout <<"古 : " << std::bitset<sizeof(wchar_t)>(uc) << std::endl;
+    std::cout <<"古 : " << std::bitset<sizeof(wchar_t) * 8>(uc) << std::endl;
     char* utf = "It's a sad story.";
     unsigned char p = 255;
     prefix((unsigned char*)utf,p);
