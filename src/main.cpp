@@ -108,6 +108,10 @@ int main(int argc, char* argv[]) {
     unsigned char p = 255;
     char utf[] = "这是一个悲伤的故事";
 
+    for(int i = 0;i < sizeof(utf);i ++){
+        std::cout << " code " << i << " : " << std::bitset<8>(utf[i]) << std::endl;
+    }
+
     std::cout << "utf length :" << sizeof(utf) << std::endl;
    
     String s(utf);
