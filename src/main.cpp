@@ -91,12 +91,13 @@ int main(int argc, char* argv[]) {
     unsigned char p = 255;
 
     int uc = '古';
+    unsigned char* up = (unsigned char*)&uc;
     prefix((unsigned char*)&uc, p);
     std::cout << uc << "prefix : " << std::bitset<8>(p) << std::endl;
-    std::cout << "古0 : " << std::bitset<8>(uc[0]) << std::endl;
-    std::cout << "古1 : " << std::bitset<8>(uc[1]) << std::endl;
-    std::cout << "古2 : " << std::bitset<8>(uc[2]) << std::endl;
-    std::cout << "古3 : " << std::bitset<8>(uc[3]) << std::endl;
+    std::cout << "古0 : " << std::bitset<8>(up[0]) << std::endl;
+    std::cout << "古1 : " << std::bitset<8>(up[1]) << std::endl;
+    std::cout << "古2 : " << std::bitset<8>(up[2]) << std::endl;
+    std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     char* utf = "It's a sad story.";
     
     prefix((unsigned char*)utf,p);
