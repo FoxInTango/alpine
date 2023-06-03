@@ -51,6 +51,21 @@ using namespace foxintango;
 
 #include "alpine.h"
 
+inline Error prefix(const unsigned char* content, unsigned char& prefix) {
+    Index o = 0;
+    while ((content[o] < 0b11000000) && content[o] && o < 4) {
+        if (content[o] < 0b10000000) break;
+        o++;
+}
+
+    switch (o) {
+    case 1: { if (content[o] >= 0b11000000 && content[o] < 0b11100000) prefix = 0b11000000; }break;
+    case 2: { if (content[o] >= 0b11100000 && content[o] < 0b11110000) prefix = 0b11100000; }break;
+    case 3: { if (content[o] >= 0b11110000) prefix = 0b11110000; }break;
+    default:break;//报错
+    }
+ }
+
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
@@ -69,35 +84,13 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
     */
-    //Array<int> int_array;
-    //int_array.insert(0,0); 
-    String s("string length");
-    std::cout << "string length " << s.length() << std::endl;
-    std::wcout.imbue(std::locale("chinese"));
-
-    std::wcout << L"这是一个悲伤的故事" << (wchar_t)(s.unicode()[0]) << std::endl;
-    unsigned char* n = 0;
-    Size l = s.as((char**)(&n));
-    std::cout << "utf8 : " << n << std::endl;
-    std::cout << "utf8 转换失败 : L == " << l << std::endl;
-    printf("utf8 printf : %s\n",n);
-
-    int endian = endianType();
-    if(ENDIAN_B == endian) std::cout << "endian type : ENDIAN_B" << std::endl;
-    else std::cout << "endian type : ENDIAN_L" << std::endl;
-    char32_t wc = L'古';
-    std::wcout<<"wc: "<<wc<<std::endl;
-    
-    unsigned char* utf8 = (unsigned char*)&wc;
-    /*
-    utf8[0] = 0b00000000;
-    utf8[1] = 0b11100000;
-    utf8[2] = 0b11000000;
-    utf8[3] = 0b10000000;
-    */
-    unsigned char prefix = (utf8[0] & 0b11110000) < 0b11110000 ?
-                          ((utf8[0] & 0b11100000) < 0b11100000 ?
-                          ((utf8[0] & 0b11000000) < 0b11000000 ? 0b00000000 : 0b11000000) : 0b11100000) : 0b11110000;
-    std::cout <<"prefix : " << std::bitset<8>(prefix) << std::endl;
+    char* utf = "这是一个悲伤的故事";
+    unsigned char p = 255;
+    prefix(utf,p);
+    std::cout << utf << "prefix : " << std::bitset<8>(prefix) << std::endl;
+    String s(utf);
+    char* ns = 0;
+    s.as(&ns);
+    std::cout << "converted utf : " << ns << std::endl;
     return 0;
 }
