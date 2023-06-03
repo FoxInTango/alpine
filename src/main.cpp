@@ -100,7 +100,7 @@ int main(int argc, char* argv[]) {
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     */
     unsigned char p = 255;
-    char* utf = "It's a sad story.";
+    char* utf = "这是一个悲伤的故事It's a sad story.";
    
     String s(utf);
     char* ns = 0;
