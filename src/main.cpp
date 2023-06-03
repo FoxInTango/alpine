@@ -129,7 +129,6 @@ int main(int argc, char* argv[]) {
     String s(utf);
     char* ns = 0;
     std::cout << "string length : " << s.length() << std::endl;
-    std::cout << "unicode " << s.unicode() << std::endl;
     s.as(&ns);
     std::cout << "converted utf : " << ns << std::endl;
     return 0;
