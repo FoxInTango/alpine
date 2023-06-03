@@ -100,10 +100,11 @@ int main(int argc, char* argv[]) {
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     */
     unsigned char p = 255;
-    char* utf = "It's a sad story.";
+    char* utf = "It's a sad story.这是一个悲伤的故事.";
    
     String s(utf);
     char* ns = 0;
+    std::cout << "string length : " << s.length() << std::endl;
     std::cout << "unicode " << s.unicode() << std::endl;
     s.as(&ns);
     std::cout << "converted utf : " << ns << std::endl;
