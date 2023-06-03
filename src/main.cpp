@@ -99,6 +99,7 @@ int main(int argc, char* argv[]) {
     std::cout << "古2 : " << std::bitset<8>(up[2]) << std::endl;
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     */
+    unsigned char p = 255;
     char* utf = "It's a sad story.";
     
     prefix((unsigned char*)utf,p);
