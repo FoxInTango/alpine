@@ -54,7 +54,7 @@ using namespace foxintango;
 inline Error prefix(const unsigned char* content, unsigned char& prefix) {
     Index o = 0;
     while ((content[o] < 0b11000000) && content[o] && o < 4) {
-        if (content[o] < 0b10000000) break;
+        if (content[o] < 0b10000000){ prefix = 0b00000000; break;}
         o++;
 }
 
