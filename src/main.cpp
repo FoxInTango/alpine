@@ -85,12 +85,19 @@ int main(int argc, char* argv[]) {
 #else
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
-#endif
+#endif 
+ 00000000 00000000 01010011 11100100
     */
-    wchar_t uc = L'古';
-    std::cout <<"古 : " << std::bitset<sizeof(wchar_t) * 8>(uc) << std::endl;
-    char* utf = "It's a sad story.";
     unsigned char p = 255;
+
+    char* uc = '古';
+    prefix((unsigned char*)uc, p);
+    std::cout << uc << "prefix : " << std::bitset<8>(p) << std::endl;
+    std::cout << "古0 : " << std::bitset<8>(uc[0]) << std::endl;
+    std::cout << "古1 : " << std::bitset<8>(uc[1]) << std::endl;
+    std::cout << "古2 : " << std::bitset<8>(uc[2]) << std::endl;
+    char* utf = "It's a sad story.";
+    
     prefix((unsigned char*)utf,p);
     
     std::cout << utf << "prefix : " << std::bitset<8>(p) << std::endl;
