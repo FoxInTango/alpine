@@ -62,7 +62,7 @@ inline Error prefix(const unsigned char* content, unsigned char& prefix) {
     case 1: { if (content[o] >= 0b11000000 && content[o] < 0b11100000) prefix = 0b11000000; }break;
     case 2: { if (content[o] >= 0b11100000 && content[o] < 0b11110000) prefix = 0b11100000; }break;
     case 3: { if (content[o] >= 0b11110000) prefix = 0b11110000; }break;
-    default:break;//报错
+    default:{prefix = 0b11110001; }break;//报错
     }
  }
 
