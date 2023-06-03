@@ -64,6 +64,8 @@ inline Error prefix(const unsigned char* content, unsigned char& prefix) {
     case 3: { if (content[o] >= 0b11110000) prefix = 0b11110000; }break;
     default:{prefix = 0b11110001; }break;//报错
     }
+
+    return 0;
  }
 
 #ifdef USE_VIRTUAL_METHOD
