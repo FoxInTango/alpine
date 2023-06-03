@@ -86,6 +86,12 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
  00000000 00000000 01010011 11100100
+
+ 15044516prefix : 11100000
+ 古0 : 10100100
+ 古1 : 10001111
+ 古2 : 11100101
+ 古3 : 00000000
     */
     /*
     unsigned char p = 255;
@@ -100,7 +106,7 @@ int main(int argc, char* argv[]) {
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     */
     unsigned char p = 255;
-    char* utf = "这是一个悲伤的故事";
+    char utf[] = "这是一个悲伤的故事";
 
     std::cout << "utf length :" << sizeof(utf) << std::endl;
    
