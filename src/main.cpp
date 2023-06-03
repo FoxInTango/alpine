@@ -105,6 +105,13 @@ int main(int argc, char* argv[]) {
     std::cout << "古2 : " << std::bitset<8>(up[2]) << std::endl;
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
     */
+
+    unsigned int endian = 0b11110000111000001100000010000000;
+    unsigned char* ep = (unsigned char*)&endian;
+    std::cout << " endian byte 1 : " << std::bitset<8>(ep[0]) << std::endl;
+    std::cout << " endian byte 2 : " << std::bitset<8>(ep[1]) << std::endl;
+    std::cout << " endian byte 3 : " << std::bitset<8>(ep[2]) << std::endl;
+    std::cout << " endian byte 4 : " << std::bitset<8>(ep[3]) << std::endl;
     unsigned char p = 255;
     char utf[] = "这是一个悲伤的故事";
 
