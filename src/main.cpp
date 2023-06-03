@@ -51,6 +51,7 @@ using namespace foxintango;
 
 #include "alpine.h"
 
+/*
 inline void prefix(const unsigned char* content, unsigned char& prefix) {
     Index o = 0;
     while ((content[o] < 0b11000000) && content[o] && o < 4) {
@@ -66,7 +67,7 @@ inline void prefix(const unsigned char* content, unsigned char& prefix) {
     default:{prefix = 0b11110001; }break;//报错
     }
  }
-
+ */
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
@@ -86,6 +87,7 @@ int main(int argc, char* argv[]) {
 #endif 
  00000000 00000000 01010011 11100100
     */
+    /*
     unsigned char p = 255;
 
     int uc = '1';
@@ -96,6 +98,7 @@ int main(int argc, char* argv[]) {
     std::cout << "古1 : " << std::bitset<8>(up[1]) << std::endl;
     std::cout << "古2 : " << std::bitset<8>(up[2]) << std::endl;
     std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
+    */
     char* utf = "It's a sad story.";
     
     prefix((unsigned char*)utf,p);
