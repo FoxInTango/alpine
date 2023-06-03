@@ -74,7 +74,7 @@ Size utf8_length(const unsigned char* content) {
     Size  length = 0;
     while (content[index])
     {
-        Index segment = content[index] < 0x0000007F ? 1 : (content[index] < 0x000007FF ? 2 : (content[index] < 0x0000FFFF ? 3 : 4));
+        Index segment = content[index] < 0b1100000 ? 1 : (content[index] < 0b11100000 ? 2 : (content[index] < 0b11110000 ? 3 : 4));
 
         switch (segment) {
         case 1: { index += 1; std::cout << "1 byte." << std::endl;  }break;// 0000 0000 - 0000 007F    0xxxxxxx
