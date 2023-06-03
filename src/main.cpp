@@ -51,7 +51,7 @@ using namespace foxintango;
 
 #include "alpine.h"
 
-inline Error prefix(const unsigned char* content, unsigned char& prefix) {
+inline void prefix(const unsigned char* content, unsigned char& prefix) {
     Index o = 0;
     while ((content[o] < 0b11000000) && content[o] && o < 4) {
         if (content[o] < 0b10000000) { break; }
@@ -65,8 +65,6 @@ inline Error prefix(const unsigned char* content, unsigned char& prefix) {
     case 3: { if (content[o] >= 0b11110000) prefix = 0b11110000; }break;
     default:{prefix = 0b11110001; }break;//报错
     }
-
-    return 0;
  }
 
 #ifdef USE_VIRTUAL_METHOD
@@ -90,7 +88,7 @@ int main(int argc, char* argv[]) {
     */
     unsigned char p = 255;
 
-    int uc = '古';
+    int uc = '1';
     unsigned char* up = (unsigned char*)&uc;
     prefix((unsigned char*)&uc, p);
     std::cout << uc << "prefix : " << std::bitset<8>(p) << std::endl;
