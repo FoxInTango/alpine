@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif
     */
-    char* utf = "这是一个悲伤的故事";
+    unsigned char* utf = "这是一个悲伤的故事";
     unsigned char p = 255;
     prefix(utf,p);
     std::cout << utf << "prefix : " << std::bitset<8>((long unsigned int)prefix) << std::endl;
