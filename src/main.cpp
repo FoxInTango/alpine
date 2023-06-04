@@ -150,10 +150,9 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 */
-    char     utf8[] =  "std::cout 导致，还是转码问题导致不一致";
+    char     utf8[] =  "Ѭ ѭ - юсъ большой іотированный/'jus bʌlʲ.'ʃoj jʌ.'tʲi.rə.vən.nɪj/ /ju/ 或 / ʲu/";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
-    utf_8_to_32((unsigned char*)utf8,&unicode);
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
