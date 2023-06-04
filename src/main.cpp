@@ -96,7 +96,6 @@ int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 
 int main(int argc, char* argv[]) {
-    /*
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
@@ -106,54 +105,10 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
- 00000000 00000000 01010011 11100100
-
- 15044516prefix : 11100000
- 古0 : 10100100
- 古1 : 10001111
- 古2 : 11100101
- 古3 : 00000000
-    */
-    /*
-    unsigned char p = 255;
-
-    int uc = '1';
-    unsigned char* up = (unsigned char*)&uc;
-    prefix((unsigned char*)&uc, p);
-    std::cout << uc << "prefix : " << std::bitset<8>(p) << std::endl;
-    std::cout << "古0 : " << std::bitset<8>(up[0]) << std::endl;
-    std::cout << "古1 : " << std::bitset<8>(up[1]) << std::endl;
-    std::cout << "古2 : " << std::bitset<8>(up[2]) << std::endl;
-    std::cout << "古3 : " << std::bitset<8>(up[3]) << std::endl;
-    */
-    /**
-        endian byte 1 : 10000000
-        endian byte 2 : 11000000
-        endian byte 3 : 11100000
-        endian byte 4 : 11110000
-     */
-    unsigned int endian = 0b11110000111000001100000010000000;
-    unsigned char* ep = (unsigned char*)&endian;
-    std::cout << " endian byte 1 : " << std::bitset<8>(ep[0]) << std::endl;
-    std::cout << " endian byte 2 : " << std::bitset<8>(ep[1]) << std::endl;
-    std::cout << " endian byte 3 : " << std::bitset<8>(ep[2]) << std::endl;
-    std::cout << " endian byte 4 : " << std::bitset<8>(ep[3]) << std::endl;
-    unsigned char p = 255;
-    char    utf8[] = "这是一个悲伤的故事";
-    wchar_t utf32[] = L"这是一个悲伤的故事";
-    utf8_length((unsigned char*)utf8);
-    for(int i = 0;i < 9;i ++){
-        std::cout << " utf8  " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
-        std::cout << " utf32 " << i << " : " << std::bitset<32>(utf32[i]) << std::endl;
-    }
-
+    char     utf8[] = "这是一个悲伤的故事";
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
-    std::cout << "converted utf : " << ns << std::endl;
-    unsigned char m = 0b111110000;
-    std::cout << "原位:" << std::bitset<8>(m) << std::endl;
-    std::cout << "左移:" << std::bitset<8>(m << 1) << std::endl;
-    std::cout << "右移:" << std::bitset<8>(m >> 1) << std::endl;
+    std::cout << "converted : " << ns << std::endl;
     return 0;
 }
