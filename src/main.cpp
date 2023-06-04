@@ -94,7 +94,7 @@ Size utf_8_to_32(const unsigned char* utf8, Unicode** utf32) {
     Index index8 = 0;
     Index index32 = 0;
 
-    Size length = utf8_length_to_unicode(utf8);
+    Size length = utf8_length(utf8);
 
     (*utf32) = new Unicode[length + 1];
     (*utf32)[length] = 0;
