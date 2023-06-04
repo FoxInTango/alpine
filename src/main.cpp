@@ -51,87 +51,6 @@ using namespace foxintango;
 
 #include "alpine.h"
 
-/*
-inline void prefix(const unsigned char* content, unsigned char& prefix) {
-    Index o = 0;
-    while ((content[o] < 0b11000000) && content[o] && o < 4) {
-        if (content[o] < 0b10000000) { break; }
-        o++;
-}
-
-    switch (o) {
-    case 0: { prefix = 0b00000000; }
-    case 1: { if (content[o] >= 0b11000000 && content[o] < 0b11100000) prefix = 0b11000000; }break;
-    case 2: { if (content[o] >= 0b11100000 && content[o] < 0b11110000) prefix = 0b11100000; }break;
-    case 3: { if (content[o] >= 0b11110000) prefix = 0b11110000; }break;
-    default:{prefix = 0b11110001; }break;//报错
-    }
- }
- */
-
-Size utf8_length(const unsigned char* content) {
-    Index index = 0;
-    Size  length = 0;
-    while (content[index])
-    {
-        Index segment = content[index] < 0b11000000 ? 1 : (content[index] < 0b11100000 ? 2 : (content[index] < 0b11110000 ? 3 : 4));
-
-        switch (segment) {
-        case 1: { index += 1; std::cout << "1 byte." << std::endl;  }break;// 0000 0000 - 0000 007F    0xxxxxxx
-        case 2: { index += 2; std::cout << "2 byte." << std::endl;  }break;// 0000 0080 - 0000 07FF    110xxxxx 10xxxxxx
-        case 3: { index += 3; std::cout << "3 byte." << std::endl;  }break;// 0000 0800 - 0000 FFFF    1110xxxx 10xxxxxx 10xxxxxx
-        case 4: { index += 4; std::cout << "4 byte." << std::endl;  }break;// 0001 0000 - 0010 FFFF    11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-        default:break;
-        }
-
-        length++;
-    }
-    std::cout << "utf8 length : " << length << std::endl;
-    return length;
-}
-
-Size utf_8_to_32(const unsigned char* utf8, Unicode** utf32) {
-    Index index8 = 0;
-    Index index32 = 0;
-
-    Size length = utf8_length(utf8);
-
-    (*utf32) = new Unicode[length + 1];
-    (*utf32)[length] = 0;
-
-    while (utf8[index8]) {
-        unsigned char* unicode = (unsigned char*)&((*utf32)[index32]);
-        if (utf8[index8] < 0b10000000) {
-            unicode[0] = utf8[index8];
-            index8++;
-            std::cout << "*" << std::endl;
-        }
-        else if (utf8[index8] < 0b11100000) { // 110xxxxx 10xxxxxx
-            unicode[0] = ((utf8[index8 + 1] << 2) >> 2) | (utf8[index8] << 6);
-            unicode[1] = ((utf8[index8] << 3) >> 5);
-            index8 += 2;
-            std::cout << "**" << std::endl;
-        }
-        else if (utf8[index8] < 0b11110000) { // 1110xxxx 10xxxxxx 10xxxxxx
-            unicode[0] = ((utf8[index8 + 2] << 2) >> 2) | (utf8[index8 + 1] << 6);
-            unicode[1] = ((utf8[index8 + 1] << 2) >> 4) | (utf8[index8] << 6);
-            unicode[2] = ((utf8[index8] << 6) >> 6);
-            index8 += 3;
-            std::cout << "***" << std::endl;
-        }
-        else { // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-            unicode[0] = ((utf8[index8 + 3] << 2) >> 2) | (utf8[index8 + 2] << 6);
-            unicode[1] = ((utf8[index8 + 2] << 2) >> 4) | (utf8[index8 + 1] << 4);
-            unicode[3] = ((utf8[index8 + 1] << 2) >> 6) | ((utf8[index8] << 5) >> 3);
-            index8 += 4;
-            std::cout << "****" << std::endl;
-        }
-
-        index32++;
-    }
-
-    return length;
-}
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
@@ -139,7 +58,7 @@ int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 
 int main(int argc, char* argv[]) {
-/*
+
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
@@ -149,7 +68,6 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-*/
     char     utf8[] =  "10. How's everything? 一切还好吧?";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
