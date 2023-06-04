@@ -107,8 +107,8 @@ int main(int argc, char* argv[]) {
 #endif 
     char     utf8[] = "这是一个悲伤的故事what a sad story.";
     String s(utf8);
-    char* ns = 0;
-    s.as(&ns);
-    std::cout << "converted : " << ns << std::endl;
+    //char* ns = 0;
+    //s.as(&ns);
+    //std::cout << "converted : " << ns << std::endl;
     return 0;
 }
