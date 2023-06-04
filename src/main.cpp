@@ -141,9 +141,9 @@ int main(int argc, char* argv[]) {
     unsigned char p = 255;
     char    utf8[] = "这是一个悲伤的故事";
     wchar_t utf32[] = L"这是一个悲伤的故事"
-    utf8_length((unsigned char*)utf);
-    for(int i = 0;i < sizeof(utf);i ++){
-        std::cout << " utf8  " << i << " : " << std::bitset<8>(utf[i * 3]) << std::bitset<8>(utf[i * 3 + 1]) << std::bitset<8>(utf[i * 3 + 2]) << std::endl;
+    utf8_length((unsigned char*)utf8);
+    for(int i = 0;i < sizeof(utf32);i ++){
+        std::cout << " utf8  " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
         std::cout << " utf32 " << i << " : " << std::bitset<8>(utf32[i]) << std::endl;
     }
 
