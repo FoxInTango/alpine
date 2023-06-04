@@ -150,7 +150,7 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 */
-    char     utf8[] =  "这是一个悲伤的故事";
+    char     utf8[] =  "这是一个悲伤的故事std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     utf_8_to_32((unsigned char*)utf8,&unicode);
@@ -158,10 +158,12 @@ int main(int argc, char* argv[]) {
     char* ns = 0;
     s.as(&ns);
     std::cout << "converted : " << ns << std::endl;    
+    /*
     for (int i = 0; i < 9; i++) {
         std::cout << " utf8   " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
         std::cout << " utf32  " << i << " : " << std::bitset<32>(utf32[i]) << std::endl;
         std::cout << " unicode" << i << " : " << std::bitset<32>(s.unicode()[i]) << std::endl;
     }
+    */
     return 0;
 }
