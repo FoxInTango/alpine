@@ -152,7 +152,7 @@ int main(int argc, char* argv[]) {
 */
     char     utf8[] = "这是一个悲伤的故事what a sad story.";
     Unicode* unicode;
-    utf_8_to_32(utf8,&unicode);
+    utf_8_to_32((unsigned char*)utf8,&unicode);
     //String s(utf8);
     //char* ns = 0;
     //s.as(&ns);
