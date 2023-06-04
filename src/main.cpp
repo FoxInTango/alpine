@@ -105,7 +105,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] = "这是一个悲伤的故事";
+    char     utf8[] = "这是一个悲伤的故事what a sad story.";
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
