@@ -89,6 +89,49 @@ Size utf8_length(const unsigned char* content) {
     std::cout << "utf8 length : " << length << std::endl;
     return length;
 }
+
+Size utf_8_to_32(const unsigned char* utf8, Unicode** utf32) {
+    Index index8 = 0;
+    Index index32 = 0;
+
+    Size length = utf8_length_to_unicode(utf8);
+
+    (*utf32) = new Unicode[length + 1];
+    (*utf32)[length] = 0;
+
+    while (utf8[index8]) {
+        unsigned char* unicode = (unsigned char*)&((*utf32)[index32]);
+        if (utf8[index8] < 0b10000000) {
+            unicode[0] = utf8[index8];
+            index8++;
+            std::cout << "*" << std::endl;
+        }
+        else if (utf8[index8] < 0b11100000) { // 110xxxxx 10xxxxxx
+            unicode[0] = ((utf8[index8 + 1] << 2) >> 2) | (utf8[index8] << 6);
+            unicode[1] = ((utf8[index8] << 3) >> 5);
+            index8 += 2;
+            std::cout << "**" << std::endl;
+        }
+        else if (utf8[index8] < 0b11110000) { // 1110xxxx 10xxxxxx 10xxxxxx
+            unicode[0] = ((utf8[index8 + 2] << 2) >> 2) | (utf8[index8 + 1] << 6);
+            unicode[1] = ((utf8[index8 + 1] << 2) >> 4) | (utf8[index8] << 6);
+            unicode[2] = ((utf8[index8] << 6) >> 6);
+            index8 += 3;
+            std::cout << "***" << std::endl;
+        }
+        else { // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+            unicode[0] = ((utf8[index8 + 3] << 2) >> 2) | (utf8[index8 + 2] << 6);
+            unicode[1] = ((utf8[index8 + 2] << 2) >> 4) | (utf8[index8 + 1] << 4);
+            unicode[3] = ((utf8[index8 + 1] << 2) >> 6) | ((utf8[index8] << 5) >> 3);
+            index8 += 4;
+            std::cout << "****" << std::endl;
+        }
+
+        index32++;
+    }
+
+    return length;
+}
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
