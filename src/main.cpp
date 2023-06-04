@@ -83,6 +83,7 @@ int main(int argc, char* argv[]) {
         std::cout << " unicode" << i << " : " << std::bitset<32>(s.unicode()[i]) << std::endl;
     }
     */
+    std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>('ß') << std::endl;
     String let = utf8;
     return 0;
 }
