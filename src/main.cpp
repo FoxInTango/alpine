@@ -140,7 +140,7 @@ int main(int argc, char* argv[]) {
     std::cout << " endian byte 4 : " << std::bitset<8>(ep[3]) << std::endl;
     unsigned char p = 255;
     char    utf8[] = "这是一个悲伤的故事";
-    wchar_t utf32[] = L"这是一个悲伤的故事"
+    wchar_t utf32[] = L"这是一个悲伤的故事";
     utf8_length((unsigned char*)utf8);
     for(int i = 0;i < sizeof(utf32);i ++){
         std::cout << " utf8  " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
