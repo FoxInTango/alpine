@@ -139,18 +139,23 @@ int main(int argc, char* argv[]) {
     std::cout << " endian byte 3 : " << std::bitset<8>(ep[2]) << std::endl;
     std::cout << " endian byte 4 : " << std::bitset<8>(ep[3]) << std::endl;
     unsigned char p = 255;
-    char utf[] = "这是一个悲伤的故事";
+    char    utf8[] = "这是一个悲伤的故事";
+    wchar_t utf32[] = L"这是一个悲伤的故事"
     utf8_length((unsigned char*)utf);
     for(int i = 0;i < sizeof(utf);i ++){
-        std::cout << " code " << i << " : " << std::bitset<8>(utf[i]) << std::endl;
+        std::cout << " utf8  " << i << " : " << std::bitset<8>(utf[i * 3]) << std::bitset<8>(utf[i * 3 + 1]) << std::bitset<8>(utf[i * 3 + 2]) << std::endl;
+        std::cout << " utf32 " << i << " : " << std::bitset<8>(utf32[i]) << std::endl;
     }
 
     std::cout << "utf length :" << sizeof(utf) << std::endl;
    
     String s(utf);
     char* ns = 0;
-    std::cout << "string length : " << s.length() << std::endl;
     s.as(&ns);
     std::cout << "converted utf : " << ns << std::endl;
+    unsigned char m = 0b111110000;
+    std::cout << "原位:" << std::bitset<8>(m) << std::endl;
+    std::cout << "左移:" << std::bitset<8>(m << 1) << std::endl;
+    std::cout << "右移:" << std::bitset<8>(m >> 1) << std::endl;
     return 0;
 }
