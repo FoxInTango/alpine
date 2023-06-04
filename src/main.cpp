@@ -150,7 +150,7 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 */
-    char     utf8[] =  "这是一个悲伤的故事std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;";
+    char     utf8[] =  "因为 99% 的情况下，编译器优化比人更聪明，例如，在 RocksDB 中有这样一段代码（别嫌丑，现实中这种代码多的是）："<< std::endl;
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     utf_8_to_32((unsigned char*)utf8,&unicode);
