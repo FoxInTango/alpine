@@ -74,7 +74,8 @@ int main(int argc, char* argv[]) {
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
-    std::cout << "converted : " << ns << std::endl;    
+    std::cout << "converted : " << ns << std::endl;   
+    std::cout << "original  : " << "Guten Tag. Ich heiße Dino Botta."<< std::endl;
     /*
     for (int i = 0; i < 9; i++) {
         std::cout << " utf8   " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
