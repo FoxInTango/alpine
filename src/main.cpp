@@ -150,7 +150,8 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 */
-    char     utf8[] =  "Guten Tag. Ich heiße Dino Botta.编译器优化比人更聪明，例如，在 RocksDB 中有这样一段代码（别嫌丑，现实中这种代码多的是）：";
+                         Guten Tag.Ich heiÇe Dino Botta.
+    char     utf8[] =  "std::cout 导致，还是转码问题导致不一致";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     utf_8_to_32((unsigned char*)utf8,&unicode);
@@ -167,3 +168,9 @@ int main(int argc, char* argv[]) {
     */
     return 0;
 }
+
+/** TODO
+ *  Guten Tag. Ich heiße Dino Botta. 比特输出 排查 是由于 std::cout 导致，还是转码问题导致不一致
+ *  Guten Tag.Ich heiÇe Dino Botta.
+ *  
+ */
