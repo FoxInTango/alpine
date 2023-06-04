@@ -68,14 +68,14 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] =  "10. How's everything? 一切还好吧?";
+    char     utf8[] =  "Guten Tag.Ich heiße Dino Botta.";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
     std::cout << "converted : " << ns << std::endl;   
-    std::cout << "original  : " << "Guten Tag. Ich heiße Dino Botta."<< std::endl;
+    std::cout << "original  : " << "Guten Tag.Ich heiße Dino Botta."<< std::endl;
     /*
     for (int i = 0; i < 9; i++) {
         std::cout << " utf8   " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
