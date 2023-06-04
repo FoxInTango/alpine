@@ -76,8 +76,6 @@ Size utf8_length(const unsigned char* content) {
     {
         Index segment = content[index] < 0b11000000 ? 1 : (content[index] < 0b11100000 ? 2 : (content[index] < 0b11110000 ? 3 : 4));
 
-        //if(content[index] < 0b11000000)
-
         switch (segment) {
         case 1: { index += 1; std::cout << "1 byte." << std::endl;  }break;// 0000 0000 - 0000 007F    0xxxxxxx
         case 2: { index += 2; std::cout << "2 byte." << std::endl;  }break;// 0000 0080 - 0000 07FF    110xxxxx 10xxxxxx
@@ -155,7 +153,7 @@ int main(int argc, char* argv[]) {
     char     utf8[] = "abcdefghijklmn"; //"这是一个悲伤的故事what a sad story.";
     Unicode* unicode;
     utf_8_to_32((unsigned char*)utf8,&unicode);
-    //String s(utf8);
+    String s(utf8);
     //char* ns = 0;
     //s.as(&ns);
     //std::cout << "converted : " << ns << std::endl;
