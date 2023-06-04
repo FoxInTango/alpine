@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
     char    utf8[] = "这是一个悲伤的故事";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     utf8_length((unsigned char*)utf8);
-    for(int i = 0;i < sizeof(utf32);i ++){
+    for(int i = 0;i < 9;i ++){
         std::cout << " utf8  " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
         std::cout << " utf32 " << i << " : " << std::bitset<32>(utf32[i]) << std::endl;
     }
