@@ -150,12 +150,12 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 */
-    char     utf8[] = "abcdefghijklmn"; //"这是一个悲伤的故事what a sad story.";
+    char     utf8[] = "这是一个悲伤的故事what a sad story.";
     Unicode* unicode;
     utf_8_to_32((unsigned char*)utf8,&unicode);
     String s(utf8);
-    //char* ns = 0;
-    //s.as(&ns);
-    //std::cout << "converted : " << ns << std::endl;
+    char* ns = 0;
+    s.as(&ns);
+    std::cout << "converted : " << ns << std::endl;
     return 0;
 }
