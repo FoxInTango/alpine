@@ -144,7 +144,7 @@ int main(int argc, char* argv[]) {
     utf8_length((unsigned char*)utf8);
     for(int i = 0;i < sizeof(utf32);i ++){
         std::cout << " utf8  " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
-        std::cout << " utf32 " << i << " : " << std::bitset<8>(utf32[i]) << std::endl;
+        std::cout << " utf32 " << i << " : " << std::bitset<32>(utf32[i]) << std::endl;
     }
 
     String s(utf8);
