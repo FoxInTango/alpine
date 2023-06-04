@@ -150,8 +150,8 @@ int main(int argc, char* argv[]) {
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 */
-    char     utf8[] =  "Ѭ ѭ - юсъ большой іотированный/'jus bʌlʲ.'ʃoj jʌ.'tʲi.rə.vən.nɪj/ /ju/ 或 / ʲu/";
-    wchar_t utf32[] = L"这是一个悲伤的故事";
+    char     utf8[] =  "";
+    wchar_t utf32[] = L"10. How's everything? 一切还好吧?";
     Unicode* unicode;
     String s(utf8);
     char* ns = 0;
