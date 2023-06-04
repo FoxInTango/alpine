@@ -164,8 +164,4 @@ int main(int argc, char* argv[]) {
         std::cout << " unicode" << i << " : " << std::bitset<32>(s.unicode()[i]) << std::endl;
     }
     return 0;
-
-        utf8   1 :          111001101001100010101111
-        utf32  1 : 0000000000000000 0110011000101111
-        unicode1 : 0000000011100110 1010011010101111 
 }
