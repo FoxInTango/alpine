@@ -151,7 +151,7 @@ int main(int argc, char* argv[]) {
 #endif 
 */
     char     utf8[] =  "";
-    wchar_t utf32[] = L"10. How's everything? 一切还好吧?";
+    wchar_t utf32[] = L"10How's everything? 一切还好吧?";
     Unicode* unicode;
     String s(utf8);
     char* ns = 0;
