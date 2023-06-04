@@ -147,9 +147,7 @@ int main(int argc, char* argv[]) {
         std::cout << " utf32 " << i << " : " << std::bitset<8>(utf32[i]) << std::endl;
     }
 
-    std::cout << "utf length :" << sizeof(utf) << std::endl;
-   
-    String s(utf);
+    String s(utf8);
     char* ns = 0;
     s.as(&ns);
     std::cout << "converted utf : " << ns << std::endl;
