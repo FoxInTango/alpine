@@ -96,6 +96,7 @@ int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 
 int main(int argc, char* argv[]) {
+/*
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
@@ -105,6 +106,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
+*/
     char     utf8[] = "这是一个悲伤的故事what a sad story.";
     String s(utf8);
     //char* ns = 0;
