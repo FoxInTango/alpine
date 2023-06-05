@@ -59,20 +59,20 @@ void echo_utf8_bits(unsigned char* utf8){
         memclr(charactor,sizeof(charactor),0);
         if (utf8[index8] < 0b10000000) {
             charactor[0] = utf8[index8];
-            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << std::endl;
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0]) << std::endl;
             index8++;
         }
         else if (utf8[index8] < 0b11100000) { // 110xxxxx 10xxxxxx
             charactor[0] = utf8[index8];
             charactor[1] = utf8[index8 + 1];
-            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << " " <<std::bitset<8>(charactor[1] << std::endl;
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0]) << " " <<std::bitset<8>(charactor[1]) << std::endl;
             index8 += 2;
         }
         else if (utf8[index8] < 0b11110000) { // 1110xxxx 10xxxxxx 10xxxxxx
             charactor[0] = utf8[index8];
             charactor[1] = utf8[index8 + 1];
             charactor[2] = utf8[index8 + 2];
-            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << " " << std::bitset<8>(charactor[1] << " " << std::bitset<8>(charactor[2] << std::endl;
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0]) << " " << std::bitset<8>(charactor[1]) << " " << std::bitset<8>(charactor[2]) << std::endl;
             index8 += 3;
         }
         else { // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
@@ -80,7 +80,7 @@ void echo_utf8_bits(unsigned char* utf8){
             charactor[1] = utf8[index8 + 1];
             charactor[2] = utf8[index8 + 2];
             charactor[3] = utf8[index8 + 3];
-            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << " " << std::bitset<8>(charactor[1] << " " << std::bitset<8>(charactor[2] << " " << std::bitset<8>(charactor[3] << std::endl;
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0]) << " " << std::bitset<8>(charactor[1]) << " " << std::bitset<8>(charactor[2]) << " " << std::bitset<8>(charactor[3]) << std::endl;
             index8 += 4;
         }
 
