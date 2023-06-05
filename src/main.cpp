@@ -115,8 +115,8 @@ int main(int argc, char* argv[]) {
     std::cout << "original  : " << "Guten Tag.Ich heiße Dino Botta."<< std::endl;
     
     std::cout << " -- bits -- " << std::endl;
-    echo_utf8_bits(utf8);
-    echo_utf8_bits(ns);
+    echo_utf8_bits((unsigned char*)utf8);
+    echo_utf8_bits((unsigned char*)ns);
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>('ß') << std::endl;
     String let = utf8;
     return 0;
