@@ -134,6 +134,11 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     String let = utf8;
+
+    Array<int> i_array;
+    for(int i= 0;i < 1024;i ++){
+        i_array.append(i);
+    }
     return 0;
 }
 
