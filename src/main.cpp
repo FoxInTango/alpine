@@ -136,7 +136,7 @@ int main(int argc, char* argv[]) {
     String let = utf8;
 
     Array<int> i_array;
-    for(int i= 0;i < 1024;i ++){
+    for(int i= 0;i < 512;i ++){
         i_array.append(i);
     }
 
