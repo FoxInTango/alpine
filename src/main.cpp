@@ -114,7 +114,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] =  "Guten Tag. Ich heiße Dino Botta -- 这是一个悲伤的故事!~!@#$%^&*()_+";
+    char     utf8[] = " Aa、Ää、Bb、Cc、Dd、Ee、Ff、Gg、Hh、Ii、Jj、Kk、Ll、Mm、Nn、Oo、Öö、Pp、Qq、Rr、Ss、ẞß、Tt、Uu、Üü、Vv、Ww、Xx、Yy、Zz。";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     String s(utf8);
