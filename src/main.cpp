@@ -114,7 +114,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] = "טוב, תודה.ואת?";
+    char     utf8[] = "希伯来语（עִבְרִית，英语:Hebrew [2] ）是犹太民族的语言，以色列国通用语言，为世界上较为古老的语言之一。“希伯来”意为“渡河而来”，属于亚非语系(又称闪含语系)闪米特语族的一个分支，没有元音字母，只有22个辅音字母，其文字从右往左书写。许多以色列文学作品和文献都是用希伯来语记录，主要文献保留在《死海古卷》和大量宗教法典及文献之中。";
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
