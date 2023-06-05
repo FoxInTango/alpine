@@ -137,7 +137,7 @@ int main(int argc, char* argv[]) {
 
     Array<int> i_array;
     for(int i= 0;i < 10;i ++){
-        //i_array.append(i);
+        i_array.append(i);
     }
     return 0;
 }
