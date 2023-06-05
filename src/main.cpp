@@ -121,13 +121,15 @@ int main(int argc, char* argv[]) {
     char* ns = 0;
     s.as(&ns);
     std::cout << "converted : " << ns << std::endl;   
-    std::cout << "original  : " << "Guten Tag.Ich heiße Dino Botta."<< std::endl;
+    std::cout << "original  : " << utf8 << std::endl;
     
+    /*
     std::cout << " -- bits -- " << std::endl;
     echo_utf8_bits((unsigned char*)utf8);
     echo_utf8_bits((unsigned char*)ns);
     echo_utf32_bits(s.unicode());
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
+    */
     String let = utf8;
     return 0;
 }
