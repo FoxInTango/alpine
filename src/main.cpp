@@ -114,9 +114,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] = "イェ（ye），ウィ（wi），ウェ（we），ウォ（wo），ヴ（vu），クァ（qwa），グァ（gwa），クィ（qwi），クェ（qwe），クォ（qwo），シェ（she），ジェ（je），チェ（che），ツァ（tsa），ツィ（tsi），ツェ（tse），ツォ（tso），ティ(thi)，ディ(dhi)，テュ(thu)，デュ(dhu)，トゥ（twu），ドゥ（dwu），ファ（fa），フィ（fi），フェ（fe），フォ（fo），フュ（fyu）等等。";
-    wchar_t utf32[] = L"这是一个悲伤的故事";
-    Unicode* unicode;
+    char     utf8[] = "טוב, תודה.ואת?";
     String s(utf8);
     char* ns = 0;
     s.as(&ns);
