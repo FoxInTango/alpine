@@ -114,7 +114,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] =  "ß";
+    char     utf8[] =  "Guten Tag. Ich heiße Dino Botta -- 这是一个悲伤的故事";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     String s(utf8);
@@ -135,10 +135,10 @@ int main(int argc, char* argv[]) {
 /** TODO
  *  Guten Tag. Ich heiße Dino Botta. 比特输出 排查 是由于 std::cout 导致，还是转码问题导致不一致
  *  Guten Tag.Ich heiÇe Dino Botta.
- *  charactor : ß  bits : 1100001110011111
- *  charactor : Ç  bits : 1100001110000111
- *                        0000000000000000 00000000 11000111
- *                        000000000000000000000000  11011111
- *  1100001110011111
+ *  charactor : ß  bits : 11000011 10011111
+ *  charactor : Ç  bits : 11000011 10000111
+ * 
+ *  unicode 000000000000000000000000 11000111
+ *                        
  */
 
