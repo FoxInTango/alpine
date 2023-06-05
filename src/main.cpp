@@ -89,6 +89,14 @@ void echo_utf8_bits(unsigned char* utf8){
     }
 }
 
+void echo_utf32_bits(Unicode* unicode){
+    Index index;
+    while(unicode[index]){
+        std::cout << "unicode : " << std::bitset<32>(unicode[index]) << std::endl;
+        index ++;
+    }
+}
+
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
@@ -118,6 +126,7 @@ int main(int argc, char* argv[]) {
     std::cout << " -- bits -- " << std::endl;
     echo_utf8_bits((unsigned char*)utf8);
     echo_utf8_bits((unsigned char*)ns);
+    echo_utf32_bits(s.unicode());
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>('ß') << std::endl;
     String let = utf8;
     return 0;
