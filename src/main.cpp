@@ -51,6 +51,43 @@ using namespace foxintango;
 
 #include "alpine.h"
 
+void echo_utf8_bits(unsigned char* utf8){
+    Index index8 = 0;
+    Index index32 = 0;
+    char charactor[8];
+    while (utf8[index8]) {
+        memclr(charactor,sizeof(charactor),0);
+        if (utf8[index8] < 0b10000000) {
+            charactor[0] = utf8[index8];
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << std::endl;
+            index8++;
+        }
+        else if (utf8[index8] < 0b11100000) { // 110xxxxx 10xxxxxx
+            charactor[0] = utf8[index8];
+            charactor[1] = utf8[index8 + 1];
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << " " <<std::bitset<8>(charactor[1] << std::endl;
+            index8 += 2;
+        }
+        else if (utf8[index8] < 0b11110000) { // 1110xxxx 10xxxxxx 10xxxxxx
+            charactor[0] = utf8[index8];
+            charactor[1] = utf8[index8 + 1];
+            charactor[2] = utf8[index8 + 2];
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << " " << std::bitset<8>(charactor[1] << " " << std::bitset<8>(charactor[2] << std::endl;
+            index8 += 3;
+        }
+        else { // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+            charactor[0] = utf8[index8];
+            charactor[1] = utf8[index8 + 1];
+            charactor[2] = utf8[index8 + 2];
+            charactor[3] = utf8[index8 + 3];
+            std::cout << "charactor : " << charactor << "  bits : " << std::bitset<8>(charactor[0] << " " << std::bitset<8>(charactor[1] << " " << std::bitset<8>(charactor[2] << " " << std::bitset<8>(charactor[3] << std::endl;
+            index8 += 4;
+        }
+
+        index32++;
+    }
+}
+
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event){ return event; } 
 #else
@@ -68,7 +105,7 @@ int main(int argc, char* argv[]) {
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
-    char     utf8[] =  "Guten Tag.Ich heiße Dino Botta.";
+    char     utf8[] =  "ß";
     wchar_t utf32[] = L"这是一个悲伤的故事";
     Unicode* unicode;
     String s(utf8);
@@ -76,13 +113,10 @@ int main(int argc, char* argv[]) {
     s.as(&ns);
     std::cout << "converted : " << ns << std::endl;   
     std::cout << "original  : " << "Guten Tag.Ich heiße Dino Botta."<< std::endl;
-    /*
-    for (int i = 0; i < 9; i++) {
-        std::cout << " utf8   " << i << " : " << std::bitset<8>(utf8[i * 3]) << std::bitset<8>(utf8[i * 3 + 1]) << std::bitset<8>(utf8[i * 3 + 2]) << std::endl;
-        std::cout << " utf32  " << i << " : " << std::bitset<32>(utf32[i]) << std::endl;
-        std::cout << " unicode" << i << " : " << std::bitset<32>(s.unicode()[i]) << std::endl;
-    }
-    */
+    
+    std::cout << " -- bits -- " << std::endl;
+    echo_utf8_bits(utf8);
+    echo_utf8_bits(ns);
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>('ß') << std::endl;
     String let = utf8;
     return 0;
