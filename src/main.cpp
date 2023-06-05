@@ -89,7 +89,7 @@ void echo_utf8_bits(unsigned char* utf8){
     }
 }
 
-void echo_utf32_bits(Unicode* unicode){
+void echo_utf32_bits(const Unicode* unicode){
     Index index;
     while(unicode[index]){
         std::cout << "unicode : " << std::bitset<32>(unicode[index]) << std::endl;
