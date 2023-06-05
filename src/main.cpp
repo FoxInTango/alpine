@@ -139,6 +139,10 @@ int main(int argc, char* argv[]) {
     for(int i= 0;i < 10;i ++){
         i_array.append(i);
     }
+
+    for(int i = 0;i < i_array.size();i ++){
+        std::cout << "Array Element " << i << " : " << i_array[i]<< std::endl;
+    }
     return 0;
 }
 
