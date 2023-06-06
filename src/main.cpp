@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
         segment.append(i);
     }
 
-    std::cout << "segment size : " << segment.size() << "  element count : " << segment.count << std::endl;
+    std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
     for(unsigned int i = 0;i < segment.count();i ++){
         std::cout << "    mem_lement " << i << " : " << segment[i] << std::endl;
     }
