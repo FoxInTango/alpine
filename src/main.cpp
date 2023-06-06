@@ -267,11 +267,18 @@ Error error;
      printf("\033[0;30;45m color!!! \033[0m Hello \n");
      printf("\033[0;30;46m color!!! \033[0m Hello \n");
      printf("\033[0;30;47m color!!! \033[0m Hello \n");
-
+#include <ifstream>
+     std::ifstream input_stream("input");
+     std::cin.rdbuf(input_stream);
      char input[128];
      memclr(input,128,0);
      while(std::cin >> input){
          std::cout << "输入内容: " << input << std::endl;
+         if(input[0] == 'q') {
+         std::cin.rdbuf(std::cin.in);
+         input_stream.close();
+         break;
+         }
          memclr(input, 128, 0);
      }
     return 0;
