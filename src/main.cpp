@@ -274,11 +274,11 @@ Error error;
      memclr(input,128,0);
      while(std::cin >> input){
          std::cout << "输入内容: " << input << std::endl;
-         if(input[0] == 'q') {
-         std::cin.rdbuf(cin_stream);
-         input_stream.close();
+         //if(input[0] == 'q') {
+         //std::cin.rdbuf(cin_stream);
+         //input_stream.close();
 
-         break;
+         //break;
          std::cin.clear();
          }
          memclr(input, 128, 0);
