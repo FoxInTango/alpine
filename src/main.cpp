@@ -174,6 +174,10 @@ Error error;
     error = segment.insert(segment_insert_index + 1, segment_insert_index + 1);
     error = segment.insert(segment_insert_index + 8, segment_insert_index + 8);
     std::cout << "segment insert error : " << error << std::endl;
+    std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
+    for (unsigned int i = 0; i < segment.count(); i++) {
+        std::cout << "    mem_lement " << i << " : " << segment[i].element << std::endl;
+    }
 
 #endif
 #ifdef SEGMENT_REMOVE
@@ -190,12 +194,13 @@ Error error;
     error = segment.replace(30000,segment_insert_index + 1);
     error = segment.replace(30000,segment_insert_index + 8);
     std::cout << "segment remove error : " << error << std::endl;
-#endif // SEGMENT_REMOVE
-
     std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
     for (unsigned int i = 0; i < segment.count(); i++) {
         std::cout << "    mem_lement " << i << " : " << segment[i].element << std::endl;
     }
+#endif // SEGMENT_REMOVE
+
+    
 
     Array<int> array(8);
     /** Array 追加 测试
