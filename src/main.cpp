@@ -134,15 +134,36 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     String let = utf8;
-
-    Array<int> i_array;
+    Array<int> array(8);
+    /** Array 追加 测试
+    
     for(int i= 0;i < 204800;i ++){
-        i_array.append(i);
+        array.append(i);
     }
 
     for(int i = 0;i < i_array.size();i ++){
-        std::cout << "Array Element " << i << " : " << i_array[i]<< std::endl;
+        std::cout << "Array Element " << i << " : " << array[i]<< std::endl;
     }
+    */
+
+    /** Array 插入 测试
+     */
+     array.append(0);
+     array.append(1);
+     array.append(2);
+     array.append(3);
+     array.append(4);
+     array.append(5);
+     //array.append(6);
+     array.append(7);
+     array.append(8);
+
+     array.insert(6,5);
+
+     for (int i = 0; i < i_array.size(); i++) {
+         std::cout << "Array Element " << i << " : " << array[i] << std::endl;
+     }
+
     return 0;
 }
 
