@@ -234,6 +234,8 @@ Error error;
          } else std::cout << "index " << i * 10 << " missed with number  : " << array[i * 10] << std::endl;
      }
 
+     std::cout << "Array size " << array.size() * sizeof(unsigned int) << std::endl;
+
     return 0;
 }
 
