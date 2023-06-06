@@ -158,7 +158,7 @@ int main(int argc, char* argv[]) {
      array.append(7);
      //array.append(8);
 
-     array.insert(6,6);
+     array.insert(6,8);
 
      for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
