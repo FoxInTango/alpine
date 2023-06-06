@@ -165,7 +165,8 @@ int main(int argc, char* argv[]) {
         if(i != segment_insert_index) segment.append(i);
     }
 
-    segment.insert(segment_insert_index, segment_insert_index);
+    Error error = segment.insert(segment_insert_index, segment_insert_index);
+    std::cout << "segment insert error : " << error << std::endl;
 
 #endif
     std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
