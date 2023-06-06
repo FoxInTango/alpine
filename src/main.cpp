@@ -153,12 +153,14 @@ int main(int argc, char* argv[]) {
      */
 #define SEGMENT_INSERT
 
+#define segment_insert_index 100
+
 #ifdef SEGMENT_INSERT
     for(int unsigned i = 0;i < segment_size;i ++){
-        if(i != 9) segment.append(i);
+        if(i != segment_insert_index) segment.append(i);
     }
 
-    //segment.insert(9,9);
+    segment.insert(segment_insert_index, segment_insert_index);
 
 #endif
     std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
