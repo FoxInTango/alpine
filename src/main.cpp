@@ -134,6 +134,7 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     char* ss = s;
+    printf("\033[0;30;40m color!!! \033[0m Hello \n");
     std::cout << "string -- let : " << ss << std::endl;
 
     Size segment_size = 32;
