@@ -267,6 +267,13 @@ Error error;
      printf("\033[0;30;45m color!!! \033[0m Hello \n");
      printf("\033[0;30;46m color!!! \033[0m Hello \n");
      printf("\033[0;30;47m color!!! \033[0m Hello \n");
+
+     char input[128];
+     memclr(input,128,0);
+     while(std::cin >> input){
+         std::cout << "输入内容: " << input << std::endl;
+         memclr(input, 128, 0);
+     }
     return 0;
 }
 
