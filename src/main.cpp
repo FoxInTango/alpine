@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
      */
 #define SEGMENT_INSERT
 
-#define segment_insert_index 31
+#define segment_insert_index 8
 
 /** 用例
  *  一，有空位 首部插入 尾部插入 中部插入
@@ -162,7 +162,8 @@ int main(int argc, char* argv[]) {
 
 #ifdef SEGMENT_INSERT
     for(int unsigned i = 0;i < segment_size - 16;i ++){
-        if(i != segment_insert_index) segment.append(i);
+        //if(i != segment_insert_index) segment.append(i);
+        segment.append(i);
     }
 
     Error error = segment.insert(segment_insert_index, segment_insert_index);
