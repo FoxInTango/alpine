@@ -279,6 +279,7 @@ Error error;
          input_stream.close();
 
          break;
+         std::cin.clear();
          }
          memclr(input, 128, 0);
      }
