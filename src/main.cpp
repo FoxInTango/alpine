@@ -272,7 +272,8 @@ Error error;
      std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
      char input[128];
      memclr(input,128,0);
-     while(std::cin >> input){
+     while(true){
+         std::cin >> input;
          std::cout << "输入内容: " << input << std::endl;
          //if(input[0] == 'q') {
          //std::cin.rdbuf(cin_stream);
