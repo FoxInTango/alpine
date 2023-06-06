@@ -219,14 +219,19 @@ Error error;
          array.append(i);
      }
 
-     array.insert(1024,25);
-     array.insert(1024, 800);
-     array.insert(1024, 960);
-     array.insert(1024, 1025);
-     array.insert(409600, 36000);
-
+     for(unsigned int i = 0;i < 4096;i ++){
+         array.insert(20230603,i * 10);
+     }
+     /*
      for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
+     }
+     */
+
+     for(unsigned int i = 0;i < 4096;i ++){
+         if( array[i * 10] == 20230603){
+             std::cout << "index " << i * 10 << " equal with 20230603." << std::endl; 
+         }
      }
 
     return 0;
