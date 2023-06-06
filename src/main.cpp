@@ -135,22 +135,36 @@ int main(int argc, char* argv[]) {
     */
     String let = utf8;
 
-    Size segment_size = 2048;
+    Size segment_size = 32;
     mem_segment<unsigned int> segment(segment_size, mem_segment_type_s);
+
     /** mem_segment 追加测试
      * 
      */
+#ifdef SEGMENT_APPEND
     for(unsigned int i = 0;i < segment_size;i ++){
         segment.append(i);
     }
 
-    std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
-    for(unsigned int i = 0;i < segment.count();i ++){
-        std::cout << "    mem_lement " << i << " : " << segment[i].element << std::endl;
-    }
+    
+#endif // SEGMENT_APPEND
     /** mem_segment 插入测试
      *
      */
+#define SEGMENT_INSERT
+
+#ifdef SEGMENT_INSERT
+    for(int unsigned i = 0;i < segment_size;i ++){
+        if(i != 9) segment.append(i);
+    }
+
+    segment.insert(9,9);
+
+#endif
+    std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
+    for (unsigned int i = 0; i < segment.count(); i++) {
+        std::cout << "    mem_lement " << i << " : " << segment[i].element << std::endl;
+    }
 
     Array<int> array(8);
     /** Array 追加 测试
