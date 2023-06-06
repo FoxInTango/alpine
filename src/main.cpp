@@ -219,7 +219,7 @@ Error error;
          array.append(i);
      }
 
-     //array.insert(1024,25);
+     array.insert(1024,25);
 
      for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
