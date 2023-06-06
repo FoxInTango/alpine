@@ -215,7 +215,7 @@ Error error;
 
     /** Array 插入 测试
      */
-     for(unsigned int i = 0;i < 1024;i ++){
+     for(unsigned int i = 0;i < 40960;i ++){
          array.append(i);
      }
 
