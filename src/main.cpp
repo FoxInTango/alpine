@@ -134,13 +134,14 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     String let = utf8;
+    std::cout << "string -- let : " << let << std::endl;
 
     Size segment_size = 32;
     mem_segment<unsigned int> segment(segment_size, mem_segment_type_s);
-#define SEGMENT_APPEND
+//#define SEGMENT_APPEND
 //#define SEGMENT_INSERT
 //#define SEGMENT_REMOVE
-#define SEGMENT_REPLACE
+//#define SEGMENT_REPLACE
     /** mem_segment 追加测试
      * 
      */
@@ -227,25 +228,15 @@ Error error;
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
      }
      */
-
+     /*
      for(unsigned int i = 0;i < 4096;i ++){
-         if( array[i * 10] == 20230603){
+         if(array[i * 10] == 20230603){
              std::cout << "index " << i * 10 << " equal with 20230603." << std::endl; 
          } else std::cout << "index " << i * 10 << " missed with number  : " << array[i * 10] << std::endl;
      }
 
      std::cout << "Array size " << array.size() * sizeof(unsigned int) << std::endl;
-
+     */
     return 0;
 }
-
-/** TODO
- *  Guten Tag. Ich heiße Dino Botta. 比特输出 排查 是由于 std::cout 导致，还是转码问题导致不一致
- *  Guten Tag.Ich heiÇe Dino Botta.
- *  charactor : ß  bits : 11000011 10011111
- *  charactor : Ç  bits : 11000011 10000111
- * 
- *  unicode 000000000000000000000000 11000111
- *                        
- */
 
