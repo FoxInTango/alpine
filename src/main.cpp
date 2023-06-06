@@ -134,7 +134,7 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     char* ss = s;
-    std::cout << "string -- let : " << let << std::endl;
+    std::cout << "string -- let : " << ss << std::endl;
 
     Size segment_size = 32;
     mem_segment<unsigned int> segment(segment_size, mem_segment_type_s);
