@@ -134,6 +134,22 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     String let = utf8;
+    mem_segment<unsigned int> segment(8, mem_segment_type_s);
+    /** mem_segment 追加测试
+     * 
+     */
+    for(unsigned int i = 0;i < 8;i ++){
+        segment.append(i);
+    }
+
+    std::cout << "segment size : " << segment.size() << "  element count : " << segment.count << std::endl;
+    for(unsigned int i = 0;i < segment.count();i ++){
+        std::cout << "    mem_lement " << i << " : " << segment[i] << std::endl;
+    }
+    /** mem_segment 插入测试
+     *
+     */
+
     Array<int> array(8);
     /** Array 追加 测试
     
@@ -161,7 +177,7 @@ int main(int argc, char* argv[]) {
      array.insert(6,1024);
 
      for (int i = 0; i < array.size(); i++) {
-         std::cout << "Array Element " << i << " : " << array[i] << std::endl;
+         //std::cout << "Array Element " << i << " : " << array[i] << std::endl;
      }
 
     return 0;
