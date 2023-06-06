@@ -218,3 +218,5 @@
 # UTF-8
 # http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html
 # https://blog.csdn.net/qq_32252957/article/details/83054152
+
+# https://www.linux.com/training-tutorials/splice-hooking-unix-systems/
