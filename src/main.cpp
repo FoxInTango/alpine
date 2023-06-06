@@ -225,7 +225,7 @@ Error error;
      array.append(7);
      array.append(8);
 
-     array.insert(6,6);
+     array.insert(6,1024);
 
      for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
