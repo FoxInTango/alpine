@@ -133,7 +133,7 @@ int main(int argc, char* argv[]) {
     echo_utf32_bits(s.unicode());
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
-    String let = utf8;
+    char* ss = s;
     std::cout << "string -- let : " << let << std::endl;
 
     Size segment_size = 32;
