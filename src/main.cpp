@@ -220,6 +220,9 @@ Error error;
      }
 
      array.insert(1024,25);
+     array.insert(1024, 800);
+     array.insert(1024, 960);
+     array.insert(1024, 1025);
 
      for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
