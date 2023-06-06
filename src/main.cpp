@@ -158,7 +158,7 @@ int main(int argc, char* argv[]) {
         if(i != 9) segment.append(i);
     }
 
-    segment.insert(9,9);
+    //segment.insert(9,9);
 
 #endif
     std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
