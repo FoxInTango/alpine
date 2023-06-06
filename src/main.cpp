@@ -152,6 +152,7 @@ int main(int argc, char* argv[]) {
      *
      */
 #define SEGMENT_INSERT
+#define SEGMENT_REMOVE
 
 #define segment_insert_index 8
 
@@ -159,20 +160,29 @@ int main(int argc, char* argv[]) {
  *  一，有空位 首部插入 尾部插入 中部插入
  *  二，无空位 首部插入 尾部插入 中部插入
  */
-
+Error error;
 #ifdef SEGMENT_INSERT
+    std::cout << "-------- SEGMENT_INSERT --------" << error << std::endl;
     for(int unsigned i = 0;i < segment_size - 16;i ++){
         //if(i != segment_insert_index) segment.append(i);
         segment.append(i);
     }
 
-    Error error;
+    
     error = segment.insert(segment_insert_index, segment_insert_index);
     error = segment.insert(segment_insert_index + 1, segment_insert_index + 1);
     error = segment.insert(segment_insert_index + 8, segment_insert_index + 8);
     std::cout << "segment insert error : " << error << std::endl;
 
 #endif
+#ifdef SEGMENT_REMOVE
+    std::cout << "-------- SEGMENT_REMOVE --------" << error << std::endl;
+    error = segment.remove(segment_insert_index);
+    error = segment.remove(segment_insert_index + 1);
+    error = segment.remove(segment_insert_index + 8);
+    std::cout << "segment remove error : " << error << std::endl;
+#endif // SEGMENT_REMOVE
+
     std::cout << "segment size : " << segment.size() << "  element count : " << segment.count() << std::endl;
     for (unsigned int i = 0; i < segment.count(); i++) {
         std::cout << "    mem_lement " << i << " : " << segment[i].element << std::endl;
