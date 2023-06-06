@@ -134,11 +134,13 @@ int main(int argc, char* argv[]) {
     std::cout << " ß  size : " << sizeof('ß') << "  bits : " << std::bitset<32>(L'ß') << std::endl;
     */
     String let = utf8;
-    mem_segment<unsigned int> segment(8, mem_segment_type_s);
+
+    Size segment_size = 2048;
+    mem_segment<unsigned int> segment(segment_size, mem_segment_type_s);
     /** mem_segment 追加测试
      * 
      */
-    for(unsigned int i = 0;i < 8;i ++){
+    for(unsigned int i = 0;i < segment_size;i ++){
         segment.append(i);
     }
 
