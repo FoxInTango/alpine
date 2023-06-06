@@ -153,7 +153,7 @@ int main(int argc, char* argv[]) {
      */
 #define SEGMENT_INSERT
 
-#define segment_insert_index 100
+#define segment_insert_index 31
 
 #ifdef SEGMENT_INSERT
     for(int unsigned i = 0;i < segment_size;i ++){
