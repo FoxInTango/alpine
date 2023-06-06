@@ -215,17 +215,11 @@ Error error;
 
     /** Array 插入 测试
      */
-     array.append(0);
-     array.append(1);
-     array.append(2);
-     array.append(3);
-     array.append(4);
-     array.append(5);
-     //array.append(6);
-     array.append(7);
-     array.append(8);
+     for(unsigned int i = 0;i < 1024;i ++){
+         array.append(i);
+     }
 
-     array.insert(6,6);
+     array.insert(1024,25);
 
      for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
