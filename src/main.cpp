@@ -137,7 +137,10 @@ int main(int argc, char* argv[]) {
 
     Size segment_size = 32;
     mem_segment<unsigned int> segment(segment_size, mem_segment_type_s);
-
+#define SEGMENT_APPEND
+//#define SEGMENT_INSERT
+//#define SEGMENT_REMOVE
+#define SEGMENT_REPLACE
     /** mem_segment 追加测试
      * 
      */
@@ -151,10 +154,6 @@ int main(int argc, char* argv[]) {
     /** mem_segment 插入测试
      *
      */
-#define SEGMENT_INSERT
-//#define SEGMENT_REMOVE
-#define SEGMENT_REPLACE
-
 #define segment_insert_index 8
 
 /** 用例
