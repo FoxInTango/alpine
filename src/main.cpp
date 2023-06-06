@@ -268,7 +268,7 @@ Error error;
      printf("\033[0;30;46m color!!! \033[0m Hello \n");
      printf("\033[0;30;47m color!!! \033[0m Hello \n");
 #include <fstream>
-     std::ifstream input_stream("input");
+     std::ifstream input_stream("input.txt");
      std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
      char input[128];
      memclr(input,128,0);
