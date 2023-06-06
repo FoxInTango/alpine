@@ -201,7 +201,7 @@ Error error;
 
     
 
-    Array<int> array(8);
+    Array<unsigned int> array(8);
     /** Array 追加 测试
     
     for(int i= 0;i < 204800;i ++){
