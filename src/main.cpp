@@ -160,7 +160,7 @@ int main(int argc, char* argv[]) {
 
      array.insert(6,5);
 
-     for (int i = 0; i < i_array.size(); i++) {
+     for (int i = 0; i < array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
      }
 
