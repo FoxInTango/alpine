@@ -152,7 +152,8 @@ int main(int argc, char* argv[]) {
      *
      */
 #define SEGMENT_INSERT
-#define SEGMENT_REMOVE
+//#define SEGMENT_REMOVE
+#define SEGMENT_REPLACE
 
 #define segment_insert_index 8
 
@@ -180,6 +181,14 @@ Error error;
     error = segment.remove(segment_insert_index);
     error = segment.remove(segment_insert_index + 1);
     error = segment.remove(segment_insert_index + 8);
+    std::cout << "segment remove error : " << error << std::endl;
+#endif // SEGMENT_REMOVE
+
+#ifdef SEGMENT_REPLACE
+    std::cout << "-------- SEGMENT_REMOVE --------" << error << std::endl;
+    error = segment.replace(30000,segment_insert_index);
+    error = segment.replace(30000,segment_insert_index + 1);
+    error = segment.replace(30000,segment_insert_index + 8);
     std::cout << "segment remove error : " << error << std::endl;
 #endif // SEGMENT_REMOVE
 
