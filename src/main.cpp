@@ -231,7 +231,7 @@ Error error;
      for(unsigned int i = 0;i < 4096;i ++){
          if( array[i * 10] == 20230603){
              std::cout << "index " << i * 10 << " equal with 20230603." << std::endl; 
-         }
+         } else std::cout << "index " << i * 10 << " missed with number  : " << array[i * 10] << std::endl;
      }
 
     return 0;
