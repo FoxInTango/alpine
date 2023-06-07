@@ -273,19 +273,19 @@ Error error;
 #include <fstream>
      //std::ifstream input_stream("./input.txt");
      //std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
-     char input[128];
+     String is;
+     char* utf8 = 0;
+     char input[4];
      memclr(input,128,0);
      Index offset = 0;
      bool quit = false;
      while(!quit){
-         if(offset + 4 < 128){
-             offset += get_input(input + offset);
-         } else {
-             if (String("quit") == input) { quit = true;}
-             std::cout << "输入内容: " << input << std::endl;
-             memclr(input, 128, 0);
-             offset = 0;
-         }
+         get_input(input);
+         is.contact(input);
+         if(utf8) delete utf8;
+         utf8 = is;
+         memclr(input, 128, 0);
+         std::cout << utf8 << std::endl;
      }
 
     return 0;
