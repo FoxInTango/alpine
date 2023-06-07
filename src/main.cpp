@@ -226,7 +226,8 @@ Error error;
          array.append(i);
      }
 
-     Array<unsigned int> new_array(array);
+     Array<unsigned int> new_array;
+     new_array = array;
      /*
      for(unsigned int i = 0;i < 1024;i ++){
          array.insert(20230603,i * 10);
