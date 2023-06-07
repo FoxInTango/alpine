@@ -289,13 +289,13 @@ Error error;
                  
                  quit == true;
 
-                 for(unsigned int = 0;i < contents.size();i ++){
+                 for(unsigned int i = 0;i < contents.size();i ++){
                      delete contents[i];
                  }
              }
          }
          
-         for (unsigned int = 0; i < contents.size(); i++) {
+         for (unsigned int i = 0; i < contents.size(); i++) {
              char* utf8 = *contents[i];
              std::cout << "content " << i << " -- " << utf8 << std::endl;
          }
