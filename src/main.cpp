@@ -235,6 +235,9 @@ Error error;
      for (int i = 0; i < new_array.size(); i++) {
          //std::cout << "Array Element " << i << " : " << array[i] << std::endl;
      }
+
+     std::cout << "old array segment count : " << array.segmentCount() << std::endl;
+     std::cout << "new array segment count : " << new_array.segmentCount() << std::endl;
      
      /*
      for(unsigned int i = 0;i < 4096;i ++){
