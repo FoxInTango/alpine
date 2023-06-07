@@ -272,9 +272,10 @@ Error error;
      //std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
      char input[128];
      memclr(input,128,0);
-     while(true){
+     bool quit = false;
+     while(!quit){
          std::cin >> input;
-         std::cout << "输入内容: " << input << std::endl;
+         //std::cout << "输入内容: " << input << std::endl;
          memclr(input, 128, 0);
          std::cin.clear();
      }
