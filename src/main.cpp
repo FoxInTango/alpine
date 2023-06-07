@@ -233,7 +233,7 @@ Error error;
      }*/
      
      for (int i = 0; i < new_array.size(); i++) {
-         //std::cout << "Array Element " << i << " : " << array[i] << std::endl;
+         std::cout << "Array Element " << i << " : " << array[i] << std::endl;
      }
 
      std::cout << "old array segment count : " << array.segmentCount() << std::endl;
