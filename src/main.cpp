@@ -276,6 +276,8 @@ Error error;
      while(!quit){
          std::cin >> input;
          //std::cout << "输入内容: " << input << std::endl;
+
+         if(String("quit") == input) quit = true;
          memclr(input, 128, 0);
          std::cin.clear();
      }
