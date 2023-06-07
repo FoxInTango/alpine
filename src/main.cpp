@@ -139,6 +139,11 @@ int main(int argc, char* argv[]) {
 
     Size segment_size = 32;
     mem_segment<unsigned int> segment(segment_size, mem_segment_type_s);
+    mem_segment<unsigned int>* tail = new mem_segment<unsigned int>();
+    segment.setBehind(tail);
+    mem_segment<unsigned int>* clone = segment.clone();
+
+    printf("segment cloned -- behind : %p \n", clone->behind());
 //#define SEGMENT_APPEND
 //#define SEGMENT_INSERT
 //#define SEGMENT_REMOVE
@@ -228,7 +233,7 @@ Error error;
      }*/
      
      for (int i = 0; i < new_array.size(); i++) {
-         std::cout << "Array Element " << i << " : " << array[i] << std::endl;
+         //std::cout << "Array Element " << i << " : " << array[i] << std::endl;
      }
      
      /*
