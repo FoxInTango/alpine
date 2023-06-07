@@ -273,19 +273,34 @@ Error error;
 #include <fstream>
      //std::ifstream input_stream("./input.txt");
      //std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
-     String is;
-     char* utf8 = 0;
+     
+     Array<String*> contents;
      char input[4];
-     memclr(input,128,0);
+     memclr(input,4,0);
      Index offset = 0;
+     bool newline = true;
      bool quit = false;
      while(!quit){
          get_input(input);
-         is.contact(input);
-         if(utf8) delete utf8;
-         utf8 = is;
-         memclr(input, 128, 0);
-         std::cout << utf8 << std::endl;
+         if(input[0] == '\n'){
+             String* is = new String(input);
+             contents.append(is);
+             if(*is == "quit"){
+                 
+                 quit == true;
+
+                 for(unsigned int = 0;i < contents.size();i ++){
+                     delete contents[i];
+                 }
+             }
+         }
+         
+         for (unsigned int = 0; i < contents.size(); i++) {
+             char* utf8 = *contents[i];
+             std::cout << "content " << i << " -- " << utf8 << std::endl;
+         }
+         memclr(input, 4, 0);
+         
      }
 
     return 0;
