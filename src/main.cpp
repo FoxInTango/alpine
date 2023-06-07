@@ -228,10 +228,10 @@ Error error;
 
      Array<unsigned int> new_array;
      new_array = array;
-     /*
+     
      for(unsigned int i = 0;i < 1024;i ++){
          array.insert(20230603,i * 10);
-     }*/
+     }
      
      for (int i = 0; i < new_array.size(); i++) {
          std::cout << "Array Element " << i << " : " << array[i] << std::endl;
