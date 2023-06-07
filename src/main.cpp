@@ -103,6 +103,24 @@ int Alpine::onevent(int event){ return event; }
 int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 
+/** buffer size >= 4
+ */
+Size get_input(char* buffer){
+    char* c = buffer;
+    memclr(c,4,0);
+    c[0] = getchar();
+    Index segment  = c[0] < 0b11000000 ? 1 : (c[0] < 0b11100000 ? 2 : (c[0] < 0b11110000 ? 3 : 4));
+
+    switch (segment) {
+    case 1: { return 1;}break;// 0000 0000 - 0000 007F    0xxxxxxx
+    case 2: { c[1] = getchar(); return 2; }break;// 0000 0080 - 0000 07FF    110xxxxx 10xxxxxx
+    case 3: { c[1] = getchar(); c[2] = getchar(); return 3; }break;// 0000 0800 - 0000 FFFF    1110xxxx 10xxxxxx 10xxxxxx
+    case 4: { c[1] = getchar(); c[2] = getchar(); c[3] = getchar(); return 4; }break;// 0001 0000 - 0010 FFFF    11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+    default:break;
+    }
+    return 0;
+}
+
 int main(int argc, char* argv[]) {
 
     arguments startup_arguments(argc,argv);
@@ -251,24 +269,25 @@ Error error;
 
      std::cout << "Array size " << array.size() * sizeof(unsigned int) << std::endl;
      */
-/*
+
 #include <fstream>
      //std::ifstream input_stream("./input.txt");
      //std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
      char input[128];
      memclr(input,128,0);
+     Index offset = 0;
      bool quit = false;
      while(!quit){
-         std::cin >> input;
-         //std::cout << "输入内容: " << input << std::endl;
-
-         if(String("quit") == input) quit = true;
-
-         
-         memclr(input, 128, 0);
-         std::cin.clear();
+         if(offset + 4 < 128){
+             offset += get_input(input + offset);
+         } else {
+             if (String("quit") == input) { quit = true;}
+             std::cout << "输入内容: " << input << std::endl;
+             memclr(input, 128, 0);
+             offset = 0;
+         }
      }
-*/
+
     return 0;
 }
 
