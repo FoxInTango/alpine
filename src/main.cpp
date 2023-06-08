@@ -226,7 +226,7 @@ Error error;
 
     
 
-    Array<unsigned int> array(69);
+    Array<unsigned int> array(32);
     /** Array 追加 测试
     
     for(int i= 0;i < 204800;i ++){
@@ -273,7 +273,7 @@ Error error;
 #include <fstream>
      //std::ifstream input_stream("./input.txt");
      //std::streambuf* cin_stream = std::cin.rdbuf(input_stream.rdbuf());
-     
+     /*
      Array<String*> contents;
      char input[4];
      memclr(input,4,0);
@@ -302,7 +302,7 @@ Error error;
          memclr(input, 4, 0);
          
      }
-
+     */
     return 0;
 }
 
