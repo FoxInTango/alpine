@@ -399,6 +399,7 @@ Error error;
       */
 
     struct lbt_node<int>* lbt = lbt_make(127);
+    lbt_node_traverse(lbt, 1, 0);
     for(int i = 0;i < 128;i ++){
         lbt_node_traverse(lbt,i,0);
         std::cout << std::endl;
