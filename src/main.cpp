@@ -131,47 +131,32 @@ struct lbt_node{
 };
 
 template<typename T>
-lbt_node<T>* lbt_make(const T& top){
-    struct lbt_node<T>* node = new struct lbt_node<T>();
-
-    if(node){
-        node->l = 0;
-        node->r = 0;
-        node->s = 0;
-
-        node->t = top;
-
-        lbt_make_branch(node);
-    }
-
-    return node;
-}
-
-template<typename T>
-bool lbt_make_branch(lbt_node<T>* node,const T& bl,const T& br,const T& top){
-    if(node){
-        if(node->s){
+bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) {
+    if (node) {
+        if (node->s) {
             node->l = new struct lbt_node<T>();
             node->r = new struct lbt_node<T>();
 
             node->l->s = node;
             node->r->s = node;
 
-            if(node->t < top){
+            if (node->t < top) {
                 node->l->t = ((node->t + bl) / 2) + 1;
                 node->r->t = ((node->t + node->s->t) / 2) + 1;
-            } else {
+            }
+            else {
                 node->l->t = ((node->t + node->s->t) / 2) + 1;
                 node->r->t = ((node->t + br) / 2) + 1;
             }
-            
+
             if ((((node->l->t + 1) / 2) + 1) == node->t) {
                 lbt_make_branch(node->l);
             }
             if ((((node->r->t + 1) / 2) + 1) == node->t) {
                 lbt_make_branch(node->r);
             }
-        } else {
+        }
+        else {
             node->l = new struct lbt_node<T>();
             node->r = new struct lbt_node<T>();
 
@@ -190,6 +175,25 @@ bool lbt_make_branch(lbt_node<T>* node,const T& bl,const T& br,const T& top){
         }
     }
 }
+
+template<typename T>
+lbt_node<T>* lbt_make(const T& top){
+    struct lbt_node<T>* node = new struct lbt_node<T>();
+
+    if(node){
+        node->l = 0;
+        node->r = 0;
+        node->s = 0;
+
+        node->t = top;
+
+        lbt_make_branch(node);
+    }
+
+    return node;
+}
+
+
 
 template<typename T>
 void lbt_node_traverse(lbt_node<T>* node,const Index& target,const Index& current){
