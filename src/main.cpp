@@ -130,7 +130,11 @@ struct lbt_node{
     T t;
 
     lbt_node(){
-        memclr(this,sizeof(lbt_node),0);
+        this->l = 0;
+        this->r = 0;
+        this->s = 0;
+
+        memclr(&this->t,sizeof(T),0);
     }
 
     ~lbt_node() {}
