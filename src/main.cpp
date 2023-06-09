@@ -128,10 +128,16 @@ struct lbt_node{
     lbt_node* r;
     lbt_node* s;
     T t;
+
+    lbt_node(){
+        memclr(this,sizeof(lbt_node),0);
+    }
+
+    ~lbt_node() {}
 };
 
 template<typename T>
-bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) {
+void lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) {
     if (node) {
         if (node->s) {
             node->l = new struct lbt_node<T>();
