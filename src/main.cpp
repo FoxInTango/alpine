@@ -160,11 +160,11 @@ void lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
                 node->r->t = ((node->t + br) / 2) + 1;
             }
            
-            if ((((node->l->t + 1) / 2) + 1) != node->t) {
-                //lbt_make_branch(node->l,bl,br,top);
+            if ((((node->l->t + 1) / 2) + 1) > 3) {
+                lbt_make_branch(node->l,bl,br,top);
             }
-            if ((((node->r->t + 1) / 2) + 1) != node->t) {
-                //lbt_make_branch(node->r, bl, br, top);
+            if ((((node->r->t + 1) / 2) + 1) < 253) {
+                lbt_make_branch(node->r, bl, br, top);
             }
         }
         else {
@@ -410,7 +410,7 @@ Error error;
         lbt_node_traverse(lbt,i,0);
         std::cout << std::endl;
     }*/
-    std::cout << "123 / 2" << (unsigned int)(123 / 2) << std::endl;
+    //std::cout << "123 / 2 -- " << (123 / 2) << std::endl;
     if(lbt) delete lbt;
     return 0;
 }
