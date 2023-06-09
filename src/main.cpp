@@ -121,7 +121,88 @@ Size get_input(char* buffer){
     return 0;
 }
 
-Array<Array<unsigned int>*>* lbt_make(const Size& size);
+
+template<typename T>
+struct lbt_node{
+    lbt_node* l;
+    lbt_node* r;
+    lbt_node* s;
+    T t;
+};
+
+template<typename T>
+lbt_node<T>* lbt_make(const T& top){
+    struct lbt_node<T>* node = new struct lbt_node<T>();
+
+    if(node){
+        node->l = 0;
+        node->r = 0;
+        node->s = 0;
+
+        node->t = top;
+
+        lbt_make_branch<T>(node);
+    }
+
+    return node;
+}
+
+template<typename T>
+bool lbt_make_branch(lbt_node<T>* node,const T& bl,const T& br,const T& top){
+    if(node){
+        if(node->s){
+            node->l = new struct lbt_node<T>();
+            node->r = new struct lbt_node<T>();
+
+            node->l->s = node;
+            node->r->s = node;
+
+            if(node->t < top){
+                node->l->t = ((node->t + bl) / 2) + 1;
+                node->r->t = ((node->t + node->s->t) / 2) + 1;
+            } else {
+                node->l->t = ((node->t + node->s->t) / 2) + 1;
+                node->r->t = ((node->t + br) / 2) + 1;
+            }
+            
+            if ((((node->l->t + 1) / 2) + 1) == node->t) {
+                lbt_make_branch(node->l);
+            }
+            if ((((node->r->t + 1) / 2) + 1) == node->t) {
+                lbt_make_branch(node->r);
+            }
+        } else {
+            node->l = new struct lbt_node<T>();
+            node->r = new struct lbt_node<T>();
+
+            node->l->s = node;
+            node->r->s = node;
+
+            node->l->t = ((bl + node->t) / 2) + 1;
+            node->r->t = ((br + node->t) / 2) + 1;
+
+            if ((((node->l->t + 1) / 2) + 1) == node->t) {
+                lbt_make_branch(node->l);
+            }
+            if ((((node->r->t + 1) / 2) + 1) == node->t) {
+                lbt_make_branch(node->r);
+            }
+        }
+    }
+}
+
+template<typename T>
+void lbt_node_traverse(lbt_node<T>* node,const Index& target,const Index& current){
+    if(node){
+        if (current == target) {
+            std::cout << node->t << std::endl;
+            return ;
+        }
+        lbt_node_traverse(node->l,target,current + 1);
+        lbt_node_traverse(node->r,target,current + 1);
+    }
+}
+
 
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
@@ -306,16 +387,10 @@ Error error;
      /** 分层二叉树
       */
 
-    Array<Array<unsigned int>*>* layers = lbt_make(255);
-
-    if(layers) delete layers;
+    struct lbt_node<int>* lbt = lbt_make(127);
+    for(int i = 0;i < 128;i ++){
+        lbt_node_traverse(lbt,i,0);
+    }
+    if(lbt) delete lbt;
     return 0;
-}
-
-Array<Array<unsigned int>*>* lbt_make(const Size& size){
-    Array<Array<unsigned int>*>* layers = new Array<Array<unsigned int>*>();
-
-
-
-    return layers;
 }
