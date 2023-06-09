@@ -141,7 +141,7 @@ lbt_node<T>* lbt_make(const T& top){
 
         node->t = top;
 
-        lbt_make_branch<T>(node);
+        lbt_make_branch(node);
     }
 
     return node;
