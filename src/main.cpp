@@ -150,10 +150,10 @@ bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
             }
 
             if ((((node->l->t + 1) / 2) + 1) == node->t) {
-                lbt_make_branch(node->l);
+                lbt_make_branch(node->l,bl,br,top);
             }
             if ((((node->r->t + 1) / 2) + 1) == node->t) {
-                lbt_make_branch(node->r);
+                lbt_make_branch(node->r, bl, br, top);
             }
         }
         else {
@@ -167,10 +167,10 @@ bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
             node->r->t = ((br + node->t) / 2) + 1;
 
             if ((((node->l->t + 1) / 2) + 1) == node->t) {
-                lbt_make_branch(node->l);
+                lbt_make_branch(node->l, bl, br, top);
             }
             if ((((node->r->t + 1) / 2) + 1) == node->t) {
-                lbt_make_branch(node->r);
+                lbt_make_branch(node->r, bl, br, top);
             }
         }
     }
