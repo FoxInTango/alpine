@@ -144,6 +144,7 @@ template<typename T>
 void lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) {
     if (node) {
         if (node->s) {
+            return ;
             node->l = new struct lbt_node<T>();
             node->r = new struct lbt_node<T>();
 
