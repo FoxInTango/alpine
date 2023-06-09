@@ -410,6 +410,7 @@ Error error;
         lbt_node_traverse(lbt,i,0);
         std::cout << std::endl;
     }*/
+    std::cout << "123 / 2" << 123 / 2 << std::endl;
     if(lbt) delete lbt;
     return 0;
 }
