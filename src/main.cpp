@@ -149,10 +149,10 @@ bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
                 node->r->t = ((node->t + br) / 2) + 1;
             }
 
-            if ((((node->l->t + 1) / 2) + 1) == node->t) {
+            if ((((node->l->t + 1) / 2) + 1) != node->t) {
                 lbt_make_branch(node->l,bl,br,top);
             }
-            if ((((node->r->t + 1) / 2) + 1) == node->t) {
+            if ((((node->r->t + 1) / 2) + 1) != node->t) {
                 lbt_make_branch(node->r, bl, br, top);
             }
         }
@@ -166,10 +166,10 @@ bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
             node->l->t = ((bl + node->t) / 2) + 1;
             node->r->t = ((br + node->t) / 2) + 1;
 
-            if ((((node->l->t + 1) / 2) + 1) == node->t) {
+            if ((((node->l->t + 1) / 2) + 1) != node->t) {
                 lbt_make_branch(node->l, bl, br, top);
             }
-            if ((((node->r->t + 1) / 2) + 1) == node->t) {
+            if ((((node->r->t + 1) / 2) + 1) != node->t) {
                 lbt_make_branch(node->r, bl, br, top);
             }
         }
@@ -200,7 +200,7 @@ template<typename T>
 void lbt_node_traverse(lbt_node<T>* node,const Index& target,const Index& current){
     if(node){
         if (current == target) {
-            std::cout << node->t << std::endl;
+            std::cout << node->t << "  ";
             return ;
         }
         lbt_node_traverse(node->l,target,current + 1);
@@ -395,6 +395,7 @@ Error error;
     struct lbt_node<int>* lbt = lbt_make(127);
     for(int i = 0;i < 128;i ++){
         lbt_node_traverse(lbt,i,0);
+        std::cout << std::endl;
     }
     if(lbt) delete lbt;
     return 0;
