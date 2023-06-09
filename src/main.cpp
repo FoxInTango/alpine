@@ -179,7 +179,8 @@ bool lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
 template<typename T>
 lbt_node<T>* lbt_make(const T& top){
     struct lbt_node<T>* node = new struct lbt_node<T>();
-
+    T bl = (top + 1) / 2 + 1;
+    T br = ((top + top -1) + 1) / 2 + 1;
     if(node){
         node->l = 0;
         node->r = 0;
@@ -187,7 +188,7 @@ lbt_node<T>* lbt_make(const T& top){
 
         node->t = top;
 
-        lbt_make_branch(node);
+        lbt_make_branch(node,bl,br,top);
     }
 
     return node;
