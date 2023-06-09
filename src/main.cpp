@@ -164,7 +164,7 @@ void lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
                 lbt_make_branch(node->l,bl,br,top);
             }
             if ((((node->r->t + 1) / 2) + 1) < 253) {
-                lbt_make_branch(node->r, bl, br, top);
+                lbt_make_branch(node->r, bl,br,top);
             }
         }
         else {
