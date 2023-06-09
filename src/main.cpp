@@ -121,8 +121,9 @@ Size get_input(char* buffer){
     return 0;
 }
 
-int main(int argc, char* argv[]) {
+Array<Array<unsigned int>*>* lbt_make(const Size& size);
 
+int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
@@ -223,9 +224,6 @@ Error error;
         std::cout << "    mem_lement " << i << " : " << segment[i].element << std::endl;
     }
 #endif // SEGMENT_REMOVE
-
-    
-
     Array<unsigned int> array(1024);
     /** Array 追加 测试
     
@@ -240,6 +238,7 @@ Error error;
 
     /** Array 插入 测试
      */
+     /*
      for(unsigned int i = 0;i < 1024;i ++){
          array.append(i);
      }
@@ -259,7 +258,7 @@ Error error;
 
      std::cout << "old array segment count : " << array.segmentCount() << std::endl;
      std::cout << "new array segment count : " << new_array.segmentCount() << std::endl;
-     
+     */
      /*
      for(unsigned int i = 0;i < 4096;i ++){
          if(array[i * 10] == 20230603){
@@ -303,6 +302,20 @@ Error error;
          
      }
      */
+
+     /** 分层二叉树
+      */
+
+    Array<Array<unsigned int>*>* layers = lbt_make(255);
+
+    if(layers) delete layers;
     return 0;
 }
 
+Array<Array<unsigned int>*>* lbt_make(const Size& size){
+    Array<Array<unsigned int>*>* layers = new Array<Array<unsigned int>*>();
+
+
+
+    return layers;
+}
