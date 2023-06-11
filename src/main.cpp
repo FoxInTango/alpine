@@ -259,12 +259,13 @@ unsigned int make_hash(unsigned char* content, unsigned long length){
                 segment_index_2 += (content[2] - content[1]) > 0 ? (content[2] - content[1]) : (content[1] - content[2]);
                 if(length > 3) {
                     segment_index_3 = content[2];
+                    segment_index_4 = content[0] * ~content[0];
                 }
             }
         }
     }
 
-    return segment_index_1 << 24 + segment_index_2 << 16 + segment_index_3 << 8 + segment_index_4;
+    return segment_index_1 * 255 * 255 * 255 + segment_index_2 * 255 * 255 + segment_index_3 * 255 + segment_index_4;
 }
 
 int main(int argc, char* argv[]) {
