@@ -410,6 +410,12 @@ Error error;
          
      }
      */
-     std::cout << " 0xFFFF / 255" << 0xFFFF / 255 << std::endl;
+     unsigned int max_ui;
+     unsigned char* max_p = (unsigned char*)&max_ui;
+     max_p[0] = 255;
+     max_p[1] = 255;
+     max_p[2] = 255;
+     max_p[3] = 255;
+     std::cout << " max_ui / 256 : " << max_ui / 256 << std::endl;
     return 0;
 }
