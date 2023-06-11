@@ -421,7 +421,7 @@ Error error;
          
      }
      */
-    char content[128] = "std::cout << i <<  << utf8 << std::endl;";
+    char* content = "std::cout << i <<  << utf8 << std::endl;";
 
     //memclr(content,128,0);
     for(unsigned int i = 0;i < 100000;i ++){
