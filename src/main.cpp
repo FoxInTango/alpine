@@ -222,6 +222,7 @@ void lbt_node_traverse(lbt_node<T>* node,const Index& target,const Index& curren
  * https://www.cnblogs.com/wanghetao/p/4658471.html 收集
  * https://www.cnblogs.com/duanxz/p/3506737.html 评测
  */
+/*
 #define M  249997
 #define M1 1000001
 #define M2 0xF0000000
@@ -240,6 +241,30 @@ unsigned int make_hash(unsigned char* content,unsigned long length){
     }
 
     return(hash % M);
+}
+*/
+unsigned int make_hash(unsigned char* content, unsigned long length){
+    Index segment_index_1 = 0;
+    Index segment_index_2 = 0;
+    Index segment_index_3 = 0;
+    Index segment_index_4 = 0;
+
+    if(length > 0) {
+        segment_index_1 = content[0];
+
+        if (length > 1) {
+            segment_index_1 += (content[1] - content[0]) > 0 ? (content[1] - content[0]) : (content[0] - content[1]);
+            segment_index_2  = content[1];
+            if(length > 2){
+                segment_index_2 += (content[2] - content[1]) > 0 ? (content[2] - content[1]) : (content[1] - content[2]);
+                if(length > 3) {
+                    segment_index_3 = content[2];
+                }
+            }
+        }
+    }
+
+    return segment_index_1 * 255 * 255 * 255 + segment_index_2 * 255 * 255 + segment_index_3 * 255 + segment_index_4;
 }
 
 int main(int argc, char* argv[]) {
