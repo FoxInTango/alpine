@@ -218,17 +218,27 @@ void lbt_node_traverse(lbt_node<T>* node,const Index& target,const Index& curren
         lbt_node_traverse(node->r,target,current + 1);
     }
 }
-
+/*
+ * https://www.cnblogs.com/wanghetao/p/4658471.html 收集
+ * https://www.cnblogs.com/duanxz/p/3506737.html 评测
+ */
+#define M  249997
+#define M1 1000001
+#define M2 0xF0000000
 unsigned int make_hash(unsigned char* content,unsigned long length){
+    unsigned int b = 378551;
+    unsigned int a = 63689;
+    unsigned int hash = 0;
+
     Index index = 0;
 
-    if(length < 4){
-    
+    while (index < length)
+    {
+        hash = hash * a + (content[index]++);
+        a *= b;
     }
 
-    while(index < length){
-    
-    }
+    return(hash % M);
 }
 
 int main(int argc, char* argv[]) {
@@ -410,12 +420,14 @@ Error error;
          
      }
      */
-     unsigned int max_ui;
-     unsigned char* max_p = (unsigned char*)&max_ui;
-     max_p[0] = 255;
-     max_p[1] = 255;
-     max_p[2] = 255;
-     max_p[3] = 255;
-     std::cout << " max_ui / 256 : " << max_ui / 256 << std::endl;
+    unsigned char content[128];
+    memclr(content,128,0);
+    for(unsigned int i = 0;i < 100000;i ++){
+        for(unsigned int j = 0;j < 64){
+            content[j] = make_hash(&j,1);
+        }
+
+        std::cout << "make hash -- " << content << " : " << make_hash(content,64) << std::endl;
+    }
     return 0;
 }
