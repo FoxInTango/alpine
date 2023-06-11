@@ -177,10 +177,10 @@ void lbt_make_branch(lbt_node<T>* node, const T& bl, const T& br, const T& top) 
             node->l->t = ((bl + node->t) / 2) + 1;
             node->r->t = ((br + node->t) / 2) + 1;
 
-            if ((((node->l->t + 1) / 2) + 1) != node->t) {
+            if ((((node->l->t + 1) / 2) + 1) != node->t) { // 判定条件较为复杂 本判定范围不足
                 lbt_make_branch(node->l, bl, br, top);
             }
-            if ((((node->r->t + 1) / 2) + 1) != node->t) {
+            if ((((node->r->t + 1) / 2) + 1) != node->t) { // 判定条件较为复杂 本判定范围不足
                 lbt_make_branch(node->r, bl, br, top);
             }
         }
@@ -400,17 +400,5 @@ Error error;
      }
      */
 
-     /** 分层二叉树
-      */
-
-    struct lbt_node<int>* lbt = lbt_make(127);
-    //lbt_node_traverse(lbt, 1, 0);
-    /*
-    for(int i = 0;i < 128;i ++){
-        lbt_node_traverse(lbt,i,0);
-        std::cout << std::endl;
-    }*/
-    //std::cout << "123 / 2 -- " << (123 / 2) << std::endl;
-    if(lbt) delete lbt;
     return 0;
 }

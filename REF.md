@@ -221,4 +221,9 @@
 
 # https://www.linux.com/training-tutorials/splice-hooking-unix-systems/
 
-# ANSI escape codes :https://notes.burke.libbey.me/ansi-escape-codes/ 
+# ANSI escape codes :https://notes.burke.libbey.me/ansi-escape-codes/
+
+# 红黑树:
+#     https://zh.unionpedia.org/i/%E9%B2%81%E9%81%93%E5%A4%AB%C2%B7%E6%8B%9C%E5%B0%94  鲁道夫·拜尔
+#     https://blog.csdn.net/qq_35987777/article/details/107572946 情况分类
+#     https://www.cnblogs.com/skywang12345/p/3245399.html 情况分类 
