@@ -423,7 +423,7 @@ Error error;
     unsigned char content[128];
     memclr(content,128,0);
     for(unsigned int i = 0;i < 100000;i ++){
-        for(unsigned int j = 0;j < 64){
+        for(unsigned int j = 0;j < 64;j ++){
             content[j] = make_hash((unsigned char*)&j,4);
         }
 
