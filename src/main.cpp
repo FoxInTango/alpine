@@ -236,6 +236,7 @@ unsigned int make_hash(unsigned char* content,unsigned long length){
     {
         hash = hash * a + (content[index]++);
         a *= b;
+        index ++;
     }
 
     return(hash % M);
