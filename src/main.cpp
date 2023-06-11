@@ -219,6 +219,17 @@ void lbt_node_traverse(lbt_node<T>* node,const Index& target,const Index& curren
     }
 }
 
+unsigned int make_hash(unsigned char* content,unsigned long length){
+    Index index = 0;
+
+    if(length < 4){
+    
+    }
+
+    while(index < length){
+    
+    }
+}
 
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
@@ -399,6 +410,6 @@ Error error;
          
      }
      */
-
+     std::cout << " 0xFFFF / 255" << 0xFFFF / 255 << std::endl;
     return 0;
 }
