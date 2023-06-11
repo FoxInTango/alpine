@@ -249,23 +249,30 @@ unsigned int make_hash(unsigned char* content, unsigned long length){
     Index segment_index_3 = 0;
     Index segment_index_4 = 0;
 
+    Index hash = 0;
+
     if(length > 0) {
         segment_index_1 = content[0];
 
         if (length > 1) {
-            segment_index_1 += (content[1] - content[0]) > 0 ? (content[1] - content[0]) : (content[0] - content[1]);
-            segment_index_2  = content[1];
+            segment_index_2  =  content[1];
             if(length > 2){
-                segment_index_2 += (content[2] - content[1]) > 0 ? (content[2] - content[1]) : (content[1] - content[2]);
+                segment_index_3 = content[2];
                 if(length > 3) {
-                    segment_index_3 = content[2];
-                    segment_index_4 = content[0] * ~content[0];
+                    segment_index_4 = content[3];
                 }
             }
         }
+
+        hash = segment_index_1 * 255 * 255 * 255 + segment_index_2 * 255 * 255 + segment_index_3 * 255 + segment_index_4;
+
+        Index index = 4;
+        while(index < length){
+            hash += content[index];
+        }
     }
 
-    return segment_index_1 * 255 * 255 * 255 + segment_index_2 * 255 * 255 + segment_index_3 * 255 + segment_index_4;
+    return hash;
 }
 
 int main(int argc, char* argv[]) {
@@ -452,7 +459,8 @@ Error error;
     //memclr(content,128,0);
     for(unsigned int i = 0;i < 100000;i ++){
         
-        std::cout << "make hash -- " << i << " : " << make_hash((unsigned char*)&i,1) << std::endl;
+        std::string s = std::to_string(i);
+        std::cout << "make hash -- " << i << " : " << make_hash(s.c_str(),s.length()) << std::endl;
     }
     return 0;
 }
