@@ -461,7 +461,7 @@ Error error;
     for(unsigned int i = 0;i < 1000;i ++){
         
         std::string s = std::to_string(i);
-        s += std::to_string(i * ^i);
+        s += std::to_string(i * ~i);
         unsigned int hash = make_hash((unsigned char*)s.c_str(), s.length());
         hash_array.append(hash);
         //std::cout << "make hash -- " << i << " : " << hash << std::endl;
