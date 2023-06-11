@@ -467,7 +467,7 @@ Error error;
     }
 
     for(unsigned int i = 0;i < hash_array.size();i ++){
-        for(unsigned int j = i; j < hash_array.size(); j++){
+        for(unsigned int j = i + 1; j < hash_array.size(); j++){
             if(hash_array[i] == hash_array[j]){
                 std::cout << "哈希冲突: " << "index = " << j << " hash=" << hash_array[j] << std::endl;
             }
