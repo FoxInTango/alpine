@@ -458,7 +458,7 @@ Error error;
     
     Array<unsigned int> hash_array;
     //memclr(content,128,0);
-    for(unsigned int i = 0;i < 100000;i ++){
+    for(unsigned int i = 0;i < 10000;i ++){
         
         std::string s = std::to_string(i);
         unsigned int hash = make_hash((unsigned char*)s.c_str(), s.length());
