@@ -234,7 +234,7 @@ unsigned int make_hash(unsigned char* content,unsigned long length){
 
     while (index < length)
     {
-        hash = hash * a + (content[index]++);
+        hash = hash * a + (content[index] + 1);
         a *= b;
         index ++;
     }
