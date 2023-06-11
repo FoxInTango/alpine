@@ -460,7 +460,7 @@ Error error;
     for(unsigned int i = 0;i < 100000;i ++){
         
         std::string s = std::to_string(i);
-        std::cout << "make hash -- " << i << " : " << make_hash(s.c_str(),s.length()) << std::endl;
+        std::cout << "make hash -- " << i << " : " << make_hash((unsigned char*)s.c_str(),s.length()) << std::endl;
     }
     return 0;
 }
