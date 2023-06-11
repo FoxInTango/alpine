@@ -426,7 +426,7 @@ Error error;
     //memclr(content,128,0);
     for(unsigned int i = 0;i < 100000;i ++){
         
-        std::cout << "make hash -- " << content << " : " << make_hash((unsigned char*)content,strlen(content)) << std::endl;
+        std::cout << "make hash -- " << i << " : " << make_hash((unsigned char*)&i,1) << std::endl;
     }
     return 0;
 }
