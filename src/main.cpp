@@ -471,6 +471,8 @@ Error error;
             if(hash_array[i] == hash_array[j]){
                 std::cout << "哈希冲突: " << "index = " << j << " hash=" << hash_array[j] << std::endl;
             }
+
+            else std::cout << "hash code : " << std::bitset<32>(hash_array[j]) << std::endl;
         }
     }
     return 0;
