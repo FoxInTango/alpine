@@ -421,14 +421,12 @@ Error error;
          
      }
      */
-    unsigned char content[128];
-    memclr(content,128,0);
-    for(unsigned int i = 0;i < 100000;i ++){
-        for(unsigned int j = 0;j < 64;j ++){
-            content[j] = make_hash((unsigned char*)&j,4);
-        }
+    char content[128] = "std::cout << i <<  << utf8 << std::endl;";
 
-        std::cout << "make hash -- " << content << " : " << make_hash(content,64) << std::endl;
+    //memclr(content,128,0);
+    for(unsigned int i = 0;i < 100000;i ++){
+        content[2] = (char)i;
+        std::cout << "make hash -- " << content << " : " << make_hash((unsigned char*)content,strlen(content)) << std::endl;
     }
     return 0;
 }
