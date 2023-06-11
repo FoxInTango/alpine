@@ -458,7 +458,7 @@ Error error;
     
     Array<unsigned int> hash_array;
     //memclr(content,128,0);
-    for(unsigned int i = 0;i < 1000;i ++){
+    for(unsigned int i = 0;i < 10000;i ++){
         
         std::string s = std::to_string(i);
         s += std::to_string(i * ~i);
@@ -470,7 +470,7 @@ Error error;
     for(unsigned int i = 0;i < hash_array.size();i ++){
         for(unsigned int j = i + 1; j < hash_array.size(); j++){
             if(hash_array[i] == hash_array[j]){
-                std::cout << "哈希冲突: " << "index = " << j << " hash=" << hash_array[j] << std::endl;
+                std::cout << "哈希冲突: " << "index : j=" << j  << " i=" << i << " hash=" << hash_array[j] << std::endl;
             }
 
             //else std::cout << "hash code : " << std::bitset<32>(hash_array[j]) << std::endl;
