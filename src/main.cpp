@@ -264,7 +264,7 @@ unsigned int make_hash(unsigned char* content, unsigned long length){
         }
     }
 
-    return segment_index_1 * 255 * 255 * 255 + segment_index_2 * 255 * 255 + segment_index_3 * 255 + segment_index_4;
+    return segment_index_1 << 24 + segment_index_2 << 16 + segment_index_3 << 8 + segment_index_4;
 }
 
 int main(int argc, char* argv[]) {
