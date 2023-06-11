@@ -424,7 +424,7 @@ Error error;
     memclr(content,128,0);
     for(unsigned int i = 0;i < 100000;i ++){
         for(unsigned int j = 0;j < 64){
-            content[j] = make_hash(&j,1);
+            content[j] = make_hash((unsigned char*)&j,4);
         }
 
         std::cout << "make hash -- " << content << " : " << make_hash(content,64) << std::endl;
