@@ -227,4 +227,6 @@
 #     https://zh.unionpedia.org/i/%E9%B2%81%E9%81%93%E5%A4%AB%C2%B7%E6%8B%9C%E5%B0%94  鲁道夫·拜尔
 #     https://blog.csdn.net/qq_35987777/article/details/107572946 情况分类
 #     https://www.cnblogs.com/skywang12345/p/3245399.html 情况分类
-#     https://blog.csdn.net/qq_40843865/article/details/102498310 删除操作  TODO -- 检查各种情况下的无子节点情况 
+#     https://blog.csdn.net/qq_40843865/article/details/102498310 删除操作  TODO -- 检查各种情况下的无子节点情况
+#     https://www.cnblogs.com/yinbiao/p/10732600.html 这位朋友看起来很厉害
+#     https://www.geeksforgeeks.org/introduction-to-red-black-tree/ 所以说很多东西，我们都是知其然不知其所以然，内部的很多规律定则，我们并没有搞清楚，只是照葫芦画瓢 
