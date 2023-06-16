@@ -230,3 +230,4 @@
 #     https://blog.csdn.net/qq_40843865/article/details/102498310 删除操作  TODO -- 检查各种情况下的无子节点情况
 #     https://www.cnblogs.com/yinbiao/p/10732600.html 这位朋友看起来很厉害
 #     https://www.geeksforgeeks.org/introduction-to-red-black-tree/ 所以说很多东西，我们都是知其然不知其所以然，内部的很多规律定则，我们并没有搞清楚，只是照葫芦画瓢 
+#     https://www.cnblogs.com/yinbiao/p/10732600.html
