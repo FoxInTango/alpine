@@ -183,7 +183,9 @@ submodule:
 	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp -rf ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
 	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp -rf ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
 	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
-	-cd ./modules/io_event_tls_engine && $(MAKE) && cd ../../ && cp -rf ./modules/io_event_tls_engine/lib/*  ./lib/modules && mkdir inc/modules/io_event_tls_engine && cp -rf ./modules/io_event_tls_engine/src/*.h  ./inc/modules/io_event_tls_engine
+	-cd ./modules/io_event_tls_engine  && $(MAKE) && cd ../../ && cp -rf ./modules/io_event_tls_engine/lib/*   ./lib/modules && mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
+	-cd ./modules/ast_standard_modules && $(MAKE) && cd ../../ && cp -rf ./modules/ast_standard_modules/lib/*  ./lib/modules && mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
+	-cd ./modules/es_language_js       && $(MAKE) && cd ../../ && cp -rf ./modules/es_language_js/lib/*        ./lib/modules && mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
 
 subinstall:
 	-mkdir libraries
@@ -212,59 +214,65 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libkernel.git
 	-mkdir modules
 	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
+	-cd modules && git clone https://github.com/FoxInTango/ast_standard_modules.git
+	-cd modules && git clone https://github.com/FoxInTango/es_language_js.git
 
 update:
 	-git pull
-	-cd ./libraries/libcpp        &&  git pull && cd ../
-	-cd ./libraries/libsystem     &&  git pull && cd ../
-	-cd ./libraries/libmm         &&  git pull && cd ../
-	-cd ./libraries/libstring     &&  git pull && cd ../
-	-cd ./libraries/liburl        &&  git pull && cd ../
-	-cd ./libraries/libmatch      &&  git pull && cd ../
-	-cd ./libraries/libhttp       &&  git pull && cd ../
-	-cd ./libraries/libstream     &&  git pull && cd ../
-	-cd ./libraries/libast        &&  git pull && cd ../
-	-cd ./libraries/libecho       &&  git pull && cd ../
-	-cd ./libraries/libmodel      &&  git pull && cd ../
-	-cd ./libraries/libmodule     &&  git pull && cd ../
-	-cd ./libraries/libevent      &&  git pull && cd ../
-	-cd ./libraries/libioevent    &&  git pull && cd ../
-	-cd ./libraries/libfsevent    &&  git pull && cd ../
-	-cd ./libraries/libipc        &&  git pull && cd ../
-	-cd ./libraries/libvm         &&  git pull && cd ../
-	-cd ./libraries/libvn         &&  git pull && cd ../
-	-cd ./libraries/libvh         &&  git pull && cd ../
-	-cd ./libraries/libes         &&  git pull && cd ../
-	-cd ./libraries/libarguments  &&  git pull && cd ../
-	-cd ./libraries/libmit        &&  git pull && cd ../
-	-cd ./libraries/libkernel     &&  git pull && cd ../
-	-cd ./modules/io_event_tls_engine && git pull && cd ../../
+	-cd ./libraries/libcpp             && git pull && cd ../
+	-cd ./libraries/libsystem          && git pull && cd ../
+	-cd ./libraries/libmm              && git pull && cd ../
+	-cd ./libraries/libstring          && git pull && cd ../
+	-cd ./libraries/liburl             && git pull && cd ../
+	-cd ./libraries/libmatch           && git pull && cd ../
+	-cd ./libraries/libhttp            && git pull && cd ../
+	-cd ./libraries/libstream          && git pull && cd ../
+	-cd ./libraries/libast             && git pull && cd ../
+	-cd ./libraries/libecho            && git pull && cd ../
+	-cd ./libraries/libmodel           && git pull && cd ../
+	-cd ./libraries/libmodule          && git pull && cd ../
+	-cd ./libraries/libevent           && git pull && cd ../
+	-cd ./libraries/libioevent         && git pull && cd ../
+	-cd ./libraries/libfsevent         && git pull && cd ../
+	-cd ./libraries/libipc             && git pull && cd ../
+	-cd ./libraries/libvm              && git pull && cd ../
+	-cd ./libraries/libvn              && git pull && cd ../
+	-cd ./libraries/libvh              && git pull && cd ../
+	-cd ./libraries/libes              && git pull && cd ../
+	-cd ./libraries/libarguments       && git pull && cd ../
+	-cd ./libraries/libmit             && git pull && cd ../
+	-cd ./libraries/libkernel          && git pull && cd ../
+	-cd ./modules/io_event_tls_engine  && git pull && cd ../../
+	-cd ./modules/ast_standard_modules && git pull && cd ../../
+	-cd ./modules/es_language_js       && git pull && cd ../../
 
 subclean:
-	-cd ./libraries/libcpp       &&  $(MAKE) clean
-	-cd ./libraries/libsystem    &&  $(MAKE) clean
-	-cd ./libraries/libmm        &&  $(MAKE) clean
-	-cd ./libraries/libstring    &&  $(MAKE) clean
-	-cd ./libraries/liburl       &&  $(MAKE) clean
-	-cd ./libraries/libmatch     &&  $(MAKE) clean
-	-cd ./libraries/libhttp      &&  $(MAKE) clean
-	-cd ./libraries/libstream    &&  $(MAKE) clean
-	-cd ./libraries/libast       &&  $(MAKE) clean
-	-cd ./libraries/libecho      &&  $(MAKE) clean
-	-cd ./libraries/libmodel     &&  $(MAKE) clean
-	-cd ./libraries/libmodule    &&  $(MAKE) clean
-	-cd ./libraries/libevent     &&  $(MAKE) clean
-	-cd ./libraries/libioevent   &&  $(MAKE) clean
-	-cd ./libraries/libfsevent   &&  $(MAKE) clean
-	-cd ./libraries/libipc       &&  $(MAKE) clean
-	-cd ./libraries/libvm        &&  $(MAKE) clean
-	-cd ./libraries/libvn        &&  $(MAKE) clean
-	-cd ./libraries/libvh        &&  $(MAKE) clean
-	-cd ./libraries/libes        &&  $(MAKE) clean
-	-cd ./libraries/libarguments &&  $(MAKE) clean
-	-cd ./libraries/libmit       &&  $(MAKE) clean
-	-cd ./libraries/libkernel    &&  $(MAKE) clean
-	-cd ./modules/io_event_tls_engine && $(MAKE) clean
+	-cd ./libraries/libcpp             && $(MAKE) clean
+	-cd ./libraries/libsystem          && $(MAKE) clean
+	-cd ./libraries/libmm              && $(MAKE) clean
+	-cd ./libraries/libstring          && $(MAKE) clean
+	-cd ./libraries/liburl             && $(MAKE) clean
+	-cd ./libraries/libmatch           && $(MAKE) clean
+	-cd ./libraries/libhttp            && $(MAKE) clean
+	-cd ./libraries/libstream          && $(MAKE) clean
+	-cd ./libraries/libast             && $(MAKE) clean
+	-cd ./libraries/libecho            && $(MAKE) clean
+	-cd ./libraries/libmodel           && $(MAKE) clean
+	-cd ./libraries/libmodule          && $(MAKE) clean
+	-cd ./libraries/libevent           && $(MAKE) clean
+	-cd ./libraries/libioevent         && $(MAKE) clean
+	-cd ./libraries/libfsevent         && $(MAKE) clean
+	-cd ./libraries/libipc             && $(MAKE) clean
+	-cd ./libraries/libvm              && $(MAKE) clean
+	-cd ./libraries/libvn              && $(MAKE) clean
+	-cd ./libraries/libvh              && $(MAKE) clean
+	-cd ./libraries/libes              && $(MAKE) clean
+	-cd ./libraries/libarguments       && $(MAKE) clean
+	-cd ./libraries/libmit             && $(MAKE) clean
+	-cd ./libraries/libkernel          && $(MAKE) clean
+	-cd ./modules/io_event_tls_engine  && $(MAKE) clean
+	-cd ./modules/ast_standard_modules && $(MAKE) clean
+	-cd ./modules/es_language_js       && $(MAKE) clean
 	rm lib/*.a;rm lib/*.so;rm lib/modules/*.so;rm lib/modules/*.ko
 
 devinstall:
@@ -291,7 +299,10 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libarguments.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmit.git
 	-cd libraries && git clone git@github.com:FoxInTango/libkernel.git
-	-mkdir modules && cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
+	-mkdir modules
+	-cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
+	-cd modules && git clone git@github.com:FoxInTango/ast_standard_modules.git
+	-cd modules && git clone git@github.com:FoxInTango/es_language_js.git
 
 publish:
 	-git add Makefile
@@ -308,30 +319,32 @@ publish:
 	-git add lib/.keepalive
 	-git add bin/.keepalive
 	-git commit -m "alpine" && git push
-	-cd ./libraries/libcpp        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libsystem     &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmm         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libstring     &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/liburl        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmatch      &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libhttp       &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libstream     &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libast        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libecho       &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmodel      &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmodule     &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libevent      &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libioevent    &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libfsevent    &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libipc        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libvm         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libvn         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libvh         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libes         &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libarguments  &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmit        &&  git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libkernel     &&  git add . && git commit -m "alpine" && git push
-	-cd ./modules/io_event_tls_engine && git add .&& git commit -m "alpine" && git push
+	-cd ./libraries/libcpp             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libsystem          && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libmm              && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libstring          && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/liburl             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libmatch           && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libhttp            && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libstream          && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libast             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libecho            && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libmodel           && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libmodule          && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libevent           && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libioevent         && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libfsevent         && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libipc             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libvm              && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libvn              && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libvh              && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libes              && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libarguments       && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libmit             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libkernel          && git add . && git commit -m "alpine" && git push
+	-cd ./modules/io_event_tls_engine  && git add . && git commit -m "alpine" && git push
+	-cd ./modules/ast_standard_modules && git add . && git commit -m "alpine" && git push
+	-cd ./modules/es_language_js       && git add . && git commit -m "alpine" && git push
 
 clean   :
 	rm -f $(TARGET_OBJECTS_AS)
