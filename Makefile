@@ -83,7 +83,7 @@ TARGET_OBJECTS_PP  += $(patsubst %.cpp,%.o,$(TARGET_SOURCES_PP))
 TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                         # $(wildcard $(TARGET_HEADERS_DIR)/*.h)
 
 # 链接库配置
-TARGET_LD_FLAGS    = -L ./lib -Wl,-rpath=${INSTALL_PATH_PREFIX}/lib
+TARGET_LD_FLAGS    = -L ./lib -Wl,-rpath=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}/lib
 
 # 需要链接的库  -lstring -lurl
 TARGET_LIBS = -larguments -lioevent -lfsevent -levent -lmit -lecho -lmodule -les -last -lvm -lmodel -lstream -lurl -lstring -lcpp -lstdc++ -lc         
