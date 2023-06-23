@@ -86,7 +86,7 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 TARGET_LD_FLAGS    = -L ./lib -Wl,-rpath=${INSTALL_PATH_PREFIX}/lib
 
 # 需要链接的库  -lstring -lurl
-TARGET_LIBS = -lioevent -lfsevent -levent -last -les -lvm -lmit -lecho -lmodule -larguments -lmodel -lstream -lstring -lcpp -lstdc++ -lc         
+TARGET_LIBS = -larguments -lioevent -lfsevent -levent -lmit -lecho -lmodule -les -last -lvm -lmodel -lstream -lstring -lcpp -lstdc++ -lc         
 
 ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
