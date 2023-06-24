@@ -280,6 +280,7 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
+    return 0;
 #ifdef USE_VIRTUAL_METHOD
     std::cout << "alpine.onevent :" << alpine.onevent(10) << std::endl;
 #else
