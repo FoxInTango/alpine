@@ -279,7 +279,6 @@ unsigned int make_hash(unsigned char* content, unsigned long length){
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
-    return 0;
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
     
 #ifdef USE_VIRTUAL_METHOD

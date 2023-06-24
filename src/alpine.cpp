@@ -39,7 +39,7 @@ int Alpine::init(const foxintango::arguments& args){
 
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
-    //foxintango::es_document doc;
+    foxintango::es_document doc;
     //doc.load(ALPINE_model_path_default);
 
     
