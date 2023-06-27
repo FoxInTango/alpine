@@ -26,7 +26,9 @@
 
 #define be_simple_and_keep_simple
 
+#include <libsystem/libsystem.h>
 #include <libes/libes.h>
+#include <libast/libast.h>
 #include <libmodel/libmodel.h>
 #include <libarguments/libarguments.h>
 #include <libfsevent/libfsevent.h>
@@ -55,10 +57,14 @@ class ModuleContext;
 typedef int (*event_callback)(const Alpine& alpine,int event);
 class Alpine {
 private:
+    System* system;
+    es_context* es;
     ModuleContext* moduleContext;
 public:
     Alpine();
     ~Alpine();
+public:
+    String modulePath();
 public:
     int init(const foxintango::arguments& args);
     int clone();

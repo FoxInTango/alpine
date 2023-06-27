@@ -32,7 +32,9 @@ void deal_signal(int signal){
 
 Alpine alpine;
 
-Alpine::Alpine(){}
+Alpine::Alpine(){
+    this->es = new es_context();
+}
 Alpine::~Alpine(){}
 
 int Alpine::init(const foxintango::arguments& args){
@@ -52,6 +54,9 @@ int Alpine::init(const foxintango::arguments& args){
     libioevent_startup(libioevent_startup_model);
     libfsevent_startup(libfsevent_startup_model);
     */
+
+    if(this->es){
+    }
     return 0;
 }
 
