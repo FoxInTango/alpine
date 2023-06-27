@@ -33,18 +33,14 @@ void deal_signal(int signal){
 Alpine alpine;
 
 Alpine::Alpine(){
+    this->system = new System();
     this->es = new es_context();
 }
 Alpine::~Alpine(){}
 
 int Alpine::init(const foxintango::arguments& args){
-
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
-    foxintango::es_document doc;
-    //doc.load(ALPINE_model_path_default);
-
-    
     Model alpine_startup_model;
     ME* libes_startup_model = alpine_startup_model.subelementAt("es");
     ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
@@ -56,6 +52,7 @@ int Alpine::init(const foxintango::arguments& args){
     */
 
     if(this->es){
+        this->es->load_language_module(this->system->currentPath() + "../lib/modules/es_language_js.so");
     }
     return 0;
 }
