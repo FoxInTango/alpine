@@ -154,7 +154,7 @@ $(TARGET_OBJECTS_CC):%.o:%.c
 	$(CC) ${CCFLAGS} $< -o $@
 $(TARGET_OBJECTS_PP):%.o:%.cpp
 	$(CC) ${PPFLAGS} $< -o $@
-	
+
 submodule:
 	rm -rf ./inc/*
 	rm -rf ./lib/*
