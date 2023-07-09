@@ -216,6 +216,9 @@ subinstall:
 	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
 	-cd modules && git clone https://github.com/FoxInTango/ast_standard_modules.git
 	-cd modules && git clone https://github.com/FoxInTango/es_language_js.git
+	-mkdir templates
+	-cd templates && git clone https://github.com/FoxInTango/ast_module_template.git
+	-cd templates && git clone https://github.com/FoxInTango/es_language_template.git
 
 update:
 	-git pull
@@ -245,6 +248,8 @@ update:
 	-cd ./modules/io_event_tls_engine  && git pull && cd ../../
 	-cd ./modules/ast_standard_modules && git pull && cd ../../
 	-cd ./modules/es_language_js       && git pull && cd ../../
+	-cd ./templates/ast_module_template && git pull 
+	-cd ./templates/es_language_template && git pull
 
 subclean:
 	-cd ./libraries/libcpp             && $(MAKE) clean
@@ -303,6 +308,9 @@ devinstall:
 	-cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
 	-cd modules && git clone git@github.com:FoxInTango/ast_standard_modules.git
 	-cd modules && git clone git@github.com:FoxInTango/es_language_js.git
+	-mkdir templates
+	-cd templates && git clone git@github.com:FoxInTango/ast_module_template
+	-cd templates && git clone git@github.com:FoxInTango/es_language_template
 
 publish:
 	-git add Makefile
@@ -345,6 +353,8 @@ publish:
 	-cd ./modules/io_event_tls_engine  && git add . && git commit -m "alpine" && git push
 	-cd ./modules/ast_standard_modules && git add . && git commit -m "alpine" && git push
 	-cd ./modules/es_language_js       && git add . && git commit -m "alpine" && git push
+	-cd ./templates/ast_module_template && git add . && git commit -m "alpine" && git push
+	-cd ./templates/es_language_template && git add . && git commit -m "alpine" && git push
 
 clean   :
 	rm -f $(TARGET_OBJECTS_AS)
