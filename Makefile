@@ -222,32 +222,32 @@ subinstall:
 
 update:
 	-git pull
-	-cd ./libraries/libcpp             && git pull && cd ../
-	-cd ./libraries/libsystem          && git pull && cd ../
-	-cd ./libraries/libmm              && git pull && cd ../
-	-cd ./libraries/libstring          && git pull && cd ../
-	-cd ./libraries/liburl             && git pull && cd ../
-	-cd ./libraries/libmatch           && git pull && cd ../
-	-cd ./libraries/libhttp            && git pull && cd ../
-	-cd ./libraries/libstream          && git pull && cd ../
-	-cd ./libraries/libast             && git pull && cd ../
-	-cd ./libraries/libecho            && git pull && cd ../
-	-cd ./libraries/libmodel           && git pull && cd ../
-	-cd ./libraries/libmodule          && git pull && cd ../
-	-cd ./libraries/libevent           && git pull && cd ../
-	-cd ./libraries/libioevent         && git pull && cd ../
-	-cd ./libraries/libfsevent         && git pull && cd ../
-	-cd ./libraries/libipc             && git pull && cd ../
-	-cd ./libraries/libvm              && git pull && cd ../
-	-cd ./libraries/libvn              && git pull && cd ../
-	-cd ./libraries/libvh              && git pull && cd ../
-	-cd ./libraries/libes              && git pull && cd ../
-	-cd ./libraries/libarguments       && git pull && cd ../
-	-cd ./libraries/libmit             && git pull && cd ../
-	-cd ./libraries/libkernel          && git pull && cd ../
-	-cd ./modules/io_event_tls_engine  && git pull && cd ../../
-	-cd ./modules/ast_standard_modules && git pull && cd ../../
-	-cd ./modules/es_language_js       && git pull && cd ../../
+	-cd ./libraries/libcpp             && git pull
+	-cd ./libraries/libsystem          && git pull
+	-cd ./libraries/libmm              && git pull
+	-cd ./libraries/libstring          && git pull
+	-cd ./libraries/liburl             && git pull
+	-cd ./libraries/libmatch           && git pull
+	-cd ./libraries/libhttp            && git pull
+	-cd ./libraries/libstream          && git pull
+	-cd ./libraries/libast             && git pull
+	-cd ./libraries/libecho            && git pull
+	-cd ./libraries/libmodel           && git pull
+	-cd ./libraries/libmodule          && git pull
+	-cd ./libraries/libevent           && git pull
+	-cd ./libraries/libioevent         && git pull
+	-cd ./libraries/libfsevent         && git pull
+	-cd ./libraries/libipc             && git pull
+	-cd ./libraries/libvm              && git pull
+	-cd ./libraries/libvn              && git pull
+	-cd ./libraries/libvh              && git pull
+	-cd ./libraries/libes              && git pull
+	-cd ./libraries/libarguments       && git pull
+	-cd ./libraries/libmit             && git pull
+	-cd ./libraries/libkernel          && git pull
+	-cd ./modules/io_event_tls_engine  && git pull
+	-cd ./modules/ast_standard_modules && git pull
+	-cd ./modules/es_language_js       && git pull
 	-cd ./templates/ast_module_template && git pull 
 	-cd ./templates/es_language_template && git pull
 
