@@ -42,9 +42,9 @@ int Alpine::init(const foxintango::arguments& args){
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
     Model alpine_startup_model;
-    ME* libes_startup_model = alpine_startup_model.subelementAt("es");
-    ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
-    ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
+    const ME* libes_startup_model = alpine_startup_model.subelementAt("es");
+    const ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
+    const ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
     /*
     libes_init();
     libioevent_startup(libioevent_startup_model);
