@@ -277,6 +277,7 @@ unsigned int make_hash(unsigned char* content, unsigned long length){
 }
 
 int main(int argc, char* argv[]) {
+    alpine.onevent = 0;
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
