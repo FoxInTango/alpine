@@ -165,6 +165,7 @@ submodule:
 	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
 	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -rf ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
 	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
+	-cd ./libraries/libelf       && $(MAKE) && cd ../.. && cp -rf ./libraries/libelf/lib/*        ./lib && mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
 	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -rf ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
 	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
 	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
@@ -195,6 +196,7 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libstring.git
 	-cd libraries && git clone https://github.com/FoxInTango/liburl.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmatch.git
+	-cd libraries && git clone https://github.com/FoxInTango/libelf.git
 	-cd libraries && git clone https://github.com/FoxInTango/libhttp.git
 	-cd libraries && git clone https://github.com/FoxInTango/libstream.git
 	-cd libraries && git clone https://github.com/FoxInTango/libast.git
@@ -228,6 +230,7 @@ update:
 	-cd ./libraries/libstring          && git pull
 	-cd ./libraries/liburl             && git pull
 	-cd ./libraries/libmatch           && git pull
+	-cd ./libraries/libelf             && git pull
 	-cd ./libraries/libhttp            && git pull
 	-cd ./libraries/libstream          && git pull
 	-cd ./libraries/libast             && git pull
@@ -258,6 +261,7 @@ subclean:
 	-cd ./libraries/libstring          && $(MAKE) clean
 	-cd ./libraries/liburl             && $(MAKE) clean
 	-cd ./libraries/libmatch           && $(MAKE) clean
+	-cd ./libraries/libelf             && $(MAKE) clean
 	-cd ./libraries/libhttp            && $(MAKE) clean
 	-cd ./libraries/libstream          && $(MAKE) clean
 	-cd ./libraries/libast             && $(MAKE) clean
@@ -287,6 +291,7 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libstring.git
 	-cd libraries && git clone git@github.com:FoxInTango/liburl.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmatch.git
+	-cd libraries && git clone git@github.com:FoxInTango/libelf.git
 	-cd libraries && git clone git@github.com:FoxInTango/libhttp.git
 	-cd libraries && git clone git@github.com:FoxInTango/libstream.git
 	-cd libraries && git clone git@github.com:FoxInTango/libast.git
@@ -333,6 +338,7 @@ publish:
 	-cd ./libraries/libstring          && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/liburl             && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libmatch           && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libelf             && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libhttp            && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libstream          && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libast             && git add . && git commit -m "alpine" && git push
