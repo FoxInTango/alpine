@@ -188,6 +188,37 @@ submodule:
 	-cd ./modules/ast_standard_modules && $(MAKE) && cd ../../ && cp -rf ./modules/ast_standard_modules/lib/*  ./lib/modules && mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
 	-cd ./modules/es_language_js       && $(MAKE) && cd ../../ && cp -rf ./modules/es_language_js/lib/*        ./lib/modules && mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
 
+subheader:
+	rm -rf ./inc/*
+	-mkdir ./inc/modules
+	-mkdir inc/libcpp       && cp -rf ./libraries/libcpp/src/*.h        ./inc/libcpp
+	-mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
+	-mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
+	-mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
+	-mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
+	-mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
+	-mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
+	-mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
+	-mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
+	-mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
+	-mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
+	-mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
+	-mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
+	-mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
+	-mkdir inc/libevent     && cp -rf ./libraries/libevent/src/*.h      ./inc/libevent
+	-mkdir inc/libioevent   && cp -rf ./libraries/libioevent/src/*.h    ./inc/libioevent
+	-mkdir inc/libfsevent   && cp -rf ./libraries/libfsevent/src/*.h    ./inc/libfsevent
+	-mkdir inc/libipc       && cp -rf ./libraries/libipc/src/*.h        ./inc/libipc
+	-mkdir inc/libvm        && cp -rf ./libraries/libvm/src/*.h         ./inc/libvm
+	-mkdir inc/libvn        && cp -rf ./libraries/libvn/src/*.h         ./inc/libvn
+	-mkdir inc/libvh        && cp -rf ./libraries/libvh/src/*.h         ./inc/libvh
+	-mkdir inc/libes        && cp -rf ./libraries/libes/src/*.h         ./inc/libes
+	-mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
+	-mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
+	-mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
+	-mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
+	-mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
+
 subinstall:
 	-mkdir libraries
 	-cd libraries && git clone https://github.com/FoxInTango/libcpp.git
