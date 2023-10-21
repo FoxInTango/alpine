@@ -48,7 +48,12 @@ using namespace foxintango;
  *  io client : alpine io connect -ip 192.168.1.6 -port 80
  *  io server : alpine io listen  -ip "0.0.0.0"   -port 80
  */
-
+#include "alpine.h"
+#ifdef USE_VIRTUAL_METHOD
+int Alpine::onevent(int event) { return event; }
+#else
+int onevent(const Alpine& alpine, int e) { return e; }
+#endif
 #include "alpine.h"
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
