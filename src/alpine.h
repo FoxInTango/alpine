@@ -34,6 +34,8 @@
 #include <libfsevent/libfsevent.h>
 #include <libioevent/libioevent.h>
 */
+#include <libstring/libstring.h>
+using namespace foxintango;
 /**
  * alpine:
  * a:"",
@@ -65,7 +67,7 @@ public:
     Alpine();
     ~Alpine();
 public:
-    //String modulePath();
+    String modulePath();
 public:
     //int init(const foxintango::arguments& args);
     int clone();
