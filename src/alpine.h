@@ -83,7 +83,7 @@ public:
      */
     int connect(const char* url);
 #ifdef USE_VIRTUAL_METHOD
-    virtual int onevent(int event) = 0;
+    virtual int onevent(int event);
 #else
     event_callback onevent = 0;
 #endif
