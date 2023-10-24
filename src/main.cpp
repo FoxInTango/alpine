@@ -27,8 +27,8 @@
  * 读经只为毁三观，毁掉三观使劲参
  * 若是今生参不透，来世还来颠倒颠
  */
-#include <libelf/libelf.h>
-#include <libast/libast.h>
+//#include <libelf/libelf.h>
+//#include <libast/libast.h>
 #include <libarguments/libarguments.h>
 using namespace foxintango;
 #include <vector>
@@ -48,13 +48,12 @@ using namespace foxintango;
  *  io client : alpine io connect -ip 192.168.1.6 -port 80
  *  io server : alpine io listen  -ip "0.0.0.0"   -port 80
  */
-#include "alpine.h"
+//#include "alpine.h"
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event) { return event; }
 #else
 int onevent(const Alpine& alpine, int e) { return e; }
 #endif
-#include "alpine.h"
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
@@ -63,8 +62,8 @@ int main(int argc, char* argv[]) {
 #ifdef USE_VIRTUAL_METHOD
     std::cout << "alpine.onevent :" << alpine.onevent(10) << std::endl;
 #else
-    alpine.onevent = onevent;
-    std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
+    //alpine.onevent = onevent;
+    //std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 
     ELFFile elf;
