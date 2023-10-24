@@ -33,6 +33,6 @@
 using namespace foxintango;
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
-    startup_arguments.echo();
+    //startup_arguments.echo();
     return 0;
 }
