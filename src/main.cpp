@@ -44,28 +44,9 @@ using namespace foxintango;
 #include <locale>
 #include <signal.h>
 #include <sched.h>
-/** TESTS
- *  io client : alpine io connect -ip 192.168.1.6 -port 80
- *  io server : alpine io listen  -ip "0.0.0.0"   -port 80
- */
-//#include "alpine.h"
-#ifdef USE_VIRTUAL_METHOD
-int Alpine::onevent(int event) { return event; }
-#else
-//int onevent(const Alpine& alpine, int e) { return e; }
-#endif
-int main(int argc, char* argv[]) {
-    arguments startup_arguments(argc,argv);
-    startup_arguments.echo();
-    //std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
-    
-#ifdef USE_VIRTUAL_METHOD
-    std::cout << "alpine.onevent :" << alpine.onevent(10) << std::endl;
-#else
-    //alpine.onevent = onevent;
-    //std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
-#endif 
 
-    //ELFFile elf;
+int main(int argc, char* argv[]) {
+    //arguments startup_arguments(argc,argv);
+    //startup_arguments.echo();
     return 0;
 }
