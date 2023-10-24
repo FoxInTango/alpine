@@ -37,7 +37,7 @@ Alpine::Alpine(){
     //this->es = new es_context();
 }
 Alpine::~Alpine(){}
-
+int Alpine::onevent(int event) { return event; }
 int Alpine::init(const foxintango::arguments& args){
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
