@@ -40,28 +40,23 @@ Alpine::Alpine(){
 }
 Alpine::~Alpine(){}
 int Alpine::onevent(int event) { return event; }
-/*
 int Alpine::init(const foxintango::arguments& args){
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
-  */  /*
     Model alpine_startup_model;
     const ME* libes_startup_model = alpine_startup_model.subelementAt("es");
     const ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
     const ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
-    */
     /*
     libes_init();
     libioevent_startup(libioevent_startup_model);
     libfsevent_startup(libfsevent_startup_model);
     */
-    /*
     if(this->es){
         //this->es->load_language_module(this->system->currentPath() + "../lib/modules/es_language_js.so");
     }
     return 0;
 }
-*/
 
 int Alpine::clone(){
     return 0;

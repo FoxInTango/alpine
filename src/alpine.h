@@ -30,10 +30,11 @@
 #include <libes/libes.h>
 #include <libast/libast.h>
 #include <libmodel/libmodel.h>
-#include <libarguments/libarguments.h>
+
 #include <libfsevent/libfsevent.h>
 #include <libioevent/libioevent.h>
 */
+#include <libarguments/libarguments.h>
 #include <libstring/libstring.h>
 using namespace foxintango;
 /**
@@ -69,7 +70,7 @@ public:
 public:
     String modulePath();
 public:
-    //int init(const foxintango::arguments& args);
+    int init(const foxintango::arguments& args);
     int clone();
 
     //int watch(const int& fd, const foxintango::Model& option);
