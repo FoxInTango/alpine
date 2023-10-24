@@ -29,22 +29,8 @@
  */
 //#include <libelf/libelf.h>
 //#include <libast/libast.h>
-#include <libarguments/libarguments.h>
+//#include <libarguments/libarguments.h>
 using namespace foxintango;
-#include <vector>
-#include <map>
-#include <set>
-#include <bitset>
-#include <fstream>
-#include <codecvt>
-#include <iostream>
-#include <string>
-#include <cstring>
-#include <cassert>
-#include <locale>
-#include <signal.h>
-#include <sched.h>
-
 int main(int argc, char* argv[]) {
     //arguments startup_arguments(argc,argv);
     //startup_arguments.echo();
