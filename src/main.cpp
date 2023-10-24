@@ -61,12 +61,12 @@ int main(int argc, char* argv[]) {
     std::cout << "Alpine Init: " << alpine.init(startup_arguments) << std::endl;
     
 #ifdef USE_VIRTUAL_METHOD
-    //std::cout << "alpine.onevent :" << alpine.onevent(10) << std::endl;
+    std::cout << "alpine.onevent :" << alpine.onevent(10) << std::endl;
 #else
     alpine.onevent = onevent;
     std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 
-    //ELFFile elf;
+    ELFFile elf;
     return 0;
 }
