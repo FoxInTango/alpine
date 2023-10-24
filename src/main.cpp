@@ -52,7 +52,7 @@ using namespace foxintango;
 #ifdef USE_VIRTUAL_METHOD
 int Alpine::onevent(int event) { return event; }
 #else
-int onevent(const Alpine& alpine, int e) { return e; }
+//int onevent(const Alpine& alpine, int e) { return e; }
 #endif
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
