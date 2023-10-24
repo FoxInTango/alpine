@@ -32,7 +32,7 @@ void deal_signal(int signal){
 
 }
 
-//Alpine alpine;
+Alpine alpine;
 
 Alpine::Alpine(){
     //this->system = new System();
@@ -65,7 +65,6 @@ int Alpine::clone(){
     return 0;
 }
 
-/*
 int Alpine::watch(const int& fd, const foxintango::Model& option){
     return 0;
 }
@@ -73,7 +72,6 @@ int Alpine::watch(const int& fd, const foxintango::Model& option){
 int Alpine::watch(const char* path, const foxintango::Model& option){
     return 0;
 }
-*/
 int Alpine::connect(const char* url){
     return 0;
 }
