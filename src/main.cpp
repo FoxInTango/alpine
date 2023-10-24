@@ -32,7 +32,7 @@
 #include <libarguments/libarguments.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
-    arguments startup_arguments(argc,argv);
+    //arguments startup_arguments(argc,argv);
     //startup_arguments.echo();
     return 0;
 }
