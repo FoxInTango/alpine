@@ -66,6 +66,6 @@ int main(int argc, char* argv[]) {
     //std::cout << "alpine.onevent :" << alpine.onevent(alpine, 10) << std::endl;
 #endif 
 
-    ELFFile elf;
+    //ELFFile elf;
     return 0;
 }
