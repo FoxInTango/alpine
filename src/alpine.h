@@ -65,13 +65,13 @@ public:
     Alpine();
     ~Alpine();
 public:
-    String modulePath();
+    //String modulePath();
 public:
-    int init(const foxintango::arguments& args);
+    //int init(const foxintango::arguments& args);
     int clone();
 
-    int watch(const int& fd, const foxintango::Model& option);
-    int watch(const char* path, const foxintango::Model& option);
+    //int watch(const int& fd, const foxintango::Model& option);
+    //int watch(const char* path, const foxintango::Model& option);
     /**
      * url:ip 版本检测
      *     us|uss://                  UNIX   Socket
