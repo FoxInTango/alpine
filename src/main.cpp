@@ -27,12 +27,12 @@
  * 读经只为毁三观，毁掉三观使劲参
  * 若是今生参不透，来世还来颠倒颠
  */
-//#include <libelf/libelf.h>
-//#include <libast/libast.h>
+#include <libelf/libelf.h>
+#include <libast/libast.h>
 #include <libarguments/libarguments.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
-    arguments startup_arguments(argc,argv);
+    //arguments startup_arguments(argc,argv);
     //startup_arguments.echo();
     return 0;
 }
