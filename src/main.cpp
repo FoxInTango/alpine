@@ -30,9 +30,17 @@
 #include <libelf/libelf.h>
 #include <libast/libast.h>
 #include <libarguments/libarguments.h>
+
+#include <stdio.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
     //arguments startup_arguments(argc,argv);
     //startup_arguments.echo();
+
+    ELFFile elf;
+    int r = elf.open("lib/libcpp.so");
+
+    if(r){ printf("libcpp.so opened.\n");}
+    else printf("libcpp.so missed.\n");
     return 0;
 }
