@@ -40,7 +40,6 @@ using namespace foxintango;
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
-    arguments startup_arguments;
     alpine.init(startup_arguments);
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
