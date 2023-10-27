@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     //startup_arguments.echo();
     //alpine.init(startup_arguments);
 
-    ME me;
+    ME me(1);
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
