@@ -38,9 +38,11 @@
 #include <stdio.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
-    arguments startup_arguments(argc,argv);
+    //arguments startup_arguments(argc,argv);
     //startup_arguments.echo();
     //alpine.init(startup_arguments);
+
+    ME me;
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
