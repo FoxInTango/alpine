@@ -146,7 +146,7 @@ endif
 ALL : $(TARGETS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -o $@ $^ -fPIE -static $(TARGET_LIBS) ${TARGET_LD_FLAGS} #
+	$(CC) -o $@ $^ -static $(TARGET_LIBS) ${TARGET_LD_FLAGS} #-fPIE
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
