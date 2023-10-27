@@ -51,8 +51,8 @@ int Alpine::init(const foxintango::arguments& args){
     
     
     libes_init();
-    libioevent_startup(libioevent_startup_model);
-    libfsevent_startup(libfsevent_startup_model);
+    libioevent_startup(*libioevent_startup_model);
+    libfsevent_startup(*libfsevent_startup_model);
     
     
     if(this->es){
