@@ -42,7 +42,8 @@ int main(int argc, char* argv[]) {
     //startup_arguments.echo();
     //alpine.init(startup_arguments);
 
-    ME me(1);
+    //ME me(1);
+    ASTContext* c = new ASTContext();
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
