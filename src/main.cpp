@@ -30,6 +30,7 @@
  * 当我来到这个世界的时候，他们就在瞎胡闹。于是，我以为人生就是跟他们一样，跟他们一起，瞎胡闹。
  * 后来，我意识到生命的意义并不在于瞎胡闹。所以，我不想继续瞎胡闹了，但他们似乎并不允许有人不瞎胡闹 -- 他们用各种方式诱惑，逼迫别人跟他们一起瞎胡闹。
  */
+#include "alpine.h"
 #include <libelf/libelf.h>
 #include <libast/libast.h>
 #include <libarguments/libarguments.h>
@@ -39,7 +40,8 @@ using namespace foxintango;
 int main(int argc, char* argv[]) {
     //arguments startup_arguments(argc,argv);
     //startup_arguments.echo();
-
+    arguments startup_arguments;
+    alpine.init(startup_arguments);
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
