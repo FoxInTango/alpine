@@ -56,7 +56,7 @@ int Alpine::init(const foxintango::arguments& args){
     
     
     if(this->es){
-        this->es->load_language_module(this->system->currentPath() + "../lib/modules/es_language_js.so");
+        //this->es->load_language_module(this->system->currentPath() + "../lib/modules/es_language_js.so");
     }
     return 0;
 }
