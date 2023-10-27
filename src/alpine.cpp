@@ -35,7 +35,7 @@ void deal_signal(int signal){
 Alpine alpine;
 
 Alpine::Alpine(){
-    //this->system = new System();
+    this->system = new System();
     this->es = new es_context();
 }
 Alpine::~Alpine(){}
