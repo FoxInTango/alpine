@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
 
     //ME me(1);
     //ASTContext* c = new ASTContext();
-    Error e;
+    //Error e;
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
