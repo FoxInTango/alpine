@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     //ME me(1);
     //ASTContext* c = new ASTContext();
     Error e;
-    //Model alpine_startup_model;
+    Model alpine_startup_model;
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
