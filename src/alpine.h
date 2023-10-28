@@ -90,7 +90,7 @@ public:
 #endif
 };
 
-extern "C" Alpine alpine;
+//extern "C" Alpine alpine;
 
 #endif
 

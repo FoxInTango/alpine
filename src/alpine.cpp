@@ -32,7 +32,7 @@ void deal_signal(int signal){
 
 }
 
-Alpine alpine;
+//Alpine alpine;
 
 Alpine::Alpine(){
     //this->system = new System();
