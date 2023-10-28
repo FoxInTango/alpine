@@ -50,14 +50,14 @@ int Alpine::init(const foxintango::arguments& args){
     const ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
     
     
-    libes_init();
+    //libes_init();
     //libioevent_startup(*libioevent_startup_model);
     //libfsevent_startup(*libfsevent_startup_model);
     
-    
+    /*
     if(this->es){
         //this->es->load_language_module(this->system->currentPath() + "../lib/modules/es_language_js.so");
-    }
+    }*/
     return 0;
 }
 
