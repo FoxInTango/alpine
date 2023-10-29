@@ -33,6 +33,7 @@
 #include "alpine.h"
 #include <libelf/libelf.h>
 #include <libast/libast.h>
+#include <libmodel/libmodel.h>
 #include <libarguments/libarguments.h>
 
 #include <stdio.h>
@@ -41,11 +42,11 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
-    //Model alpine_startup_model(1);
+    Model alpine_startup_model(1);
     
     ASTContext* c = new ASTContext();
     if(c){
-        printf("ast context alloc ok.");
+        printf("ast context alloc ok.\n");
     }
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
