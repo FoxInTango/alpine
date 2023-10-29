@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     //ME me(1);
     //ASTContext* c = new ASTContext();
     Error e(1,"some thing is wrong.");
-    printf("Error: %d,%s\n",e.description,e.code);
+    printf("Error: %d,%s\n",e.code,e.description);
     //Model alpine_startup_model(1);
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
