@@ -44,7 +44,9 @@ int main(int argc, char* argv[]) {
     //Model alpine_startup_model(1);
     
     ASTContext* c = new ASTContext();
-    
+    if(c){
+        printf("ast context alloc ok.");
+    }
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
     
