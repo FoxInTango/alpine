@@ -41,10 +41,10 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
-    Model alpine_startup_model(1);
+    //Model alpine_startup_model(1);
     
-    ASTContext* c = new ASTContext();
-    return 0;
+    //ASTContext* c = new ASTContext();
+    
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
     
