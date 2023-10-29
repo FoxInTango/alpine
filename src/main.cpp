@@ -38,15 +38,15 @@
 #include <stdio.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
-    //arguments startup_arguments(argc,argv);
-    //startup_arguments.echo();
-    //alpine.init(startup_arguments);
+    arguments startup_arguments(argc,argv);
+    startup_arguments.echo();
+    alpine.init(startup_arguments);
 
     
-    //ASTContext* c = new ASTContext();
+    ASTContext* c = new ASTContext();
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
-    //Model alpine_startup_model(1);
+    Model alpine_startup_model(1);
 
     ME me("anything matter?");
     ELFFile elf;
