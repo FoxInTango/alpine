@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
     startup_arguments.echo();
 
     
-    //alpine.init(startup_arguments);
+    alpine.init(startup_arguments);
 
     return 0;
     ASTContext* c = new ASTContext();
