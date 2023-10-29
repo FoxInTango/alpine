@@ -50,9 +50,6 @@ int main(int argc, char* argv[]) {
     }
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
-    
-
-    
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
