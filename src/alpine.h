@@ -25,9 +25,9 @@
 #define _alpine_h_
 
 #define be_simple_and_keep_simple
-//#include <libsystem/libsystem.h>
-//#include <libes/libes.h>
-//#include <libast/libast.h>
+#include <libsystem/libsystem.h>
+#include <libes/libes.h>
+#include <libast/libast.h>
 #include <libfsevent/libfsevent.h>
 #include <libioevent/libioevent.h>
 #include <libarguments/libarguments.h>
@@ -58,8 +58,8 @@ class ModuleContext;
 typedef int (*event_callback)(const Alpine& alpine,int event);
 class Alpine {
 private:
-    //System* system;
-    //es_context* es;
+    System* system;
+    es_context* es;
     ModuleContext* moduleContext;
 public:
     Alpine();
@@ -90,7 +90,7 @@ public:
 #endif
 };
 
-//extern "C" Alpine alpine;
+extern "C" Alpine alpine;
 
 #endif
 
