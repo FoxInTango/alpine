@@ -38,8 +38,8 @@
 #include <stdio.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
-    arguments startup_arguments(argc,argv);
-    startup_arguments.echo();
+    //arguments startup_arguments(argc,argv);
+    //startup_arguments.echo();
 
     return 0;
     alpine.init(startup_arguments);
