@@ -42,9 +42,9 @@ int main(int argc, char* argv[]) {
     startup_arguments.echo();
     alpine.init(startup_arguments);
     Model alpine_startup_model(1);
-    return 0;
-    ASTContext* c = new ASTContext();
     
+    ASTContext* c = new ASTContext();
+    return 0;
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
     
