@@ -42,18 +42,16 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
-    Model alpine_startup_model(1);
-    ME me("anything matter?");
-    ASTContext* c = new ASTContext();
-    if(c){
-        printf("ast context alloc ok.\n");
-    }
-    Error e(1,"some thing is wrong.");
-    printf("Error: %d,%s\n",e.code,e.description);
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
+
     if(r){ printf("libcpp.so opened.\n");}
     else printf("libcpp.so missed.\n");
+
+    ME me("lib/libcpp.so");
+    char* s = 0;
+    me.as(&s);
+    printf("String is : %s\n",s);
     return 0;
 }
