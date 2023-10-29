@@ -40,12 +40,11 @@ using namespace foxintango;
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
-
-    
     alpine.init(startup_arguments);
 
-    return 0;
+    
     ASTContext* c = new ASTContext();
+    return 0;
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
     //Model alpine_startup_model(1);
