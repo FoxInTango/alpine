@@ -42,11 +42,13 @@ int main(int argc, char* argv[]) {
     //startup_arguments.echo();
     //alpine.init(startup_arguments);
 
-    //ME me(1);
+    
     //ASTContext* c = new ASTContext();
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
     //Model alpine_startup_model(1);
+
+    ME me(1);
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
