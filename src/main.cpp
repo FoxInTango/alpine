@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
     printf("Error: %d,%s\n",e.code,e.description);
     //Model alpine_startup_model(1);
 
-    ME me(0);
+    ME me;
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
