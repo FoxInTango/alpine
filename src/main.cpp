@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     startup_arguments.echo();
     alpine.init(startup_arguments);
     Model alpine_startup_model(1);
-    
+    ME me("anything matter?");
     ASTContext* c = new ASTContext();
     if(c){
         printf("ast context alloc ok.\n");
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
     printf("Error: %d,%s\n",e.code,e.description);
     
 
-    ME me("anything matter?");
+    
     ELFFile elf;
     int r = elf.open("lib/libcpp.so");
 
