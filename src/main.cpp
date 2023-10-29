@@ -42,13 +42,13 @@ int main(int argc, char* argv[]) {
     //startup_arguments.echo();
 
     return 0;
-    alpine.init(startup_arguments);
+    //alpine.init(startup_arguments);
 
     
     ASTContext* c = new ASTContext();
     Error e(1,"some thing is wrong.");
     printf("Error: %d,%s\n",e.code,e.description);
-    Model alpine_startup_model(1);
+    //Model alpine_startup_model(1);
 
     ME me("anything matter?");
     ELFFile elf;
