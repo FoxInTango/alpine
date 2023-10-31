@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
     startup_arguments.echo();
     alpine.init(startup_arguments);
     ELFFile elf;
-    int r = elf.open("lib/libcpp.so");
+    int r = elf.open("~/libapi.so");
 
 
     if(r){ printf("libcpp.so opened.\n");}
