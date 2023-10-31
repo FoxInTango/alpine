@@ -42,6 +42,15 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
+    switch(CurrentEndian()){
+        case ENDIAN_B:{
+            printf("CurrentEndian: Big Endian\n");
+        }break;
+        case ENDIAN_L:{
+            printf("CurrentEndian: Little Endian\n");
+        }break;
+        default:break;
+    }
     ELFFile elf;
     int r = elf.open("../Apollo.elf");
 
