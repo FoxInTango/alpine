@@ -33,10 +33,13 @@
 #include "alpine.h"
 #include <libelf/libelf.h>
 #include <libast/libast.h>
+#include <libecho/libecho.h>
 #include <libmodel/libmodel.h>
 #include <libarguments/libarguments.h>
 
 #include <stdio.h>
+#include <iostream>
+#include <stdlib.h>
 using namespace foxintango;
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
@@ -56,7 +59,6 @@ int main(int argc, char* argv[]) {
     }
     ELFFile elf;
     int r = elf.open("../Apollo.elf");
-
 
     if(r){ printf("libcpp.so opened.\n");}
     else printf("libcpp.so missed.\n");
