@@ -43,8 +43,8 @@ int main(int argc, char* argv[]) {
     startup_arguments.echo();
     alpine.init(startup_arguments);
 
-    printf("Size of Elf32_Ehdr : %d \n",sizeof(Elf32_Ehdr));
-    printf("Size of Elf64_Ehdr : %d \n",sizeof(Elf64_Ehdr));
+    printf("Size of Elf32_Ehdr : %ul \n",sizeof(Elf32_Ehdr));
+    printf("Size of Elf64_Ehdr : %ul \n",sizeof(Elf64_Ehdr));
     switch(CurrentEndian()){
         case ENDIAN_B:{
             printf("CurrentEndian: Big Endian\n");
