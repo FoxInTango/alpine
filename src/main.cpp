@@ -42,6 +42,9 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
+
+    printf("Size of Elf32_Ehdr : %d \n",sizeof(Elf32_Ehdr));
+    printf("Size of Elf64_Ehdr : %d \n",sizeof(Elf64_Ehdr));
     switch(CurrentEndian()){
         case ENDIAN_B:{
             printf("CurrentEndian: Big Endian\n");
@@ -62,5 +65,6 @@ int main(int argc, char* argv[]) {
     char* s = 0;
     me.as(&s);
     printf("String is : %s\n",s);
+    delete s;
     return 0;
 }
