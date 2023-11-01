@@ -59,7 +59,7 @@ int main(int argc, char* argv[]) {
     }
     ELFFile elf;
     int r = elf.open("../Apollo.elf");
-
+    screen.clear();
     if(r){ printf("libcpp.so opened.\n");}
     else printf("libcpp.so missed.\n");
 
