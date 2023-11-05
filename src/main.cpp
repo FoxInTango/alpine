@@ -48,6 +48,8 @@ int main(int argc, char* argv[]) {
 
     printf("Size of Elf32_Ehdr : %ul \n",sizeof(Elf32_Ehdr));
     printf("Size of Elf64_Ehdr : %ul \n",sizeof(Elf64_Ehdr));
+    printf("Size of Elf32_Dyn  : %ul \n",sizeof(Elf32_Dyn));
+    printf("Size of Elf32_Dyn  : %ul \n",sizeof(Elf32_Dyn));
     switch(CurrentEndian()){
         case ENDIAN_B:{
             printf("CurrentEndian: Big Endian\n");
