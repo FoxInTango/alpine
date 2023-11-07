@@ -60,7 +60,7 @@ int main(int argc, char* argv[]) {
         default:break;
     }
     ELFFile elf;
-    int r = elf.open("../Apollo.elf");
+    int r = elf.open("../elf/out/app.exe");
     if(r){ printf("libcpp.so opened.\n");}
     else printf("libcpp.so missed.\n");
 
