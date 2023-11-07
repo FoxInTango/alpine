@@ -60,14 +60,13 @@ int main(int argc, char* argv[]) {
         default:break;
     }
     ELFFile elf;
-    int r = elf.open("../elf/out/app.exe");
-    if(r){ printf("libcpp.so opened.\n");}
-    else printf("libcpp.so missed.\n");
-
-    ME me("lib/libcpp.so");
-    char* s = 0;
-    me.as(&s);
-    printf("String is : %s\n",s);
-    delete s;
+    ME me("../elf/out/app.exe");
+    char* path = 0;
+    me.as(&path);
+    printf("ELF File path is : %s\n",path);
+    int r = elf.open(path);
+    if(r){ printf("%s opened.\n",path);}
+    else printf("%s opened.\n", path);
+    delete path;
     return 0;
 }
