@@ -61,8 +61,8 @@ int main(int argc, char* argv[]) {
     }
     ELFFile elf;
     ME me("../elf/out/app.exe");
-    char* path = 0;
-    me.as(&path);
+    char* path = "../elf/arm32/liba/share.o";
+    
     printf("ELF File path is : %s\n",path);
     int r = elf.open(path);
     if(r){ printf("%s opened.\n",path);}
