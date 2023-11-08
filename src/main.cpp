@@ -67,6 +67,5 @@ int main(int argc, char* argv[]) {
     int r = elf.open(path);
     if(r){ printf("%s opened.\n",path);}
     else printf("%s opened.\n", path);
-    delete path;
     return 0;
 }
