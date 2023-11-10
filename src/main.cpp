@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
-
+    return 0;
     printf("Size of Elf32_Ehdr : %ul \n",sizeof(Elf32_Ehdr));
     printf("Size of Elf64_Ehdr : %ul \n",sizeof(Elf64_Ehdr));
     printf("Size of Elf32_Dyn  : %ul \n",sizeof(Elf32_Dyn));
@@ -59,6 +59,7 @@ int main(int argc, char* argv[]) {
         }break;
         default:break;
     }
+
     ELFFile elf;
     ME me("../elf/out/app.exe");
     char* path; 
