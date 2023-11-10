@@ -27,7 +27,6 @@
 #include <sched.h>
 
 void deal_signal(int signal){
-
 }
 
 Alpine alpine;
