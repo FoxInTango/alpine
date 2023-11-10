@@ -67,6 +67,6 @@ int main(int argc, char* argv[]) {
     path = "../elf/linux/out/liba.so";
     //r = elf.open(path);
 
-    printf("STRTAB SPILITER : \0 \n");
+    printf("STRTAB SPILITER:\0 \n");
     return 0;
 }
