@@ -65,6 +65,6 @@ int main(int argc, char* argv[]) {
     path = "../elf/arm32/liba/share.o";
     int r = elf.open(path);
     path = "../elf/linux/out/liba.so";
-    r = elf.open(path);
+    //r = elf.open(path);
     return 0;
 }
