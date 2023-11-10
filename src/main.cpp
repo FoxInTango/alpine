@@ -65,7 +65,7 @@ int main(int argc, char* argv[]) {
     path = "../elf/arm32/liba/share.o";
     int r = elf.open(path);
     path = "../elf/linux/out/liba.so";
-    path = "./bin/alpine";
+    path = "./lib/libcpp.a";
     r = elf.open(path);
 
     printf("STRTAB SPILITER:\0 \n");
