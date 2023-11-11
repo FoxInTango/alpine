@@ -45,11 +45,6 @@ int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
     startup_arguments.echo();
     alpine.init(startup_arguments);
-    return 0;
-    printf("Size of Elf32_Ehdr : %ul \n",sizeof(Elf32_Ehdr));
-    printf("Size of Elf64_Ehdr : %ul \n",sizeof(Elf64_Ehdr));
-    printf("Size of Elf32_Dyn  : %ul \n",sizeof(Elf32_Dyn));
-    printf("Size of Elf64_Dyn  : %ul \n",sizeof(Elf64_Dyn));
     switch(CurrentEndian()){
         case ENDIAN_B:{
             printf("CurrentEndian: Big Endian\n");
@@ -68,7 +63,5 @@ int main(int argc, char* argv[]) {
     path = "../elf/linux/out/liba.so";
     path = "./lib/libcpp.a";
     r = elf.open(path);
-
-    printf("STRTAB SPILITER:\0 \n");
     return 0;
 }
