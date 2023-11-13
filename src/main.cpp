@@ -43,6 +43,7 @@
 using namespace foxintango;
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
+
     startup_arguments.echo();
     alpine.init(startup_arguments);
     switch(CurrentEndian()){
@@ -55,12 +56,16 @@ int main(int argc, char* argv[]) {
         default:break;
     }
 
-    ELFFile elf;
     ME me("../elf/out/app.exe");
-    char* path; 
-    path = "../elf/arm32/liba/share.o";
-    int r = elf.open(path);
-    path = "../elf/arm32/out/liba.so";
-    r = elf.open(path);
+
+    if(startup_arguments.contain("elf")){
+        argument elf_arg = startup_arguments.at("elf");
+
+        for(int i = 0;i < elf_arg.count();i ++){
+            ELFFile elf;
+            elf.open(elf_arg[i]);
+        }
+    }
+
     return 0;
 }
