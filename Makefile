@@ -425,6 +425,8 @@ hook_uninstall:
 hook_echo:
 	@echo -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
 	@dmesg | tail -n20
+
+
 # https://www.ruanyifeng.com/blog/2015/02/make.html
 # https://blog.csdn.net/freestep96/article/details/126352344
 # Makefile Path :https://blog.csdn.net/evolay/article/details/121625712
