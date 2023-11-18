@@ -361,6 +361,7 @@ publish:
 	-cd ./libraries/libmm              && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libstring          && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/liburl             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libfs              && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libmatch           && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libelf             && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libhttp            && git add . && git commit -m "alpine" && git push
