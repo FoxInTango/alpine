@@ -53,6 +53,7 @@ PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib
 PROJECT_DIR_BESIDES += -o -path ./man
+PROJECT_DIR_BESIDES += -o -path ./ide
 PROJECT_DIR_BESIDES += -o -path ./.trash
 PROJECT_DIR_BESIDES += \)
 PROJECT_DIRS   = $(shell find $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
@@ -352,6 +353,7 @@ publish:
 	-git add src/*.cpp
 	-git add etc/alpine
 	-git add readme/*
+	-git add ide
 	-git add inc/.keepalive
 	-git add lib/.keepalive
 	-git add bin/.keepalive
