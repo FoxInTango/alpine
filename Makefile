@@ -46,23 +46,9 @@ TARGET_LIB_DIR := ./lib
 PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
-PROJECT_DIR_BESIDES += -o -path ./libcpp
-PROJECT_DIR_BESIDES += -o -path ./libstring
-PROJECT_DIR_BESIDES += -o -path ./liburl
-PROJECT_DIR_BESIDES += -o -path ./libstream
-PROJECT_DIR_BESIDES += -o -path ./libast
-PROJECT_DIR_BESIDES += -o -path ./libecho
-PROJECT_DIR_BESIDES += -o -path ./libmodel
-PROJECT_DIR_BESIDES += -o -path ./libmodule
-PROJECT_DIR_BESIDES += -o -path ./libevent
-PROJECT_DIR_BESIDES += -o -path ./libfsevent
-PROJECT_DIR_BESIDES += -o -path ./libioevent
-PROJECT_DIR_BESIDES += -o -path ./libvm
-PROJECT_DIR_BESIDES += -o -path ./libes
-PROJECT_DIR_BESIDES += -o -path ./libarguments
-PROJECT_DIR_BESIDES += -o -path ./libmit
 PROJECT_DIR_BESIDES += -o -path ./libraries
 PROJECT_DIR_BESIDES += -o -path ./modules
+PROJECT_DIR_BESIDES += -o -path ./templates
 PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib
@@ -164,6 +150,7 @@ submodule:
 	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
 	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
 	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -rf ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
+	-cd ./libraries/libfs        && $(MAKE) && cd ../.. && cp -rf ./libraries/libfs/lib/*         ./lib && mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
 	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
 	-cd ./libraries/libelf       && $(MAKE) && cd ../.. && cp -rf ./libraries/libelf/lib/*        ./lib && mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
 	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -rf ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
@@ -196,6 +183,7 @@ subheader:
 	-mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
 	-mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
 	-mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
+	-mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
 	-mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
 	-mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
 	-mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
@@ -227,6 +215,7 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libmm.git
 	-cd libraries && git clone https://github.com/FoxInTango/libstring.git
 	-cd libraries && git clone https://github.com/FoxInTango/liburl.git
+	-cd libraries && git clone https://github.com/FoxInTango/libfs.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmatch.git
 	-cd libraries && git clone https://github.com/FoxInTango/libelf.git
 	-cd libraries && git clone https://github.com/FoxInTango/libhttp.git
@@ -261,6 +250,7 @@ update:
 	-cd ./libraries/libmm              && git pull
 	-cd ./libraries/libstring          && git pull
 	-cd ./libraries/liburl             && git pull
+	-cd ./libraries/libfs              && git pull
 	-cd ./libraries/libmatch           && git pull
 	-cd ./libraries/libelf             && git pull
 	-cd ./libraries/libhttp            && git pull
@@ -292,6 +282,7 @@ subclean:
 	-cd ./libraries/libmm              && $(MAKE) clean
 	-cd ./libraries/libstring          && $(MAKE) clean
 	-cd ./libraries/liburl             && $(MAKE) clean
+	-cd ./libraries/libfs              && $(MAKE) clean
 	-cd ./libraries/libmatch           && $(MAKE) clean
 	-cd ./libraries/libelf             && $(MAKE) clean
 	-cd ./libraries/libhttp            && $(MAKE) clean
@@ -322,6 +313,7 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libmm.git
 	-cd libraries && git clone git@github.com:FoxInTango/libstring.git
 	-cd libraries && git clone git@github.com:FoxInTango/liburl.git
+	-cd libraries && git clone git@github.com:FoxInTango/libfs.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmatch.git
 	-cd libraries && git clone git@github.com:FoxInTango/libelf.git
 	-cd libraries && git clone git@github.com:FoxInTango/libhttp.git
