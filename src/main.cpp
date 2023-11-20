@@ -46,6 +46,14 @@ int main(int argc, char* argv[]) {
 
     startup_arguments.echo();
     alpine.init(startup_arguments);
+
+    tree_node n1,n2;
+
+    if(n1 == n2){
+        printf("n1 == n2.\n");
+    } else { printf("n1 != n2.\n"); }
+
+    return 0;
     switch(CurrentEndian()){
         case ENDIAN_B:{
             printf("CurrentEndian: Big Endian\n");
