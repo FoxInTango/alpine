@@ -49,9 +49,17 @@ int main(int argc, char* argv[]) {
 
     tree_node<int> n1,n2;
 
+    rb_tree_node<int> r1,r2;
+
+
     if(n1 == n2){
         printf("n1 == n2.\n");
     } else { printf("n1 != n2.\n"); }
+
+    if (r1 == r2) {
+        printf("r1 == r2.\n");
+    }
+    else { printf("r1 != r2.\n"); }
 
     return 0;
     switch(CurrentEndian()){
