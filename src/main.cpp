@@ -68,12 +68,12 @@ int main(int argc, char* argv[]) {
 
     r1.insert(20);
 
-    if(r1.subnodeAt(0)){
-        printf("r1 left subnode value %d\n", r1.subnodeAt(0)->t);
+    if(r1.m_left){
+        printf("r1 left subnode value %d\n", r1.m_left->t);
     }
 
-    if (r1.subnodeAt(1)) {
-        printf("r1 right subnode value %d\n", r1.subnodeAt(1)->t);
+    if (r1.m_right) {
+        printf("r1 right subnode value %d\n", r1.m_right->t);
     }
 
     return 0;
