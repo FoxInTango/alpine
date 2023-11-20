@@ -56,14 +56,25 @@ int main(int argc, char* argv[]) {
     r1 = 3;
     r2 = 4;
 
-    if(n1 == n2){
+    if (n1 == n2) {
         printf("n1 == n2.\n");
-    } else { printf("n1 != n2.\n"); }
+    }
+    else { printf("n1 != n2.\n"); }
 
     if (r1 == r2) {
         printf("r1 == r2.\n");
     }
     else { printf("r1 != r2.\n"); }
+
+    r1.insert(20);
+
+    if(r1.subnodeAt(0)){
+        printf("r1 left subnode value %d\n", r1.subnodeAt(0)->t);
+    }
+
+    if (r1.subnodeAt(1)) {
+        printf("r1 right subnode value %d\n", r1.subnodeAt(1)->t);
+    }
 
     return 0;
     switch(CurrentEndian()){
