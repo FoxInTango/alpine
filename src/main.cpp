@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
     startup_arguments.echo();
     alpine.init(startup_arguments);
 
-    tree_node n1,n2;
+    tree_node<int> n1,n2;
 
     if(n1 == n2){
         printf("n1 == n2.\n");
