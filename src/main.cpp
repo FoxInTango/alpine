@@ -49,8 +49,12 @@ int main(int argc, char* argv[]) {
 
     tree_node<int> n1,n2;
 
-    rb_tree_node<int> r1,r2;
+    n1 = 2;
+    n2 = 3;
 
+    rb_tree_node<int> r1,r2;
+    r1 = 3;
+    r2 = 4;
 
     if(n1 == n2){
         printf("n1 == n2.\n");
