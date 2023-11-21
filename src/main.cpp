@@ -41,8 +41,6 @@
 #include <iostream>
 #include <stdlib.h>
 using namespace foxintango;
-
-#include "../tst/tstcpp.h"
 int main(int argc, char* argv[]) {
     arguments startup_arguments(argc,argv);
 
