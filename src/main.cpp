@@ -70,6 +70,10 @@ public:
     ~C(){}
 };
 int main(int argc, char* argv[]) {
+
+    C c;
+
+    return 0;
     arguments startup_arguments(argc,argv);
 
     startup_arguments.echo();
