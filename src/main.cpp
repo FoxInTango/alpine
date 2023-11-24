@@ -42,33 +42,6 @@
 #include <stdlib.h>
 using namespace foxintango;
 
-class C1{
-public:
-    C1(){}
-    ~C1(){};
-public:
-    void print(){
-        printf("Here C1 printing.\n");
-    }
-};
-class C2{
-public:
-    C2() {}
-    ~C2() {};
-public:
-    void print() {
-        printf("Here C2 printing.\n");
-    }
-};
-
-template <class T>
-class C :public T{
-public:
-     C(){
-         this->print();
-     }
-    ~C(){}
-};
 int main(int argc, char* argv[]) {
 
     C<C1> c1;
