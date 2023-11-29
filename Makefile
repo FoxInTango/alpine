@@ -345,6 +345,7 @@ devinstall:
 publish:
 	-git add Makefile
 	-git add README.md
+	-git add TODO.md
 	-git add REF.md
 	-git add LICENSE
 	-git add .gitignore
