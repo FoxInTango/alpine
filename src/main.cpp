@@ -46,7 +46,6 @@ int main(int argc, char* argv[]) {
 
     C<C1> c1;
     C<C2> c2;
-    return 0;
     arguments startup_arguments(argc, argv);
 
     startup_arguments.echo();
