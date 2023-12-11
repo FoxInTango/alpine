@@ -25,3 +25,5 @@ libfs : file stream, file,dir,link:create delete move rename etc
 git@github.com:FoxInTango/libfs.git
 libelf:
 git@github.com:FoxInTango/libelf.git
+
+libcry & libtls 
