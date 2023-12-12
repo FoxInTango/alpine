@@ -94,9 +94,9 @@
 #  X.509 https://zhuanlan.zhihu.com/p/69995175
 #  TLS协议中PRF和TLS1.3中的HKDF https://blog.csdn.net/mrpre/article/details/80056618 TLS 1.3协议详解：https://blog.csdn.net/mrpre/article/details/81532469
 
-#IP协议栈:
+# IP协议栈:
 #    https://www.cnblogs.com/feng9exe/p/7000162.html
-#LINUX网络设备:https://www.jianshu.com/p/2ca7d8d5bf1e
+# LINUX网络设备:https://www.jianshu.com/p/2ca7d8d5bf1e
 
 # Zero Copy:
 # TLS sendfile
@@ -148,6 +148,8 @@
 # syscall
 #     https://man7.org/linux/man-pages/man2/init_module.2.html
 #     https://zhuanlan.zhihu.com/p/344311940 系统调用分类表
+#     https://onestraw.github.io/linux/lkm-and-syscall-hook/
+#     https://zhuanlan.zhihu.com/p/198960996
 # syscall table : 
 #     https://blog.csdn.net/weixin_42915431/article/details/106507066 kallsyms_lookup_name | system.map | PAGE_OFFSET -> NR_close
 #     https://www.cnblogs.com/bittorrent/p/3804141.html 读取/proc/kallsyms 
