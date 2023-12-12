@@ -150,6 +150,9 @@
 #     https://zhuanlan.zhihu.com/p/344311940 系统调用分类表
 #     https://onestraw.github.io/linux/lkm-and-syscall-hook/
 #     https://zhuanlan.zhihu.com/p/198960996
+#         但是在linux内核5.x里，entrySYSCALL64的实现改了，不再试图用过call syscalltable[index]的方式进行系统调用，而是引入了一个dosyscall64的符号。具体的看下面截取的源码
+#     arm64 https://blog.csdn.net/weixin_45030965/article/details/129203081
+# 添加 系统调用
 # syscall table : 
 #     https://blog.csdn.net/weixin_42915431/article/details/106507066 kallsyms_lookup_name | system.map | PAGE_OFFSET -> NR_close
 #     https://www.cnblogs.com/bittorrent/p/3804141.html 读取/proc/kallsyms 

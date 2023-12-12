@@ -50,7 +50,8 @@ int main(int argc, char* argv[]) {
 
     startup_arguments.echo();
     alpine.init(startup_arguments);
-
+    char* w = "fähigkeit";
+    printf("germany : %s\n",w);
     libcpp_tst();
     return 0;
     switch (CurrentEndian()) {
@@ -64,6 +65,7 @@ int main(int argc, char* argv[]) {
     }
 
     ME me("../elf/out/app.exe");
+    
 
     if (startup_arguments.contain("elf")) {
         argument elf_arg = startup_arguments.at("elf");
