@@ -53,7 +53,7 @@ int main(int argc, char* argv[]) {
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
     libcpp_tst();
-    return 0;
+    //return 0;
     switch (CurrentEndian()) {
     case ENDIAN_B: {
         printf("CurrentEndian: Big Endian\n");
