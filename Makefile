@@ -157,6 +157,8 @@ submodule:
 	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -rf ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
 	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
 	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
+	-cd ./libraries/liboml       && $(MAKE) && cd ../.. && cp -rf ./libraries/liboml/lib/*        ./lib && mkdir inc/liboml       && cp -rf ./libraries/liboml/src/*.h        ./inc/liboml
+	-cd ./libraries/libfft       && $(MAKE) && cd ../.. && cp -rf ./libraries/libfft/lib/*        ./lib && mkdir inc/libfft       && cp -rf ./libraries/libfft/src/*.h        ./inc/libfft
 	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
 	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -rf ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
 	#-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && 
@@ -190,6 +192,8 @@ subheader:
 	-mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
 	-mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
 	-mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
+	-mkdir inc/liboml       && cp -rf ./libraries/liboml/src/*.h        ./inc/liboml
+	-mkdir inc/libfft       && cp -rf ./libraries/libfft/src/*.h        ./inc/libfft
 	-mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
 	-mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
 	-mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
@@ -224,6 +228,8 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libast.git
 	-cd libraries && git clone https://github.com/FoxInTango/libecho.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmodel.git
+	-cd libraries && git clone https://github.com/FoxInTango/liboml.git
+	-cd libraries && git clone https://github.com/FoxInTango/libfft.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmodule.git
 	-cd libraries && git clone https://github.com/FoxInTango/libevent.git
 	-cd libraries && git clone https://github.com/FoxInTango/libioevent.git
@@ -259,6 +265,8 @@ update:
 	-cd ./libraries/libast             && git pull
 	-cd ./libraries/libecho            && git pull
 	-cd ./libraries/libmodel           && git pull
+	-cd ./libraries/liboml             && git pull
+	-cd ./libraries/libfft             && git pull
 	-cd ./libraries/libmodule          && git pull
 	-cd ./libraries/libevent           && git pull
 	-cd ./libraries/libioevent         && git pull
@@ -291,6 +299,8 @@ subclean:
 	-cd ./libraries/libast             && $(MAKE) clean
 	-cd ./libraries/libecho            && $(MAKE) clean
 	-cd ./libraries/libmodel           && $(MAKE) clean
+	-cd ./libraries/liboml             && $(MAKE) clean
+	-cd ./libraries/libfft             && $(MAKE) clean
 	-cd ./libraries/libmodule          && $(MAKE) clean
 	-cd ./libraries/libevent           && $(MAKE) clean
 	-cd ./libraries/libioevent         && $(MAKE) clean
@@ -322,6 +332,8 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libast.git
 	-cd libraries && git clone git@github.com:FoxInTango/libecho.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmodel.git
+	-cd libraries && git clone git@github.com:FoxInTango/liboml.git
+	-cd libraries && git clone git@github.com:FoxInTango/libfft.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmodule.git
 	-cd libraries && git clone git@github.com:FoxInTango/libevent.git
 	-cd libraries && git clone git@github.com:FoxInTango/libioevent.git
@@ -372,6 +384,8 @@ publish:
 	-cd ./libraries/libast             && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libecho            && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libmodel           && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/liboml             && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libfft           && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libmodule          && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libevent           && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libioevent         && git add . && git commit -m "alpine" && git push
