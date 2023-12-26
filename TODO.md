@@ -27,3 +27,5 @@ libelf:
 git@github.com:FoxInTango/libelf.git
 
 libcry & libtls 
+
+libnn : RNN DNN CNN
