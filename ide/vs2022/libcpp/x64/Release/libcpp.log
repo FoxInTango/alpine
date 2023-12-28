@@ -1,0 +1,90 @@
+﻿  libcpp.cpp
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(80,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(91,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C3861: “__PRETTY_FUNCTION__”: 找不到标识符
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(97,7):
+  	在编译类模板“foxintango::C”时
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,35): warning C4275: 非 dll 接口 class“foxintango::Object”用作 dll 接口 class“foxintango::Array<T>”的基
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\object.h(30,7):
+  参见“foxintango::Object”的声明
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,21):
+  参见“foxintango::Array<T>”的声明
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,35):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,21):
+  	在编译类模板“foxintango::Array”时
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(286,12): warning C4099: “foxintango::tree_node_s<T>”: 类型名称以前使用“class”现在使用的是“struct”
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(283,7):
+  参见“foxintango::tree_node_s<T>”的声明
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(286,12):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(283,7):
+  	在编译类模板“foxintango::tree_node_s”时
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(289,12): warning C4099: “foxintango::tree_node_s<T>”: 类型名称以前使用“class”现在使用的是“struct”
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(283,7):
+  参见“foxintango::tree_node_s<T>”的声明
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(292,12): warning C4099: “foxintango::tree_node_s<T>”: 类型名称以前使用“class”现在使用的是“struct”
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\tree.h(283,7):
+  参见“foxintango::tree_node_s<T>”的声明
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,35): warning C4275: 非 dll 接口 class“foxintango::Object”用作 dll 接口 class“foxintango::Array<int>”的基
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\object.h(30,7):
+  参见“foxintango::Object”的声明
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,21):
+  参见“foxintango::Array<int>”的声明
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,35):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\libcpp.cpp(38,16):
+  	查看对正在编译的 类 模板 实例化“foxintango::Array<int>”的引用
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(24,20): warning C4251: “foxintango::Array<int>::T_NULL”: union“foxintango::mem_element<T>”需要有 dll 接口由 class“foxintango::Array<int>”的客户端使用 
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(24,20): warning C4251:         with
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(24,20): warning C4251:         [
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(24,20): warning C4251:             T=int
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(24,20): warning C4251:         ]
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\struct.h(10,7):
+  参见“foxintango::mem_element<T>”的声明
+          with
+          [
+              T=int
+          ]
+  
+  shell.cpp
+  string.cpp
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(80,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
+  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(91,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
+  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C3861: “__PRETTY_FUNCTION__”: 找不到标识符
+  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(97,7):
+  	在编译类模板“foxintango::C”时
+  
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
+  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
+  
+  dllmain.cpp

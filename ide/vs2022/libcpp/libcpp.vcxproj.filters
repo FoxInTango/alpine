@@ -86,9 +86,6 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\libraries\libcpp\src\error.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\libraries\libcpp\src\libcpp.cpp">
       <Filter>源文件</Filter>
     </ClCompile>

@@ -20,6 +20,9 @@
 19,Member的赋值与取值监听
 20,libmodel ModelElement 取消impl机制
 
+删除 libmm 移入 libcpp
+
+
 libmatch:
 libfs : file stream, file,dir,link:create delete move rename etc
 git@github.com:FoxInTango/libfs.git
@@ -29,3 +32,8 @@ git@github.com:FoxInTango/libelf.git
 libcry & libtls 
 
 libnn : RNN DNN CNN
+
+IDE : 
+    visual studio 
+        输出目录整理
+        生成后复制                   

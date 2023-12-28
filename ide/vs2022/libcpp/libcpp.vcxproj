@@ -127,7 +127,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;LIBCPP_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
@@ -162,7 +162,6 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\libraries\libcpp\src\error.cpp" />
     <ClCompile Include="..\..\..\libraries\libcpp\src\libcpp.cpp" />
     <ClCompile Include="..\..\..\libraries\libcpp\src\shell.cpp" />
     <ClCompile Include="..\..\..\libraries\libcpp\src\string.cpp" />
