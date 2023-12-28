@@ -33,6 +33,12 @@ libcry & libtls
 
 libnn : RNN DNN CNN
 
+libcv
+libav
+libui
+libscene
+libpc parallel computing
+
 IDE : 
     visual studio 
         输出目录整理
