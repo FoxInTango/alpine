@@ -54,3 +54,13 @@
 #/modules
 
 # Modules
+
+# visual studio 
+
+*.vsidx
+*.ipch
+*.db
+*.pdb
+*.lib
+*.dll
+*.exe
