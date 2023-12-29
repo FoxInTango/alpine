@@ -42,4 +42,6 @@ libpc parallel computing
 IDE : 
     visual studio 
         输出目录整理
-        生成后复制                   
+        生成后复制          
+
+libkernel/modules : 公共部分生成静态库         
