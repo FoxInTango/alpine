@@ -10,11 +10,49 @@
 #
 # 全局模块
 #     向下传递 项目根目录路径[此Makefile所在路径]
-# 
+#
+
 CC=g++
 AS=as
 AR=ar
 LD=ld
+
+ifeq ($(OS),Windows_NT)
+    CCFLAGS += -D WIN32
+    CURRENT_OS = Windows_NT
+    FD=busybox find
+    ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
+        CCFLAGS += -D AMD64
+    else
+        ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+            CCFLAGS += -D AMD64
+        endif
+        ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+            CCFLAGS += -D IA32
+        endif
+    endif
+else
+    UNAME_S := $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        CURRENT_OS = Linux
+        CCFLAGS += -D LINUX
+        FD=find
+    endif
+    ifeq ($(UNAME_S),Darwin)
+        CCFLAGS += -D OSX
+        FD=find
+    endif
+    UNAME_P := $(shell uname -p)
+    ifeq ($(UNAME_P),x86_64)
+        CCFLAGS += -D AMD64
+    endif
+    ifneq ($(filter %86,$(UNAME_P)),)
+        CCFLAGS += -D IA32
+    endif
+    ifneq ($(filter arm%,$(UNAME_P)),)
+        CCFLAGS += -D ARM
+    endif
+endif
 
 # Learn something from /lib/modules/6.1.29-0-lts/build/Makefile
 
@@ -69,7 +107,7 @@ PROJECT_DIR_BESIDES += -o -path ./man
 PROJECT_DIR_BESIDES += -o -path ./ide
 PROJECT_DIR_BESIDES += -o -path ./.trash
 PROJECT_DIR_BESIDES += \)
-PROJECT_DIRS   = $(shell find $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
+PROJECT_DIRS   = $(shell $(FD) $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
 
 TARGET_HEADERS = $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.h))
 
