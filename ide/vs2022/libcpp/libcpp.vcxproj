@@ -125,7 +125,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;LIBCPP_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;LIBCPP_EXPORTS;_WINDOWS;_USRDLL;foxintangoEXPORT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -151,6 +151,7 @@
     <ClInclude Include="..\..\..\libraries\libcpp\src\map_inernal.h" />
     <ClInclude Include="..\..\..\libraries\libcpp\src\member.h" />
     <ClInclude Include="..\..\..\libraries\libcpp\src\memory.h" />
+    <ClInclude Include="..\..\..\libraries\libcpp\src\object.h" />
     <ClInclude Include="..\..\..\libraries\libcpp\src\random.h" />
     <ClInclude Include="..\..\..\libraries\libcpp\src\set.h" />
     <ClInclude Include="..\..\..\libraries\libcpp\src\shell.h" />
@@ -159,19 +160,13 @@
     <ClInclude Include="..\..\..\libraries\libcpp\src\struct.h" />
     <ClInclude Include="..\..\..\libraries\libcpp\src\tree.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\libraries\libcpp\src\libcpp.cpp" />
+    <ClCompile Include="..\..\..\libraries\libcpp\src\object.cpp" />
     <ClCompile Include="..\..\..\libraries\libcpp\src\shell.cpp" />
     <ClCompile Include="..\..\..\libraries\libcpp\src\string.cpp" />
     <ClCompile Include="dllmain.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

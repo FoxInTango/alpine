@@ -44,4 +44,6 @@ IDE :
         输出目录整理
         生成后复制          
 
-libkernel/modules : 公共部分生成静态库         
+libkernel/modules : 公共部分生成静态库  
+
+对于Linux 所需外部库集成为 KPI

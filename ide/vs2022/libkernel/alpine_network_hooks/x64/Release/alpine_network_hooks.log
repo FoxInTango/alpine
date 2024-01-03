@@ -1,0 +1,8 @@
+﻿  Building 'alpine_network_hooks' with toolset 'WindowsKernelModeDriver10.0' and the 'Windows Driver' target platform.
+  Stamping x64\Release\alpine_network_hooks.inf
+  Stamping [Version] section with DriverVer=12/31/2023,20.13.40.180
+D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\libkernel\alpine_network_hooks\alpine_network_hooks.inf(8-8): error 1324: [Version] section should specify PnpLockdown=1 to prevent external apps from modifying installed driver files.
+D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\libkernel\alpine_network_hooks\alpine_network_hooks.inf(68-68): error 1322: Destination file path 'C:\WINDOWS\System32\drivers' for file 'alpine_network_hooks.sys' is not isolated to DIRID 13.
+D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\libkernel\alpine_network_hooks\alpine_network_hooks.inf(112-112): error 1323: Service registry key 'ParamDesc' must be under the Parameters subkey.
+D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\libkernel\alpine_network_hooks\alpine_network_hooks.inf(112-112): error 1323: Service registry key 'default' must be under the Parameters subkey.
+D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\libkernel\alpine_network_hooks\alpine_network_hooks.inf(112-112): error 1323: Service registry key 'type' must be under the Parameters subkey.

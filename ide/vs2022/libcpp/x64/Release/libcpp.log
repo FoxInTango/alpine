@@ -1,20 +1,4 @@
 ﻿  libcpp.cpp
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(80,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
-  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
-  
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(91,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
-  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
-  
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C3861: “__PRETTY_FUNCTION__”: 找不到标识符
-  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
-  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28):
-  模板实例化上下文(最早的实例化上下文)为
-  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(97,7):
-  	在编译类模板“foxintango::C”时
-  
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
-  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
-  
 D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(20,35): warning C4275: 非 dll 接口 class“foxintango::Object”用作 dll 接口 class“foxintango::Array<T>”的基
   (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
   D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\object.h(30,7):
@@ -69,22 +53,25 @@ D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(24,20): warning C4251
               T=int
           ]
   
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(38,51): warning C4309: “参数”: 截断常量值
+  (编译源文件“../../../libraries/libcpp/src/libcpp.cpp”)
+  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(38,51):
+  模板实例化上下文(最早的实例化上下文)为
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\libcpp.cpp(38,16):
+  	查看对正在编译的 类 模板 实例化“foxintango::Array<int>”的引用
+  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\array.h(29,5):
+  	在编译 类 模板 成员函数“foxintango::Array<int>::Array(void)”时
+  		D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\libcpp.cpp(38,16):
+  		请参阅 "sample_array" 中对 "foxintango::Array<int>::Array" 的第一个引用
+  
+  object.cpp
+D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\object.cpp(15,30): warning C4018: “<”: 有符号/无符号不匹配
   shell.cpp
   string.cpp
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(80,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
-  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
-  
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(91,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
-  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
-  
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C3861: “__PRETTY_FUNCTION__”: 找不到标识符
-  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
-  D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28):
-  模板实例化上下文(最早的实例化上下文)为
-  	D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(97,7):
-  	在编译类模板“foxintango::C”时
-  
-D:\CORE_WEB_SYSTEM_WEB\alpine\libraries\libcpp\src\define.h(101,28): error C2065: “__PRETTY_FUNCTION__”: 未声明的标识符
-  (编译源文件“../../../libraries/libcpp/src/string.cpp”)
-  
   dllmain.cpp
+    正在创建库 D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\x64\Release\libcpp.lib 和对象 D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\x64\Release\libcpp.exp
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 21 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  libcpp.vcxproj -> D:\CORE_WEB_SYSTEM_WEB\alpine\ide\vs2022\x64\Release\libcpp.dll

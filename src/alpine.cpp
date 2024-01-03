@@ -22,6 +22,8 @@
  * IN THE SOFTWARE.
  */
 #include "alpine.h"
+
+#include <libcpp/libcpp.h>
 #include <libsystem/libsystem.h>
 #include <signal.h>
 #include <sched.h>
