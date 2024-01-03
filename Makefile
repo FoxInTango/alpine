@@ -192,8 +192,7 @@ submodule:
 	-cd ./libraries/libtls       && $(MAKE) && cd ../.. && cp -rf ./libraries/libtls/lib/*        ./lib && mkdir inc/libtls       && cp -rf ./libraries/libtls/src/*.h        ./inc/libtls
 	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
 	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -rf ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
-	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && 
-	-cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
+	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
 	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp -rf ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
 	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp -rf ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
 	-cd ./libraries/libevent     && $(MAKE) && cd ../.. && cp -rf ./libraries/libevent/lib/*      ./lib && mkdir inc/libevent     && cp -rf ./libraries/libevent/src/*.h      ./inc/libevent
