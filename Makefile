@@ -20,7 +20,7 @@ LD=ld
 ifeq ($(OS),Windows_NT)
     CCFLAGS += -D WIN32
     CURRENT_OS = Windows_NT
-    FD=busybox find
+    FD=(busybox find)
     ifeq ($(PROCESSOR_ARCHITEW6432),AMD64)
         CCFLAGS += -D AMD64
     else
