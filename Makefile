@@ -98,37 +98,6 @@ ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 
-#OPENSSL=
-ifdef OPENSSL
-OPENSSL_INCLUDE_PATH = ${OPENSSL}/include
-OPENSSL_LIBRARY_PATH = ${OPENSSL}/lib
-TARGET_LD_FLAGS += -L ${OPENSSL_LIBRARY_PATH}
-TARGET_LIBS += -ltls
-CCFLAGS += -I ${OPENSSL_INCLUDE_PATH}
-PPFLAGS += -I ${OPENSSL_INCLUDE_PATH}
-CCFLAGS += -DOPENSSL
-PPFLAGS += -DOPENSSL
-endif
-# 平台检测 -- DARWIN
-ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
-    TARGET_BIN_EXT         :=
-    TARGET_LIB_EXT_STATIC  := a
-    TARGET_LIB_EXT_DYNAMIC := so
-endif
-# 平台检测 -- LINUX
-ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
-    TARGET_BIN_EXT         :=
-    TARGET_LIB_EXT_STATIC  := a
-    CTARGET_LIB_EXT_DYNAMIC := so
-endif
-
-# 平台检测 -- FreeBSD
-ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
-    TARGET_BIN_EXT         := 
-    TARGET_LIB_EXT_STATIC  := a
-    TARGET_LIB_EXT_DYNAMIC := so
-endif
-
 TARGETS = 
 
 MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
