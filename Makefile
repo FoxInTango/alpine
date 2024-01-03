@@ -11,7 +11,17 @@
 # 全局模块
 #     向下传递 项目根目录路径[此Makefile所在路径]
 #
-
+# 子模块需要信息 
+#     项目根目录路径
+#     目标平台名称
+#     目标架构名称 
+#     目标空间名称 用户 / 内核
+#     工具链 文件系统命令 cc pp cd mkdir rmdir rm touch find cat 等
+#     头文件目标目录名称
+#     库文件目标目录名称
+#     头文件依赖目录名称 整体 / 独立
+#     库文件依赖目录名称 整体 / 独立
+#
 CC=g++
 AS=as
 AR=ar
@@ -98,6 +108,37 @@ ASFLAGS =
 CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 
+#OPENSSL=
+ifdef OPENSSL
+OPENSSL_INCLUDE_PATH = ${OPENSSL}/include
+OPENSSL_LIBRARY_PATH = ${OPENSSL}/lib
+TARGET_LD_FLAGS += -L ${OPENSSL_LIBRARY_PATH}
+TARGET_LIBS += -ltls
+CCFLAGS += -I ${OPENSSL_INCLUDE_PATH}
+PPFLAGS += -I ${OPENSSL_INCLUDE_PATH}
+CCFLAGS += -DOPENSSL
+PPFLAGS += -DOPENSSL
+endif
+# 平台检测 -- DARWIN
+ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
+    TARGET_BIN_EXT         :=
+    TARGET_LIB_EXT_STATIC  := a
+    TARGET_LIB_EXT_DYNAMIC := so
+endif
+# 平台检测 -- LINUX
+ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
+    TARGET_BIN_EXT         :=
+    TARGET_LIB_EXT_STATIC  := a
+    CTARGET_LIB_EXT_DYNAMIC := so
+endif
+
+# 平台检测 -- FreeBSD
+ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
+    TARGET_BIN_EXT         := 
+    TARGET_LIB_EXT_STATIC  := a
+    TARGET_LIB_EXT_DYNAMIC := so
+endif
+
 TARGETS = 
 
 MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -151,7 +192,7 @@ submodule:
 	-cd ./libraries/libtls       && $(MAKE) && cd ../.. && cp -rf ./libraries/libtls/lib/*        ./lib && mkdir inc/libtls       && cp -rf ./libraries/libtls/src/*.h        ./inc/libtls
 	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
 	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -rf ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
-	#-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && 
+	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && 
 	-cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
 	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp -rf ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
 	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp -rf ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
