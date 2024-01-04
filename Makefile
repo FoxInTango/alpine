@@ -178,6 +178,7 @@ submodule:
 	-mkdir ./lib/modules
 	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp -rf ./libraries/libcpp/src/*.h        ./inc/libcpp
 	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
+	-cd ./libraries/libplatform  && $(MAKE) && cd ../.. && cp -rf ./libraries/libplatform/lib/*   ./lib && mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
 	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
 	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -rf ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
 	-cd ./libraries/libfs        && $(MAKE) && cd ../.. && cp -rf ./libraries/libfs/lib/*         ./lib && mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
@@ -214,6 +215,7 @@ subheader:
 	-mkdir ./inc/modules
 	-mkdir inc/libcpp       && cp -rf ./libraries/libcpp/src/*.h        ./inc/libcpp
 	-mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
+	-mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
 	-mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
 	-mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
 	-mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
@@ -249,6 +251,7 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libcpp.git
 	-cd libraries && git clone https://github.com/FoxInTango/libsystem.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmm.git
+	-cd libraries && git clone https://github.com/FoxInTango/libplatform.git
 	-cd libraries && git clone https://github.com/FoxInTango/libstring.git
 	-cd libraries && git clone https://github.com/FoxInTango/liburl.git
 	-cd libraries && git clone https://github.com/FoxInTango/libfs.git
@@ -288,6 +291,7 @@ update:
 	-cd ./libraries/libcpp             && git pull
 	-cd ./libraries/libsystem          && git pull
 	-cd ./libraries/libmm              && git pull
+	-cd ./libraries/libplatform        && git pull
 	-cd ./libraries/libstring          && git pull
 	-cd ./libraries/liburl             && git pull
 	-cd ./libraries/libfs              && git pull
@@ -324,6 +328,7 @@ subclean:
 	-cd ./libraries/libcpp             && $(MAKE) clean
 	-cd ./libraries/libsystem          && $(MAKE) clean
 	-cd ./libraries/libmm              && $(MAKE) clean
+	-cd ./libraries/libplatform        && $(MAKE) clean
 	-cd ./libraries/libstring          && $(MAKE) clean
 	-cd ./libraries/liburl             && $(MAKE) clean
 	-cd ./libraries/libfs              && $(MAKE) clean
@@ -359,6 +364,7 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libcpp.git
 	-cd libraries && git clone git@github.com:FoxInTango/libsystem.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmm.git
+	-cd libraries && git clone git@github.com:FoxInTango/libplatform.git
 	-cd libraries && git clone git@github.com:FoxInTango/libstring.git
 	-cd libraries && git clone git@github.com:FoxInTango/liburl.git
 	-cd libraries && git clone git@github.com:FoxInTango/libfs.git
@@ -413,6 +419,7 @@ publish:
 	-cd ./libraries/libcpp             && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libsystem          && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libmm              && git add . && git commit -m "alpine" && git push
+	-cd ./libraries/libplatform        && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libstring          && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/liburl             && git add . && git commit -m "alpine" && git push
 	-cd ./libraries/libfs              && git add . && git commit -m "alpine" && git push

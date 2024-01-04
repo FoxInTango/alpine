@@ -25,9 +25,12 @@
 
 libmatch:
 libfs : file stream, file,dir,link:create delete move rename etc
-git@github.com:FoxInTango/libfs.git
+    git@github.com:FoxInTango/libfs.git
 libelf:
-git@github.com:FoxInTango/libelf.git
+    git@github.com:FoxInTango/libelf.git
+
+libplatform : Platform Abstract Layer
+    git@github.com:FoxInTango/libplatform.git
 
 libcry & libtls 
 
