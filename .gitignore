@@ -64,3 +64,5 @@
 *.lib
 *.dll
 *.exe
+
+/ide/vs2022/.vs
