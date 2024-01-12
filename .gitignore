@@ -61,6 +61,7 @@
 *.ipch
 *.db
 *.pdb
+*.idb
 *.lib
 *.dll
 *.exe

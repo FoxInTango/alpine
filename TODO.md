@@ -50,3 +50,19 @@ IDE :
 libkernel/modules : 公共部分生成静态库  
 
 对于Linux 所需外部库集成为 KPI
+
+考虑 libelf 移入 libmodule
+由于需要 内核事件处理 考虑 ：
+1， alpine主程序的事件处理代码 分流为模块 内核层各模块集成
+2,   alpine主程序把事件处理代码 注入到内核
+3,   alpine主程序直接在内核运行一份内核版本副本
+
+libast / libes : 匿名函数/符号
+
+编译过程把.o文件移至相应目录[kernel | normal]
+
+make alpine
+make alpine_in_kernel
+make mit
+make wf
+
