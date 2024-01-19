@@ -64,6 +64,7 @@ int main(int argc, char* argv[]) {
     default:break;
     }
 
+    while(true) {}
     ME me("../elf/out/app.exe");
     
 
