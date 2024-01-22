@@ -64,7 +64,7 @@ int main(int argc, char* argv[]) {
     default:break;
     }
 
-    while(true) {}
+    //while(true) {}
     ME me("../elf/out/app.exe");
     
 
@@ -76,8 +76,6 @@ int main(int argc, char* argv[]) {
             elf.open(elf_arg[i]);
         }
     }
-
-    while(true){}
 
     return 0;
 }
