@@ -66,3 +66,5 @@ make alpine_in_kernel
 make mit
 make wf
 
+makefile wasm
+
