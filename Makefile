@@ -22,10 +22,23 @@
 #     头文件依赖目录名称 整体 / 独立
 #     库文件依赖目录名称 整体 / 独立
 #
+
+# make stm32 
+# make x86
+# make x64
+
 CC=g++
 AS=as
 AR=ar
 LD=ld
+
+CC=gcc
+PP=g++
+AS=as
+AR=ar
+LD=ld
+OD=objdump
+RE=readelf
 
 # Learn something from /lib/modules/6.1.29-0-lts/build/Makefile
 
