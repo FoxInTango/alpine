@@ -19,6 +19,7 @@
 18,关于基类的功能与作用
 19,Member的赋值与取值监听
 20,libmodel ModelElement 取消impl机制
+21,关于 GCC/CLANG 裸机程序的参数
 
 删除 libmm 移入 libcpp
 
