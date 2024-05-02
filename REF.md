@@ -121,3 +121,71 @@
 #     https://www.cnblogs.com/yinbiao/p/10732600.html 这位朋友看起来很厉害
 #     https://www.geeksforgeeks.org/introduction-to-red-black-tree/ 所以说很多东西，我们都是知其然不知其所以然，内部的很多规律定则，我们并没有搞清楚，只是照葫芦画瓢 
 #     https://www.cnblogs.com/yinbiao/p/10732600.html
+
+# 内核静态库 http://blog.chinaunix.net/uid-26009923-id-5715137.html
+linux驱动15---linux内核静态库的编译与使用
+ 分类： LINUX2016-05-05 10:48:11
+有时会遇到这样的情况，跟其它厂商合作时，厂商只给了库及其头文件，
+然后加入到内核源码中进行编译，下面就摸拟这种情况.
+1. linux 内核目录下编译靜态库
+cong@msi:/work/qemu/linux-3.0.1$ mkdir -pv drivers/mylib/      ;;在driver/mylib目录下放静态库的代码
+cong@msi:/work/qemu/linux-3.0.1$ cat drivers/mylib/Makefile    ;;编译静态库的Makefile,只有一行
+lib-y := mylib.o
+cong@msi:/work/qemu/linux-3.0.1$ cat drivers/mylib/mylib.c     ;;静态库的内容，就一个打印函数
+#include
+#include
+#include
+int mylib_func(void)
+{
+    printk("mylib func\n");
+    return 0;
+}
+EXPORT_SYMBOL(mylib_func);
+cong@msi:/work/qemu/linux-3.0.1$ cat  include/linux/mylib.h     ;;静态库的头文件
+#ifndef _MYLIB_H
+#define _MYLIB_H
+int mylib_func(void);
+#endif /* _MYLIB_H */
+cong@msi:/work/qemu/linux-3.0.1$ vi drivers/Makefile            ;;最后在上级目录drivers的Makefile加入
+obj-y += mylib/                                                 ;;自己的库的编译
+make编译内核,则会在drivers/mylib/目录下编译出静态库来了
+cong@msi:/work/qemu/linux-3.0.1$ ls drivers/mylib/
+built-in.o lib.a Makefile modules.order mylib.c mylib.o
+2.linux内核使用静态库
+cong@msi:/work/qemu/linux-3.0.1$ cat drivers/hello/hello.c
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/mylib.h>                                        ;;加入静态库的头文件
+static int __init hello_init(void)
+{
+    int ret = 0;
+    printk(KERN_INFO "next cong test mylib\n");
+    mylib_func();                                               ;;调用静态库的函数
+    return ret;
+}
+static void __exit hello_exit(void)
+{
+    return ;
+}
+MODULE_AUTHOR(" cong");
+MODULE_DESCRIPTION("test mylib");
+MODULE_LICENSE("GPL");
+module_init(hello_init);
+module_exit(hello_exit);
+
+cong@msi:/work/qemu/linux-3.0.1$ cat drivers/hello/Makefile    ;;加入调用静态库的函数
+obj-y += hello.o ../mylib/lib.a
+
+cong@msi:/work/qemu/linux-3.0.1$ vi drivers/Makefile
+obj-y += hello/
+
+3.最后试一下去掉静态库源码,只保留库
+cong@msi:/work/qemu/linux-3.0.1$ cp ./drivers/mylib/lib.a ./drivers/hello/ ;;将库copy到调用库的地方
+cong@msi:/work/qemu/linux-3.0.1$ vi drivers/Makefile
+#obj-y += mylib/                                               ;; 去掉库的编译
+cong@msi:/work/qemu/linux-3.0.1$ rm -rf drivers/mylib          ;; 同时去掉库的源码
+
+cong@msi:/work/qemu/linux-3.0.1$ vi drivers/hello/Makefile     ;; 修改调用者的Makefile
+obj-y += hello.o lib.a
+
+#JavaScript 字体解析 https://zhangzhipeng.net/2020/04/19/js%e8%a7%a3%e6%9e%90ttf%e5%ad%97%e4%bd%93%e6%96%87%e4%bb%b6/
