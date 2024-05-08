@@ -424,7 +424,7 @@ publish:
 	-git add src/*.cpp
 	-git add etc/alpine
 	-git add readme/*
-	-git add ide
+	-git add build
 	-git add inc/.keepalive
 	-git add lib/.keepalive
 	-git add bin/.keepalive
