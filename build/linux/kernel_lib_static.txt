@@ -1,0 +1,1 @@
+https://www.51cto.com/article/671390.html Linux 内核静态库封装问题
