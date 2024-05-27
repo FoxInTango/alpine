@@ -71,4 +71,5 @@
 *.tlog
 *.lastbuildstate
 
-/ide/vs2022/.vs
+/build/win32/vs2022/Alpine/x64
+/build/win32/vs2022/Alpine/alpine/x64
