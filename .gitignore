@@ -57,6 +57,10 @@
 
 # visual studio 
 
+*.cer
+*.cat
+*.sys
+
 *.vsidx
 *.ipch
 *.db
