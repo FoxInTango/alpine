@@ -83,6 +83,7 @@ TARGET_LIB_DIR := ./lib
 PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
+PROJECT_DIR_BESIDES += -o -path ./build
 PROJECT_DIR_BESIDES += -o -path ./libraries
 PROJECT_DIR_BESIDES += -o -path ./modules
 PROJECT_DIR_BESIDES += -o -path ./templates
