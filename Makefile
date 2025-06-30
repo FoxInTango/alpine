@@ -84,6 +84,7 @@ PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
 PROJECT_DIR_BESIDES += -o -path ./build
+PROJECT_DIR_BESIDES += -o -path ./applications
 PROJECT_DIR_BESIDES += -o -path ./libraries
 PROJECT_DIR_BESIDES += -o -path ./modules
 PROJECT_DIR_BESIDES += -o -path ./templates
@@ -102,6 +103,9 @@ else
 endif
 
 TARGET_HEADERS = $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.h))
+
+echo_headers:
+	echo ${TARGET_HEADERS}
 
 TARGET_SOURCES_AS  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.s))
 TARGET_OBJECTS_AS  += $(patsubst %.s,%.o,$(TARGET_SOURCES_AS))
@@ -161,7 +165,9 @@ MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
 export SUPER_LIBRARY_ROOT = $(MAKE_FILE_DIR)libraries
 export SUPER_INCLUDE_PATH = $(MAKE_FILE_DIR)inc
 export SUPER_LIBRARY_PATH = $(MAKE_FILE_DIR)lib
-export SUPER_RUNTIME_PATH = $(INSTALL_PATH_PREFIX)
+export SUPER_EXECUTE_PATH = $(MAKE_FILE_DIR)bin
+export SUPER_DEPENDS_PATH = $(MAKE_FILE_DIR)thirds
+export SUPER_RUNTIME_PATH = #$(INSTALL_PATH_PREFIX)
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
@@ -176,7 +182,7 @@ endif
 ALL : $(TARGETS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -o $@ $^ $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE
+	$(CC) -o $@ $^ $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE -static
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
