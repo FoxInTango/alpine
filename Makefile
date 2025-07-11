@@ -104,9 +104,6 @@ endif
 
 TARGET_HEADERS = $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.h))
 
-echo_headers:
-	echo ${TARGET_HEADERS}
-
 TARGET_SOURCES_AS  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.s))
 TARGET_OBJECTS_AS  += $(patsubst %.s,%.o,$(TARGET_SOURCES_AS))
 TARGET_SOURCES_CC  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.c))
@@ -196,7 +193,7 @@ submodule:
 	rm -rf ./lib/*
 	-mkdir ./inc/modules
 	-mkdir ./lib/modules
-	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp -rf ./libraries/libcpp/src/*.h        ./inc/libcpp
+	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp -rf -p ./libraries/libcpp/src/*.h        ./inc/libcpp
 	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
 	-cd ./libraries/libplatform  && $(MAKE) && cd ../.. && cp -rf ./libraries/libplatform/lib/*   ./lib && mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
 	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
