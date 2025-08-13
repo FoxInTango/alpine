@@ -84,6 +84,7 @@ PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
 PROJECT_DIR_BESIDES += -path ./.git
 PROJECT_DIR_BESIDES += -o -path ./build
+PROJECT_DIR_BESIDES += -o -path ./applications
 PROJECT_DIR_BESIDES += -o -path ./libraries
 PROJECT_DIR_BESIDES += -o -path ./modules
 PROJECT_DIR_BESIDES += -o -path ./templates
@@ -91,7 +92,9 @@ PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib
 PROJECT_DIR_BESIDES += -o -path ./man
+PROJECT_DIR_BESIDES += -o -path ./docs
 PROJECT_DIR_BESIDES += -o -path ./ide
+PROJECT_DIR_BESIDES += -o -path ./thirds
 PROJECT_DIR_BESIDES += -o -path ./.trash
 PROJECT_DIR_BESIDES += \)
 #PROJECT_DIRS   = $(shell $(FD) $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
@@ -116,10 +119,13 @@ TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                   
 TARGET_LD_FLAGS    = -L ./lib -Wl,-rpath=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}/lib
 
 # 需要链接的库  -lstring -lurl
-TARGET_LIBS = -lelf -larguments -lsystem -lioevent -lfsevent -levent -lmit -lecho -les -last -lvm -lmodule -lmodel -lstream -lurl -lstring -lcpp -lstdc++ -lc         
+TARGET_LIBS = -lvk -lwayland-client -lktx -lvulkan -lelf -larguments -lsystem -lioevent -lfsevent -levent -lmit -lecho -les -last -lvm -lmodule -lmodel -lstream -lurl -lstring -lcpp -lstdc++ -lm -lc  #-ldl     
 
+# for libvk
+TARGET_LIBS += -linput -ldrm -lseat -lgbm -lshaderc -lxcb
+TARGET_LIBS += -lxcb-ewmh
 ASFLAGS =
-CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
+CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -I ./inc
 PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
 
 #OPENSSL=
@@ -178,7 +184,7 @@ endif
 ALL : $(TARGETS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -o $@ $^ $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE -static
+	$(CC) -o $@ $^ $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE #-static
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
@@ -220,10 +226,84 @@ submodule:
 	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp -rf ./libraries/libvn/src/*.h         ./inc/libvn
 	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp -rf ./libraries/libvh/src/*.h         ./inc/libvh
 	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp -rf ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp -rf ./libraries/libes/src/*.h         ./inc/libes
+	-cd ./libraries/libvk        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvk/lib/*         ./lib && mkdir inc/libvk        && cp -rf ./libraries/libvk/src/*.h         ./inc/libvk && cp -rf ./libraries/libvk/src/*.hpp         ./inc/libvk
 	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp -rf ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
 	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp -rf ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
 	-cd ./modules/io_event_tls_engine  && $(MAKE) && cd ../../ && cp -rf ./modules/io_event_tls_engine/lib/*   ./lib/modules && mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
 	-cd ./modules/ast_standard_modules && $(MAKE) && cd ../../ && cp -rf ./modules/ast_standard_modules/lib/*  ./lib/modules && mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
+	-cd ./modules/es_language_js       && $(MAKE) && cd ../../ && cp -rf ./modules/es_language_js/lib/*        ./lib/modules && mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
+
+libcpp:
+	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp -rf -p ./libraries/libcpp/src/*.h        ./inc/libcpp
+libmm:
+	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
+libplatform:
+	-cd ./libraries/libplatform  && $(MAKE) && cd ../.. && cp -rf ./libraries/libplatform/lib/*   ./lib && mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
+libstring:
+	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
+liburl:
+	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -rf ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
+libfs:
+	-cd ./libraries/libfs        && $(MAKE) && cd ../.. && cp -rf ./libraries/libfs/lib/*         ./lib && mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
+libmatch:
+	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
+libelf:
+	-cd ./libraries/libelf       && $(MAKE) && cd ../.. && cp -rf ./libraries/libelf/lib/*        ./lib && mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
+libhttp:
+	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -rf ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
+libstream:
+	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
+libmodel:
+	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
+liboml:
+	-cd ./libraries/liboml       && $(MAKE) && cd ../.. && cp -rf ./libraries/liboml/lib/*        ./lib && mkdir inc/liboml       && cp -rf ./libraries/liboml/src/*.h        ./inc/liboml
+libfft:
+	-cd ./libraries/libfft       && $(MAKE) && cd ../.. && cp -rf ./libraries/libfft/lib/*        ./lib && mkdir inc/libfft       && cp -rf ./libraries/libfft/src/*.h        ./inc/libfft
+libcry:
+	-cd ./libraries/libcry       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcry/lib/*        ./lib && mkdir inc/libcry       && cp -rf ./libraries/libcry/src/*.h        ./inc/libcry
+libtls:
+	-cd ./libraries/libtls       && $(MAKE) && cd ../.. && cp -rf ./libraries/libtls/lib/*        ./lib && mkdir inc/libtls       && cp -rf ./libraries/libtls/src/*.h        ./inc/libtls
+libmodule:
+	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
+libast:
+	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -rf ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
+libkernel:
+	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
+libsystem:
+	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp -rf ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
+libecho:
+	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp -rf ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
+libevent:
+	-cd ./libraries/libevent     && $(MAKE) && cd ../.. && cp -rf ./libraries/libevent/lib/*      ./lib && mkdir inc/libevent     && cp -rf ./libraries/libevent/src/*.h      ./inc/libevent
+libioevent:
+	-cd ./libraries/libioevent   && $(MAKE) && cd ../.. && cp -rf ./libraries/libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp -rf ./libraries/libioevent/src/*.h    ./inc/libioevent
+libfsevent:
+	-cd ./libraries/libfsevent   && $(MAKE) && cd ../.. && cp -rf ./libraries/libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp -rf ./libraries/libfsevent/src/*.h    ./inc/libfsevent
+libipc:
+	-cd ./libraries/libipc       && $(MAKE) && cd ../.. && cp -rf ./libraries/libipc/lib/*        ./lib && mkdir inc/libipc       && cp -rf ./libraries/libipc/src/*.h        ./inc/libipc
+libvm:
+	-cd ./libraries/libvm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvm/lib/*         ./lib && mkdir inc/libvm        && cp -rf ./libraries/libvm/src/*.h         ./inc/libvm
+libvn:
+	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp -rf ./libraries/libvn/src/*.h         ./inc/libvn
+libvh:
+	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp -rf ./libraries/libvh/src/*.h         ./inc/libvh
+libes:
+	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp -rf ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp -rf ./libraries/libes/src/*.h         ./inc/libes
+libvk:
+	-cd ./libraries/libvk          && $(MAKE)
+	-cp -rf ./libraries/libvk/lib/* ./lib
+	-mkdir inc/libvk
+	cp -prf ./libraries/libvk/src/*.h         ./inc/libvk
+	cp -prf ./libraries/libvk/src/*.hpp       ./inc/libvk
+libarguments:
+	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp -rf ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
+libmit:
+	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp -rf ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
+io_event_tls_engine:
+	-cd ./modules/io_event_tls_engine  && $(MAKE) && cd ../../ && cp -rf ./modules/io_event_tls_engine/lib/*   ./lib/modules && mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
+ast_standard_modules:
+	-cd ./modules/ast_standard_modules && $(MAKE) && cd ../../ && cp -rf ./modules/ast_standard_modules/lib/*  ./lib/modules && mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
+es_language_js:
 	-cd ./modules/es_language_js       && $(MAKE) && cd ../../ && cp -rf ./modules/es_language_js/lib/*        ./lib/modules && mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
 
 subheader:
@@ -265,6 +345,7 @@ subheader:
 subinstall:
 	-mkdir libraries
 	-cd libraries && git clone https://github.com/FoxInTango/libcpp.git
+	-cd libraries && git clone https://github.com/FoxInTango/libmath.git # TODO: github
 	-cd libraries && git clone https://github.com/FoxInTango/libsystem.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmm.git
 	-cd libraries && git clone https://github.com/FoxInTango/libplatform.git
@@ -282,6 +363,17 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libfft.git
 	-cd libraries && git clone https://github.com/FoxInTango/libcry.git
 	-cd libraries && git clone https://github.com/FoxInTango/libtls.git
+	-cd libraries && git clone https://github.com/FoxInTango/lib2d.git    # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/lib3d.git    # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libimage.git # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libmedia.git # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/lib2d.git    # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libml.git    # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libnn.git    # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libstt.git   # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libtts.git   # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libwl.git    # TODO: github
+	-cd libraries && git clone https://github.com/FoxInTango/libvk.git    # TODO: github
 	-cd libraries && git clone https://github.com/FoxInTango/libmodule.git
 	-cd libraries && git clone https://github.com/FoxInTango/libevent.git
 	-cd libraries && git clone https://github.com/FoxInTango/libioevent.git
@@ -291,6 +383,7 @@ subinstall:
 	-cd libraries && git clone https://github.com/FoxInTango/libvn.git
 	-cd libraries && git clone https://github.com/FoxInTango/libvh.git
 	-cd libraries && git clone https://github.com/FoxInTango/libes.git
+	-cd libraries && git clone https://github.com/FoxInTango/libui.git    # TODO: github
 	-cd libraries && git clone https://github.com/FoxInTango/libarguments.git
 	-cd libraries && git clone https://github.com/FoxInTango/libmit.git
 	-cd libraries && git clone https://github.com/FoxInTango/libkernel.git
@@ -392,9 +485,21 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libecho.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmodel.git
 	-cd libraries && git clone git@github.com:FoxInTango/liboml.git
+	-cd libraries && git clone wf@allinone.io:alpine/libmath.git
 	-cd libraries && git clone git@github.com:FoxInTango/libfft.git
 	-cd libraries && git clone git@github.com:FoxInTango/libcry.git
 	-cd libraries && git clone git@github.com:FoxInTango/libtls.git
+	-cd libraries && git clone wf@allinone.io:alpine/lib2d.git
+	-cd libraries && git clone wf@allinone.io:alpine/lib3d.git
+	-cd libraries && git clone wf@allinone.io:alpine/libimage.git
+	-cd libraries && git clone wf@allinone.io:alpine/libmedia.git
+	-cd libraries && git clone wf@allinone.io:alpine/lib2d.git
+	-cd libraries && git clone wf@allinone.io:alpine/libml.git
+	-cd libraries && git clone wf@allinone.io:alpine/libnn.git
+	-cd libraries && git clone wf@allinone.io:alpine/libstt.git
+	-cd libraries && git clone wf@allinone.io:alpine/libtts.git
+	-cd libraries && git clone wf@allinone.io:alpine/libwl.git
+	-cd libraries && git clone wf@allinone.io:alpine/libvk.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmodule.git
 	-cd libraries && git clone git@github.com:FoxInTango/libevent.git
 	-cd libraries && git clone git@github.com:FoxInTango/libioevent.git
@@ -404,6 +509,7 @@ devinstall:
 	-cd libraries && git clone git@github.com:FoxInTango/libvn.git
 	-cd libraries && git clone git@github.com:FoxInTango/libvh.git
 	-cd libraries && git clone git@github.com:FoxInTango/libes.git
+	-cd libraries && git clone wf@allinone.io:alpine/libui.git
 	-cd libraries && git clone git@github.com:FoxInTango/libarguments.git
 	-cd libraries && git clone git@github.com:FoxInTango/libmit.git
 	-cd libraries && git clone git@github.com:FoxInTango/libkernel.git
