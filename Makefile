@@ -1,55 +1,16 @@
-# 当前操作系统识别
-#    定义 文件系统命令 cd mkdir rmdir rm touch find cat 等
-# 目标识别
-# 目标
-#    目标操作系统
-#        定义 编译器 汇编器 链接器 等
-#    目标硬件架构
-#        设定编译 汇编 链接 等 参数
-#    目标依赖 [子目标，目标特定模块]
-#
-# 全局模块
-#     向下传递 项目根目录路径[此Makefile所在路径]
-#
-# 子模块需要信息 
-#     项目根目录路径
-#     目标平台名称
-#     目标架构名称 
-#     目标空间名称 用户 / 内核
-#     工具链 文件系统命令 cc pp cd mkdir rmdir rm touch find cat 等
-#     头文件目标目录名称
-#     库文件目标目录名称
-#     头文件依赖目录名称 整体 / 独立
-#     库文件依赖目录名称 整体 / 独立
-#
-
-# make stm32 
-# make x86
-# make x64
+MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
+MAKE_CONFIG_DIR           = $(MAKE_FILE_DIR).make
+PROJECT_MODULE_MAKEFILES += $(wildcard $(MAKE_CONFIG_DIR)/*.mk)
+include $(PROJECT_MODULE_MAKEFILES)
+include $(MAKE_CONFIG_DIR)/name
+include $(MAKE_CONFIG_DIR)/super 
 
 CC=g++
+PP=gcc
 AS=as
 AR=ar
 LD=ld
-
-CC=gcc
-PP=g++
-AS=as
-AR=ar
-LD=ld
-OD=objdump
-RE=readelf
-
-# Learn something from /lib/modules/6.1.29-0-lts/build/Makefile
-
-define add_module
-endef
-
-define del_module
-endef
-
-define config
-endef
 
 PLATFORM_ARCH         = $(shell uname -s)
 PLATFORM_ARCH_LINUX   = Linux
@@ -58,87 +19,127 @@ PLATFORM_ARCH_FREEBSD = FreeBSD
 
 MK_FALSE = 0
 MK_TRUE  = 1
-# 输出类型配置
-TARGET_TYPE_BIN = $(MK_TRUE)
-TARGET_TYPE_LIB = $(MK_FALSE)
-TARGET_TYPE_DLL = $(MK_FALSE)
+# Output Types
+include $(MAKE_CONFIG_DIR)/output
 
-# ** 项目配置区 **
+# ** Project Settings **
 #
-#    输出文件名称
-TARGET_NAME     = alpine
-#    输出文件后缀 [自动判别]
+#    Output Name
+#    TARGET_NAME     =  : Defined in .make/name and also can be redefine here.
+#    Output Name Extensions
 TARGET_BIN_EXT = 
 TARGET_LIB_EXT_STATIC  =
 TARGET_LIB_EXT_DYNAMIC = 
-#    安装位置
-INSTALL_PATH_PREFIX = /Applications/alpine
-TARGET_VERSION = 1.0.0
-#INSTALL_PATH_PREFIX = /usr/local
+# Flags
+#ASFLAGS =
+CCFLAGS += -c -fPIC -Wall -std=c11
+PPFLAGS += -c -fPIC -Wall -std=c++11 -fvisibility=hidden
+#LDFLAGS =
 
-TARGET_INC_DIR := ./inc
+# Path Configurations
+DEFAULT_INSTALL_PATH_PREFIX = /usr/local
+
+HEADER_INSTALL_PATH  = ${MAKE_FILE_DIR}inc
+BINARY_INSTALL_PATH  = ${MAKE_FILE_DIR}bin
+LIBRARY_INSTALL_PATH = ${MAKE_FILE_DIR}lib
+DEPENDS_LIBRARY_PATH = ${MAKE_FILE_DIR}libraries
+DEPENDS_THIRDS_PATH  = ${MAKE_FILE_DIR}thirds
+
+# Path where headers to be installed.
+ifdef SUPER_HEADER_INSTALL_PATH
+HEADER_INSTALL_PATH = ${SUPER_HEADER_INSTALL_PATH}
+endif
+
+# Path where outputed binary to be installed.
+ifdef SUPER_BINARY_INSTALL_PATH
+    BINARY_INSTALL_PATH  = ${SUPER_BINARY_INSTALL_PATH}
+endif
+
+# Path where outputed library to be installed.
+ifdef SUPER_LIBRARY_INSTALL_PATH
+    LIBRARY_INSTALL_PATH  = ${SUPER_LIBRARY_INSTALL_PATH}
+endif
+
+# Path where libraries depended by this project to be downloaded.
+ifdef SUPER_DEPENDS_LIBRARY_PATH
+    DEPENDS_LIBRARY_PATH  = ${SUPER_DEPENDS_LIBRARY_PATH}
+endif
+
+# Path where third-parties depended by this project to be downloaded.
+ifdef SUPER_DEPENDS_THIRDS_PATH
+    DEPENDS_THIRDS_PATH  = ${SUPER_DEPENDS_THIRDS_PATH}
+endif
+
+ifndef SUPER_HEADER_INSTALL_PATH
+export SUPER_HEADER_INSTALL_PATH  = ${HEADER_INSTALL_PATH}
+endif
+ifndef SUPER_BINARY_INSTALL_PATH
+export SUPER_BINARY_INSTALL_PATH  = ${BINARY_INSTALL_PATH}
+endif
+ifndef SUPER_LIBRARY_INSTALL_PATH
+export SUPER_LIBRARY_INSTALL_PATH = ${LIBRARY_INSTALL_PATH}
+endif
+ifndef SUPER_DEPENDS_LIBRARY_PATH
+export SUPER_DEPENDS_LIBRARY_PATH = ${DEPENDS_LIBRARY_PATH}
+endif
+ifndef SUPER_DEPENDS_THIRDS_PATH
+export SUPER_DEPENDS_THIRDS_PATH  = ${DEPENDS_THIRDS_PATH}
+endif
+
+include $(MAKE_CONFIG_DIR)/prepare
+
+ifdef SUPER_INCLUDE_PATH
+    CCFLAGS += -I${SUPER_INCLUDE_PATH}
+	PPFLAGS += -I${SUPER_INCLUDE_PATH}
+endif
+ifdef SUPER_LIBRARY_PATH
+    LDFLAGS += -L${SUPER_LIBRARY_PATH}
+endif
+ifdef SUPER_RUNTIME_PATH
+    LDFLAGS += -Wl,-rpath=${SUPER_RUNTIME_PATH}
+endif
+
 TARGET_BIN_DIR := ./bin
 TARGET_LIB_DIR := ./lib
 
 PROJECT_ROOT = .
 PROJECT_DIR_BESIDES  = \(
-PROJECT_DIR_BESIDES += -path ./.git
+PROJECT_DIR_BESIDES +=    -path ./.git
+PROJECT_DIR_BESIDES += -o -path ./.make
 PROJECT_DIR_BESIDES += -o -path ./build
 PROJECT_DIR_BESIDES += -o -path ./applications
 PROJECT_DIR_BESIDES += -o -path ./libraries
 PROJECT_DIR_BESIDES += -o -path ./modules
 PROJECT_DIR_BESIDES += -o -path ./templates
+PROJECT_DIR_BESIDES += -o -path ./assets
+PROJECT_DIR_BESIDES += -o -path ./readme
 PROJECT_DIR_BESIDES += -o -path ./obj
 PROJECT_DIR_BESIDES += -o -path ./bin
 PROJECT_DIR_BESIDES += -o -path ./lib
+PROJECT_DIR_BESIDES += -o -path ./inc
 PROJECT_DIR_BESIDES += -o -path ./man
 PROJECT_DIR_BESIDES += -o -path ./docs
 PROJECT_DIR_BESIDES += -o -path ./ide
 PROJECT_DIR_BESIDES += -o -path ./thirds
 PROJECT_DIR_BESIDES += -o -path ./.trash
 PROJECT_DIR_BESIDES += \)
-#PROJECT_DIRS   = $(shell $(FD) $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
-ifeq ($(OS),Windows_NT)
-    PROJECT_DIRS   = $(shell busybox find $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
-else
-	PROJECT_DIRS   = $(shell find $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print) #maxdepth
-endif
+PROJECT_DIRS   = $(shell find $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print)
 
 TARGET_HEADERS = $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.h))
 
 TARGET_SOURCES_AS  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.s))
 TARGET_OBJECTS_AS  += $(patsubst %.s,%.o,$(TARGET_SOURCES_AS))
 TARGET_SOURCES_CC  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.c))
-TARGET_OBJECTS_CC  += $(patsubst %.c,%.o,$(TARGET_SOURCES_CC))                        # $(patsubst %.cpp,${TARGET_OBJECTS_DIR}/%.o,$(notdir ${TARGET_SOURCES}))
+TARGET_OBJECTS_CC  += $(patsubst %.c,%.o,$(TARGET_SOURCES_CC))
 TARGET_SOURCES_PP  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.cpp))
 TARGET_OBJECTS_PP  += $(patsubst %.cpp,%.o,$(TARGET_SOURCES_PP))
 
-TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))                         # $(wildcard $(TARGET_HEADERS_DIR)/*.h)
+TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))
 
-# 链接库配置
-TARGET_LD_FLAGS    = -L ./lib -Wl,-rpath=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}/lib
+# 需要链接的库
+TARGET_LIBS = -lmodel -lstdc++
+# 链接标志
 
-# 需要链接的库  -lstring -lurl
-TARGET_LIBS = -lvk -lwayland-client -lktx -lvulkan -lelf -larguments -lsystem -lioevent -lfsevent -levent -lmit -lecho -les -last -lvm -lmodule -lmodel -lstream -lurl -lstring -lcpp -lstdc++ -lm -lc  #-ldl     
-
-# for libvk
-TARGET_LIBS += -linput -ldrm -lseat -lgbm -lshaderc -lxcb
-TARGET_LIBS += -lxcb-ewmh
-ASFLAGS =
-CCFLAGS = -c -fPIC -Wall -fvisibility=hidden -I ./inc
-PPFLAGS = -c -fPIC -Wall -fvisibility=hidden -std=c++11 -I ./inc
-
-#OPENSSL=
-ifdef OPENSSL
-OPENSSL_INCLUDE_PATH = ${OPENSSL}/include
-OPENSSL_LIBRARY_PATH = ${OPENSSL}/lib
-TARGET_LD_FLAGS += -L ${OPENSSL_LIBRARY_PATH}
-TARGET_LIBS += -ltls
-CCFLAGS += -I ${OPENSSL_INCLUDE_PATH}
-PPFLAGS += -I ${OPENSSL_INCLUDE_PATH}
-CCFLAGS += -DOPENSSL
-PPFLAGS += -DOPENSSL
-endif
 # 平台检测 -- DARWIN
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_BIN_EXT         :=
@@ -149,7 +150,7 @@ endif
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
     TARGET_BIN_EXT         :=
     TARGET_LIB_EXT_STATIC  := a
-    CTARGET_LIB_EXT_DYNAMIC := so
+    TARGET_LIB_EXT_DYNAMIC := so
 endif
 
 # 平台检测 -- FreeBSD
@@ -160,16 +161,6 @@ ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
 endif
 
 TARGETS = 
-
-MAKE_FILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
-MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
-
-export SUPER_LIBRARY_ROOT = $(MAKE_FILE_DIR)libraries
-export SUPER_INCLUDE_PATH = $(MAKE_FILE_DIR)inc
-export SUPER_LIBRARY_PATH = $(MAKE_FILE_DIR)lib
-export SUPER_EXECUTE_PATH = $(MAKE_FILE_DIR)bin
-export SUPER_DEPENDS_PATH = $(MAKE_FILE_DIR)thirds
-export SUPER_RUNTIME_PATH = #$(INSTALL_PATH_PREFIX)
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
@@ -183,346 +174,43 @@ endif
 
 ALL : $(TARGETS)
 
-${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -o $@ $^ $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE #-static
+${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
+	$(AR) -crvs $@ $^
+
+${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_DYNAMIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
+	$(CC) -fPIC -shared  -o $@ $^ ${LDFLAGS} $(TARGET_LIBS)
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
 $(TARGET_OBJECTS_CC):%.o:%.c
-	$(CC) ${CCFLAGS} $< -o $@
+	$(CC) ${CCFLAGS} $< -o $@ 
 $(TARGET_OBJECTS_PP):%.o:%.cpp
-	$(CC) ${PPFLAGS} $< -o $@
+	$(PP) ${PPFLAGS} $< -o $@
 
-submodule:
-	rm -rf ./inc/*
-	rm -rf ./lib/*
-	-mkdir ./inc/modules
-	-mkdir ./lib/modules
-	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp -rf -p ./libraries/libcpp/src/*.h        ./inc/libcpp
-	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
-	-cd ./libraries/libplatform  && $(MAKE) && cd ../.. && cp -rf ./libraries/libplatform/lib/*   ./lib && mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
-	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
-	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -rf ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
-	-cd ./libraries/libfs        && $(MAKE) && cd ../.. && cp -rf ./libraries/libfs/lib/*         ./lib && mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
-	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
-	-cd ./libraries/libelf       && $(MAKE) && cd ../.. && cp -rf ./libraries/libelf/lib/*        ./lib && mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
-	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -rf ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
-	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
-	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
-	-cd ./libraries/liboml       && $(MAKE) && cd ../.. && cp -rf ./libraries/liboml/lib/*        ./lib && mkdir inc/liboml       && cp -rf ./libraries/liboml/src/*.h        ./inc/liboml
-	-cd ./libraries/libfft       && $(MAKE) && cd ../.. && cp -rf ./libraries/libfft/lib/*        ./lib && mkdir inc/libfft       && cp -rf ./libraries/libfft/src/*.h        ./inc/libfft
-	-cd ./libraries/libcry       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcry/lib/*        ./lib && mkdir inc/libcry       && cp -rf ./libraries/libcry/src/*.h        ./inc/libcry
-	-cd ./libraries/libtls       && $(MAKE) && cd ../.. && cp -rf ./libraries/libtls/lib/*        ./lib && mkdir inc/libtls       && cp -rf ./libraries/libtls/src/*.h        ./inc/libtls
-	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
-	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -rf ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
-	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
-	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp -rf ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
-	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp -rf ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
-	-cd ./libraries/libevent     && $(MAKE) && cd ../.. && cp -rf ./libraries/libevent/lib/*      ./lib && mkdir inc/libevent     && cp -rf ./libraries/libevent/src/*.h      ./inc/libevent
-	-cd ./libraries/libioevent   && $(MAKE) && cd ../.. && cp -rf ./libraries/libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp -rf ./libraries/libioevent/src/*.h    ./inc/libioevent
-	-cd ./libraries/libfsevent   && $(MAKE) && cd ../.. && cp -rf ./libraries/libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp -rf ./libraries/libfsevent/src/*.h    ./inc/libfsevent
-	-cd ./libraries/libipc       && $(MAKE) && cd ../.. && cp -rf ./libraries/libipc/lib/*        ./lib && mkdir inc/libipc       && cp -rf ./libraries/libipc/src/*.h        ./inc/libipc
-	-cd ./libraries/libvm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvm/lib/*         ./lib && mkdir inc/libvm        && cp -rf ./libraries/libvm/src/*.h         ./inc/libvm
-	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp -rf ./libraries/libvn/src/*.h         ./inc/libvn
-	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp -rf ./libraries/libvh/src/*.h         ./inc/libvh
-	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp -rf ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp -rf ./libraries/libes/src/*.h         ./inc/libes
-	-cd ./libraries/libvk        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvk/lib/*         ./lib && mkdir inc/libvk        && cp -rf ./libraries/libvk/src/*.h         ./inc/libvk && cp -rf ./libraries/libvk/src/*.hpp         ./inc/libvk
-	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp -rf ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
-	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp -rf ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
-	-cd ./modules/io_event_tls_engine  && $(MAKE) && cd ../../ && cp -rf ./modules/io_event_tls_engine/lib/*   ./lib/modules && mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
-	-cd ./modules/ast_standard_modules && $(MAKE) && cd ../../ && cp -rf ./modules/ast_standard_modules/lib/*  ./lib/modules && mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
-	-cd ./modules/es_language_js       && $(MAKE) && cd ../../ && cp -rf ./modules/es_language_js/lib/*        ./lib/modules && mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
+clean   :
+	rm -f $(TARGET_OBJECTS_AS)
+	rm -f $(TARGET_OBJECTS_CC)
+	rm -f $(TARGET_OBJECTS_PP)
+	rm -f ${TARGET_LIB_DIR}/*
+	rm -f ${TARGET_BIN_DIR}/*
+prepare:$(PREPARE_TARGETS)
+	cd libraries/libarguments && make prepare
+install :
+	rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)
+	rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
+	mkdir  $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	cp     $(TARGET_HEADERS) $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).$(TARGET_LIB_EXT_STATIC)  $(LIBRARY_INSTALL_PATH)
+	cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).$(TARGET_LIB_EXT_DYNAMIC) $(LIBRARY_INSTALL_PATH)
+uninstall : 
+	rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)
+	rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
 
-libcpp:
-	-cd ./libraries/libcpp       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcpp/lib/*        ./lib && mkdir inc/libcpp       && cp -rf -p ./libraries/libcpp/src/*.h        ./inc/libcpp
-libmm:
-	-cd ./libraries/libmm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libmm/lib/*         ./lib && mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
-libplatform:
-	-cd ./libraries/libplatform  && $(MAKE) && cd ../.. && cp -rf ./libraries/libplatform/lib/*   ./lib && mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
-libstring:
-	-cd ./libraries/libstring    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstring/lib/*     ./lib && mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
-liburl:
-	-cd ./libraries/liburl       && $(MAKE) && cd ../.. && cp -rf ./libraries/liburl/lib/*        ./lib && mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
-libfs:
-	-cd ./libraries/libfs        && $(MAKE) && cd ../.. && cp -rf ./libraries/libfs/lib/*         ./lib && mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
-libmatch:
-	-cd ./libraries/libmatch     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmatch/lib/*      ./lib && mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
-libelf:
-	-cd ./libraries/libelf       && $(MAKE) && cd ../.. && cp -rf ./libraries/libelf/lib/*        ./lib && mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
-libhttp:
-	-cd ./libraries/libhttp      && $(MAKE) && cd ../.. && cp -rf ./libraries/libhttp/lib/*       ./lib && mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
-libstream:
-	-cd ./libraries/libstream    && $(MAKE) && cd ../.. && cp -rf ./libraries/libstream/lib/*     ./lib && mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
-libmodel:
-	-cd ./libraries/libmodel     && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodel/lib/*      ./lib && mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
-liboml:
-	-cd ./libraries/liboml       && $(MAKE) && cd ../.. && cp -rf ./libraries/liboml/lib/*        ./lib && mkdir inc/liboml       && cp -rf ./libraries/liboml/src/*.h        ./inc/liboml
-libfft:
-	-cd ./libraries/libfft       && $(MAKE) && cd ../.. && cp -rf ./libraries/libfft/lib/*        ./lib && mkdir inc/libfft       && cp -rf ./libraries/libfft/src/*.h        ./inc/libfft
-libcry:
-	-cd ./libraries/libcry       && $(MAKE) && cd ../.. && cp -rf ./libraries/libcry/lib/*        ./lib && mkdir inc/libcry       && cp -rf ./libraries/libcry/src/*.h        ./inc/libcry
-libtls:
-	-cd ./libraries/libtls       && $(MAKE) && cd ../.. && cp -rf ./libraries/libtls/lib/*        ./lib && mkdir inc/libtls       && cp -rf ./libraries/libtls/src/*.h        ./inc/libtls
-libmodule:
-	-cd ./libraries/libmodule    && $(MAKE) && cd ../.. && cp -rf ./libraries/libmodule/lib/*     ./lib && mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
-libast:
-	-cd ./libraries/libast       && $(MAKE) && cd ../.. && cp -rf ./libraries/libast/lib/*        ./lib && mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
-libkernel:
-	-cd ./libraries/libkernel    && $(MAKE) && cd ../.. && cp -rf ./libraries/libkernel/lib/*     ./lib && mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
-libsystem:
-	-cd ./libraries/libsystem    && $(MAKE) && cd ../.. && cp -rf ./libraries/libsystem/lib/*     ./lib && mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
-libecho:
-	-cd ./libraries/libecho      && $(MAKE) && cd ../.. && cp -rf ./libraries/libecho/lib/*       ./lib && mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
-libevent:
-	-cd ./libraries/libevent     && $(MAKE) && cd ../.. && cp -rf ./libraries/libevent/lib/*      ./lib && mkdir inc/libevent     && cp -rf ./libraries/libevent/src/*.h      ./inc/libevent
-libioevent:
-	-cd ./libraries/libioevent   && $(MAKE) && cd ../.. && cp -rf ./libraries/libioevent/lib/*    ./lib && mkdir inc/libioevent   && cp -rf ./libraries/libioevent/src/*.h    ./inc/libioevent
-libfsevent:
-	-cd ./libraries/libfsevent   && $(MAKE) && cd ../.. && cp -rf ./libraries/libfsevent/lib/*    ./lib && mkdir inc/libfsevent   && cp -rf ./libraries/libfsevent/src/*.h    ./inc/libfsevent
-libipc:
-	-cd ./libraries/libipc       && $(MAKE) && cd ../.. && cp -rf ./libraries/libipc/lib/*        ./lib && mkdir inc/libipc       && cp -rf ./libraries/libipc/src/*.h        ./inc/libipc
-libvm:
-	-cd ./libraries/libvm        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvm/lib/*         ./lib && mkdir inc/libvm        && cp -rf ./libraries/libvm/src/*.h         ./inc/libvm
-libvn:
-	-cd ./libraries/libvn        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvn/lib/*         ./lib && mkdir inc/libvn        && cp -rf ./libraries/libvn/src/*.h         ./inc/libvn
-libvh:
-	-cd ./libraries/libvh        && $(MAKE) && cd ../.. && cp -rf ./libraries/libvh/lib/*         ./lib && mkdir inc/libvh        && cp -rf ./libraries/libvh/src/*.h         ./inc/libvh
-libes:
-	-cd ./libraries/libes        && $(MAKE) && cd ../.. && cp -rf ./libraries/libes/lib/*         ./lib && mkdir inc/libes        && cp -rf ./libraries/libes/src/*.h         ./inc/libes
-libvk:
-	-cd ./libraries/libvk          && $(MAKE)
-	-cp -rf ./libraries/libvk/lib/* ./lib
-	-mkdir inc/libvk
-	cp -prf ./libraries/libvk/src/*.h         ./inc/libvk
-	cp -prf ./libraries/libvk/src/*.hpp       ./inc/libvk
-libarguments:
-	-cd ./libraries/libarguments && $(MAKE) && cd ../.. && cp -rf ./libraries/libarguments/lib/*  ./lib && mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
-libmit:
-	-cd ./libraries/libmit       && $(MAKE) && cd ../.. && cp -rf ./libraries/libmit/lib/*        ./lib && mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
-io_event_tls_engine:
-	-cd ./modules/io_event_tls_engine  && $(MAKE) && cd ../../ && cp -rf ./modules/io_event_tls_engine/lib/*   ./lib/modules && mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
-ast_standard_modules:
-	-cd ./modules/ast_standard_modules && $(MAKE) && cd ../../ && cp -rf ./modules/ast_standard_modules/lib/*  ./lib/modules && mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
-es_language_js:
-	-cd ./modules/es_language_js       && $(MAKE) && cd ../../ && cp -rf ./modules/es_language_js/lib/*        ./lib/modules && mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
-
-subheader:
-	rm -rf ./inc/*
-	-mkdir ./inc/modules
-	-mkdir inc/libcpp       && cp -rf ./libraries/libcpp/src/*.h        ./inc/libcpp
-	-mkdir inc/libmm        && cp -rf ./libraries/libmm/src/*.h         ./inc/libmm
-	-mkdir inc/libplatform  && cp -rf ./libraries/libplatform/src/*.h   ./inc/libplatform
-	-mkdir inc/libstring    && cp -rf ./libraries/libstring/src/*.h     ./inc/libstring
-	-mkdir inc/liburl       && cp -rf ./libraries/liburl/src/*.h        ./inc/liburl
-	-mkdir inc/libfs        && cp -rf ./libraries/libfs/src/*.h         ./inc/libfs
-	-mkdir inc/libmatch     && cp -rf ./libraries/libmatch/src/*.h      ./inc/libmatch
-	-mkdir inc/libelf       && cp -rf ./libraries/libelf/src/*.h        ./inc/libelf
-	-mkdir inc/libhttp      && cp -rf ./libraries/libhttp/src/*.h       ./inc/libhttp
-	-mkdir inc/libstream    && cp -rf ./libraries/libstream/src/*.h     ./inc/libstream
-	-mkdir inc/libmodel     && cp -rf ./libraries/libmodel/src/*.h      ./inc/libmodel
-	-mkdir inc/liboml       && cp -rf ./libraries/liboml/src/*.h        ./inc/liboml
-	-mkdir inc/libfft       && cp -rf ./libraries/libfft/src/*.h        ./inc/libfft
-	-mkdir inc/libcry       && cp -rf ./libraries/libcry/src/*.h        ./inc/libcry
-	-mkdir inc/libmodule    && cp -rf ./libraries/libmodule/src/*.h     ./inc/libmodule
-	-mkdir inc/libast       && cp -rf ./libraries/libast/src/*.h        ./inc/libast
-	-mkdir inc/libkernel    && cp -rf ./libraries/libkernel/src/*.h     ./inc/libkernel
-	-mkdir inc/libsystem    && cp -rf ./libraries/libsystem/src/*.h     ./inc/libsystem
-	-mkdir inc/libecho      && cp -rf ./libraries/libecho/src/*.h       ./inc/libecho
-	-mkdir inc/libevent     && cp -rf ./libraries/libevent/src/*.h      ./inc/libevent
-	-mkdir inc/libioevent   && cp -rf ./libraries/libioevent/src/*.h    ./inc/libioevent
-	-mkdir inc/libfsevent   && cp -rf ./libraries/libfsevent/src/*.h    ./inc/libfsevent
-	-mkdir inc/libipc       && cp -rf ./libraries/libipc/src/*.h        ./inc/libipc
-	-mkdir inc/libvm        && cp -rf ./libraries/libvm/src/*.h         ./inc/libvm
-	-mkdir inc/libvn        && cp -rf ./libraries/libvn/src/*.h         ./inc/libvn
-	-mkdir inc/libvh        && cp -rf ./libraries/libvh/src/*.h         ./inc/libvh
-	-mkdir inc/libes        && cp -rf ./libraries/libes/src/*.h         ./inc/libes
-	-mkdir inc/libarguments && cp -rf ./libraries/libarguments/src/*.h  ./inc/libarguments
-	-mkdir inc/libmit       && cp -rf ./libraries/libmit/src/*.h        ./inc/libmit
-	-mkdir inc/modules/io_event_tls_engine  && cp -rf ./modules/io_event_tls_engine/src/*.h   ./inc/modules/io_event_tls_engine
-	-mkdir inc/modules/ast_standard_modules && cp -rf ./modules/ast_standard_modules/src/*.h  ./inc/modules/ast_standard_modules
-	-mkdir inc/modules/es_language_js       && cp -rf ./modules/es_language_js/src/*.h        ./inc/modules/es_language_js
-
-subinstall:
-	-mkdir libraries
-	-cd libraries && git clone https://github.com/FoxInTango/libcpp.git
-	-cd libraries && git clone https://github.com/FoxInTango/libmath.git # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libsystem.git
-	-cd libraries && git clone https://github.com/FoxInTango/libmm.git
-	-cd libraries && git clone https://github.com/FoxInTango/libplatform.git
-	-cd libraries && git clone https://github.com/FoxInTango/libstring.git
-	-cd libraries && git clone https://github.com/FoxInTango/liburl.git
-	-cd libraries && git clone https://github.com/FoxInTango/libfs.git
-	-cd libraries && git clone https://github.com/FoxInTango/libmatch.git
-	-cd libraries && git clone https://github.com/FoxInTango/libelf.git
-	-cd libraries && git clone https://github.com/FoxInTango/libhttp.git
-	-cd libraries && git clone https://github.com/FoxInTango/libstream.git
-	-cd libraries && git clone https://github.com/FoxInTango/libast.git
-	-cd libraries && git clone https://github.com/FoxInTango/libecho.git
-	-cd libraries && git clone https://github.com/FoxInTango/libmodel.git
-	-cd libraries && git clone https://github.com/FoxInTango/liboml.git
-	-cd libraries && git clone https://github.com/FoxInTango/libfft.git
-	-cd libraries && git clone https://github.com/FoxInTango/libcry.git
-	-cd libraries && git clone https://github.com/FoxInTango/libtls.git
-	-cd libraries && git clone https://github.com/FoxInTango/lib2d.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/lib3d.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libimage.git # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libmedia.git # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/lib2d.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libml.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libnn.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libstt.git   # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libtts.git   # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libwl.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libvk.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libmodule.git
-	-cd libraries && git clone https://github.com/FoxInTango/libevent.git
-	-cd libraries && git clone https://github.com/FoxInTango/libioevent.git
-	-cd libraries && git clone https://github.com/FoxInTango/libfsevent.git
-	-cd libraries && git clone https://github.com/FoxInTango/libipc.git
-	-cd libraries && git clone https://github.com/FoxInTango/libvm.git
-	-cd libraries && git clone https://github.com/FoxInTango/libvn.git
-	-cd libraries && git clone https://github.com/FoxInTango/libvh.git
-	-cd libraries && git clone https://github.com/FoxInTango/libes.git
-	-cd libraries && git clone https://github.com/FoxInTango/libui.git    # TODO: github
-	-cd libraries && git clone https://github.com/FoxInTango/libarguments.git
-	-cd libraries && git clone https://github.com/FoxInTango/libmit.git
-	-cd libraries && git clone https://github.com/FoxInTango/libkernel.git
-	-mkdir modules
-	-cd modules && git clone https://github.com/FoxInTango/io_event_tls_engine.git
-	-cd modules && git clone https://github.com/FoxInTango/ast_standard_modules.git
-	-cd modules && git clone https://github.com/FoxInTango/es_language_js.git
-	-mkdir templates
-	-cd templates && git clone https://github.com/FoxInTango/ast_module_template.git
-	-cd templates && git clone https://github.com/FoxInTango/es_language_template.git
-
-update:
-	-git pull
-	-cd ./libraries/libcpp             && git pull
-	-cd ./libraries/libsystem          && git pull
-	-cd ./libraries/libmm              && git pull
-	-cd ./libraries/libplatform        && git pull
-	-cd ./libraries/libstring          && git pull
-	-cd ./libraries/liburl             && git pull
-	-cd ./libraries/libfs              && git pull
-	-cd ./libraries/libmatch           && git pull
-	-cd ./libraries/libelf             && git pull
-	-cd ./libraries/libhttp            && git pull
-	-cd ./libraries/libstream          && git pull
-	-cd ./libraries/libast             && git pull
-	-cd ./libraries/libecho            && git pull
-	-cd ./libraries/libmodel           && git pull
-	-cd ./libraries/liboml             && git pull
-	-cd ./libraries/libfft             && git pull
-	-cd ./libraries/libcry             && git pull
-	-cd ./libraries/libtls             && git pull
-	-cd ./libraries/libmodule          && git pull
-	-cd ./libraries/libevent           && git pull
-	-cd ./libraries/libioevent         && git pull
-	-cd ./libraries/libfsevent         && git pull
-	-cd ./libraries/libipc             && git pull
-	-cd ./libraries/libvm              && git pull
-	-cd ./libraries/libvn              && git pull
-	-cd ./libraries/libvh              && git pull
-	-cd ./libraries/libes              && git pull
-	-cd ./libraries/libarguments       && git pull
-	-cd ./libraries/libmit             && git pull
-	-cd ./libraries/libkernel          && git pull
-	-cd ./modules/io_event_tls_engine  && git pull
-	-cd ./modules/ast_standard_modules && git pull
-	-cd ./modules/es_language_js       && git pull
-	-cd ./templates/ast_module_template && git pull 
-	-cd ./templates/es_language_template && git pull
-
-subclean:
-	-cd ./libraries/libcpp             && $(MAKE) clean
-	-cd ./libraries/libsystem          && $(MAKE) clean
-	-cd ./libraries/libmm              && $(MAKE) clean
-	-cd ./libraries/libplatform        && $(MAKE) clean
-	-cd ./libraries/libstring          && $(MAKE) clean
-	-cd ./libraries/liburl             && $(MAKE) clean
-	-cd ./libraries/libfs              && $(MAKE) clean
-	-cd ./libraries/libmatch           && $(MAKE) clean
-	-cd ./libraries/libelf             && $(MAKE) clean
-	-cd ./libraries/libhttp            && $(MAKE) clean
-	-cd ./libraries/libstream          && $(MAKE) clean
-	-cd ./libraries/libast             && $(MAKE) clean
-	-cd ./libraries/libecho            && $(MAKE) clean
-	-cd ./libraries/libmodel           && $(MAKE) clean
-	-cd ./libraries/liboml             && $(MAKE) clean
-	-cd ./libraries/libfft             && $(MAKE) clean
-	-cd ./libraries/libcry             && $(MAKE) clean
-	-cd ./libraries/libtls             && $(MAKE) clean
-	-cd ./libraries/libmodule          && $(MAKE) clean
-	-cd ./libraries/libevent           && $(MAKE) clean
-	-cd ./libraries/libioevent         && $(MAKE) clean
-	-cd ./libraries/libfsevent         && $(MAKE) clean
-	-cd ./libraries/libipc             && $(MAKE) clean
-	-cd ./libraries/libvm              && $(MAKE) clean
-	-cd ./libraries/libvn              && $(MAKE) clean
-	-cd ./libraries/libvh              && $(MAKE) clean
-	-cd ./libraries/libes              && $(MAKE) clean
-	-cd ./libraries/libarguments       && $(MAKE) clean
-	-cd ./libraries/libmit             && $(MAKE) clean
-	-cd ./libraries/libkernel          && $(MAKE) clean
-	-cd ./modules/io_event_tls_engine  && $(MAKE) clean
-	-cd ./modules/ast_standard_modules && $(MAKE) clean
-	-cd ./modules/es_language_js       && $(MAKE) clean
-	rm lib/*.a;rm lib/*.so;rm lib/modules/*.so;rm lib/modules/*.ko
-
-devinstall:
-	-cd libraries && git clone git@github.com:FoxInTango/libcpp.git
-	-cd libraries && git clone git@github.com:FoxInTango/libsystem.git
-	-cd libraries && git clone git@github.com:FoxInTango/libmm.git
-	-cd libraries && git clone git@github.com:FoxInTango/libplatform.git
-	-cd libraries && git clone git@github.com:FoxInTango/libstring.git
-	-cd libraries && git clone git@github.com:FoxInTango/liburl.git
-	-cd libraries && git clone git@github.com:FoxInTango/libfs.git
-	-cd libraries && git clone git@github.com:FoxInTango/libmatch.git
-	-cd libraries && git clone git@github.com:FoxInTango/libelf.git
-	-cd libraries && git clone git@github.com:FoxInTango/libhttp.git
-	-cd libraries && git clone git@github.com:FoxInTango/libstream.git
-	-cd libraries && git clone git@github.com:FoxInTango/libast.git
-	-cd libraries && git clone git@github.com:FoxInTango/libecho.git
-	-cd libraries && git clone git@github.com:FoxInTango/libmodel.git
-	-cd libraries && git clone git@github.com:FoxInTango/liboml.git
-	-cd libraries && git clone wf@allinone.io:alpine/libmath.git
-	-cd libraries && git clone git@github.com:FoxInTango/libfft.git
-	-cd libraries && git clone git@github.com:FoxInTango/libcry.git
-	-cd libraries && git clone git@github.com:FoxInTango/libtls.git
-	-cd libraries && git clone wf@allinone.io:alpine/lib2d.git
-	-cd libraries && git clone wf@allinone.io:alpine/lib3d.git
-	-cd libraries && git clone wf@allinone.io:alpine/libimage.git
-	-cd libraries && git clone wf@allinone.io:alpine/libmedia.git
-	-cd libraries && git clone wf@allinone.io:alpine/lib2d.git
-	-cd libraries && git clone wf@allinone.io:alpine/libml.git
-	-cd libraries && git clone wf@allinone.io:alpine/libnn.git
-	-cd libraries && git clone wf@allinone.io:alpine/libstt.git
-	-cd libraries && git clone wf@allinone.io:alpine/libtts.git
-	-cd libraries && git clone wf@allinone.io:alpine/libwl.git
-	-cd libraries && git clone wf@allinone.io:alpine/libvk.git
-	-cd libraries && git clone git@github.com:FoxInTango/libmodule.git
-	-cd libraries && git clone git@github.com:FoxInTango/libevent.git
-	-cd libraries && git clone git@github.com:FoxInTango/libioevent.git
-	-cd libraries && git clone git@github.com:FoxInTango/libfsevent.git
-	-cd libraries && git clone git@github.com:FoxInTango/libipc.git
-	-cd libraries && git clone git@github.com:FoxInTango/libvm.git
-	-cd libraries && git clone git@github.com:FoxInTango/libvn.git
-	-cd libraries && git clone git@github.com:FoxInTango/libvh.git
-	-cd libraries && git clone git@github.com:FoxInTango/libes.git
-	-cd libraries && git clone wf@allinone.io:alpine/libui.git
-	-cd libraries && git clone git@github.com:FoxInTango/libarguments.git
-	-cd libraries && git clone git@github.com:FoxInTango/libmit.git
-	-cd libraries && git clone git@github.com:FoxInTango/libkernel.git
-	-mkdir modules
-	-cd modules && git clone git@github.com:FoxInTango/io_event_tls_engine.git
-	-cd modules && git clone git@github.com:FoxInTango/ast_standard_modules.git
-	-cd modules && git clone git@github.com:FoxInTango/es_language_js.git
-	-mkdir templates
-	-cd templates && git clone git@github.com:FoxInTango/ast_module_template
-	-cd templates && git clone git@github.com:FoxInTango/es_language_template
-
-publish:
+publish:$(PUBLISH_TARGETS)
 	-git add Makefile
+	-git add .make
 	-git add README.md
 	-git add TODO.md
 	-git add REF.md
@@ -533,87 +221,17 @@ publish:
 	-git add src/*.cpp
 	-git add etc/alpine
 	-git add readme/*
-	#-git add build
+	-git add build
 	-git add inc/.keepalive
 	-git add lib/.keepalive
 	-git add bin/.keepalive
-	-git commit -m "alpine" && git push
-	-cd ./libraries/libcpp             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libsystem          && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmm              && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libplatform        && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libstring          && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/liburl             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libfs              && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmatch           && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libelf             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libhttp            && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libstream          && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libast             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libecho            && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmodel           && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/liboml             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libfft             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libcry             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libtls             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmodule          && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libevent           && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libioevent         && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libfsevent         && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libipc             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libvm              && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libvn              && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libvh              && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libes              && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libarguments       && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libmit             && git add . && git commit -m "alpine" && git push
-	-cd ./libraries/libkernel          && git add . && git commit -m "alpine" && git push
-	-cd ./modules/io_event_tls_engine  && git add . && git commit -m "alpine" && git push
-	-cd ./modules/ast_standard_modules && git add . && git commit -m "alpine" && git push
-	-cd ./modules/es_language_js       && git add . && git commit -m "alpine" && git push
-	-cd ./templates/ast_module_template && git add . && git commit -m "alpine" && git push
-	-cd ./templates/es_language_template && git add . && git commit -m "alpine" && git push
-
-clean   :
-	rm -f $(TARGET_OBJECTS_AS)
-	rm -f $(TARGET_OBJECTS_CC)
-	rm -f $(TARGET_OBJECTS_PP)
-	rm -f ${TARGET_BIN_DIR}/*
-	rm -f $(TARGET_LIB_DIR)/*.a ; rm -f $(TARGET_LIB_DIR)/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.so ; rm -f $(TARGET_LIB_DIR)/modules/*.ko 
-	rm -rf ${TARGET_INC_DIR}/*
-
-INSTALL_PATH=${INSTALL_PATH_PREFIX}/versions/${TARGET_VERSION}
-install :
-	-mkdir -p $(INSTALL_PATH)
-	-mkdir ${INSTALL_PATH}/inc
-	-mkdir $(INSTALL_PATH)/bin
-	-mkdir $(INSTALL_PATH)/lib
-	cp -rf $(TARGET_INC_DIR)/* $(INSTALL_PATH)/inc/
-	cp -rf $(TARGET_BIN_DIR)/* $(INSTALL_PATH)/bin/
-	cp -rf $(TARGET_LIB_DIR)/* $(INSTALL_PATH)/lib/
-	ln -s  $(INSTALL_PATH)/bin/${TARGET_NAME} /usr/local/bin/${TARGET_NAME} 
-current:
-	@echo current version ${TARGET_VERSION}
-uninstall : 
-	rm -rf $(INSTALL_PATH)
-	rm -f /usr/local/bin/${TARGET_NAME}
-hook_install:
-	insmod lib/modules/alpine_syscall_hooks.ko
-	insmod lib/modules/alpine_network_hooks.ko
-	insmod lib/modules/alpine_vfs.ko
-	insmod lib/modules/alpine_vnw.ko
-hook_uninstall:
-	rmmod alpine_syscall_hooks
-	rmmod alpine_network_hooks
-	rmmod alpine_vfs
-	rmmod alpine_vnw
-hook_echo:
-	@echo -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
-	@dmesg | tail -n20
-
-
-# https://www.ruanyifeng.com/blog/2015/02/make.html
-# https://blog.csdn.net/freestep96/article/details/126352344
-# Makefile Path :https://blog.csdn.net/evolay/article/details/121625712
-# 静态库顺序
-# rpath : readelf -d  
+	git commit -m "$(shell date)" && git push
+update:$(UPDATE_TARGETS)
+	git pull
+echo:
+	@echo TARGET_NAME:$(TARGET_NAME)
+	@echo HEADER_INSTALL_PATH:$(HEADER_INSTALL_PATH)
+	@echo BINARY_INSTALL_PATH:$(BINARY_INSTALL_PATH)
+	@echo LIBRARY_INSTALL_PATH:$(LIBRARY_INSTALL_PATH)
+	@echo DEPENDS_LIBRARY_PATH:$(DEPENDS_LIBRARY_PATH)
+	@echo DEPENDS_THIRDS_PATH:$(DEPENDS_THIRDS_PATH)

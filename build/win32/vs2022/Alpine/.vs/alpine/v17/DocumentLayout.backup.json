@@ -3,9 +3,6 @@
   "WorkspaceRootPath": "D:\\CORE_WEB_SYSTEM_WEB\\alpine\\build\\win32\\vs2022\\Alpine\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{42C85531-1DB9-4464-9F04-9EDE079BE0D9}|libcpp\\libcpp.vcxproj|D:\\CORE_WEB_SYSTEM_WEB\\alpine\\libraries\\libcpp\\src\\member.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{97C4FAD8-3657-49DE-B277-6E383B60FCEB}|libplatform\\libplatform.vcxproj|D:\\CORE_WEB_SYSTEM_WEB\\alpine\\libraries\\libplatform\\src\\libplatform.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
@@ -37,19 +34,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "member.h",
-              "DocumentMoniker": "D:\\CORE_WEB_SYSTEM_WEB\\alpine\\libraries\\libcpp\\src\\member.h",
-              "RelativeDocumentMoniker": "..\\..\\..\\..\\libraries\\libcpp\\src\\member.h",
-              "ToolTip": "D:\\CORE_WEB_SYSTEM_WEB\\alpine\\libraries\\libcpp\\src\\member.h",
-              "RelativeToolTip": "..\\..\\..\\..\\libraries\\libcpp\\src\\member.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-04T08:59:17.69Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "libplatform.h",
               "DocumentMoniker": "D:\\CORE_WEB_SYSTEM_WEB\\alpine\\libraries\\libplatform\\src\\libplatform.h",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\libraries\\libplatform\\src\\libplatform.h",
@@ -62,7 +46,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "libplatform.cpp",
               "DocumentMoniker": "D:\\CORE_WEB_SYSTEM_WEB\\alpine\\build\\win32\\vs2022\\Alpine\\libplatform\\libplatform.cpp",
               "RelativeDocumentMoniker": "libplatform\\libplatform.cpp",
@@ -70,7 +54,8 @@
               "RelativeToolTip": "libplatform\\libplatform.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-24T13:35:57.578Z"
+              "WhenOpened": "2025-04-24T13:35:57.578Z",
+              "EditorCaption": ""
             }
           ]
         }
