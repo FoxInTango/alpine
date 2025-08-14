@@ -193,8 +193,9 @@ clean   :
 	rm -f $(TARGET_OBJECTS_PP)
 	rm -f ${TARGET_LIB_DIR}/*
 	rm -f ${TARGET_BIN_DIR}/*
-prepare:$(PREPARE_TARGETS)
-	cd libraries/libarguments && make prepare
+prepare : $(PREPARE_TARGETS)
+	@echo "prepared"
+	-cd libraries/libarguments && make prepare
 install :
 	rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
 	rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)

@@ -1,0 +1,42 @@
+PREPARE_TARGETS += preapre.mit
+PREPARE_TARGETS += preapre.tango
+
+PREPARE_TARGETS += preapre.libcpp
+PREPARE_TARGETS += preapre.libstring
+PREPARE_TARGETS += preapre.libmodel
+
+ALPINE_APPLICATION_PATH=$(MAKE_FILE_DIR)applications
+## mit
+PREPARE_MIT_URL = wf@allinone.io:alpine/mit.git
+PREPARE_MIT_DIR = $(ALPINE_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_MIT_URL)))
+preapre.mit:
+	-git clone $(PREPARE_MIT_URL) $(PREPARE_MIT_DIR)
+	-cd $(PREPARE_MIT_DIR) && $(MAKE) prepare
+
+## tango
+PREPARE_TANGO_URL = wf@allinone.io:alpine/tango.git
+PREPARE_TANGO_DIR = $(ALPINE_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_TANGO_URL)))
+preapre.tango:
+	-git clone $(PREPARE_TANGO_URL) $(PREPARE_TANGO_DIR)
+	-cd $(PREPARE_TANGO_DIR) && $(MAKE) prepare
+
+## libcpp
+PREPARE_LIBCPP_URL = wf@allinone.io:alpine/libcpp.git
+PREPARE_LIBCPP_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBCPP_URL)))
+preapre.libcpp:
+	-git clone $(PREPARE_LIBCPP_URL) $(PREPARE_LIBCPP_DIR)
+	-cd $(PREPARE_LIBCPP_DIR) && $(MAKE) prepare
+
+##libstring
+PREPARE_LIBSTRING_URL = wf@allinone.io:alpine/libstring.git
+PREPARE_LIBSTRING_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBSTRING_URL)))
+preapre.libstring:
+	-git clone $(PREPARE_LIBSTRING_URL) $(PREPARE_LIBSTRING_DIR)
+	-cd $(PREPARE_LIBSTRING_DIR) && $(MAKE) prepare
+
+##libmodel
+PREPARE_LIBMODEL_URL = wf@allinone.io:alpine/libmodel.git
+PREPARE_LIBMODEL_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBMODEL_URL)))
+preapre.libmodel:
+	-git clone $(PREPARE_LIBMODEL_URL) $(PREPARE_LIBMODEL_DIR)
+	-cd $(PREPARE_LIBMODEL_DIR) && $(MAKE) prepare
