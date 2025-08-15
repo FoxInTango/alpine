@@ -1,4 +1,11 @@
 PREPARE_TARGETS += prepare.dir
+PREPARE_TARGETS += preapre.mit
+PREPARE_TARGETS += preapre.tango
+
+PREPARE_TARGETS += preapre.libcpp
+PREPARE_TARGETS += preapre.libstring
+PREPARE_TARGETS += preapre.libmodel
+PREPARE_TARGETS += preapre.libarguments
 
 prepare.dir:
 	-mkdir applications libraries thirds inc lib bin
@@ -16,14 +23,6 @@ endif
 	@echo "/thirds"           >> .gitignore
 	@echo "/.make/*.mk"       >> .gitignore
 	@echo "/.gitignore"       >> .gitignore
-
-PREPARE_TARGETS += preapre.mit
-PREPARE_TARGETS += preapre.tango
-
-PREPARE_TARGETS += preapre.libcpp
-PREPARE_TARGETS += preapre.libstring
-PREPARE_TARGETS += preapre.libmodel
-PREPARE_TARGETS += preapre.libarguments
 
 # 1,download the module
 # 2,write current super infomations to module make_dir/super
@@ -46,7 +45,10 @@ PREPARE_TANGO_URL = wf@allinone.io:alpine/tango.git
 PREPARE_TANGO_DIR = $(ALPINE_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_TANGO_URL)))
 preapre.tango:
 	-git clone $(PREPARE_TANGO_URL) $(PREPARE_TANGO_DIR)
+	-echo "SUPER_MAKE_DIR=$(MAKE_FILE_DIR)"                >> $(PREPARE_TANGO_DIR)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=$(MAKE_CONFIG_DIR)"       >> $(PREPARE_TANGO_DIR)/.make/super
 	-cd $(PREPARE_TANGO_DIR) && $(MAKE) prepare
+	-rm $(PREPARE_TANGO_DIR)/super
 
 ## libcpp
 PREPARE_LIBCPP_URL = wf@allinone.io:alpine/libcpp.git
@@ -83,7 +85,7 @@ PREPARE_LIBARGUMENTS_URL = wf@allinone.io:alpine/libarguments.git
 PREPARE_LIBARGUMENTS_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBARGUMENTS_URL)))
 preapre.libarguments:
 	-git clone $(PREPARE_LIBARGUMENTS_URL) $(PREPARE_LIBARGUMENTS_DIR)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBARGUMENTS_DIR)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBARGUMENTS_DIR)/.make/super
+	@echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBARGUMENTS_DIR)/.make/super
+	@echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBARGUMENTS_DIR)/.make/super
 	-cd $(PREPARE_LIBARGUMENTS_DIR) && $(MAKE) prepare
 	-rm $(PREPARE_LIBARGUMENTS_DIR)/.make/super

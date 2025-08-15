@@ -5,9 +5,10 @@ MAKE_CONFIG_DIR           = $(MAKE_FILE_DIR).make
 PROJECT_MODULE_MAKEFILES += $(wildcard $(MAKE_CONFIG_DIR)/*.mk)
 include $(PROJECT_MODULE_MAKEFILES)
 include $(MAKE_CONFIG_DIR)/config
+include $(MAKE_CONFIG_DIR)/super
 
-CC=g++
-PP=gcc
+CC=gcc
+PP=g++
 AS=as
 AR=ar
 LD=ld
