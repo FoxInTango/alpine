@@ -16,6 +16,7 @@ endif
 	@echo "/thirds"           >> .gitignore
 	@echo "/.make/*.mk"       >> .gitignore
 	@echo "/.gitignore"       >> .gitignore
+
 PREPARE_TARGETS += preapre.mit
 PREPARE_TARGETS += preapre.tango
 
