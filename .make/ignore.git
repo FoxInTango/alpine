@@ -52,23 +52,3 @@
 *.log
 *.tlog
 *.lastbuildstate
-#Alpine Ignored
-/applications
-/templates
-/modules
-/libraries
-/lib
-/bin
-/inc
-/thirds
-/.gitignore.saved
-#Alpine Ignored
-/applications
-/templates
-/modules
-/libraries
-/lib
-/bin
-/inc
-/thirds
-/.gitignore.saved
