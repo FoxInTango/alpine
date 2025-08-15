@@ -6,16 +6,16 @@ ifeq ($(wildcard .gitignore.saved),)
 	-cp .gitignore .gitignore.saved
 endif
 	-cp .gitignore.saved .gitignore
-	@echo "#Alpine Ignored" >> .gitignore
-	@echo "/applications"   >> .gitignore
-	@echo "/templates"      >> .gitignore
-	@echo "/modules"        >> .gitignore
-	@echo "/libraries"      >> .gitignore
-	@echo "/lib"            >> .gitignore
-	@echo "/bin"            >> .gitignore
-	@echo "/inc"            >> .gitignore
-	@echo "/thirds"         >> .gitignore
-
+	@echo "#Alpine Ignored"   >> .gitignore
+	@echo "/applications"     >> .gitignore
+	@echo "/templates"        >> .gitignore
+	@echo "/modules"          >> .gitignore
+	@echo "/libraries"        >> .gitignore
+	@echo "/lib"              >> .gitignore
+	@echo "/bin"              >> .gitignore
+	@echo "/inc"              >> .gitignore
+	@echo "/thirds"           >> .gitignore
+	@echo "/.gitignore.saved" >> .gitignore
 PREPARE_TARGETS += preapre.mit
 PREPARE_TARGETS += preapre.tango
 
