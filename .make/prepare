@@ -2,10 +2,9 @@ PREPARE_TARGETS += prepare.dir
 
 prepare.dir:
 	-mkdir applications libraries thirds inc lib bin
-ifeq ($(wildcard .gitignore.saved),)
-	-cp .gitignore .gitignore.saved
+ifneq ($(wildcard $(MAKE_CONFIG_DIR)/ignore.git),)
+	-cp $(MAKE_CONFIG_DIR)/ignore.git .gitignore
 endif
-	-cp .gitignore.saved .gitignore
 	@echo "#Alpine Ignored"   >> .gitignore
 	@echo "/applications"     >> .gitignore
 	@echo "/templates"        >> .gitignore
@@ -15,8 +14,8 @@ endif
 	@echo "/bin"              >> .gitignore
 	@echo "/inc"              >> .gitignore
 	@echo "/thirds"           >> .gitignore
-	@echo "/.make/*.mk" >> .gitignore
-	@echo "/.gitignore.saved" >> .gitignore
+	@echo "/.make/*.mk"       >> .gitignore
+	@echo "/.gitignore"       >> .gitignore
 PREPARE_TARGETS += preapre.mit
 PREPARE_TARGETS += preapre.tango
 
