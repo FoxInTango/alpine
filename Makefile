@@ -4,9 +4,7 @@ MAKE_FILE_DIR  := $(dir $(MAKE_FILE_PATH))
 MAKE_CONFIG_DIR           = $(MAKE_FILE_DIR).make
 PROJECT_MODULE_MAKEFILES += $(wildcard $(MAKE_CONFIG_DIR)/*.mk)
 include $(PROJECT_MODULE_MAKEFILES)
-include $(MAKE_CONFIG_DIR)/name
-include $(MAKE_CONFIG_DIR)/root
-include $(MAKE_CONFIG_DIR)/super
+include $(MAKE_CONFIG_DIR)/config
 
 CC=g++
 PP=gcc
@@ -18,11 +16,6 @@ PLATFORM_ARCH         = $(shell uname -s)
 PLATFORM_ARCH_LINUX   = Linux
 PLATFORM_ARCH_DARWIN  = Darwin
 PLATFORM_ARCH_FREEBSD = FreeBSD
-
-MK_FALSE = 0
-MK_TRUE  = 1
-# Output Types
-include $(MAKE_CONFIG_DIR)/output
 
 # ** Project Settings **
 #
@@ -48,7 +41,9 @@ DEPENDS_THIRDS_PATH  = ${MAKE_FILE_DIR}thirds
 
 # Path where headers to be installed.
 ifdef ROOT_HEADER_INSTALL_PATH
-HEADER_INSTALL_PATH = ${ROOT_HEADER_INSTALL_PATH}
+    HEADER_INSTALL_PATH = ${ROOT_HEADER_INSTALL_PATH}
+    CCFLAGS += -I${ROOT_HEADER_INSTALL_PATH}
+    PPFLAGS += -I${ROOT_HEADER_INSTALL_PATH}
 endif
 
 # Path where outputed binary to be installed.
@@ -59,6 +54,8 @@ endif
 # Path where outputed library to be installed.
 ifdef ROOT_LIBRARY_INSTALL_PATH
     LIBRARY_INSTALL_PATH  = ${ROOT_LIBRARY_INSTALL_PATH}
+	LDFLAGS += -L${ROOT_LIBRARY_INSTALL_PATH}
+    LDFLAGS += -Wl,-rpath=${ROOT_LIBRARY_INSTALL_PATH}
 endif
 
 # Path where libraries depended by this project to be downloaded.
@@ -103,83 +100,57 @@ endif
 TARGET_BIN_DIR := ./bin
 TARGET_LIB_DIR := ./lib
 
-PROJECT_ROOT = .
-PROJECT_DIR_BESIDES  = \(
-PROJECT_DIR_BESIDES +=    -path ./.git
-PROJECT_DIR_BESIDES += -o -path ./.make
-PROJECT_DIR_BESIDES += -o -path ./build
-PROJECT_DIR_BESIDES += -o -path ./applications
-PROJECT_DIR_BESIDES += -o -path ./libraries
-PROJECT_DIR_BESIDES += -o -path ./modules
-PROJECT_DIR_BESIDES += -o -path ./templates
-PROJECT_DIR_BESIDES += -o -path ./assets
-PROJECT_DIR_BESIDES += -o -path ./readme
-PROJECT_DIR_BESIDES += -o -path ./obj
-PROJECT_DIR_BESIDES += -o -path ./bin
-PROJECT_DIR_BESIDES += -o -path ./lib
-PROJECT_DIR_BESIDES += -o -path ./inc
-PROJECT_DIR_BESIDES += -o -path ./man
-PROJECT_DIR_BESIDES += -o -path ./docs
-PROJECT_DIR_BESIDES += -o -path ./ide
-PROJECT_DIR_BESIDES += -o -path ./thirds
-PROJECT_DIR_BESIDES += -o -path ./.trash
-PROJECT_DIR_BESIDES += \)
-PROJECT_DIRS   = $(shell find $(PROJECT_ROOT) $(PROJECT_DIR_BESIDES) -prune -o -type d -print)
+SOURCE_DIRS   = $(shell find $(SOURCE_ROOT_DIRS) $(SOURCE_DIR_BESIDES) -prune -o -type d -print)
 
-TARGET_HEADERS = $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.h))
+TARGET_HEADERS = $(foreach dir,$(SOURCE_DIRS),$(wildcard $(dir)/*.h))
 
-TARGET_SOURCES_AS  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.s))
+TARGET_SOURCES_AS  += $(foreach dir,$(SOURCE_DIRS),$(wildcard $(dir)/*.s))
 TARGET_OBJECTS_AS  += $(patsubst %.s,%.o,$(TARGET_SOURCES_AS))
-TARGET_SOURCES_CC  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.c))
+TARGET_SOURCES_CC  += $(foreach dir,$(SOURCE_DIRS),$(wildcard $(dir)/*.c))
 TARGET_OBJECTS_CC  += $(patsubst %.c,%.o,$(TARGET_SOURCES_CC))
-TARGET_SOURCES_PP  += $(foreach dir,$(PROJECT_DIRS),$(wildcard $(dir)/*.cpp))
+TARGET_SOURCES_PP  += $(foreach dir,$(SOURCE_DIRS),$(wildcard $(dir)/*.cpp))
 TARGET_OBJECTS_PP  += $(patsubst %.cpp,%.o,$(TARGET_SOURCES_PP))
 
-TARGET_HEADER_DIRS += $(foreach dir,$(PROJECT_DIRS),-I$(dir))
+TARGET_HEADER_DIRS += $(foreach dir,$(SOURCE_DIRS),-I$(dir))
 
-# 需要链接的库
-TARGET_LIBS = -lmodel -lstdc++
-# 链接标志
+# libraries to be linked with.[NOTICE: also defined in .make/config]
+TARGET_LIBS += -lstdc++
 
-# 平台检测 -- DARWIN
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_BIN_EXT         :=
-    TARGET_LIB_EXT_STATIC  := a
-    TARGET_LIB_EXT_DYNAMIC := so
+    TARGET_LIB_EXT_STATIC  := .a
+    TARGET_LIB_EXT_DYNAMIC := .so
 endif
-# 平台检测 -- LINUX
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
     TARGET_BIN_EXT         :=
-    TARGET_LIB_EXT_STATIC  := a
-    TARGET_LIB_EXT_DYNAMIC := so
+    TARGET_LIB_EXT_STATIC  := .a
+    TARGET_LIB_EXT_DYNAMIC := .so
 endif
-
-# 平台检测 -- FreeBSD
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
     TARGET_BIN_EXT         := 
-    TARGET_LIB_EXT_STATIC  := a
-    TARGET_LIB_EXT_DYNAMIC := so
+    TARGET_LIB_EXT_STATIC  := .a
+    TARGET_LIB_EXT_DYNAMIC := .so
 endif
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
-TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}
+TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_STATIC}
 endif
 ifeq ($(TARGET_TYPE_DLL),$(MK_TRUE))
-TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_DYNAMIC}
+TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_DYNAMIC}
 endif
 ifeq ($(TARGET_TYPE_BIN),$(MK_TRUE))
-TARGETS += ${TARGET_BIN_DIR}/${TARGET_NAME}
+TARGETS += ${TARGET_BIN_DIR}/${TARGET_NAME}${TARGET_BIN_EXT}
 endif
 
 ALL : $(DEPEND_TARGETS) $(TARGETS)
 	@echo BUILD ALL.
-${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_STATIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
+${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_STATIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
 	$(AR) -crvs $@ $^
 
-${TARGET_LIB_DIR}/${TARGET_NAME}.${TARGET_LIB_EXT_DYNAMIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
+${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_DYNAMIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
 	$(CC) -fPIC -shared  -o $@ $^ ${LDFLAGS} $(TARGET_LIBS)
 
-${TARGET_BIN_DIR}/${TARGET_NAME}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
+${TARGET_BIN_DIR}/${TARGET_NAME}${TARGET_BIN_EXT}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
 	$(PP) -o $@ $^  $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE #-static
 
 $(TARGET_OBJECTS_AS):%.o:%.s
@@ -258,18 +229,17 @@ ifndef ROOT_MAKE_CONFIG_DIR
 	echo "no ROOT_MAKE_CONFIG_DIR found."
 endif
 install :
-	rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
-	rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)
-	rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
-	mkdir  $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
-	cp     $(TARGET_HEADERS) $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
-	cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).$(TARGET_LIB_EXT_STATIC)  $(LIBRARY_INSTALL_PATH)
-	cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).$(TARGET_LIB_EXT_DYNAMIC) $(LIBRARY_INSTALL_PATH)
+	-rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	-rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)${TARGET_BIN_EXT}
+	-rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
+	-mkdir  $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	-cp     $(TARGET_HEADERS) $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	-cp     $(TARGET_LIB_DIR)/$(TARGET_NAME).*                $(LIBRARY_INSTALL_PATH)
+	-cp     $(TARGET_BIN_DIR)/$(TARGET_NAME)${TARGET_BIN_EXT} $(BINARY_INSTALL_PATH)
 uninstall : 
-	rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
-	rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)
-	rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
-
+	-rm -rf $(HEADER_INSTALL_PATH)/$(TARGET_NAME)
+	-rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)${TARGET_BIN_EXT}
+	-rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
 publish:$(PUBLISH_TARGETS)
 	-git add Makefile
 	-git add .make

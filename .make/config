@@ -1,0 +1,21 @@
+MK_FALSE = 0
+MK_TRUE  = 1
+TARGET_NAME     = alpine
+TARGET_TYPE_BIN = $(MK_TRUE)
+TARGET_TYPE_LIB = $(MK_FALSE)
+TARGET_TYPE_DLL = $(MK_FALSE)
+
+# libs to be link with.
+TARGET_LIBS +=
+
+SOURCE_ROOT_DIRS += ./alpine
+
+# For example
+SOURCE_DIR_BESIDES  = \(
+SOURCE_DIR_BESIDES +=    -path ${SOURCE_ROOT_DIRS}/.git
+SOURCE_DIR_BESIDES += -o -path ${SOURCE_ROOT_DIRS}/.make
+SOURCE_DIR_BESIDES += \)
+
+# root only  -- include $(MAKE_CONFIG_DIR)/root 
+export ROOT_MAKE_DIR        = $(MAKE_FILE_DIR).make
+export ROOT_MAKE_CONFIG_DIR = $(MAKE_FILE_DIR).make

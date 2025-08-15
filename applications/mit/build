@@ -1,1 +1,0 @@
-gcc -o mit mit.cpp mit_element.cpp mit_document.cpp mit_context.cpp -lstdc++ -lc
