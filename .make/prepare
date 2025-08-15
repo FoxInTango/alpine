@@ -1,7 +1,7 @@
-PREPARE_TARGETS += prepare.dir # Root Only.
+PREPARE_TARGETS += prepare.dir
 
 prepare.dir:
-	-mkdir applications libraries thirds
+	-mkdir applications libraries thirds inc lib bin
 ifeq ($(wildcard .gitignore.saved),)
 	-cp .gitignore .gitignore.saved
 endif
