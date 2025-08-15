@@ -15,6 +15,7 @@ endif
 	@echo "/bin"              >> .gitignore
 	@echo "/inc"              >> .gitignore
 	@echo "/thirds"           >> .gitignore
+	@echo "/.make/*.mk" >> .gitignore
 	@echo "/.gitignore.saved" >> .gitignore
 PREPARE_TARGETS += preapre.mit
 PREPARE_TARGETS += preapre.tango
