@@ -64,7 +64,7 @@ preapre.libcpp:
 PREPARE_LIBSTRING_URL = wf@allinone.io:alpine/libstring.git
 PREPARE_LIBSTRING_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBSTRING_URL)))
 preapre.libstring:
-	-git clone $(PREPARE_LIBSTRING_URL) $(PREPARE_LIBMODEL_DIR)
+	-git clone $(PREPARE_LIBSTRING_URL) $(PREPARE_LIBSTRING_DIR)
 	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBSTRING_DIR)/.make/super
 	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBSTRING_DIR)/.make/super
 	-cd $(PREPARE_LIBSTRING_DIR) && $(MAKE) prepare
