@@ -241,25 +241,9 @@ uninstall :
 	-rm -rf $(BINARY_INSTALL_PATH)/$(TARGET_NAME)${TARGET_BIN_EXT}
 	-rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
 publish:$(PUBLISH_TARGETS)
-	-git add Makefile
-	-git add .make
-	-git add README.md
-	-git add TODO.md
-	-git add REF.md
-	-git add LICENSE
-	-git add .gitignore
-	-git add .gitmodules
-	-git add src/*.h
-	-git add src/*.cpp
-	-git add etc/alpine
-	-git add readme/*
-	-git add build
-	-git add inc/.keepalive
-	-git add lib/.keepalive
-	-git add bin/.keepalive
-	git commit -m "$(shell date)" && git push
+	-git add . && git commit -m "$(shell date)" && git push
 update:$(UPDATE_TARGETS)
-	git pull
+	-git pull
 echo:
 	@echo TARGET_NAME:$(TARGET_NAME)
 	@echo HEADER_INSTALL_PATH:$(HEADER_INSTALL_PATH)
