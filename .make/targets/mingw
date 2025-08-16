@@ -1,0 +1,5 @@
+CC=mingw-gcc
+PP=mingw-g++
+AS=mingw-as
+AR=mingw-ar
+LD=mingw-ld

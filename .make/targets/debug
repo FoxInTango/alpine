@@ -1,0 +1,11 @@
+CC=gcc
+PP=g++
+AS=as
+AR=ar
+LD=ld
+
+TARGET_FLAGS_AS = -g -O2
+TARGET_FLAGS_CC = -g -O2
+TARGET_FLAGS_PP = -g -O2
+TARGET_FLAGS_AR = -g -O2
+TARGET_FLAGS_LD = -g -O2

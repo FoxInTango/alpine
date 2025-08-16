@@ -1,0 +1,15 @@
+CC=gcc
+PP=g++
+AS=as
+AR=ar
+LD=ld
+
+TARGET_FLAGS_AS = -O2
+TARGET_FLAGS_CC = -O2
+TARGET_FLAGS_PP = -O2
+TARGET_FLAGS_AR = -O2
+TARGET_FLAGS_LD = -O2
+
+ifdef target
+include $(MAKE_CONFIG_DIR)/targets/$(target)
+endif

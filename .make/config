@@ -8,7 +8,7 @@ TARGET_TYPE_DLL = $(MK_FALSE)
 # libs to be link with.
 TARGET_LIBS +=
 
-SOURCE_ROOT_DIRS += ./alpine
+SOURCE_ROOT_DIRS += ./src
 
 # For example
 SOURCE_DIR_BESIDES  = \(
