@@ -7,3 +7,9 @@
 # -O3: 表示更全面的优化。
 # -Ofast: 表示忽略某些标准限制的全面优化。
 # -Os: 表示优化代码大小。
+PREPARE
+
+HEADER_TARGETS += SRC_ROOTS[0]
+HEADER_TARGETS += SRC_ROOTS[0]/sub1
+HEADER_TARGETS += SRC_ROOTS[0]/sub1/sub2
+HEADER_TARGETS += SRC_ROOTS[1]

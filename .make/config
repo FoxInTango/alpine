@@ -5,6 +5,14 @@ TARGET_TYPE_BIN = $(MK_TRUE)
 TARGET_TYPE_LIB = $(MK_FALSE)
 TARGET_TYPE_DLL = $(MK_FALSE)
 
+# Path Configurations
+HEADER_INSTALL_PATH      = ${MAKE_FILE_DIR}inc
+BINARY_INSTALL_PATH      = ${MAKE_FILE_DIR}bin
+LIBRARY_INSTALL_PATH     = ${MAKE_FILE_DIR}lib
+DEPENDS_LIBRARY_PATH     = ${MAKE_FILE_DIR}libraries
+DEPENDS_THIRDS_PATH      = ${MAKE_FILE_DIR}thirds
+DEPENDS_APPLICATION_PATH = ${MAKE_FILE_DIR}applications
+
 # libs to be link with.
 TARGET_LIBS +=
 
@@ -17,5 +25,5 @@ SOURCE_DIR_BESIDES += -o -path ${SOURCE_ROOT_DIRS}/.make
 SOURCE_DIR_BESIDES += \)
 
 # root only  -- include $(MAKE_CONFIG_DIR)/root 
-export ROOT_MAKE_DIR        = $(MAKE_FILE_DIR).make
+export ROOT_MAKE_DIR        = $(MAKE_FILE_DIR)
 export ROOT_MAKE_CONFIG_DIR = $(MAKE_FILE_DIR).make

@@ -11,5 +11,5 @@ TARGET_FLAGS_AR = -O2
 TARGET_FLAGS_LD = -O2
 
 ifdef target
-include $(MAKE_CONFIG_DIR)/targets/$(target)
+include $(MAKE_CONFIG_DIR)/target.dir/$(target)
 endif

@@ -1,12 +1,5 @@
 PREPARE_TARGETS += prepare.dir
-PREPARE_TARGETS += preapre.mit
-PREPARE_TARGETS += preapre.tango
-
-PREPARE_TARGETS += preapre.libcpp
-PREPARE_TARGETS += preapre.libstring
-PREPARE_TARGETS += preapre.libmodel
-PREPARE_TARGETS += preapre.libarguments
-
+include $(MAKE_CONFIG_DIR)/prepare.dir/*.dep
 prepare.dir:
 	-mkdir applications libraries thirds inc lib bin
 ifneq ($(wildcard $(MAKE_CONFIG_DIR)/ignore.git),)
@@ -23,69 +16,3 @@ endif
 	@echo "/thirds"           >> .gitignore
 	@echo "/.make/*.mk"       >> .gitignore
 	@echo "/.gitignore"       >> .gitignore
-
-# 1,download the module
-# 2,write current super infomations to module make_dir/super
-# 3,enter module dir and execute options
-# 4,remove super infomation file
-
-ALPINE_APPLICATION_PATH=$(MAKE_FILE_DIR)applications
-## mit
-PREPARE_MIT_URL = wf@allinone.io:alpine/mit.git
-PREPARE_MIT_DIR = $(ALPINE_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_MIT_URL)))
-preapre.mit:
-	-git clone $(PREPARE_MIT_URL) $(PREPARE_MIT_DIR)
-	-echo "SUPER_MAKE_DIR=$(MAKE_FILE_DIR)"                >> $(PREPARE_MIT_DIR)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=$(MAKE_CONFIG_DIR)"       >> $(PREPARE_MIT_DIR)/.make/super
-	-cd $(PREPARE_MIT_DIR) && $(MAKE) prepare
-	-rm $(PREPARE_MIT_DIR)/super
-
-## tango
-PREPARE_TANGO_URL = wf@allinone.io:alpine/tango.git
-PREPARE_TANGO_DIR = $(ALPINE_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_TANGO_URL)))
-preapre.tango:
-	-git clone $(PREPARE_TANGO_URL) $(PREPARE_TANGO_DIR)
-	-echo "SUPER_MAKE_DIR=$(MAKE_FILE_DIR)"                >> $(PREPARE_TANGO_DIR)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=$(MAKE_CONFIG_DIR)"       >> $(PREPARE_TANGO_DIR)/.make/super
-	-cd $(PREPARE_TANGO_DIR) && $(MAKE) prepare
-	-rm $(PREPARE_TANGO_DIR)/super
-
-## libcpp
-PREPARE_LIBCPP_URL = wf@allinone.io:alpine/libcpp.git
-PREPARE_LIBCPP_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBCPP_URL)))
-preapre.libcpp:
-	-git clone $(PREPARE_LIBCPP_URL) $(PREPARE_LIBCPP_DIR)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBCPP_DIR)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBCPP_DIR)/.make/super
-	-cd $(PREPARE_LIBCPP_DIR) && $(MAKE) prepare
-	-rm $(PREPARE_LIBCPP_DIR)/.make/super
-
-##libstring
-PREPARE_LIBSTRING_URL = wf@allinone.io:alpine/libstring.git
-PREPARE_LIBSTRING_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBSTRING_URL)))
-preapre.libstring:
-	-git clone $(PREPARE_LIBSTRING_URL) $(PREPARE_LIBSTRING_DIR)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBSTRING_DIR)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBSTRING_DIR)/.make/super
-	-cd $(PREPARE_LIBSTRING_DIR) && $(MAKE) prepare
-	-rm $(PREPARE_LIBSTRING_DIR)/.make/super
-
-##libmodel
-PREPARE_LIBMODEL_URL = wf@allinone.io:alpine/libmodel.git
-PREPARE_LIBMODEL_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBMODEL_URL)))
-preapre.libmodel:
-	-git clone $(PREPARE_LIBMODEL_URL) $(PREPARE_LIBMODEL_DIR)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBMODEL_DIR)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBMODEL_DIR)/.make/super
-	-cd $(PREPARE_LIBMODEL_DIR) && $(MAKE) prepare
-	-rm $(PREPARE_LIBMODEL_DIR)/.make/super
-
-##libarguments
-PREPARE_LIBARGUMENTS_URL = wf@allinone.io:alpine/libarguments.git
-PREPARE_LIBARGUMENTS_DIR = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_LIBARGUMENTS_URL)))
-preapre.libarguments:
-	-git clone $(PREPARE_LIBARGUMENTS_URL) $(PREPARE_LIBARGUMENTS_DIR)
-	@echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_LIBARGUMENTS_DIR)/.make/super
-	@echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_LIBARGUMENTS_DIR)/.make/super
-	-cd $(PREPARE_LIBARGUMENTS_DIR) && $(MAKE) prepare
-	-rm $(PREPARE_LIBARGUMENTS_DIR)/.make/super
