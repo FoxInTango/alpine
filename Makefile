@@ -112,7 +112,7 @@ TARGET_OBJECTS_PP  += $(patsubst %.cpp,%.o,$(TARGET_SOURCES_PP))
 TARGET_HEADER_DIRS += $(foreach dir,$(SOURCE_DIRS),-I$(dir))
 
 # libraries to be linked with.[NOTICE: also defined in .make/config]
-TARGET_LIBS += -lstdc++
+TARGET_LIBS += ${TARGET_LINK_WITH_LIBS} ${CONFIG_LINK_WITH_LIBS} 
 
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_BIN_EXT         :=
@@ -149,7 +149,7 @@ ${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_DYNAMIC}:$(TARGET_OBJECTS_PP) $
 	$(CC) -fPIC -shared  -o $@ $^ ${LDFLAGS} $(TARGET_LIBS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}${TARGET_BIN_EXT}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(PP) -o $@ $^  $(TARGET_LIBS) ${TARGET_LD_FLAGS} -fPIE #-static
+	$(PP) -o $@ $^  $(TARGET_LIBS) ${TARGET_LD_FLAGS} ${LDFLAGS} -fPIE #-static
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@
@@ -289,7 +289,7 @@ endif
 endif
 endif
 ifndef ROOT_MAKE_CONFIG_DIR
-	echo "no ROOT_MAKE_CONFIG_DIR found."
+	@echo "no ROOT_MAKE_CONFIG_DIR found."
 endif
 install :${INSTALL_TARGETS}
 	@echo ${TARGET_NAME} : Installed.

@@ -5,9 +5,17 @@ TARGET_TYPE_BIN = $(MK_TRUE)
 TARGET_TYPE_LIB = $(MK_FALSE)
 TARGET_TYPE_DLL = $(MK_FALSE)
 
-# libs to be link with.
-TARGET_LIBS +=
+CONFIG_FLAGS_AS = -O2
+CONFIG_FLAGS_CC = -O2
+CONFIG_FLAGS_PP = -O2
+CONFIG_FLAGS_AR = -O2
+CONFIG_FLAGS_LD = -O2
 
+# libs to be link with.
+CONFIG_LINK_WITH_LIBS     += -lstdc++
+CONFIG_HEADER_SEARCH_DIRS += 
+CONFIG_SOURCE_ROOT_DIRS   += 
+|
 SOURCE_ROOT_DIRS += ./src
 
 # For example
@@ -16,7 +24,7 @@ SOURCE_DIR_BESIDES +=    -path ${SOURCE_ROOT_DIRS}/.git
 SOURCE_DIR_BESIDES += -o -path ${SOURCE_ROOT_DIRS}/.make
 SOURCE_DIR_BESIDES += \)
 
-# [ROOT only] Path Configurations 
+# [ROOT only] Path Configurations
 HEADER_INSTALL_PATH      = ${MAKE_FILE_DIR}inc
 BINARY_INSTALL_PATH      = ${MAKE_FILE_DIR}bin
 LIBRARY_INSTALL_PATH     = ${MAKE_FILE_DIR}lib

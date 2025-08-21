@@ -1,0 +1,7 @@
+ pkg-config --modversion 
+
+if pkg-config --exists libdrm-dev; then
+    echo "libdrm-dev is installed."
+else
+    echo "libdrm-dev is not installed."
+fi

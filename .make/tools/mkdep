@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+shell_cmd=$(basename $0)
+shell_dir=$(dirname  $0)
+shell_pwd=$(pwd)
+
+function travel_fs() {
+for element in `ls $1`; do
+    node=$1"/"${element}
+    if [ -d ${node} ] && [ ${element} != TODO ] && [ ${element} != depends ]; then
+        echo "PREPARE_TARGETS += prepare.${element}"                                                                    >>  depends/${element}.dep
+        echo "PREPARE_URL_${element} = wf@allinone.io:alpine/${element}.git"                                            >>  depends/${element}.dep
+        echo "PREPARE_DIR_${element} = "'$(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_'${element}')))'     >>  depends/${element}.dep
+        echo "prepare.${element}:"                                                                                      >>  depends/${element}.dep
+        echo '	-git clone $(PREPARE_URL_'${element}')' '$(PREPARE_DIR_'${element}')'                                   >>  depends/${element}.dep
+        echo '	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_'${element}')/.make/super'      >>  depends/${element}.dep
+        echo '	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_'${element}')/.make/super'      >>  depends/${element}.dep
+        echo '	-cd $(PREPARE_DIR_'${element}') && make prepare'                                                        >>  depends/${element}.dep
+        echo '	-rm $(PREPARE_DIR_'${element}')/.make/super'                                                            >>  depends/${element}.dep
+    fi
+done
+}
+
+travel_fs ${shell_pwd}
