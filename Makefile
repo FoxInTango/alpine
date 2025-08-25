@@ -8,25 +8,10 @@ include $(MAKE_CONFIG_DIR)/config
 include $(MAKE_CONFIG_DIR)/super
 include $(MAKE_CONFIG_DIR)/target
 
-PLATFORM_ARCH         = $(shell uname -s)
-PLATFORM_ARCH_LINUX   = Linux
-PLATFORM_ARCH_DARWIN  = Darwin
-PLATFORM_ARCH_FREEBSD = FreeBSD
-
 # ** Project Settings **
 #
 #    Output Name
-#    TARGET_NAME     =  : Defined in .make/name and also can be redefine here.
-#    Output Name Extensions
-TARGET_BIN_EXT = 
-TARGET_LIB_EXT_STATIC  =
-TARGET_LIB_EXT_DYNAMIC = 
-# Flags
-ASFLAGS += ${TARGET_FLAGS_AS}
-CCFLAGS += ${TARGET_FLAGS_CC} -c -fPIC -Wall -std=c11
-PPFLAGS += ${TARGET_FLAGS_PP} -c -fPIC -Wall -std=c++11 -fvisibility=hidden
-ARFLAGS += ${TARGET_FLAGS_AR}
-LDFLAGS += ${TARGET_FLAGS_LD}
+#    TARGET_NAME     =  : Defined in .make/config and also can be redefine here.
 
 # Path where headers to be installed.
 ifdef ROOT_HEADER_INSTALL_PATH
@@ -98,6 +83,47 @@ endif
 TARGET_BIN_DIR := ./bin
 TARGET_LIB_DIR := ./lib
 
+ifdef CONFIG_HEADER_SEARCH_DIRS
+ifneq (${CONFIG_HEADER_SEARCH_DIRS},)
+HEADER_SEARCH_DIRS += ${CONFIG_HEADER_SEARCH_DIRS}
+endif
+endif
+
+ifdef TARGET_HEADER_SEARCH_DIRS
+ifneq (${TARGET_HEADER_SEARCH_DIRS},)
+HEADER_SEARCH_DIRS += ${TARGET_HEADER_SEARCH_DIRS}
+endif
+endif
+
+ifdef CONFIG_LIBRARY_SEARCH_DIRS
+ifneq (${CONFIG_LIBRARY_SEARCH_DIRS},)
+LIBRARY_SEARCH_DIRS += ${CONFIG_LIBRARY_SEARCH_DIRS}
+endif
+endif
+
+ifdef TARGET_LIBRARY_SEARCH_DIRS
+ifneq (${TARGET_LIBRARY_SEARCH_DIRS},)
+LIBRARY_SEARCH_DIRS += ${TARGET_LIBRARY_SEARCH_DIRS}
+endif
+endif
+
+# Flags
+ASFLAGS += ${TARGET_FLAGS_AS} ${CONFIG_FLAGS_AS}
+CCFLAGS += ${TARGET_FLAGS_CC} ${CONFIG_FLAGS_CC} ${HEADER_SEARCH_DIRS}
+PPFLAGS += ${TARGET_FLAGS_PP} ${CONFIG_FLAGS_PP} ${HEADER_SEARCH_DIRS}
+ARFLAGS += ${TARGET_FLAGS_AR} ${CONFIG_FLAGS_AR}
+LDFLAGS += ${TARGET_FLAGS_LD} ${CONFIG_FLAGS_LD} ${LIBRARY_SEARCH_DIRS}
+
+ifdef CONFIG_SOURCE_ROOT_DIRS
+ifneq (${CONFIG_SOURCE_ROOT_DIRS},)
+SOURCE_ROOT_DIRS += ${CONFIG_SOURCE_ROOT_DIRS}
+endif
+endif
+ifdef TARGET_SOURCE_ROOT_DIRS
+ifneq (${TARGET_SOURCE_ROOT_DIRS},)
+SOURCE_ROOT_DIRS +=${TARGET_SOURCE_ROOT_DIRS}
+endif
+endif
 SOURCE_DIRS   = $(shell find $(SOURCE_ROOT_DIRS) $(SOURCE_DIR_BESIDES) -prune -o -type d -print)
 
 TARGET_HEADERS = $(foreach dir,$(SOURCE_DIRS),$(wildcard $(dir)/*.h))
@@ -113,22 +139,6 @@ TARGET_HEADER_DIRS += $(foreach dir,$(SOURCE_DIRS),-I$(dir))
 
 # libraries to be linked with.[NOTICE: also defined in .make/config]
 TARGET_LIBS += ${TARGET_LINK_WITH_LIBS} ${CONFIG_LINK_WITH_LIBS} 
-
-ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
-    TARGET_BIN_EXT         :=
-    TARGET_LIB_EXT_STATIC  := .a
-    TARGET_LIB_EXT_DYNAMIC := .so
-endif
-ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
-    TARGET_BIN_EXT         :=
-    TARGET_LIB_EXT_STATIC  := .a
-    TARGET_LIB_EXT_DYNAMIC := .so
-endif
-ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
-    TARGET_BIN_EXT         := 
-    TARGET_LIB_EXT_STATIC  := .a
-    TARGET_LIB_EXT_DYNAMIC := .so
-endif
 
 ifeq ($(TARGET_TYPE_LIB),$(MK_TRUE))
 TARGETS += ${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_STATIC}
@@ -146,10 +156,10 @@ ${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_STATIC}:$(TARGET_OBJECTS_PP) $(
 	$(AR) -crvs $@ $^
 
 ${TARGET_LIB_DIR}/${TARGET_NAME}${TARGET_LIB_EXT_DYNAMIC}:$(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(CC) -fPIC -shared  -o $@ $^ ${LDFLAGS} $(TARGET_LIBS)
+	$(CC) -fPIC -shared -o $@ $^ ${LDFLAGS} $(TARGET_LIBS)
 
 ${TARGET_BIN_DIR}/${TARGET_NAME}${TARGET_BIN_EXT}: $(TARGET_OBJECTS_PP) $(TARGET_OBJECTS_CC) $(TARGET_OBJECTS_AS)
-	$(PP) -o $@ $^  $(TARGET_LIBS) ${TARGET_LD_FLAGS} ${LDFLAGS} -fPIE #-static
+	$(LD) -o $@ $^  $(TARGET_LIBS) ${LDFLAGS} -fPIE #-static
 
 $(TARGET_OBJECTS_AS):%.o:%.s
 	$(AS) ${ASFLAGS} $< -o $@

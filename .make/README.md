@@ -1,3 +1,6 @@
+# make target=...
+
+${Makefile_VAR} = ${CONFIG_VAR} + ${TARGET_VAR} as Blow:
 # 1, .make/config 
     Makefile : TARGET[MAIN]_LIBS     += .make/config : CONFIG_LIBS
     Makefile : TARGET[MAIN]_AS_FLAGS += .make/config : CONFIG_AS_FLAGS
