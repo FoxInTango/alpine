@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.mit
+PREPARE_URL_mit = wf@allinone.io:alpine/mit.git
+PREPARE_DIR_mit = $(DEPENDS_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_URL_mit)))
+prepare.mit:
+	-git clone $(PREPARE_URL_mit) $(PREPARE_DIR_mit)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_mit)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_mit)/.make/super
+	-cd $(PREPARE_DIR_mit) && make prepare
+	-rm $(PREPARE_DIR_mit)/.make/super
