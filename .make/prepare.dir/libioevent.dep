@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libioevent
+PREPARE_URL_libioevent = wf@allinone.io:alpine/libioevent.git
+PREPARE_DIR_libioevent = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libioevent)))
+prepare.libioevent:
+	-git clone $(PREPARE_URL_libioevent) $(PREPARE_DIR_libioevent)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libioevent)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libioevent)/.make/super
+	-cd $(PREPARE_DIR_libioevent) && make prepare
+	-rm $(PREPARE_DIR_libioevent)/.make/super

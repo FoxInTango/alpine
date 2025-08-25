@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libarguments
+PREPARE_URL_libarguments = wf@allinone.io:alpine/libarguments.git
+PREPARE_DIR_libarguments = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libarguments)))
+prepare.libarguments:
+	-git clone $(PREPARE_URL_libarguments) $(PREPARE_DIR_libarguments)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libarguments)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libarguments)/.make/super
+	-cd $(PREPARE_DIR_libarguments) && make prepare
+	-rm $(PREPARE_DIR_libarguments)/.make/super

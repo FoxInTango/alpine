@@ -51,7 +51,7 @@
 *.inf
 *.log
 *.tlog
-*.lastbuildstate#Alpine Ignored
+*.lastbuildstate#MIT Ignore Begin:
 /applications
 /templates
 /modules
@@ -62,3 +62,4 @@
 /thirds
 /.make/*.mk
 /.gitignore
+#MIT Ignore End.

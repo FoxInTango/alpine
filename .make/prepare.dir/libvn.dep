@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libvn
+PREPARE_URL_libvn = wf@allinone.io:alpine/libvn.git
+PREPARE_DIR_libvn = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libvn)))
+prepare.libvn:
+	-git clone $(PREPARE_URL_libvn) $(PREPARE_DIR_libvn)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libvn)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libvn)/.make/super
+	-cd $(PREPARE_DIR_libvn) && make prepare
+	-rm $(PREPARE_DIR_libvn)/.make/super

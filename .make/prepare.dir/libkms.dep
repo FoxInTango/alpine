@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libkms
+PREPARE_URL_libkms = wf@allinone.io:alpine/libkms.git
+PREPARE_DIR_libkms = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libkms)))
+prepare.libkms:
+	-git clone $(PREPARE_URL_libkms) $(PREPARE_DIR_libkms)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libkms)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libkms)/.make/super
+	-cd $(PREPARE_DIR_libkms) && make prepare
+	-rm $(PREPARE_DIR_libkms)/.make/super

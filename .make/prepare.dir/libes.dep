@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libes
+PREPARE_URL_libes = wf@allinone.io:alpine/libes.git
+PREPARE_DIR_libes = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libes)))
+prepare.libes:
+	-git clone $(PREPARE_URL_libes) $(PREPARE_DIR_libes)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libes)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libes)/.make/super
+	-cd $(PREPARE_DIR_libes) && make prepare
+	-rm $(PREPARE_DIR_libes)/.make/super

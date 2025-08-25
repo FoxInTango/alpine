@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libfsevent
+PREPARE_URL_libfsevent = wf@allinone.io:alpine/libfsevent.git
+PREPARE_DIR_libfsevent = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libfsevent)))
+prepare.libfsevent:
+	-git clone $(PREPARE_URL_libfsevent) $(PREPARE_DIR_libfsevent)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libfsevent)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libfsevent)/.make/super
+	-cd $(PREPARE_DIR_libfsevent) && make prepare
+	-rm $(PREPARE_DIR_libfsevent)/.make/super

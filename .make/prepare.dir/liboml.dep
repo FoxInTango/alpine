@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.liboml
+PREPARE_URL_liboml = wf@allinone.io:alpine/liboml.git
+PREPARE_DIR_liboml = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_liboml)))
+prepare.liboml:
+	-git clone $(PREPARE_URL_liboml) $(PREPARE_DIR_liboml)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_liboml)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_liboml)/.make/super
+	-cd $(PREPARE_DIR_liboml) && make prepare
+	-rm $(PREPARE_DIR_liboml)/.make/super

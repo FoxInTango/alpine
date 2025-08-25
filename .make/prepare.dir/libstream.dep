@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libstream
+PREPARE_URL_libstream = wf@allinone.io:alpine/libstream.git
+PREPARE_DIR_libstream = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libstream)))
+prepare.libstream:
+	-git clone $(PREPARE_URL_libstream) $(PREPARE_DIR_libstream)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libstream)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libstream)/.make/super
+	-cd $(PREPARE_DIR_libstream) && make prepare
+	-rm $(PREPARE_DIR_libstream)/.make/super

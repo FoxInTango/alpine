@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libast
+PREPARE_URL_libast = wf@allinone.io:alpine/libast.git
+PREPARE_DIR_libast = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libast)))
+prepare.libast:
+	-git clone $(PREPARE_URL_libast) $(PREPARE_DIR_libast)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libast)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libast)/.make/super
+	-cd $(PREPARE_DIR_libast) && make prepare
+	-rm $(PREPARE_DIR_libast)/.make/super
