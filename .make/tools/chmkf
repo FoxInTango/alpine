@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+shell_cmd=$(basename $0)
+shell_dir=$(dirname  $0)
+shell_pwd=$(pwd)
+
+function travel_fs() {
+for element in `ls $1`; do
+    if [ -d ${element} ]; then
+      node=$1"/"${element}
+      rm ${node}/Makefile
+      cp ../Makefile ${node}
+    fi
+done
+}
+
+travel_fs ${shell_pwd}
