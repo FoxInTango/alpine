@@ -1,9 +1,0 @@
-PREPARE_TARGETS += prepare.libgl
-PREPARE_URL_libgl = wf@allinone.io:alpine/libgl.git
-PREPARE_DIR_libgl = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libgl)))
-prepare.libgl:
-	-git clone $(PREPARE_URL_libgl) $(PREPARE_DIR_libgl)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libgl)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libgl)/.make/super
-	-cd $(PREPARE_DIR_libgl) && make prepare
-	-rm $(PREPARE_DIR_libgl)/.make/super

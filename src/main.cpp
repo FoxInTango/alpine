@@ -32,7 +32,6 @@
  */
 #include "alpine.h"
 #include "triangle.h"
-#include <libvk/libvk-backend/backend.h>
 #include <libelf/libelf.h>
 #include <libast/libast.h>
 #include <libecho/libecho.h>
@@ -54,8 +53,7 @@ int main(int argc,char* argv[]) {
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
     libcpp_startup();
-    backend_kms_boot();
-    //showTriangle(argc,argv);
+    showTriangle(argc,argv);
     return 0;
     switch (CurrentEndian()) {
     case ENDIAN_B: {

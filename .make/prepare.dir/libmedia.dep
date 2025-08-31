@@ -1,9 +1,0 @@
-PREPARE_TARGETS += prepare.libmedia
-PREPARE_URL_libmedia = wf@allinone.io:alpine/libmedia.git
-PREPARE_DIR_libmedia = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libmedia)))
-prepare.libmedia:
-	-git clone $(PREPARE_URL_libmedia) $(PREPARE_DIR_libmedia)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libmedia)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libmedia)/.make/super
-	-cd $(PREPARE_DIR_libmedia) && make prepare
-	-rm $(PREPARE_DIR_libmedia)/.make/super

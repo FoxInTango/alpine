@@ -3,3 +3,15 @@
 clear but not remove | don't include if not exists
 
 .make/depend.dir/*.mk repiece
+
+in applications/tango/ make 
+cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libcpp/ && make && make install
+make[1]: Entering directory '/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libcpp'
+make[1]: 'ALL' is up to date.
+make[1]: Leaving directory '/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libcpp'
+make[1]: Entering directory '/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libcpp'
+rm -rf /libcpp
+mkdir  /libcpp
+mkdir: cannot create directory ‘/libcpp’: Permission denied
+
+

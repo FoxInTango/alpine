@@ -1,9 +1,0 @@
-PREPARE_TARGETS += prepare.libstt
-PREPARE_URL_libstt = wf@allinone.io:alpine/libstt.git
-PREPARE_DIR_libstt = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libstt)))
-prepare.libstt:
-	-git clone $(PREPARE_URL_libstt) $(PREPARE_DIR_libstt)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libstt)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libstt)/.make/super
-	-cd $(PREPARE_DIR_libstt) && make prepare
-	-rm $(PREPARE_DIR_libstt)/.make/super

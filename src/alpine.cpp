@@ -35,7 +35,7 @@ Alpine alpine;
 
 Alpine::Alpine(){
     this->system = new System();
-    this->es = new es_context();
+    this->es = new ESContext();
 }
 Alpine::~Alpine(){}
 int Alpine::onevent(int event) { return event; }

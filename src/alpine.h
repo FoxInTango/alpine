@@ -59,7 +59,7 @@ typedef int (*event_callback)(const Alpine& alpine,int event);
 class Alpine {
 private:
     System* system;
-    es_context* es;
+    ESContext* es;
     ModuleContext* moduleContext;
 public:
     Alpine();

@@ -12,9 +12,10 @@ CONFIG_FLAGS_AR = -O3
 CONFIG_FLAGS_LD = -O3
 
 # libs to be linked with.
-CONFIG_LINK_WITH_LIBS      += -lstdc++ 
-CONFIG_HEADER_SEARCH_DIRS  += -I /usr/include -I /usr/local/include
-CONFIG_LIBRARY_SEARCH_DIRS += -L /usr/lib -L /usr/local/lib
+CONFIG_LINK_WITH_LIBS      += -lsystem -lmodel -les -last -lvk -larguments -lmodule -lstring -lcpp 
+CONFIG_LINK_WITH_LIBS      += -lshaderc -lvulkan -lwayland-server -lwayland-client -lseat -lxcb-ewmh -lxcb -linput -ludev -lgbm -lEGL -lktx -ldrm -lstdc++ 
+CONFIG_HEADER_SEARCH_DIRS  += -I/usr/include -I/usr/local/include
+CONFIG_LIBRARY_SEARCH_DIRS += -L/usr/lib -L/usr/local/lib
 CONFIG_SOURCE_ROOT_DIRS    += ./src
 
 
@@ -32,8 +33,8 @@ DEPENDS_LIBRARY_PATH     = ${MAKE_FILE_DIR}libraries
 DEPENDS_THIRDS_PATH      = ${MAKE_FILE_DIR}thirds
 DEPENDS_APPLICATION_PATH = ${MAKE_FILE_DIR}applications
 
-CONFIG_HEADER_SEARCH_DIRS  += ${HEADER_INSTALL_PATH}
-CONFIG_LIBRARY_SEARCH_DIRS += ${LIBRARY_INSTALL_PATH}
+CONFIG_HEADER_SEARCH_DIRS  += -I${HEADER_INSTALL_PATH}
+CONFIG_LIBRARY_SEARCH_DIRS += -L${LIBRARY_INSTALL_PATH}
 
 # [ROOT only]  -- include $(MAKE_CONFIG_DIR)/root 
 export ROOT_MAKE_DIR        = $(MAKE_FILE_DIR)

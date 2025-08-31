@@ -1,9 +1,0 @@
-PREPARE_TARGETS += prepare.libkernel
-PREPARE_URL_libkernel = wf@allinone.io:alpine/libkernel.git
-PREPARE_DIR_libkernel = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libkernel)))
-prepare.libkernel:
-	-git clone $(PREPARE_URL_libkernel) $(PREPARE_DIR_libkernel)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libkernel)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libkernel)/.make/super
-	-cd $(PREPARE_DIR_libkernel) && make prepare
-	-rm $(PREPARE_DIR_libkernel)/.make/super

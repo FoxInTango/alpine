@@ -1,9 +1,0 @@
-PREPARE_TARGETS += prepare.libvh
-PREPARE_URL_libvh = wf@allinone.io:alpine/libvh.git
-PREPARE_DIR_libvh = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libvh)))
-prepare.libvh:
-	-git clone $(PREPARE_URL_libvh) $(PREPARE_DIR_libvh)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libvh)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libvh)/.make/super
-	-cd $(PREPARE_DIR_libvh) && make prepare
-	-rm $(PREPARE_DIR_libvh)/.make/super

@@ -8,8 +8,8 @@ for element in `ls $1`; do
     if [ -d $1/${element} ]; then
       local node=$1"/"${element}
       echo "update: ${node}/Makefile"
-      rm ${node}/Makefile
-      cp ./Makefile ${node}
+      rm ${node}/.make/install.dir/*.ins
+      cp .make/install.dir/*.ins ${node}/.make/install.dir/
       echo "done"
     fi
     # echo ${element}

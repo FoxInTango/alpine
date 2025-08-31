@@ -1,9 +1,0 @@
-PREPARE_TARGETS += prepare.lib2d
-PREPARE_URL_lib2d = wf@allinone.io:alpine/lib2d.git
-PREPARE_DIR_lib2d = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_lib2d)))
-prepare.lib2d:
-	-git clone $(PREPARE_URL_lib2d) $(PREPARE_DIR_lib2d)
-	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_lib2d)/.make/super
-	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_lib2d)/.make/super
-	-cd $(PREPARE_DIR_lib2d) && make prepare
-	-rm $(PREPARE_DIR_lib2d)/.make/super
