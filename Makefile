@@ -325,7 +325,7 @@ publish:$(PUBLISH_TARGETS)
 	-git add . && git commit -m "$(shell date)" && git push
 update:$(UPDATE_TARGETS)
 	-git pull
-echo:#$(ECHO_TARGETS)
+echo: #$(ECHO_TARGETS)
 	@echo TARGET_NAME:$(TARGET_NAME)
 	@echo HEADER_SEARCH_DIRS:${HEADER_SEARCH_DIRS}
 	@echo CONFIG_HEADER_SEARCH_DIRS:${CONFIG_HEADER_SEARCH_DIRS}
@@ -347,5 +347,5 @@ echo:#$(ECHO_TARGETS)
 	@echo ASFLAGS:${ASFLAGS}
 	@echo CCFLAGS:${CCFLAGS}
 	@echo PPFLAGS:${PPFLAGS}
-	@echo ARFLAGS:${ARFLAGS}
+#	@echo ARFLAGS:${ARFLAGS}
 	@echo LDFLAGS:${LDFLAGS}
