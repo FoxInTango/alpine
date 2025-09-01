@@ -1,16 +1,14 @@
-DEPEND_TARGETS  += libmodel.build
-UPDATE_TARGETS  += libmodel.update
-PUBLISH_TARGETS += libmodel.publish
+DEPEND_TARGETS  += libmodel.recursive
 ECHO_TARGETS    += libmodel.echo
 libmodel:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
 	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
-libmodel.build:
-	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
-	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
-	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/ && make && make install
+libmodel.recursive:
+	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodule/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
+	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodule/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
+	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super
 libmodel.clean:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/          >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make/super

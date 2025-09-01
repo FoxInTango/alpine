@@ -1,4 +1,4 @@
-DEPEND_TARGETS  += libarguments.build
+DEPEND_TARGETS  += libarguments.recursive
 UPDATE_TARGETS  += libarguments.update
 PUBLISH_TARGETS += libarguments.publish
 ECHO_TARGETS    += libarguments.echo
@@ -7,10 +7,10 @@ libarguments:
 	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/.make/super
-libarguments.build:
+libarguments.recursive:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/.make/super
 	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/.make/super
-	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/ && make && make install
+	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/.make/super
 libarguments.clean:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/          >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libarguments/.make/super

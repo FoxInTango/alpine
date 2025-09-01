@@ -1,16 +1,14 @@
-DEPEND_TARGETS  += liburl.build
-UPDATE_TARGETS  += liburl.update
-PUBLISH_TARGETS += liburl.publish
+DEPEND_TARGETS  += liburl.recursive
 ECHO_TARGETS    += liburl.echo
 liburl:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
 	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
-liburl.build:
-	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
-	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
-	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/ && make && make install
+liburl.recursive:
+	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libfs/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
+	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libfs/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
+	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
 liburl.clean:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/          >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/liburl/.make/super
