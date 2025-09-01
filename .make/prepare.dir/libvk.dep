@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libvk
+PREPARE_URL_libvk = wf@allinone.io:alpine/libvk.git
+PREPARE_DIR_libvk = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libvk)))
+prepare.libvk:
+	-git clone $(PREPARE_URL_libvk) $(PREPARE_DIR_libvk)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libvk)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libvk)/.make/super
+	-cd $(PREPARE_DIR_libvk) && make prepare
+	-rm $(PREPARE_DIR_libvk)/.make/super

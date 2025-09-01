@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libelf
+PREPARE_URL_libelf = wf@allinone.io:alpine/libelf.git
+PREPARE_DIR_libelf = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libelf)))
+prepare.libelf:
+	-git clone $(PREPARE_URL_libelf) $(PREPARE_DIR_libelf)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libelf)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libelf)/.make/super
+	-cd $(PREPARE_DIR_libelf) && make prepare
+	-rm $(PREPARE_DIR_libelf)/.make/super

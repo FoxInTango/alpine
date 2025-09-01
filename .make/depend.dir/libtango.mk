@@ -1,4 +1,6 @@
 DEPEND_TARGETS  += libtango.recursive
+UPDATE_TARGETS  += libtango.update
+PUBLISH_TARGETS += libtango.publish
 ECHO_TARGETS    += libtango.echo
 libtango:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
@@ -6,8 +8,8 @@ libtango:
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
 libtango.recursive:
-	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/applications/tango/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
-	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/applications/tango/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
+	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
+	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make/super
 libtango.clean:

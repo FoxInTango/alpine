@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libstring
+PREPARE_URL_libstring = wf@allinone.io:alpine/libstring.git
+PREPARE_DIR_libstring = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libstring)))
+prepare.libstring:
+	-git clone $(PREPARE_URL_libstring) $(PREPARE_DIR_libstring)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libstring)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libstring)/.make/super
+	-cd $(PREPARE_DIR_libstring) && make prepare
+	-rm $(PREPARE_DIR_libstring)/.make/super

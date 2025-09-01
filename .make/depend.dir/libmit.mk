@@ -1,4 +1,6 @@
 DEPEND_TARGETS  += libmit.recursive
+UPDATE_TARGETS  += libmit.update
+PUBLISH_TARGETS += libmit.publish
 ECHO_TARGETS    += libmit.echo
 libmit:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
@@ -6,8 +8,8 @@ libmit:
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
 libmit.recursive:
-	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/applications/mit/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
-	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/applications/mit/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
+	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
+	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmit/.make/super
 libmit.clean:

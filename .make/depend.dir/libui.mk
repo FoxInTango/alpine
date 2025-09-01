@@ -1,4 +1,6 @@
 DEPEND_TARGETS  += libui.recursive
+UPDATE_TARGETS  += libui.update
+PUBLISH_TARGETS += libui.publish
 ECHO_TARGETS    += libui.echo
 libui:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
@@ -6,8 +8,8 @@ libui:
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
 libui.recursive:
-	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
-	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libtango/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
+	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
+	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libui/.make/super
 libui.clean:

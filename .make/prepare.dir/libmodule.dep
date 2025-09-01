@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libmodule
+PREPARE_URL_libmodule = wf@allinone.io:alpine/libmodule.git
+PREPARE_DIR_libmodule = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libmodule)))
+prepare.libmodule:
+	-git clone $(PREPARE_URL_libmodule) $(PREPARE_DIR_libmodule)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libmodule)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libmodule)/.make/super
+	-cd $(PREPARE_DIR_libmodule) && make prepare
+	-rm $(PREPARE_DIR_libmodule)/.make/super

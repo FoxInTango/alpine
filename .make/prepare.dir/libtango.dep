@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libtango
+PREPARE_URL_libtango = wf@allinone.io:alpine/libtango.git
+PREPARE_DIR_libtango = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libtango)))
+prepare.libtango:
+	-git clone $(PREPARE_URL_libtango) $(PREPARE_DIR_libtango)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libtango)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libtango)/.make/super
+	-cd $(PREPARE_DIR_libtango) && make prepare
+	-rm $(PREPARE_DIR_libtango)/.make/super

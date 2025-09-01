@@ -1,4 +1,6 @@
 DEPEND_TARGETS  += libmm.recursive
+UPDATE_TARGETS  += libmm.update
+PUBLISH_TARGETS += libmm.publish
 ECHO_TARGETS    += libmm.echo
 libmm:
 	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
@@ -6,8 +8,8 @@ libmm:
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/ && make && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
 libmm.recursive:
-	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
-	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmodel/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
+	@echo SUPER_MAKE_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/               >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
+	@echo SUPER_MAKE_CONFIG_DIR=/mnt/d/CORE_WEB_SYSTEM_WEB/alpine/.make >> /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
 	cd /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/ && make recursive && make install
 	-rm /mnt/d/CORE_WEB_SYSTEM_WEB/alpine/libraries/libmm/.make/super
 libmm.clean:

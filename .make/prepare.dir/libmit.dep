@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libmit
+PREPARE_URL_libmit = wf@allinone.io:alpine/libmit.git
+PREPARE_DIR_libmit = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libmit)))
+prepare.libmit:
+	-git clone $(PREPARE_URL_libmit) $(PREPARE_DIR_libmit)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libmit)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libmit)/.make/super
+	-cd $(PREPARE_DIR_libmit) && make prepare
+	-rm $(PREPARE_DIR_libmit)/.make/super

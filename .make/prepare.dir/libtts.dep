@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libtts
+PREPARE_URL_libtts = wf@allinone.io:alpine/libtts.git
+PREPARE_DIR_libtts = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libtts)))
+prepare.libtts:
+	-git clone $(PREPARE_URL_libtts) $(PREPARE_DIR_libtts)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libtts)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libtts)/.make/super
+	-cd $(PREPARE_DIR_libtts) && make prepare
+	-rm $(PREPARE_DIR_libtts)/.make/super
