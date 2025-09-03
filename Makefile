@@ -176,8 +176,8 @@ clean   :
 	rm -f $(TARGET_OBJECTS_AS)
 	rm -f $(TARGET_OBJECTS_CC)
 	rm -f $(TARGET_OBJECTS_PP)
-	rm -f ${TARGET_LIB_DIR}/*
-	rm -f ${TARGET_BIN_DIR}/*
+	rm -f ${TARGET_LIB_DIR}/${TARGET_NAME}*
+	rm -f ${TARGET_BIN_DIR}/${TARGET_NAME}${TARGET_BIN_EXT}
 prepare:$(PREPARE_TARGETS)
 ifdef SUPER_MAKE_CONFIG_DIR
 ifdef ROOT_MAKE_CONFIG_DIR
@@ -319,7 +319,7 @@ else
 	@echo "install : no BINARY_INSTALL_PATH found"
 endif
 ifneq ($(wildcard $(LIBRARY_INSTALL_PATH)),)
-	-rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME).*
+	-rm -rf $(LIBRARY_INSTALL_PATH)/$(TARGET_NAME)*
 else
 	@echo "install : no LIBRARY_INSTALL_PATH found"
 endif
