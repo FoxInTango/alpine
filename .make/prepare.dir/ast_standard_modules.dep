@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.ast_standard_modules
+PREPARE_URL_ast_standard_modules = wf@allinone.io:alpine/ast_standard_modules.git
+PREPARE_DIR_ast_standard_modules = $(DEPENDS_MODULE_PATH)/$(basename $(notdir $(PREPARE_URL_ast_standard_modules)))
+prepare.ast_standard_modules:
+	-git clone $(PREPARE_URL_ast_standard_modules) $(PREPARE_DIR_ast_standard_modules)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_ast_standard_modules)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_ast_standard_modules)/.make/super
+	-cd $(PREPARE_DIR_ast_standard_modules) && make prepare
+	-rm $(PREPARE_DIR_ast_standard_modules)/.make/super

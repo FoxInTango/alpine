@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.es_language_template
+PREPARE_URL_es_language_template = wf@allinone.io:alpine/es_language_template.git
+PREPARE_DIR_es_language_template = $(DEPENDS_TEMPLATE_PATH)/$(basename $(notdir $(PREPARE_URL_es_language_template)))
+prepare.es_language_template:
+	-git clone $(PREPARE_URL_es_language_template) $(PREPARE_DIR_es_language_template)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_es_language_template)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_es_language_template)/.make/super
+	-cd $(PREPARE_DIR_es_language_template) && make prepare
+	-rm $(PREPARE_DIR_es_language_template)/.make/super

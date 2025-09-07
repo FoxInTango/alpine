@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.es_language_js
+PREPARE_URL_es_language_js = wf@allinone.io:alpine/es_language_js.git
+PREPARE_DIR_es_language_js = $(DEPENDS_MODULE_PATH)/$(basename $(notdir $(PREPARE_URL_es_language_js)))
+prepare.es_language_js:
+	-git clone $(PREPARE_URL_es_language_js) $(PREPARE_DIR_es_language_js)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_es_language_js)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_es_language_js)/.make/super
+	-cd $(PREPARE_DIR_es_language_js) && make prepare
+	-rm $(PREPARE_DIR_es_language_js)/.make/super
