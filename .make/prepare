@@ -5,6 +5,7 @@ prepare.dir:
 ifneq ($(wildcard $(MAKE_CONFIG_DIR)/ignore.git),)
 	-cp $(MAKE_CONFIG_DIR)/ignore.git .gitignore
 endif
+	@echo "\n"                  >> .gitignore
 	@echo "#MIT Ignore Begin:"  >> .gitignore
 	@echo "/applications"       >> .gitignore
 	@echo "/templates"          >> .gitignore
@@ -15,5 +16,6 @@ endif
 	@echo "/inc"                >> .gitignore
 	@echo "/thirds"             >> .gitignore
 	@echo "/.make/*.mk"         >> .gitignore
+	@echo "/.make/super"        >> .gitignore
 	@echo "/.gitignore"         >> .gitignore
 	@echo "#MIT Ignore End."    >> .gitignore

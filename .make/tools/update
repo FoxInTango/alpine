@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+shell_cmd=$(basename $0)
+shell_dir=$(dirname  $0)
+shell_pwd=$(pwd)
+
+function copy_prepare(){
+    echo "copy ${shell_pwd}/.make/prepare to $1/.make/"
+}
+
+function travel_fs() {
+for element in `ls $2`; do
+    node=$2"/"${element}
+    if [ -d ${node} ]; then
+        $1 ${node}
+    fi
+    done
+}
+
+#travel_fs $1
+
+case ${shell_cmd} in
+    update.prepare)
+        travel_fs copy_prepare ${shell_pwd}/modules
+        travel_fs copy_prepare ${shell_pwd}/libraries
+	travel_fs copy_prepare ${shell_pwd}/templates
+        travel_fs copy_prepare ${shell_pwd}/applications
+    ;;
+    *)
+    echo "I don't know what to do."
+    ;;
+esac
