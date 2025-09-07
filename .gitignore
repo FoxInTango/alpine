@@ -51,7 +51,8 @@
 *.inf
 *.log
 *.tlog
-*.lastbuildstate#MIT Ignore Begin:
+*.lastbuildstate\n
+#MIT Ignore Begin:
 /applications
 /templates
 /modules
@@ -60,6 +61,7 @@
 /bin
 /inc
 /thirds
-/.make/*.mk
+/.make/depend.dir/*.mk
+/.make/super
 /.gitignore
 #MIT Ignore End.
