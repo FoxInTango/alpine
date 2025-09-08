@@ -2,9 +2,14 @@ PREPARE_TARGETS += prepare.pugixml
 PREPARE_URL_pugixml = https://github.com:zeux/pugixml.git
 PREPARE_DIR_pugixml = $(DEPENDS_THIRD_PATH)/$(basename $(notdir $(PREPARE_URL_pugixml)))
 prepare.pugixml:
-	-git clone https://github.com:FoxInTango/makeIt.git       $(PREPARE_DIR_pugixml) # rename .make/config & add THIRD_TARGET in a standalone file.
+	-git clone https://github.com:FoxInTango/makeIt.git       $(PREPARE_DIR_pugixml) 
 	-git clone $(PREPARE_URL_pugixml)                         $(PREPARE_DIR_pugixml)/pugixml
 	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_pugixml)/.make/super
 	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_pugixml)/.make/super
 	-cd $(PREPARE_DIR_pugixml) && make prepare
 	-rm $(PREPARE_DIR_pugixml)/.make/super
+
+# rename .make/config & add THIRD_TARGET in a standalone file.
+# create THIRD_TARGET in .make/third
+# include .make/third in Makefile 
+# ALL: $(THIRD_TARGET) $(TARGETS)
