@@ -13,3 +13,6 @@ prepare.pugixml:
 # create THIRD_TARGET in .make/third
 # include .make/third in Makefile 
 # ALL: $(THIRD_TARGET) $(TARGETS)
+
+# THIRD_TARGET:
+#	cd pugixml && ./configure && make && cp .so *.h 
