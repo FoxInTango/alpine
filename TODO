@@ -1,2 +1,2 @@
 .make/prepare.dir/pugixml.dep
-
+cp headers from inc but not from src to root/inc
