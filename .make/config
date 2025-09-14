@@ -13,8 +13,8 @@ CONFIG_FLAGS_LD = -O3
 
 # libs to be linked with.
 CONFIG_LINK_WITH_LIBS      += -lsystem -lmodel -les -last -lvk -larguments -lmodule -lstring -lcpp 
-CONFIG_LINK_WITH_LIBS      += -lshaderc -lvulkan -lwayland-server -lwayland-client -lseat -lxcb-ewmh -lxcb -linput -ludev -lgbm -lEGL -lktx -ldrm -lstdc++ 
-CONFIG_HEADER_SEARCH_DIRS  += -I/usr/include -I/usr/local/include
+CONFIG_LINK_WITH_LIBS      += -lshaderc -lvulkan -lwayland-server -lwayland-client -lseat -lxcb -linput -ludev -lgbm -lEGL -ldrm -lstdc++ 
+CONFIG_HEADER_SEARCH_DIRS  += -I/usr/include -I/usr/local/include -Iinc/libvk/
 CONFIG_LIBRARY_SEARCH_DIRS += -L/usr/lib -L/usr/local/lib
 CONFIG_SOURCE_ROOT_DIRS    += ./src
 
