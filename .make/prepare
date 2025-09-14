@@ -17,5 +17,6 @@ endif
 	@echo "/thirds"                 >> .gitignore
 	@echo "/.make/depend.dir/*.mk"  >> .gitignore
 	@echo "/.make/super"            >> .gitignore
+	@echo "/.make/localconfig"      >> .gitignore
 	@echo "/.gitignore"             >> .gitignore
 	@echo "#MIT Ignore End."        >> .gitignore
