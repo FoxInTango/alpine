@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libfs
+PREPARE_URL_libfs = https://github.com/FoxInTango/libfs.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libfs = wf@allinone.io:alpine/libfs.git
+endif
 PREPARE_DIR_libfs = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libfs)))
 prepare.libfs:
 	-git clone $(PREPARE_URL_libfs) $(PREPARE_DIR_libfs)

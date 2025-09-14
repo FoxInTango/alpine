@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libecho
+PREPARE_URL_libecho = https://github.com/FoxInTango/libecho.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libecho = wf@allinone.io:alpine/libecho.git
+endif
 PREPARE_DIR_libecho = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libecho)))
 prepare.libecho:
 	-git clone $(PREPARE_URL_libecho) $(PREPARE_DIR_libecho)

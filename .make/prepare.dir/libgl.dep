@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libgl
+PREPARE_URL_libgl = https://github.com/FoxInTango/libgl.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libgl = wf@allinone.io:alpine/libgl.git
+endif
 PREPARE_DIR_libgl = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libgl)))
 prepare.libgl:
 	-git clone $(PREPARE_URL_libgl) $(PREPARE_DIR_libgl)

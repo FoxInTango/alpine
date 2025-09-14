@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libioevent
+PREPARE_URL_libioevent = https://github.com/FoxInTango/libioevent.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libioevent = wf@allinone.io:alpine/libioevent.git
+endif
 PREPARE_DIR_libioevent = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libioevent)))
 prepare.libioevent:
 	-git clone $(PREPARE_URL_libioevent) $(PREPARE_DIR_libioevent)

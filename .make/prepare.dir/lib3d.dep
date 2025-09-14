@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.lib3d
+PREPARE_URL_lib3d = https://github.com/FoxInTango/lib3d.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_lib3d = wf@allinone.io:alpine/lib3d.git
+endif
 PREPARE_DIR_lib3d = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_lib3d)))
 prepare.lib3d:
 	-git clone $(PREPARE_URL_lib3d) $(PREPARE_DIR_lib3d)

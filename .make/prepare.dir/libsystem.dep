@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libsystem
+PREPARE_URL_libsystem = https://github.com/FoxInTango/libsystem.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libsystem = wf@allinone.io:alpine/libsystem.git
+endif
 PREPARE_DIR_libsystem = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libsystem)))
 prepare.libsystem:
 	-git clone $(PREPARE_URL_libsystem) $(PREPARE_DIR_libsystem)

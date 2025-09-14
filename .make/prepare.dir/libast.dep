@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libast
+PREPARE_URL_libast = https://github.com/FoxInTango/libast.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libast = wf@allinone.io:alpine/libast.git
+endif
 PREPARE_DIR_libast = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libast)))
 prepare.libast:
 	-git clone $(PREPARE_URL_libast) $(PREPARE_DIR_libast)

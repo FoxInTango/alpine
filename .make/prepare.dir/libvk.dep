@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libvk
+PREPARE_URL_libvk = https://github.com/FoxInTango/libvk.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libvk = wf@allinone.io:alpine/libvk.git
+endif
 PREPARE_DIR_libvk = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libvk)))
 prepare.libvk:
 	-git clone $(PREPARE_URL_libvk) $(PREPARE_DIR_libvk)

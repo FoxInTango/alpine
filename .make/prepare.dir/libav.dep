@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libav
+PREPARE_URL_libav = https://github.com/FoxInTango/libav.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libav = wf@allinone.io:alpine/libav.git
+endif
 PREPARE_DIR_libav = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libav)))
 prepare.libav:
 	-git clone $(PREPARE_URL_libav) $(PREPARE_DIR_libav)

@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libwl
+PREPARE_URL_libwl = https://github.com/FoxInTango/libwl.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libwl = wf@allinone.io:alpine/libwl.git
+endif
 PREPARE_DIR_libwl = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libwl)))
 prepare.libwl:
 	-git clone $(PREPARE_URL_libwl) $(PREPARE_DIR_libwl)

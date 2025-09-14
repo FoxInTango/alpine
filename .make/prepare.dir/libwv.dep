@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libwv
+PREPARE_URL_libwv = https://github.com/FoxInTango/libwv.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libwv = wf@allinone.io:alpine/libwv.git
+endif
 PREPARE_DIR_libwv = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libwv)))
 prepare.libwv:
 	-git clone $(PREPARE_URL_libwv) $(PREPARE_DIR_libwv)

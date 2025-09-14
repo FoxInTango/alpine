@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libhwevent
+PREPARE_URL_libhwevent = https://github.com/FoxInTango/libhwevent.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libhwevent = wf@allinone.io:alpine/libhwevent.git
+endif
 PREPARE_DIR_libhwevent = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libhwevent)))
 prepare.libhwevent:
 	-git clone $(PREPARE_URL_libhwevent) $(PREPARE_DIR_libhwevent)

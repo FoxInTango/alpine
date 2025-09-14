@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libipc
+PREPARE_URL_libipc = https://github.com/FoxInTango/libipc.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libipc = wf@allinone.io:alpine/libipc.git
+endif
 PREPARE_DIR_libipc = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libipc)))
 prepare.libipc:
 	-git clone $(PREPARE_URL_libipc) $(PREPARE_DIR_libipc)

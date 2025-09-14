@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libcl
+PREPARE_URL_libcl = https://github.com/FoxInTango/libcl.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libcl = wf@allinone.io:alpine/libcl.git
+endif
 PREPARE_DIR_libcl = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libcl)))
 prepare.libcl:
 	-git clone $(PREPARE_URL_libcl) $(PREPARE_DIR_libcl)

@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libes
+PREPARE_URL_libes = https://github.com/FoxInTango/libes.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libes = wf@allinone.io:alpine/libes.git
+endif
 PREPARE_DIR_libes = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libes)))
 prepare.libes:
 	-git clone $(PREPARE_URL_libes) $(PREPARE_DIR_libes)

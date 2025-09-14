@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libplatform
+PREPARE_URL_libplatform = https://github.com/FoxInTango/libplatform.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libplatform = wf@allinone.io:alpine/libplatform.git
+endif
 PREPARE_DIR_libplatform = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libplatform)))
 prepare.libplatform:
 	-git clone $(PREPARE_URL_libplatform) $(PREPARE_DIR_libplatform)

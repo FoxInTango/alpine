@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libelf
+PREPARE_URL_libelf = https://github.com/FoxInTango/libelf.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libelf = wf@allinone.io:alpine/libelf.git
+endif
 PREPARE_DIR_libelf = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libelf)))
 prepare.libelf:
 	-git clone $(PREPARE_URL_libelf) $(PREPARE_DIR_libelf)

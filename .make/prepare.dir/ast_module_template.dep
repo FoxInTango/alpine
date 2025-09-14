@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.ast_module_template
+PREPARE_URL_ast_module_template = https://github.com/FoxInTango/ast_module_template.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_ast_module_template = wf@allinone.io:alpine/ast_module_template.git
+endif
 PREPARE_DIR_ast_module_template = $(DEPENDS_TEMPLATE_PATH)/$(basename $(notdir $(PREPARE_URL_ast_module_template)))
 prepare.ast_module_template:
 	-git clone $(PREPARE_URL_ast_module_template) $(PREPARE_DIR_ast_module_template)

@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libhttp
+PREPARE_URL_libhttp = https://github.com/FoxInTango/libhttp.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libhttp = wf@allinone.io:alpine/libhttp.git
+endif
 PREPARE_DIR_libhttp = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libhttp)))
 prepare.libhttp:
 	-git clone $(PREPARE_URL_libhttp) $(PREPARE_DIR_libhttp)

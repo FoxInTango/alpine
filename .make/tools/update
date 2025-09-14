@@ -8,8 +8,11 @@ function update_makefile(){
     cp -f ${shell_pwd}/Makefile $1/
 }
 
-function update_prepare(){
-    echo "update ${shell_pwd}/.make/prepare to $1/.make/"
+function update_prepare(){ 
+    for dep in `ls $1/.make/prepare.dir/*.dep`; do
+        echo "update $1/.make/prepare.dir/basename:$(basename ${dep}) "
+	cp -f ${shell_pwd}/.make/prepare.dir/$(basename ${dep}) $1/.make/prepare.dir/ 
+    done
 }
 
 function travel_fs() {

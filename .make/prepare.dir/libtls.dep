@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libtls
+PREPARE_URL_libtls = https://github.com/FoxInTango/libtls.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libtls = wf@allinone.io:alpine/libtls.git
+endif
 PREPARE_DIR_libtls = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libtls)))
 prepare.libtls:
 	-git clone $(PREPARE_URL_libtls) $(PREPARE_DIR_libtls)

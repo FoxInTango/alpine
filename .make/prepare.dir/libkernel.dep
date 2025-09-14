@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libkernel
+PREPARE_URL_libkernel = https://github.com/FoxInTango/libkernel.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libkernel = wf@allinone.io:alpine/libkernel.git
+endif
 PREPARE_DIR_libkernel = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libkernel)))
 prepare.libkernel:
 	-git clone $(PREPARE_URL_libkernel) $(PREPARE_DIR_libkernel)

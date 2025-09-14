@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libfft
+PREPARE_URL_libfft = https://github.com/FoxInTango/libfft.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libfft = wf@allinone.io:alpine/libfft.git
+endif
 PREPARE_DIR_libfft = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libfft)))
 prepare.libfft:
 	-git clone $(PREPARE_URL_libfft) $(PREPARE_DIR_libfft)

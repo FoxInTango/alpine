@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libvm
+PREPARE_URL_libvm = https://github.com/FoxInTango/libvm.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libvm = wf@allinone.io:alpine/libvm.git
+endif
 PREPARE_DIR_libvm = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libvm)))
 prepare.libvm:
 	-git clone $(PREPARE_URL_libvm) $(PREPARE_DIR_libvm)

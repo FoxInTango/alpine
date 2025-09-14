@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libmodel
+PREPARE_URL_libmodel = https://github.com/FoxInTango/libmodel.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libmodel = wf@allinone.io:alpine/libmodel.git
+endif
 PREPARE_DIR_libmodel = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libmodel)))
 prepare.libmodel:
 	-git clone $(PREPARE_URL_libmodel) $(PREPARE_DIR_libmodel)

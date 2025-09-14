@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libkms
+PREPARE_URL_libkms = https://github.com/FoxInTango/libkms.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libkms = wf@allinone.io:alpine/libkms.git
+endif
 PREPARE_DIR_libkms = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libkms)))
 prepare.libkms:
 	-git clone $(PREPARE_URL_libkms) $(PREPARE_DIR_libkms)

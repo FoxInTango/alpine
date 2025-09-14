@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libimage
+PREPARE_URL_libimage = https://github.com/FoxInTango/libimage.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libimage = wf@allinone.io:alpine/libimage.git
+endif
 PREPARE_DIR_libimage = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libimage)))
 prepare.libimage:
 	-git clone $(PREPARE_URL_libimage) $(PREPARE_DIR_libimage)

@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libcry
+PREPARE_URL_libcry = https://github.com/FoxInTango/libcry.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libcry = wf@allinone.io:alpine/libcry.git
+endif
 PREPARE_DIR_libcry = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libcry)))
 prepare.libcry:
 	-git clone $(PREPARE_URL_libcry) $(PREPARE_DIR_libcry)

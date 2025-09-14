@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libmatch
+PREPARE_URL_libmatch = https://github.com/FoxInTango/libmatch.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libmatch = wf@allinone.io:alpine/libmatch.git
+endif
 PREPARE_DIR_libmatch = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libmatch)))
 prepare.libmatch:
 	-git clone $(PREPARE_URL_libmatch) $(PREPARE_DIR_libmatch)

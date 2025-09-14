@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libnn
+PREPARE_URL_libnn = https://github.com/FoxInTango/libnn.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libnn = wf@allinone.io:alpine/libnn.git
+endif
 PREPARE_DIR_libnn = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libnn)))
 prepare.libnn:
 	-git clone $(PREPARE_URL_libnn) $(PREPARE_DIR_libnn)

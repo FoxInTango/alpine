@@ -1,5 +1,8 @@
 PREPARE_TARGETS += prepare.libmath
+PREPARE_URL_libmath = https://github.com/FoxInTango/libmath.git
+ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_libmath = wf@allinone.io:alpine/libmath.git
+endif
 PREPARE_DIR_libmath = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libmath)))
 prepare.libmath:
 	-git clone $(PREPARE_URL_libmath) $(PREPARE_DIR_libmath)
