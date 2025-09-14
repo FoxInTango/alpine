@@ -1,0 +1,9 @@
+PREPARE_TARGETS += prepare.libhwevent
+PREPARE_URL_libhwevent = wf@allinone.io:alpine/libhwevent.git
+PREPARE_DIR_libhwevent = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libhwevent)))
+prepare.libhwevent:
+	-git clone $(PREPARE_URL_libhwevent) $(PREPARE_DIR_libhwevent)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libhwevent)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libhwevent)/.make/super
+	-cd $(PREPARE_DIR_libhwevent) && make prepare
+	-rm $(PREPARE_DIR_libhwevent)/.make/super
