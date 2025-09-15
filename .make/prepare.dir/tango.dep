@@ -1,5 +1,5 @@
 PREPARE_TARGETS += prepare.tango
-PREPARE_URL_tango = https://github.com/FoxInTango/tango.git
+PREPARE_URL_tango = https://github.com/FoxInTango/TangoUI.git
 ifdef REMOTE_ALL_IN_ONE
 PREPARE_URL_tango = wf@allinone.io:alpine/tango.git
 endif
