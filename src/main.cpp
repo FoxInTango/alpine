@@ -32,10 +32,9 @@
  */
 #include "alpine.h"
 #include "triangle.h"
-#include <libelf/libelf.h>
 #include <libast/libast.h>
 #include <libecho/libecho.h>
-#include <libmodel/libmodel.h>
+//#include <libmodel/libmodel.h>
 #include <libarguments/libarguments.h>
 
 #include <stdio.h>
@@ -52,7 +51,8 @@ int main(int argc,char* argv[]) {
     printf("germany : %s\n",w);
     libcpp_startup();
     showTriangle(argc,argv);
-    return 0;
+    //return 0;
+
     switch (CurrentEndian()) {
     case ENDIAN_B: {
         printf("CurrentEndian: Big Endian\n");
@@ -64,17 +64,7 @@ int main(int argc,char* argv[]) {
     }
 
     //while(true) {}
-    ME me("../elf/out/app.exe");
     
-
-    if (startup_arguments.contain("elf")) {
-        argument elf_arg = startup_arguments.at("elf");
-
-        for (int i = 0; i < elf_arg.count(); i++) {
-            ELFFile elf;
-            elf.open(elf_arg[i]);
-        }
-    }
 
     return 0;
 }

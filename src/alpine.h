@@ -25,13 +25,14 @@
 #define _alpine_h_
 
 #define be_simple_and_keep_simple
-#include <libsystem/libsystem.h>
-#include <libes/libes.h>
-#include <libast/libast.h>
+#include <libhwevent/libhwevent.h>
 #include <libfsevent/libfsevent.h>
 #include <libioevent/libioevent.h>
 #include <libarguments/libarguments.h>
-#include <libmodel/libmodel.h>
+#include <libes/libes.h>
+#include <libast/libast.h>
+#include <libsystem/libsystem.h>
+//#include <libmodel/libmodel.h>
 #include <libstring/libstring.h>
 using namespace foxintango;
 /**
@@ -70,8 +71,8 @@ public:
     int init(const foxintango::arguments& args);
     int clone();
 
-    int watch(const int& fd, const foxintango::Model& option);
-    int watch(const char* path, const foxintango::Model& option);
+    int watch(const int& fd);
+    int watch(const char* path);
     /**
      * url:ip 版本检测
      *     us|uss://                  UNIX   Socket

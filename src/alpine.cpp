@@ -43,10 +43,10 @@ int Alpine::init(const foxintango::arguments& args){
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
     
-    Model alpine_startup_model;
-    const ME* libes_startup_model = alpine_startup_model.subelementAt("es");
-    const ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
-    const ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
+    //Model alpine_startup_model;
+    //const ME* libes_startup_model = alpine_startup_model.subelementAt("es");
+    //const ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
+    //const ME* libfsevent_startup_model = alpine_startup_model.subelementAt("fs");
     
     
     libes_init();
@@ -65,11 +65,11 @@ int Alpine::clone(){
     return 0;
 }
 
-int Alpine::watch(const int& fd, const foxintango::Model& option){
+int Alpine::watch(const int& fd){
     return 0;
 }
 
-int Alpine::watch(const char* path, const foxintango::Model& option){
+int Alpine::watch(const char* path){
     return 0;
 }
 int Alpine::connect(const char* url){
