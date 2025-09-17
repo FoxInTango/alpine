@@ -366,3 +366,4 @@ endif
 	@echo PPFLAGS:${PPFLAGS}
 #	@echo ARFLAGS:${ARFLAGS}
 	@echo LDFLAGS:${LDFLAGS}
+	@echo TARGET_LIBS:${TARGET_LIBS}

@@ -28,11 +28,11 @@
 #include <libhwevent/libhwevent.h>
 #include <libfsevent/libfsevent.h>
 #include <libioevent/libioevent.h>
+#include <libevent/libevent.h>
 #include <libarguments/libarguments.h>
 #include <libes/libes.h>
 #include <libast/libast.h>
 #include <libsystem/libsystem.h>
-//#include <libmodel/libmodel.h>
 #include <libstring/libstring.h>
 using namespace foxintango;
 /**
@@ -54,13 +54,19 @@ struct alpine_config {
 
 #define USE_VIRTUAL_METHOD
 
+/** 
+ * 1,Listen hwevent -- keyborad,mouse,display. NOTICE: keyborad layout
+ * 2,Listen fsevent
+ * 3,Listen ip   socket -- tcp udp
+ * 4,Listen unix socket
+ * */
 class Alpine;
 class ModuleContext;
 typedef int (*event_callback)(const Alpine& alpine,int event);
-class Alpine {
+class Alpine :public EventHandler{
 private:
-    System* system;
-    ESContext* es;
+    EventReactor*  er;
+    ESContext*     es;
     ModuleContext* moduleContext;
 public:
     Alpine();
@@ -70,9 +76,6 @@ public:
 public:
     int init(const foxintango::arguments& args);
     int clone();
-
-    int watch(const int& fd);
-    int watch(const char* path);
     /**
      * url:ip 版本检测
      *     us|uss://                  UNIX   Socket
@@ -83,9 +86,11 @@ public:
      *     http|https://
      *     ws|wss://
      */
+    int watch(const char* url);
+
     int connect(const char* url);
 #ifdef USE_VIRTUAL_METHOD
-    virtual int onevent(int event);
+    virtual int handleEvent(Event* e);
 #else
     event_callback onevent = 0;
 #endif

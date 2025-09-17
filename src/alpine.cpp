@@ -34,15 +34,17 @@ void deal_signal(int signal){
 Alpine alpine;
 
 Alpine::Alpine(){
-    this->system = new System();
-    this->es = new ESContext();
+
 }
 Alpine::~Alpine(){}
-int Alpine::onevent(int event) { return event; }
+int Alpine::handleEvent(Event* e) { delete e; return 0; }
 int Alpine::init(const foxintango::arguments& args){
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
     
+    //EventEndpoint e; //EventEndpoint();
+    EventReactorCreateInfo info;
+    this->er = new EventReactor();
     //Model alpine_startup_model;
     //const ME* libes_startup_model = alpine_startup_model.subelementAt("es");
     //const ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
@@ -50,6 +52,7 @@ int Alpine::init(const foxintango::arguments& args){
     
     
     libes_init();
+    this->es = new ESContext();
     //libioevent_startup(*libioevent_startup_model);
     //libfsevent_startup(*libfsevent_startup_model);
     
@@ -62,10 +65,6 @@ int Alpine::init(const foxintango::arguments& args){
 }
 
 int Alpine::clone(){
-    return 0;
-}
-
-int Alpine::watch(const int& fd){
     return 0;
 }
 
