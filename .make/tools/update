@@ -15,6 +15,11 @@ function update_prepare(){
     done
 }
 
+function update_target_auto(){
+    echo "update ${shell_pwd}/.make/target.dir/auto to $1/.make/target.dir/"
+    cp -f ${shell_pwd}/.make/target.dir/auto $1/.make/target.dir/
+}
+
 function travel_fs() {
 for element in `ls $2`; do
     node=$2"/"${element}
@@ -38,6 +43,13 @@ case ${shell_cmd} in
 	travel_fs update_prepare ${shell_pwd}/templates
         travel_fs update_prepare ${shell_pwd}/applications
 	travel_fs update_prepare ${shell_pwd}/thirds
+    ;;
+    update.target.auto)
+        travel_fs update_target_auto ${shell_pwd}/modules
+        travel_fs update_target_auto ${shell_pwd}/libraries
+	travel_fs update_target_auto ${shell_pwd}/templates
+        travel_fs update_target_auto ${shell_pwd}/applications
+	travel_fs update_target_auto ${shell_pwd}/thirds
     ;;
     *)
     echo "I don't know what to do."

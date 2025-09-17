@@ -1,7 +1,7 @@
 PREPARE_TARGETS += prepare.mit
-PREPARE_URL_mit = https://github.com/FoxInTango/libmit.git
+PREPARE_URL_mit = https://github.com/FoxInTango/mit.git
 ifdef REMOTE_ALL_IN_ONE
-PREPARE_URL_mit = wf@allinone.io:alpine/libmit.git
+PREPARE_URL_mit = wf@allinone.io:alpine/mit.git
 endif
 PREPARE_DIR_mit = $(DEPENDS_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_URL_mit)))
 prepare.mit:
