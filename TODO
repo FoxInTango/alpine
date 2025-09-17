@@ -1,4 +1,0 @@
-check Makefile:DEPENDS_THIRDS_PATH
-libhwevent.git
-
-update .make/target.dir/auto  for platfoms :  -DPLATFORM_LINUX -DPLATFORM_LINUX_API 
