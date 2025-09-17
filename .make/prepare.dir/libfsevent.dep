@@ -1,7 +1,7 @@
 PREPARE_TARGETS += prepare.libfsevent
-PREPARE_URL_libfsevent = https://github.com/FoxInTango/libevent.git
+PREPARE_URL_libfsevent = https://github.com/FoxInTango/libfsevent.git
 ifdef REMOTE_ALL_IN_ONE
-PREPARE_URL_libfsevent = wf@allinone.io:alpine/libevent.git
+PREPARE_URL_libfsevent = wf@allinone.io:alpine/libfsevent.git
 endif
 PREPARE_DIR_libfsevent = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libfsevent)))
 prepare.libfsevent:

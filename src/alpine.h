@@ -25,6 +25,9 @@
 #define _alpine_h_
 
 #define be_simple_and_keep_simple
+#include <libwl/libwl.h>
+#include <libui/libui.h>
+#include <libvk/libvk.h>
 #include <libhwevent/libhwevent.h>
 #include <libfsevent/libfsevent.h>
 #include <libioevent/libioevent.h>
@@ -60,6 +63,7 @@ struct alpine_config {
  * 3,Listen ip   socket -- tcp udp
  * 4,Listen unix socket
  * */
+
 class Alpine;
 class ModuleContext;
 typedef int (*event_callback)(const Alpine& alpine,int event);
@@ -67,6 +71,7 @@ class Alpine :public EventHandler{
 private:
     EventReactor*  er;
     ESContext*     es;
+    UIApplication* ui;
     ModuleContext* moduleContext;
 public:
     Alpine();
@@ -75,6 +80,12 @@ public:
     String modulePath();
 public:
     int init(const foxintango::arguments& args);
+    int init(const ASTElement& model);
+    /** Load Alpine Model From File
+     *  @path : 
+     *
+     * */
+    int load(const char* path);
     int clone();
     /**
      * url:ip 版本检测

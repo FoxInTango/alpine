@@ -44,27 +44,17 @@ using namespace foxintango;
 
 int main(int argc,char* argv[]) {
     arguments startup_arguments(argc, argv);
-
     startup_arguments.echo();
+    /** 
+     * 
+     * */
     alpine.init(startup_arguments);
+
+
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
     libcpp_startup();
     showTriangle(argc,argv);
-    //return 0;
-
-    switch (CurrentEndian()) {
-    case ENDIAN_B: {
-        printf("CurrentEndian: Big Endian\n");
-    }break;
-    case ENDIAN_L: {
-        printf("CurrentEndian: Little Endian\n");
-    }break;
-    default:break;
-    }
-
-    //while(true) {}
-    
 
     return 0;
 }

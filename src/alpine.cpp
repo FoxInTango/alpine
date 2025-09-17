@@ -38,7 +38,8 @@ Alpine::Alpine(){
 }
 Alpine::~Alpine(){}
 int Alpine::handleEvent(Event* e) { delete e; return 0; }
-int Alpine::init(const foxintango::arguments& args){
+int Alpine::init(const foxintango::arguments& args){ return 0; }
+int Alpine::init(const ASTElement& model){
     unsigned int size_of_alpine = sizeof(Alpine);
     signal(0, deal_signal);
     
