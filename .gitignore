@@ -61,7 +61,7 @@
 /bin
 /inc
 /thirds
-/.make/depend.dir/*.mk
+*.mk
 /.make/super
 /.make/localconfig
 /.gitignore
