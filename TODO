@@ -1,8 +1,2 @@
-libprotocol
+.make/tools/update.gitignore
 
-alpine.h
-libprotocol
-src/triangle.cpp 
- #include <libvk/vulkanexamplebase.h>
-
-zero structs :  PlatformEventReactorCreateInfo;

@@ -51,6 +51,8 @@ case ${shell_cmd} in
         travel_fs update_target_auto ${shell_pwd}/applications
 	travel_fs update_target_auto ${shell_pwd}/thirds
     ;;
+    update.gitignore)
+    ;;
     *)
     echo "I don't know what to do."
     ;;
