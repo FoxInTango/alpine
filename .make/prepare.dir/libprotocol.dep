@@ -1,0 +1,12 @@
+PREPARE_TARGETS += prepare.libprotocol
+PREPARE_URL_libprotocol = https://github.com/FoxInTango/libprotocol.git
+ifdef REMOTE_ALL_IN_ONE
+PREPARE_URL_libprotocol = wf@allinone.io:alpine/libprotocol.git
+endif
+PREPARE_DIR_libprotocol = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libprotocol)))
+prepare.libprotocol:
+	-git clone $(PREPARE_URL_libprotocol) $(PREPARE_DIR_libprotocol)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libprotocol)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libprotocol)/.make/super
+	-cd $(PREPARE_DIR_libprotocol) && make prepare
+	-rm $(PREPARE_DIR_libprotocol)/.make/super

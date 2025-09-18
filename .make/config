@@ -12,7 +12,7 @@ CONFIG_FLAGS_AR = -O3
 CONFIG_FLAGS_LD = -O3
 
 # libs to be linked with.
-CONFIG_LINK_WITH_LIBS      +=  -lvk -lhwevent -lfsevent -lioevent -levent -les -last -larguments -lmodule  -lplatform -lstring -lcpp
+CONFIG_LINK_WITH_LIBS      +=  -lvk -lhwevent -lfsevent -lioevent -levent -les -last -larguments -lmodule  -lplatform -lprotocol -lstring -lcpp
 CONFIG_LINK_WITH_LIBS      += -lshaderc -lvulkan -lwayland-server -lwayland-client -lseat -lxcb -linput -ludev -lgbm -lEGL -ldrm -lstdc++ 
 CONFIG_HEADER_SEARCH_DIRS  += -I/usr/include -I/usr/local/include -Iinc/libvk/
 CONFIG_LIBRARY_SEARCH_DIRS += 
