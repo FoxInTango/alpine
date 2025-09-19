@@ -1,0 +1,12 @@
+PREPARE_TARGETS += prepare.libanimation
+PREPARE_URL_libanimation = https://github.com/FoxInTango/libanimation.git
+ifdef REMOTE_ALL_IN_ONE
+PREPARE_URL_libanimation = wf@allinone.io:alpine/libanimation.git
+endif
+PREPARE_DIR_libanimation = $(DEPENDS_LIBRARY_PATH)/$(basename $(notdir $(PREPARE_URL_libanimation)))
+prepare.libanimation:
+	-git clone $(PREPARE_URL_libanimation) $(PREPARE_DIR_libanimation)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_libanimation)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_libanimation)/.make/super
+	-cd $(PREPARE_DIR_libanimation) && make prepare
+	-rm $(PREPARE_DIR_libanimation)/.make/super
