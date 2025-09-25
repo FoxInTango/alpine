@@ -31,7 +31,7 @@
  * 后来，我意识到生命的意义并不在于瞎胡闹。所以，我不想继续瞎胡闹了，但他们似乎并不允许有人不瞎胡闹 -- 他们用各种方式诱惑，逼迫别人跟他们一起瞎胡闹。
  */
 #include "alpine.h"
-#include "triangle.h"
+#include <libvk/libvk.h>
 #include <libast/libast.h>
 #include <libecho/libecho.h>
 //#include <libmodel/libmodel.h>
@@ -54,7 +54,7 @@ int main(int argc,char* argv[]) {
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
     libcpp_startup();
-    showTriangle(argc,argv);
+    VKApplication vkApp;
 
     return 0;
 }
