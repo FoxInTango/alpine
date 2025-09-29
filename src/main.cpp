@@ -56,6 +56,6 @@ int main(int argc,char* argv[]) {
     libcpp_startup();
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
-    vkApp.enumerateDisplay();
+    vkApp.enumerateDisplays();
     return 0;
 }
