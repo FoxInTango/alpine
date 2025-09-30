@@ -46,14 +46,11 @@ int main(int argc,char* argv[]) {
     arguments startup_arguments(argc, argv);
     startup_arguments.echo();
     /** 
-     * 
-     * */
     alpine.init(startup_arguments);
-
-
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
     libcpp_startup();
+    */
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
     vkApp.enumerateDisplays();
