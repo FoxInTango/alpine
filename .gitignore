@@ -51,8 +51,7 @@
 *.inf
 *.log
 *.tlog
-*.lastbuildstate
-
+*.lastbuildstate\n
 #MIT Ignore Begin:
 /applications
 /templates
