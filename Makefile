@@ -39,7 +39,7 @@ endif
 ifdef ROOT_LIBRARY_INSTALL_PATH
     LIBRARY_INSTALL_PATH  = ${ROOT_LIBRARY_INSTALL_PATH}
 	LDFLAGS += -L${ROOT_LIBRARY_INSTALL_PATH}
-    LDFLAGS += -Wl,-rpath=${ROOT_LIBRARY_INSTALL_PATH}
+    LDFLAGS += #-Wl,-rpath=${ROOT_LIBRARY_INSTALL_PATH}
 endif
 
 # Path where aplications depended by this project to be downloaded.
@@ -87,7 +87,7 @@ ifdef ROOT_LIBRARY_PATH
     LDFLAGS += -L${ROOT_LIBRARY_PATH}
 endif
 ifdef ROOT_RUNTIME_PATH
-    LDFLAGS += -Wl,-rpath=${ROOT_RUNTIME_PATH}
+    LDFLAGS += #-Wl,-rpath=${ROOT_RUNTIME_PATH}
 endif
 
 TARGET_BIN_DIR := ./bin
