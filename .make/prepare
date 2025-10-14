@@ -1,7 +1,7 @@
 PREPARE_TARGETS += prepare.dir
 include $(MAKE_CONFIG_DIR)/prepare.dir/*.dep
 prepare.dir:
-	-mkdir applications libraries modules templates thirds inc lib bin
+	-mkdir .make/depend.dir applications libraries modules templates thirds inc lib bin
 ifneq ($(wildcard $(MAKE_CONFIG_DIR)/ignore.git),)
 	-cp $(MAKE_CONFIG_DIR)/ignore.git .gitignore
 endif
