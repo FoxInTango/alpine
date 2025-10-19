@@ -3,6 +3,9 @@ shell_cmd=$(basename $0)
 shell_dir=$(dirname  $0)
 shell_pwd=$(pwd)
 
+#TODO:
+#       update.target.all ...
+
 function update_makefile(){
     echo "update ${shell_pwd}/Makefile to $1/"
     cp -f ${shell_pwd}/Makefile $1/
