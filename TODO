@@ -1,2 +1,6 @@
 .make/tools/create.library | module | template | application | third
 
+Methods for building as kernel module:
+
+1, Build every library as dynamic module and export symbols in kernel.
+2, Create module makefile and add library source files to it.
