@@ -51,6 +51,7 @@ int main(int argc,char* argv[]) {
     printf("germany : %s\n",w);
     libcpp_startup();
     */
+
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
     vkApp.enumerateDisplays();
