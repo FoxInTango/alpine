@@ -28,6 +28,17 @@
 #include <signal.h>
 #include <sched.h>
 
+void exit_callback_1() {
+printf("exit_callback[1]\n");
+}
+
+void exit_callback_2() {
+printf("exit_callback[2]\n");
+}
+
+void exit_callback_3() {
+printf("exit_callback[3]\n");
+}
 void deal_signal(int signal){
 }
 
@@ -41,6 +52,14 @@ int Alpine::handleEvent(Event* e) { delete e; return 0; }
 int Alpine::init(const foxintango::arguments& args){ return 0; }
 int Alpine::init(const ASTElement& model){
     unsigned int size_of_alpine = sizeof(Alpine);
+    atexit(exit_callback_1);
+    atexit(exit_callback_2);
+    atexit(exit_callback_3);
+    signal(SIGINT,deal_signal);
+    signal(SIGABRT,deal_signal);
+    signal(SIGFPE,deal_signal);
+    signal(SIGILL,deal_signal);
+    signal(SIGTERM,deal_signal);
     signal(0, deal_signal);
     
     //EventEndpoint e; //EventEndpoint();
