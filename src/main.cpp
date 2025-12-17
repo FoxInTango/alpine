@@ -207,11 +207,11 @@ int main(int argc,char* argv[]) {
     libcpp_startup();
     */
 
-    /*
+    
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
     vkApp.enumerateDisplays();
-    */
+    return 0;
     initScreen(editor_screen);
     enableRawMode(STDIN_FILENO);
     while(true) {
