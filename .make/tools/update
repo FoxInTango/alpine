@@ -41,9 +41,9 @@ case ${shell_cmd} in
     update.makefile)
         travel_fs update_makefile ${shell_pwd}/modules
         travel_fs update_makefile ${shell_pwd}/libraries
-	travel_fs update_makefile ${shell_pwd}/templates
+        travel_fs update_makefile ${shell_pwd}/templates
         travel_fs update_makefile ${shell_pwd}/applications
-	travel_fs update_makefile ${shell_pwd}/thirds
+        travel_fs update_makefile ${shell_pwd}/thirds
     ;;
     update.prepare)
         travel_fs update_prepare ${shell_pwd}/modules
