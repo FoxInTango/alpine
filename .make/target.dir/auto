@@ -20,7 +20,7 @@ ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_DARWIN})
     TARGET_FLAGS_AS = -O3
     TARGET_FLAGS_CC = -O3 -c -fPIC -Wall -std=c11   -DPLATFORM_DARWIN -DPLATFORM_DARWIN_API
     TARGET_FLAGS_PP = -O3 -c -fPIC -Wall -std=c++11 -DPLATFORM_DARWIN -DPLATFORM_DARWIN_API -fvisibility=hidden
-    TARGET_FLAGS_AR = -O3
+    TARGET_FLAGS_AR = 
     TARGET_FLAGS_LD = -O3
 endif
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
@@ -35,7 +35,7 @@ ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
     TARGET_FLAGS_AS = -O3
     TARGET_FLAGS_CC = -O3 -c -fPIC -Wall -std=c11   -DPLATFORM_LINUX -DPLATFORM_LINUX_API
     TARGET_FLAGS_PP = -O3 -c -fPIC -Wall -std=c++11 -DPLATFORM_LINUX -DPLATFORM_LINUX_API -fvisibility=hidden
-    TARGET_FLAGS_AR = -O3
+    TARGET_FLAGS_AR = 
     TARGET_FLAGS_LD = -O3 
     TARGET_LINK_WITH_LIBS += -lshaderc -lvulkan -lwayland-server -lwayland-client -lseat -lxcb -linput -ludev -lgbm -lEGL -ldrm
 endif
@@ -51,6 +51,6 @@ ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
     TARGET_FLAGS_AS = -O3
     TARGET_FLAGS_CC = -O3 -c -fPIC -Wall -std=c11   -DPLATFORM_FreeBSD -DPLATFORM_FreeBSD_API
     TARGET_FLAGS_PP = -O3 -c -fPIC -Wall -std=c++11 -DPLATFORM_FreeBSD -DPLATFORM_FreeBSD_API -fvisibility=hidden
-    TARGET_FLAGS_AR = -O3
+    TARGET_FLAGS_AR = 
     TARGET_FLAGS_LD = -O3
 endif

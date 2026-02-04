@@ -1,0 +1,4 @@
+# attachments
+ifneq ($(wildcard $(MAKE_CONFIG_DIR)/attachment.dir/*.ath),)
+    include $(MAKE_CONFIG_DIR)/attachment.dir/*.ath
+endif

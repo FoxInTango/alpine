@@ -8,11 +8,11 @@ TARGET_TYPE_DLL = $(MK_FALSE)
 CONFIG_FLAGS_AS = -O3
 CONFIG_FLAGS_CC = -O3 -c -fPIC -std=c11 #-Wall
 CONFIG_FLAGS_PP = -O3 -c -fPIC -std=c++11 -fvisibility=hidden
-CONFIG_FLAGS_AR = -O3
+CONFIG_FLAGS_AR = rcv
 CONFIG_FLAGS_LD = -O3
 
 # libs to be linked with.
-CONFIG_LINK_WITH_LIBS      +=  -lvk -lhwevent -lfsevent -lioevent -levent -les -last -larguments -lmodule  -lplatform -lprotocol -lstring -lcpp -lstdc++
+CONFIG_LINK_WITH_LIBS      +=  -lui -lvk -lhwevent -lfsevent -lioevent -levent -les -last -larguments -lmodule  -lplatform -lprotocol -lstring -lcpp -lstdc++
 CONFIG_HEADER_SEARCH_DIRS  += -Iinc/libvk/
 CONFIG_LIBRARY_SEARCH_DIRS += 
 CONFIG_SOURCE_ROOT_DIRS    += ./src
