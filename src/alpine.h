@@ -67,7 +67,7 @@ struct alpine_config {
 class Alpine;
 class ModuleContext;
 typedef int (*event_callback)(const Alpine& alpine,int event);
-class Alpine :public EventHandler{
+class Alpine :public EventHandler,ESContext {
 private:
     EventReactor*  er;
     ESContext*     es;
