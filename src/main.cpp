@@ -59,12 +59,13 @@ int main(int argc,char* argv[]) {
     atexit(exit_callback);
     arguments startup_arguments(argc, argv);
     startup_arguments.echo();
-    /** 
-    alpine.init(startup_arguments);
+    //alpine.init(startup_arguments);
+    ASTElement alpine_model;
+    alpine.init(alpine_model);
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
     libcpp_startup();
-    */
+    
 
     /** libvk
     VKApplication vkApp;

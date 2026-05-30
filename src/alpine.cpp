@@ -61,10 +61,14 @@ int Alpine::init(const ASTElement& model){
     signal(SIGILL,deal_signal);
     signal(SIGTERM,deal_signal);
     signal(0, deal_signal);
-    
+
+    std::cout << "Alpine::init: " << std::endl;    
     //EventEndpoint e; //EventEndpoint();
     EventReactorCreateInfo info;
-    this->er = new EventReactor();
+    info.BufferSize = 1024;
+    info.EventCount = 1024;
+    info.ThreadCount = 16;
+    this->er = new EventReactor(info);
     //Model alpine_startup_model;
     //const ME* libes_startup_model = alpine_startup_model.subelementAt("es");
     //const ME* libioevent_startup_model = alpine_startup_model.subelementAt("io");
