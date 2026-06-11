@@ -64,6 +64,7 @@ int main(int argc,char* argv[]) {
     alpine.init(alpine_model);
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
+
     libcpp_startup();
     
 
