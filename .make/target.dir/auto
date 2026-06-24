@@ -36,7 +36,7 @@ ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_LINUX})
     TARGET_FLAGS_CC = -O3 -c -fPIC -Wall -std=c11   -DPLATFORM_LINUX -DPLATFORM_LINUX_API
     TARGET_FLAGS_PP = -O3 -c -fPIC -Wall -std=c++11 -DPLATFORM_LINUX -DPLATFORM_LINUX_API -fvisibility=hidden
     TARGET_FLAGS_AR = 
-    TARGET_FLAGS_LD = -static -O3 
+    TARGET_FLAGS_LD = -O3 
     TARGET_LINK_WITH_LIBS += -lshaderc -lvulkan -lwayland-server -lwayland-client -lseat -lxcb -linput -ludev -lgbm -lEGL -ldrm
 endif
 ifeq (${PLATFORM_ARCH},${PLATFORM_ARCH_FreeBSD})
