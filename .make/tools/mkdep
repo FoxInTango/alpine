@@ -1,4 +1,5 @@
-#!/usr/bin/bash
+#!/bin/bash
+
 shell_cmd=$(basename $0)
 shell_dir=$(dirname  $0)
 shell_pwd=$(pwd)
