@@ -339,6 +339,7 @@ else
 endif
 publish:$(PUBLISH_TARGETS)
 	-git add . && git commit -m "$(shell date)" && git push
+	rsync -avPh thirds/ allinone:alpine/thirds
 update:$(UPDATE_TARGETS)
 	-git pull
 echo: #$(ECHO_TARGETS)
