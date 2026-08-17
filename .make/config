@@ -12,7 +12,7 @@ CONFIG_FLAGS_AR = rcv
 CONFIG_FLAGS_LD = -O3
 
 # libs to be linked with.
-CONFIG_LINK_WITH_LIBS      +=  -lui -lvk -lhwevent -lfsevent -lioevent -levent -les -last -larguments -lmodule  -lplatform -lprotocol -lstring -lcry -lcpp -lstdc++
+CONFIG_LINK_WITH_LIBS      +=  -lwl -lui -lvk -lhwevent -lfsevent -lioevent -levent -les -last -larguments -lmodule  -lplatform -lprotocol -lstring -lcry -lcpp -lstdc++
 CONFIG_HEADER_SEARCH_DIRS  += -Iinc/libvk/
 CONFIG_LIBRARY_SEARCH_DIRS += 
 CONFIG_SOURCE_ROOT_DIRS    += ./src
