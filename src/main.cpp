@@ -33,6 +33,7 @@
 #include "alpine.h"
 #include <libui/libui.h>
 #include <libvk/libvk.h>
+#include <libwl/libwl.h>
 #include <libast/libast.h>
 #include <libecho/libecho.h>
 //#include <libmodel/libmodel.h>
@@ -78,6 +79,9 @@ int main(int argc,char* argv[]) {
     */
 
     UIApplication uiApp;
+    WLApplication wl;
+    wl.launch(argc,argv);
+    
 
     /*** libcry */
     std::cout << "md5 of 'grape': " << md5("MD5（Message Digest Algorithm 5）是一种广泛使用的哈希函数，它将任意长度的输入消息映射为 128（16个字符(BYTES)）位的固定长度散列值。") << std::endl;
