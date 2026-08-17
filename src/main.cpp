@@ -61,7 +61,7 @@ int main(int argc,char* argv[]) {
     startup_arguments.echo();
     //alpine.init(startup_arguments);
     ASTElement alpine_model;
-    alpine.init(alpine_model);
+    //alpine.init(alpine_model);
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
 
