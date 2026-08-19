@@ -75,7 +75,7 @@ int main(int argc,char* argv[]) {
     vkApp.enumerateDisplays();
     VKDisplaySurface* surface = new VKDisplaySurface(100,100,0);
     sleep(10);
-    delete surface;    
+//    delete surface;    
 /**/
 
     /*** libui 
