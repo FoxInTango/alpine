@@ -73,7 +73,7 @@ int main(int argc,char* argv[]) {
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
     vkApp.enumerateDisplays();
-    VKDisplaySurface* surface = new VKDisplaySurface(100,100,false,0);
+    VKDisplaySurface* surface = new VKDisplaySurface();//(100,100,false,0);
     sleep(10);
     delete surface;    
 /**/
