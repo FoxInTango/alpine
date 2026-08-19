@@ -73,7 +73,10 @@ int main(int argc,char* argv[]) {
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
     vkApp.enumerateDisplays();
-    /**/
+    VKDisplaySurface* surface = new VKDisplaySurface(100,100,0);
+    sleep(10);
+    delete surface;    
+/**/
 
     /*** libui 
     */
