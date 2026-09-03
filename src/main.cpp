@@ -31,6 +31,7 @@
  * 后来，我意识到生命的意义并不在于瞎胡闹。所以，我不想继续瞎胡闹了，但他们似乎并不允许有人不瞎胡闹 -- 他们用各种方式诱惑，逼迫别人跟他们一起瞎胡闹。
  */
 #include "alpine.h"
+#include <libkms/kms-quads.h>
 #include <libui/libui.h>
 #include <libvk/libvk.h>
 #include <libwl/libwl.h>
@@ -67,6 +68,8 @@ int main(int argc,char* argv[]) {
     printf("germany : %s\n",w);
 
     libcpp_startup();
+
+    device* dev = device_create();
     
 
     /** libvk **/
