@@ -55,13 +55,13 @@ int Alpine::init(const ASTElement& model){
     atexit(exit_callback_1);
     atexit(exit_callback_2);
     atexit(exit_callback_3);
-    signal(SIGINT,deal_signal);
+/** signal(SIGINT,deal_signal);
     signal(SIGABRT,deal_signal);
     signal(SIGFPE,deal_signal);
     signal(SIGILL,deal_signal);
     signal(SIGTERM,deal_signal);
     signal(0, deal_signal);
-
+*/
     std::cout << "Alpine::init: " << std::endl;    
     //EventEndpoint e; //EventEndpoint();
     EventReactorCreateInfo info;

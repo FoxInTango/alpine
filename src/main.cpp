@@ -31,7 +31,11 @@
  * 后来，我意识到生命的意义并不在于瞎胡闹。所以，我不想继续瞎胡闹了，但他们似乎并不允许有人不瞎胡闹 -- 他们用各种方式诱惑，逼迫别人跟他们一起瞎胡闹。
  */
 #include "alpine.h"
+#ifdef PLATFORM_DARWIN
+#ifdef PLATFORM_LINUX_API
 #include <libkms/libkms.h>
+#endif
+#endif
 #include <libui/libui.h>
 #include <libvk/libvk.h>
 #include <libwl/libwl.h>
