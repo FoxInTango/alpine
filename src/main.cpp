@@ -31,7 +31,7 @@
  * 后来，我意识到生命的意义并不在于瞎胡闹。所以，我不想继续瞎胡闹了，但他们似乎并不允许有人不瞎胡闹 -- 他们用各种方式诱惑，逼迫别人跟他们一起瞎胡闹。
  */
 #include "alpine.h"
-#include <libkms/kms-quads.h>
+#include <libkms/libkms.h>
 #include <libui/libui.h>
 #include <libvk/libvk.h>
 #include <libwl/libwl.h>
@@ -58,40 +58,41 @@ void exit_callback(){
     printf("exit_callback.\n");
 }
 int main(int argc,char* argv[]) {
+    libcpp_startup();
     atexit(exit_callback);
+    
     arguments startup_arguments(argc, argv);
     startup_arguments.echo();
     //alpine.init(startup_arguments);
     ASTElement alpine_model;
-    //alpine.init(alpine_model);
+    alpine.init(alpine_model);
+    /**
     char* w = "fähigkeit";
     printf("germany : %s\n",w);
-
-    libcpp_startup();
-
-    device* dev = device_create();
+    */ 
+//    device* dev = device_create();
     
 
-    /** libvk **/
+    /** libvk
     VKApplication vkApp;
     vkApp.enumeratePhysicalDevices();
     vkApp.enumerateDisplays();
     VKDisplaySurface* surface = new VKDisplaySurface(100,100,false,0);
     sleep(10);
     delete surface;    
-/**/
-
-    /*** libui 
     */
+
+    /** libui
 
     UIApplication uiApp;
     WLApplication wl;
     wl.launch(argc,argv);
-    
+    */
 
-    /*** libcry */
+    /** libcry
     std::cout << "md5 of 'grape': " << md5("MD5（Message Digest Algorithm 5）是一种广泛使用的哈希函数，它将任意长度的输入消息映射为 128（16个字符(BYTES)）位的固定长度散列值。") << std::endl;
-    //sleep(10);
+    sleep(10);
+    */
     return 0;
 }
 
