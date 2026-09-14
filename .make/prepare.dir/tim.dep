@@ -1,0 +1,12 @@
+PREPARE_TARGETS += prepare.tim
+PREPARE_URL_tim = https://github.com/FoxInTango/tim.git
+ifdef REMOTE_ALL_IN_ONE
+PREPARE_URL_tim = wf@allinone.io:alpine/tim.git
+endif
+PREPARE_DIR_tim = $(DEPENDS_APPLICATION_PATH)/$(basename $(notdir $(PREPARE_URL_tim)))
+prepare.tim:
+	-git clone $(PREPARE_URL_tim) $(PREPARE_DIR_tim)
+	-echo "SUPER_MAKE_DIR=${MAKE_FILE_DIR}"                >> $(PREPARE_DIR_tim)/.make/super
+	-echo "SUPER_MAKE_CONFIG_DIR=${MAKE_CONFIG_DIR}"       >> $(PREPARE_DIR_tim)/.make/super
+	-cd $(PREPARE_DIR_tim) && make prepare
+	-rm $(PREPARE_DIR_tim)/.make/super
