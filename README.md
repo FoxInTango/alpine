@@ -1,1 +1,1 @@
-rsync -avPh thirds/ allinone:alpine/thirds
+Core System Service.
